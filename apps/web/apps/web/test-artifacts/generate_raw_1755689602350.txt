@@ -1,0 +1,85 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "prompt": "What would you like the agent to do?"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "task-analysis",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Analyze the following task and break it down into steps: {{user-input}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 100
+      }
+    },
+    {
+      "id": "action-planning",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Based on this task analysis, create a plan of action: {{task-analysis}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 200
+      }
+    },
+    {
+      "id": "execute-action",
+      "type": "function",
+      "config": {
+        "function": "executeAction",
+        "args": {
+          "plan": "{{action-planning}}"
+        }
+      },
+      "position": {
+        "x": 0,
+        "y": 300
+      }
+    },
+    {
+      "id": "output-result",
+      "type": "output",
+      "config": {
+        "message": "Task completed. Result: {{execute-action}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 400
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "task-analysis"
+    },
+    {
+      "source": "task-analysis",
+      "target": "action-planning"
+    },
+    {
+      "source": "action-planning",
+      "target": "execute-action"
+    },
+    {
+      "source": "execute-action",
+      "target": "output-result"
+    }
+  ]
+}

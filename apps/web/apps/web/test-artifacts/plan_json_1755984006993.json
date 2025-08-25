@@ -1,0 +1,85 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Create a welcome email template"
+      },
+      {
+        "text": "Set up email automation system"
+      },
+      {
+        "text": "Configure trigger for new user signup"
+      },
+      {
+        "text": "Send welcome email immediately after signup"
+      },
+      {
+        "text": "Set 2-day wait period"
+      },
+      {
+        "text": "Check for user reply"
+      },
+      {
+        "text": "If no reply, send follow-up email"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_provider",
+        "label": "Which email service provider do you use?",
+        "choices": [
+          "Mailchimp",
+          "SendGrid",
+          "AWS SES",
+          "Other"
+        ]
+      },
+      {
+        "id": "user_data_source",
+        "label": "Where is your user data stored?",
+        "choices": [
+          "Database",
+          "CRM",
+          "Spreadsheet",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "automation_needed",
+        "title": "Email automation system is required",
+        "confidence": 0.9
+      },
+      {
+        "id": "delay_feature",
+        "title": "Need ability to delay email sending",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "welcome_sequence",
+        "title": "New User Welcome Email Sequence",
+        "steps": [
+          "Trigger on new user signup",
+          "Send welcome email",
+          "Wait 2 days",
+          "Check for user reply",
+          "Send follow-up if no reply"
+        ],
+        "requires": [
+          "email_provider",
+          "user_data_source"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email"
+    ]
+  },
+  "nextQuestions": [
+    "email_provider",
+    "user_data_source"
+  ]
+}

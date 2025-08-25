@@ -1,0 +1,73 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up hourly API call to retrieve Bitcoin price"},
+      {"text": "Calculate Bitcoin price movement over last 4 hours"},
+      {"text": "Check if price movement exceeds 2% threshold"},
+      {"text": "If threshold exceeded, generate AI explanation for price movement"},
+      {"text": "Send SMS alert with price change and AI rationale"},
+      {"text": "Send Slack alert with price change and AI rationale"}
+    ],
+    "questions": [
+      {
+        "id": "pricing_api",
+        "label": "Which cryptocurrency pricing API would you like to use?",
+        "choices": ["CoinGecko", "CoinMarketCap", "Binance"]
+      },
+      {
+        "id": "sms_provider",
+        "label": "Which SMS service provider do you prefer?",
+        "choices": ["Twilio", "Nexmo", "MessageBird"]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for generating price movement rationale?",
+        "choices": ["GPT-3.5", "GPT-4", "Claude"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "threshold",
+        "title": "Price movement threshold is set to 2%",
+        "confidence": 1
+      },
+      {
+        "id": "monitoring_interval",
+        "title": "Price is monitored hourly",
+        "confidence": 1
+      },
+      {
+        "id": "movement_timeframe",
+        "title": "Price movement is calculated over 4 hours",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "price_check",
+        "title": "Hourly Bitcoin Price Check",
+        "steps": [
+          "Call pricing API",
+          "Calculate 4-hour price movement",
+          "Compare to 2% threshold"
+        ]
+      },
+      {
+        "id": "alert_pipeline",
+        "title": "Send Alerts",
+        "steps": [
+          "Generate AI explanation",
+          "Compose alert message",
+          "Send SMS alert",
+          "Send Slack alert"
+        ],
+        "requires": ["price_check"]
+      }
+    ],
+    "connectionsRequired": [
+      "openai",
+      "slack",
+      "twilio"
+    ]
+  }
+}

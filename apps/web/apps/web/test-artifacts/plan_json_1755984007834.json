@@ -1,0 +1,84 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Send welcome email to new signup"
+      },
+      {
+        "text": "Wait for 2 days"
+      },
+      {
+        "text": "Check if user has replied"
+      },
+      {
+        "text": "If no reply, send follow-up email"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use?",
+        "choices": [
+          "SendGrid",
+          "Mailchimp",
+          "Amazon SES",
+          "Custom SMTP"
+        ]
+      },
+      {
+        "id": "welcome_template",
+        "label": "Do you have an existing welcome email template?",
+        "choices": [
+          "Yes",
+          "No, I need to create one"
+        ]
+      },
+      {
+        "id": "followup_template",
+        "label": "Do you have an existing follow-up email template?",
+        "choices": [
+          "Yes",
+          "No, I need to create one"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "user_engagement",
+        "title": "User engagement tracking may be needed",
+        "confidence": 0.8
+      },
+      {
+        "id": "email_analytics",
+        "title": "Email open and click tracking could be beneficial",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "welcome_sequence",
+        "title": "New User Welcome Sequence",
+        "steps": [
+          "Trigger on new user signup",
+          "Send welcome email",
+          "Wait 2 days",
+          "Check for user reply",
+          "Send follow-up if no reply"
+        ],
+        "requires": [
+          "email_service",
+          "welcome_template",
+          "followup_template"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email"
+    ]
+  },
+  "nextQuestions": [
+    "email_service",
+    "welcome_template",
+    "followup_template"
+  ]
+}

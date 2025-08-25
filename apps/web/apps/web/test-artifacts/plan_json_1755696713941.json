@@ -1,0 +1,102 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Connect to Twitter account"
+      },
+      {
+        "text": "Set up a system to track daily AI trends"
+      },
+      {
+        "text": "Create a template for tweets"
+      },
+      {
+        "text": "Implement a scheduling system"
+      },
+      {
+        "text": "Set up error handling and notifications"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How often do you want to tweet AI trends?",
+        "choices": [
+          "Once daily",
+          "Twice daily",
+          "Three times daily"
+        ]
+      },
+      {
+        "id": "trend_sources",
+        "label": "Which sources would you like to use for AI trends?",
+        "choices": [
+          "News websites",
+          "Research papers",
+          "Social media",
+          "Industry blogs"
+        ]
+      },
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": [
+          "Formal",
+          "Casual",
+          "Mix of both"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "ai_api_required",
+        "title": "AI-powered content generation may be needed",
+        "confidence": 0.8
+      },
+      {
+        "id": "scheduling_tool",
+        "title": "A tweet scheduling tool is necessary",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "trend_tweet_pipeline",
+        "title": "AI Trend Tweet Generation and Posting",
+        "steps": [
+          "Collect AI trends from selected sources",
+          "Generate tweet content using AI",
+          "Schedule tweet",
+          "Post tweet to Twitter"
+        ],
+        "requires": [
+          "twitter",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "Once daily",
+    "trend_sources": [
+      "News websites",
+      "Industry blogs"
+    ],
+    "tweet_style": "Mix of both"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweet_frequency"
+    },
+    {
+      "id": "trend_sources"
+    },
+    {
+      "id": "tweet_style"
+    }
+  ]
+}

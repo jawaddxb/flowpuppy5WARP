@@ -1,0 +1,92 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up email monitoring for new support emails"
+      },
+      {
+        "text": "Use AI to classify email severity"
+      },
+      {
+        "text": "Route high severity emails to Slack #support-critical channel"
+      },
+      {
+        "text": "Handle lower severity emails through standard process"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_provider",
+        "label": "Which email provider are you using for support?",
+        "choices": [
+          "Gmail",
+          "Outlook",
+          "Custom IMAP",
+          "Other"
+        ]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you prefer for severity classification?",
+        "choices": [
+          "OpenAI GPT",
+          "Google Vertex AI",
+          "Custom model",
+          "Undecided"
+        ]
+      },
+      {
+        "id": "slack_integration",
+        "label": "Do you already have Slack integrated with your workflows?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "email_volume",
+        "title": "Determine average daily support email volume",
+        "confidence": 0.8
+      },
+      {
+        "id": "severity_criteria",
+        "title": "Define criteria for high severity issues",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_processing",
+        "title": "Email Processing and Severity Classification",
+        "steps": [
+          "Monitor incoming support emails",
+          "Extract email content",
+          "Use AI to classify severity",
+          "Route based on severity classification"
+        ],
+        "requires": [
+          "email_provider",
+          "ai_model"
+        ]
+      },
+      {
+        "id": "slack_notification",
+        "title": "Slack Notification for Critical Issues",
+        "steps": [
+          "Prepare message for Slack",
+          "Send notification to #support-critical channel"
+        ],
+        "requires": [
+          "slack_integration"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email",
+      "openai",
+      "slack"
+    ]
+  }
+}

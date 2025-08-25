@@ -1,0 +1,65 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "fetch-ai-news",
+      "type": "web-scraper",
+      "config": {
+        "urls": [
+          "https://www.artificialintelligence-news.com/",
+          "https://www.wired.com/tag/artificial-intelligence/",
+          "https://venturebeat.com/category/ai/"
+        ],
+        "elements": ".article-title, .article-excerpt",
+        "frequency": "daily"
+      },
+      "position": {"x": 100, "y": 100}
+    },
+    {
+      "id": "analyze-trends",
+      "type": "text-analyzer",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Analyze the following AI news headlines and excerpts. Identify the top 3 trending topics or themes in AI today. Summarize each trend in a concise, tweet-friendly format."
+      },
+      "position": {"x": 300, "y": 100}
+    },
+    {
+      "id": "generate-tweet",
+      "type": "text-generator",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Create a single tweet (max 280 characters) summarizing the top 3 AI trends of the day. Include relevant hashtags."
+      },
+      "position": {"x": 500, "y": 100}
+    },
+    {
+      "id": "post-tweet",
+      "type": "social-media-poster",
+      "config": {
+        "provider": "twitter",
+        "account": "AITrendBot"
+      },
+      "position": {"x": 700, "y": 100}
+    }
+  ],
+  "edges": [
+    {
+      "source": "fetch-ai-news",
+      "target": "analyze-trends",
+      "label": "Raw AI news data"
+    },
+    {
+      "source": "analyze-trends",
+      "target": "generate-tweet",
+      "label": "Top 3 AI trends"
+    },
+    {
+      "source": "generate-tweet",
+      "target": "post-tweet",
+      "label": "Generated tweet"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for welcome sequence"
+      },
+      {
+        "text": "Create compelling subject lines for each email"
+      },
+      {
+        "text": "Draft welcome email content"
+      },
+      {
+        "text": "Draft day 2 follow-up email content"
+      },
+      {
+        "text": "Draft day 3 follow-up email content"
+      },
+      {
+        "text": "Set up email automation workflow"
+      },
+      {
+        "text": "Test and optimize sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Event attendees"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your welcome sequence?",
+        "choices": [
+          "Introduce company/product",
+          "Drive first purchase",
+          "Encourage product usage",
+          "Build brand loyalty"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone would you like to use in your emails?",
+        "choices": [
+          "Professional",
+          "Friendly and casual",
+          "Humorous",
+          "Informative"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailFrequency",
+        "title": "Optimal email frequency for engagement",
+        "confidence": 0.8
+      },
+      {
+        "id": "subjectLines",
+        "title": "Effective subject line strategies",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "createSequence",
+        "title": "Create Email Sequence",
+        "steps": [
+          "Draft welcome email",
+          "Draft day 2 follow-up",
+          "Draft day 3 follow-up",
+          "Review and edit content",
+          "Set up automation"
+        ]
+      },
+      {
+        "id": "testOptimize",
+        "title": "Test and Optimize Sequence",
+        "steps": [
+          "Send test emails",
+          "Analyze open and click rates",
+          "Adjust content based on performance",
+          "Re-test optimized sequence"
+        ],
+        "requires": [
+          "createSequence"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "sendgrid"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Introduce company/product",
+    "tone": "Friendly and casual"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "tone"
+    }
+  ]
+}

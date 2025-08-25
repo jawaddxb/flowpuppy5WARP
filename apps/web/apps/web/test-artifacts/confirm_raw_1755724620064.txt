@@ -1,0 +1,64 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "limit": 10
+        }
+      },
+      "web": {
+        "provider": "google",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentimentAnalysis": {
+        "provider": "openai",
+        "params": {
+          "model": "text-davinci-002",
+          "prompt": "Analyze the sentiment of the following text: {{sources.twitter.text}}"
+        }
+      }
+    },
+    "decision": {
+      "responseStrategy": {
+        "provider": "openai",
+        "params": {
+          "model": "text-davinci-002",
+          "prompt": "Based on the sentiment analysis and web search results, decide on the best response strategy."
+        }
+      }
+    },
+    "actions": {
+      "generateResponse": {
+        "provider": "openai",
+        "params": {
+          "model": "text-davinci-002",
+          "prompt": "Generate a response based on the decided strategy: {{decision.responseStrategy}}"
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "discord"
+      },
+      {
+        "type": "email",
+        "provider": "sendgrid"
+      }
+    ]
+  }
+}

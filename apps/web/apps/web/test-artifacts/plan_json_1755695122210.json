@@ -1,0 +1,127 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define the goal and target audience for the welcome sequence"
+      },
+      {
+        "text": "Create a compelling subject line for the welcome email"
+      },
+      {
+        "text": "Write the content for the welcome email"
+      },
+      {
+        "text": "Design the layout and format of the welcome email"
+      },
+      {
+        "text": "Create subject lines for the 3 follow-up emails"
+      },
+      {
+        "text": "Write the content for the 3 follow-up emails"
+      },
+      {
+        "text": "Design the layout and format of the follow-up emails"
+      },
+      {
+        "text": "Set up the email sequence in an email marketing platform"
+      },
+      {
+        "text": "Test the email sequence"
+      },
+      {
+        "text": "Launch the email welcome and follow-up sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is the target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Event attendees"
+        ]
+      },
+      {
+        "id": "emailPlatform",
+        "label": "Which email marketing platform will you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "SendGrid",
+          "ConvertKit",
+          "Other"
+        ]
+      },
+      {
+        "id": "emailStyle",
+        "label": "What style of emails do you prefer?",
+        "choices": [
+          "Text-only",
+          "Light HTML",
+          "Graphic-rich HTML"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "openRates",
+        "title": "Average open rates for welcome emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "clickRates",
+        "title": "Average click-through rates for follow-up emails",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailCreation",
+        "title": "Email Content Creation",
+        "steps": [
+          "Draft email copy",
+          "Create email design",
+          "Implement design in HTML",
+          "Proofread and edit",
+          "Test on multiple devices and email clients"
+        ]
+      },
+      {
+        "id": "sequenceSetup",
+        "title": "Email Sequence Setup",
+        "steps": [
+          "Configure email marketing platform",
+          "Set up automation rules",
+          "Schedule emails",
+          "Set up tracking and analytics"
+        ],
+        "requires": [
+          "emailCreation"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "sendgrid",
+      "convertkit"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "emailPlatform": "Mailchimp",
+    "emailStyle": "Light HTML"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "emailPlatform"
+    },
+    {
+      "id": "emailStyle"
+    }
+  ]
+}

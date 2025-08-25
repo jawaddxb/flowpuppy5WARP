@@ -1,0 +1,38 @@
+{
+  "agentSpec": {
+    "name": "BuilderBot",
+    "inputs": {
+      "projectRequirements": "string",
+      "budgetConstraints": "number",
+      "timeline": "string"
+    },
+    "sources": {
+      "materialCatalog": {
+        "provider": "database",
+        "query": "SELECT * FROM materials WHERE price <= {budgetConstraints}"
+      },
+      "constructionTechniques": {
+        "provider": "api",
+        "endpoint": "https://construction-api.example.com/techniques"
+      }
+    },
+    "analysis": {
+      "costEstimation": "Calculate total cost based on selected materials and techniques",
+      "timelineAssessment": "Evaluate if the project can be completed within the given timeline"
+    },
+    "decision": {
+      "materialSelection": "Choose optimal materials based on cost and quality",
+      "constructionMethodology": "Determine the most efficient building approach"
+    },
+    "actions": {
+      "generateBuildPlan": "Create a detailed construction plan",
+      "orderMaterials": "Place orders for selected materials",
+      "scheduleWorkers": "Assign tasks and schedule workforce"
+    },
+    "channels": [
+      "email",
+      "project_management_software",
+      "supplier_portal"
+    ]
+  }
+}

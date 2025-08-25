@@ -1,0 +1,110 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals"
+      },
+      {
+        "text": "Create welcome email content"
+      },
+      {
+        "text": "Design follow-up email 1 content"
+      },
+      {
+        "text": "Design follow-up email 2 content"
+      },
+      {
+        "text": "Design follow-up email 3 content"
+      },
+      {
+        "text": "Set up email automation sequence"
+      },
+      {
+        "text": "Test and optimize email sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Other"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your email sequence?",
+        "choices": [
+          "Onboarding",
+          "Product education",
+          "Conversion to paid",
+          "Engagement"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone should the emails have?",
+        "choices": [
+          "Professional",
+          "Friendly",
+          "Humorous",
+          "Inspirational"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailFrequency",
+        "title": "Optimal email frequency for engagement",
+        "confidence": 0.8
+      },
+      {
+        "id": "subjectLines",
+        "title": "Effective subject line strategies",
+        "confidence": 0.75
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "createSequence",
+        "title": "Create Email Sequence",
+        "steps": [
+          "Draft welcome email",
+          "Draft follow-up email 1",
+          "Draft follow-up email 2",
+          "Draft follow-up email 3",
+          "Review and edit all emails",
+          "Set up automation workflow"
+        ],
+        "requires": [
+          "audience",
+          "goal",
+          "tone"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "googleanalytics"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "tone"
+    }
+  ]
+}

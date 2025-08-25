@@ -1,0 +1,38 @@
+{
+  "agentSpec": {
+    "name": "Builder",
+    "inputs": {
+      "blueprint": "string",
+      "materials": "array",
+      "timeline": "object"
+    },
+    "sources": {
+      "architecturalPlans": {
+        "provider": "cad",
+        "format": "dwg"
+      },
+      "regulations": {
+        "provider": "governmentDatabase",
+        "type": "buildingCodes"
+      }
+    },
+    "analysis": {
+      "feasibilityStudy": "boolean",
+      "costEstimation": "number"
+    },
+    "decision": {
+      "approveConstruction": "boolean",
+      "modificationSuggestions": "array"
+    },
+    "actions": {
+      "scheduleTasks": "function",
+      "orderMaterials": "function",
+      "assignWorkers": "function"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware",
+      "mobileApp"
+    ]
+  }
+}

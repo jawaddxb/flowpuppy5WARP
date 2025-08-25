@@ -1,0 +1,68 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's initial query or request"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    "decision": {
+      "type": "rule-based",
+      "rules": [
+        {
+          "condition": "sentiment.score > 0.5",
+          "action": "respond_positively"
+        },
+        {
+          "condition": "sentiment.score < -0.5",
+          "action": "respond_negatively"
+        },
+        {
+          "condition": "default",
+          "action": "respond_neutrally"
+        }
+      ]
+    },
+    "actions": {
+      "respond_positively": {
+        "type": "text_generation",
+        "provider": "openai",
+        "model": "text-davinci-003",
+        "prompt": "Generate a positive response based on the user query and sentiment analysis"
+      },
+      "respond_negatively": {
+        "type": "text_generation",
+        "provider": "openai",
+        "model": "text-davinci-003",
+        "prompt": "Generate a sympathetic response based on the user query and sentiment analysis"
+      },
+      "respond_neutrally": {
+        "type": "text_generation",
+        "provider": "openai",
+        "model": "text-davinci-003",
+        "prompt": "Generate a neutral response based on the user query"
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "telegram"
+      }
+    ]
+  }
+}

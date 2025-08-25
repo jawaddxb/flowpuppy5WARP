@@ -1,0 +1,32 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Greet the user"
+      },
+      {
+        "text": "Provide a brief, quick response"
+      },
+      {
+        "text": "Ask if there's anything else the user needs"
+      }
+    ],
+    "questions": [
+      {
+        "id": "further_assistance",
+        "label": "Is there anything else I can help you with?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "quick_response",
+        "title": "User wants a quick response",
+        "confidence": 0.9
+      }
+    ]
+  }
+}

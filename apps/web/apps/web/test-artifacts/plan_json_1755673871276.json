@@ -1,0 +1,141 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define the target audience and goals for the welcome sequence"
+      },
+      {
+        "text": "Create a compelling subject line for the welcome email"
+      },
+      {
+        "text": "Write the welcome email content"
+      },
+      {
+        "text": "Design the welcome email template"
+      },
+      {
+        "text": "Set up the email automation for the welcome email"
+      },
+      {
+        "text": "Create subject lines for the 3 follow-up emails"
+      },
+      {
+        "text": "Write content for the 3 follow-up emails"
+      },
+      {
+        "text": "Design templates for the follow-up emails"
+      },
+      {
+        "text": "Set up automation for the follow-up email sequence"
+      },
+      {
+        "text": "Test the entire email sequence"
+      },
+      {
+        "text": "Monitor and analyze the performance of the email sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is the target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Event attendees"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of this email sequence?",
+        "choices": [
+          "Onboarding",
+          "Engagement",
+          "Conversion",
+          "Retention"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone should the emails have?",
+        "choices": [
+          "Formal",
+          "Friendly",
+          "Professional",
+          "Humorous"
+        ]
+      },
+      {
+        "id": "platform",
+        "label": "Which email marketing platform will you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "SendGrid",
+          "Custom solution"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "openRates",
+        "title": "Average open rates for welcome emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "clickRates",
+        "title": "Average click-through rates for follow-up emails",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailCreation",
+        "title": "Email Content Creation",
+        "steps": [
+          "Draft copy",
+          "Review and edit",
+          "Add images",
+          "Format for HTML"
+        ],
+        "requires": [
+          "openai"
+        ]
+      },
+      {
+        "id": "automationSetup",
+        "title": "Email Automation Setup",
+        "steps": [
+          "Configure triggers",
+          "Set delays",
+          "Test automation flow"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly",
+    "platform": "Mailchimp"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "tone"
+    },
+    {
+      "id": "platform"
+    }
+  ]
+}

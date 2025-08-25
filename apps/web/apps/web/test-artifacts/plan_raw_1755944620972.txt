@@ -1,0 +1,46 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Greet the user"
+      },
+      {
+        "text": "Provide a brief, quick response"
+      },
+      {
+        "text": "Conclude the interaction"
+      }
+    ],
+    "questions": [
+      {
+        "id": "greeting_preference",
+        "label": "What type of greeting do you prefer?",
+        "choices": [
+          "Formal",
+          "Casual",
+          "Neutral"
+        ]
+      },
+      {
+        "id": "response_length",
+        "label": "How brief should the response be?",
+        "choices": [
+          "One word",
+          "One sentence",
+          "A short paragraph"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "quick_interaction",
+        "title": "User wants a quick interaction",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "nextQuestions": [
+    "greeting_preference",
+    "response_length"
+  ]
+}

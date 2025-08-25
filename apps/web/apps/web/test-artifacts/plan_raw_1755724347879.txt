@@ -1,0 +1,87 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up GitHub webhook to trigger on new pull request"},
+      {"text": "Retrieve pull request diff and metadata"},
+      {"text": "Use AI to summarize changes"},
+      {"text": "Generate review checklist"},
+      {"text": "Post summary and checklist as PR comment"},
+      {"text": "Send notification to Slack"}
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarizing changes?",
+        "choices": ["GPT-3.5", "GPT-4", "Claude"]
+      },
+      {
+        "id": "checklist_type",
+        "label": "What type of review checklist would you prefer?",
+        "choices": ["General", "Security-focused", "Performance-oriented", "Custom"]
+      },
+      {
+        "id": "slack_channel",
+        "label": "Which Slack channel should receive the notification?",
+        "choices": ["#engineering", "#code-reviews", "#general"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "repo_language",
+        "title": "Primary programming language of the repository",
+        "confidence": 0.8
+      },
+      {
+        "id": "pr_size",
+        "title": "Size of the pull request (lines changed)",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "summarize_changes",
+        "title": "Summarize PR changes using AI",
+        "steps": [
+          "Fetch PR diff",
+          "Preprocess diff",
+          "Send to AI model",
+          "Format AI response"
+        ],
+        "requires": ["ai_model"]
+      },
+      {
+        "id": "generate_checklist",
+        "title": "Generate review checklist",
+        "steps": [
+          "Determine checklist type",
+          "Fetch checklist template",
+          "Customize checklist based on PR content"
+        ],
+        "requires": ["checklist_type", "repo_language"]
+      },
+      {
+        "id": "post_pr_comment",
+        "title": "Post summary and checklist as PR comment",
+        "steps": [
+          "Combine summary and checklist",
+          "Format as markdown",
+          "Post comment to PR"
+        ]
+      },
+      {
+        "id": "send_slack_notification",
+        "title": "Send notification to Slack",
+        "steps": [
+          "Prepare notification message",
+          "Send message to specified Slack channel"
+        ],
+        "requires": ["slack_channel"]
+      }
+    ],
+    "connectionsRequired": [
+      "github",
+      "openai",
+      "slack"
+    ]
+  }
+}

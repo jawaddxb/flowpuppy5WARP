@@ -1,0 +1,159 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "project-management-jira",
+      "type": "source",
+      "config": {
+        "provider": "jira",
+        "fields": ["tasks", "progress", "issues"]
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "code-repository-github",
+      "type": "source",
+      "config": {
+        "provider": "github",
+        "fields": ["commits", "pullRequests", "branches"]
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "progress-tracking-burndown",
+      "type": "analysis",
+      "config": {
+        "method": "burndownChart",
+        "metrics": ["velocity", "completionRate"]
+      },
+      "position": {
+        "x": 100,
+        "y": 300
+      }
+    },
+    {
+      "id": "code-quality-static-analysis",
+      "type": "analysis",
+      "config": {
+        "method": "staticAnalysis",
+        "tools": ["sonarqube", "eslint"]
+      },
+      "position": {
+        "x": 300,
+        "y": 300
+      }
+    },
+    {
+      "id": "resource-allocation-priority-queue",
+      "type": "decision",
+      "config": {
+        "algorithm": "priorityQueue",
+        "factors": ["taskUrgency", "developerAvailability"]
+      },
+      "position": {
+        "x": 100,
+        "y": 500
+      }
+    },
+    {
+      "id": "risk-assessment-monte-carlo",
+      "type": "decision",
+      "config": {
+        "method": "monteCarlo",
+        "iterations": 1000
+      },
+      "position": {
+        "x": 300,
+        "y": 500
+      }
+    },
+    {
+      "id": "assign-tasks-automatic",
+      "type": "action",
+      "config": {
+        "target": "developers",
+        "method": "automaticAssignment"
+      },
+      "position": {
+        "x": 100,
+        "y": 700
+      }
+    },
+    {
+      "id": "generate-reports-weekly",
+      "type": "action",
+      "config": {
+        "frequency": "weekly",
+        "format": "pdf"
+      },
+      "position": {
+        "x": 300,
+        "y": 700
+      }
+    },
+    {
+      "id": "channel-slack",
+      "type": "channel",
+      "config": {
+        "type": "slack",
+        "purpose": "teamCommunication"
+      },
+      "position": {
+        "x": 100,
+        "y": 900
+      }
+    },
+    {
+      "id": "channel-email",
+      "type": "channel",
+      "config": {
+        "type": "email",
+        "purpose": "stakeholderUpdates"
+      },
+      "position": {
+        "x": 300,
+        "y": 900
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "project-management-jira",
+      "target": "progress-tracking-burndown"
+    },
+    {
+      "source": "code-repository-github",
+      "target": "code-quality-static-analysis"
+    },
+    {
+      "source": "progress-tracking-burndown",
+      "target": "resource-allocation-priority-queue"
+    },
+    {
+      "source": "code-quality-static-analysis",
+      "target": "risk-assessment-monte-carlo"
+    },
+    {
+      "source": "resource-allocation-priority-queue",
+      "target": "assign-tasks-automatic"
+    },
+    {
+      "source": "risk-assessment-monte-carlo",
+      "target": "generate-reports-weekly"
+    },
+    {
+      "source": "assign-tasks-automatic",
+      "target": "channel-slack"
+    },
+    {
+      "source": "generate-reports-weekly",
+      "target": "channel-email"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "weather-api",
+        "type": "ApiCall",
+        "title": "ApiCall",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "endpoint": "/weather",
+          "params": {
+            "q": "{{city}}",
+            "units": "metric",
+            "appid": "{{API_KEY}}"
+          }
+        }
+      },
+      {
+        "id": "temperature-check",
+        "type": "Condition",
+        "title": "Condition",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "{{weather-api.main.temp}} > 20"
+        }
+      },
+      {
+        "id": "warm-message",
+        "type": "TextGenerator",
+        "title": "TextGenerator",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "prompt": "Generate a short message about how warm it is in {{city}} with a temperature of {{weather-api.main.temp}}°C."
+        }
+      },
+      {
+        "id": "not-warm-message",
+        "type": "TextGenerator",
+        "title": "TextGenerator",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "prompt": "Generate a short message about how it's not particularly warm in {{city}} with a temperature of {{weather-api.main.temp}}°C."
+        }
+      },
+      {
+        "id": "output",
+        "type": "Output",
+        "title": "Output",
+        "laneId": "lane-output",
+        "data": {
+          "message": "{{selected_message}}"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "weather-api"
+        },
+        "target": {
+          "nodeId": "temperature-check"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-check"
+        },
+        "target": {
+          "nodeId": "warm-message"
+        },
+        "label": "Yes"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "temperature-check"
+        },
+        "target": {
+          "nodeId": "not-warm-message"
+        },
+        "label": "No"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "warm-message"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "not-warm-message"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      }
+    ]
+  }
+}

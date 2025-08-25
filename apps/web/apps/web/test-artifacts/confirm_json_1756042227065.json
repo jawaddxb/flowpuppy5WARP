@@ -1,0 +1,48 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "credentials": {
+          "apiKey": "your_api_key",
+          "apiSecret": "your_api_secret"
+        }
+      },
+      "facebook": {
+        "provider": "facebook",
+        "credentials": {
+          "appId": "your_app_id",
+          "appSecret": "your_app_secret"
+        }
+      }
+    },
+    "analysis": {
+      "type": "sentiment",
+      "parameters": {
+        "language": "en"
+      }
+    },
+    "decision": {
+      "threshold": 0.5,
+      "actionIfAbove": "notify",
+      "actionIfBelow": "ignore"
+    },
+    "actions": {
+      "notify": {
+        "type": "email",
+        "recipient": "user@example.com"
+      },
+      "ignore": {
+        "type": "log",
+        "message": "No significant activity detected."
+      }
+    },
+    "channels": [
+      "email",
+      "sms",
+      "push"
+    ]
+  }
+}

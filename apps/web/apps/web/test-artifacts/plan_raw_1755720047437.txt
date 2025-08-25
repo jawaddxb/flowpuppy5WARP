@@ -1,0 +1,69 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define welcome email content"},
+      {"text": "Create welcome email template"},
+      {"text": "Set up email automation for welcome email"},
+      {"text": "Define day 1 follow-up email content"},
+      {"text": "Create day 1 follow-up email template"},
+      {"text": "Define day 2 follow-up email content"},
+      {"text": "Create day 2 follow-up email template"},
+      {"text": "Define day 3 follow-up email content"},
+      {"text": "Create day 3 follow-up email template"},
+      {"text": "Set up email automation for 3-day follow-up sequence"},
+      {"text": "Test entire email sequence"}
+    ],
+    "questions": [
+      {
+        "id": "email_platform",
+        "label": "Which email marketing platform will you use?",
+        "choices": ["Mailchimp", "Constant Contact", "SendGrid", "Campaign Monitor", "Other"]
+      },
+      {
+        "id": "personalization",
+        "label": "Will you include personalization in your emails?",
+        "choices": ["Yes", "No"]
+      },
+      {
+        "id": "call_to_action",
+        "label": "What is the primary call-to-action for your welcome email?",
+        "choices": ["Visit website", "Follow on social media", "Schedule a call", "Make a purchase", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "audience_segmentation",
+        "title": "Consider audience segmentation for more targeted follow-ups",
+        "confidence": 0.8
+      },
+      {
+        "id": "a_b_testing",
+        "title": "Implement A/B testing for email subject lines",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_sequence_creation",
+        "title": "Create Email Sequence",
+        "steps": [
+          "Draft email content",
+          "Design email templates",
+          "Set up automation rules",
+          "Test email delivery"
+        ],
+        "requires": ["email_platform"]
+      }
+    ],
+    "connectionsRequired": ["mailchimp", "sendgrid"]
+  },
+  "defaults": {
+    "email_platform": "Mailchimp",
+    "personalization": "Yes"
+  },
+  "nextQuestions": [
+    "email_platform",
+    "personalization",
+    "call_to_action"
+  ]
+}

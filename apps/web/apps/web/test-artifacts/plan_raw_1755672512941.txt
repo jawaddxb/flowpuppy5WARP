@@ -1,0 +1,65 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define target audience and goals for welcome sequence"},
+      {"text": "Draft compelling welcome email content"},
+      {"text": "Create content for follow-up emails (Day 2 and Day 3)"},
+      {"text": "Set up email automation workflow"},
+      {"text": "Test and optimize email sequence"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Event attendees"]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your welcome sequence?",
+        "choices": ["Build relationship", "Educate about product/service", "Drive first purchase", "Encourage engagement"]
+      },
+      {
+        "id": "tone",
+        "label": "What tone would you like to use in your emails?",
+        "choices": ["Formal", "Friendly", "Humorous", "Professional"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailFrequency",
+        "title": "Optimal email frequency for welcome sequences",
+        "confidence": 0.8
+      },
+      {
+        "id": "subjectLines",
+        "title": "Effective subject line strategies",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailCreation",
+        "title": "Email Content Creation",
+        "steps": ["Draft welcome email", "Draft Day 2 follow-up", "Draft Day 3 follow-up"],
+        "requires": ["audience", "goal", "tone"]
+      },
+      {
+        "id": "automationSetup",
+        "title": "Email Automation Setup",
+        "steps": ["Choose email marketing tool", "Set up automation workflow", "Configure timing and triggers"],
+        "requires": ["emailCreation"]
+      }
+    ],
+    "connectionsRequired": ["mailchimp", "sendgrid"]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Build relationship",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "tone"}
+  ]
+}

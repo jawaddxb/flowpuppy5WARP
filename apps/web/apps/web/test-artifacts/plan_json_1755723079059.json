@@ -1,0 +1,86 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a Google Sheets connection to access invoice data"
+      },
+      {
+        "text": "Create an email template for polite reminders"
+      },
+      {
+        "text": "Set up a Gmail connection to send emails"
+      },
+      {
+        "text": "Create a scheduled task to run every weekday at 10am"
+      },
+      {
+        "text": "Write a script to check for overdue invoices in Sheets"
+      },
+      {
+        "text": "Implement logic to send reminder emails to customers with overdue invoices"
+      },
+      {
+        "text": "Test the automation with sample data"
+      },
+      {
+        "text": "Monitor and adjust the process as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "sheets_structure",
+        "label": "How is your invoice data structured in Google Sheets?",
+        "choices": [
+          "Single sheet with columns for customer, amount, due date, and status",
+          "Multiple sheets, one for each month",
+          "Complex structure with multiple linked sheets",
+          "Not sure, need guidance on setting it up"
+        ]
+      },
+      {
+        "id": "reminder_frequency",
+        "label": "How often should reminders be sent after the initial email?",
+        "choices": [
+          "Once a week",
+          "Twice a week",
+          "Every 3 days",
+          "Only send one reminder"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "invoice_volume",
+        "title": "Determine the average number of overdue invoices per week",
+        "confidence": 0.8
+      },
+      {
+        "id": "customer_preferences",
+        "title": "Identify if certain customers prefer specific communication methods",
+        "confidence": 0.6
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "check_and_remind",
+        "title": "Check Overdue Invoices and Send Reminders",
+        "steps": [
+          "Connect to Google Sheets",
+          "Query for overdue invoices",
+          "Filter out already reminded customers",
+          "Prepare reminder emails",
+          "Send emails via Gmail",
+          "Update sheet with reminder sent status"
+        ],
+        "requires": [
+          "google_sheets",
+          "gmail"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "google_sheets",
+      "gmail"
+    ]
+  }
+}

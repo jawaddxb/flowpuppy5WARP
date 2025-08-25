@@ -1,0 +1,82 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Connect to Notion API to retrieve completed tasks"
+      },
+      {
+        "text": "Set up a recurring schedule for Fridays at 4pm"
+      },
+      {
+        "text": "Create an email template for the weekly digest"
+      },
+      {
+        "text": "Compile completed tasks into the email template"
+      },
+      {
+        "text": "Set up email sending functionality"
+      },
+      {
+        "text": "Send the compiled weekly digest to the team"
+      }
+    ],
+    "questions": [
+      {
+        "id": "notion_workspace",
+        "label": "Which Notion workspace contains the tasks?",
+        "choices": [
+          "Personal",
+          "Team",
+          "Project"
+        ]
+      },
+      {
+        "id": "team_email",
+        "label": "What is the team's email address for sending the digest?",
+        "choices": [
+          "Enter email address"
+        ]
+      },
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use?",
+        "choices": [
+          "Gmail",
+          "Outlook",
+          "Custom SMTP"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "notion_integration",
+        "title": "Notion API integration is required",
+        "confidence": 0.9
+      },
+      {
+        "id": "scheduling",
+        "title": "A scheduling mechanism is needed for recurring emails",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "weekly_digest",
+        "title": "Generate and Send Weekly Digest",
+        "steps": [
+          "Fetch completed tasks from Notion",
+          "Compile tasks into email template",
+          "Send email to team"
+        ],
+        "requires": [
+          "notion",
+          "email"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "notion",
+      "gmail"
+    ]
+  }
+}

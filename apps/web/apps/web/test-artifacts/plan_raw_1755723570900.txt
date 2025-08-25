@@ -1,0 +1,60 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a daily scheduler to run at 7pm"},
+      {"text": "Create a web scraper to extract headlines from top 3 tech news sites"},
+      {"text": "Use AI to summarize the collected news"},
+      {"text": "Compose an email with the summarized content"},
+      {"text": "Send the email as a daily recap newsletter"}
+    ],
+    "questions": [
+      {
+        "id": "tech_sites",
+        "label": "Which 3 tech news sites would you like to scrape?",
+        "choices": ["TechCrunch", "The Verge", "Wired", "Ars Technica", "Engadget"]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you prefer for summarization?",
+        "choices": ["GPT-3", "GPT-4", "BART", "T5"]
+      },
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use?",
+        "choices": ["Gmail", "Outlook", "SendGrid", "Mailchimp"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "scheduling_needed",
+        "title": "Daily scheduling at 7pm is required",
+        "confidence": 0.95
+      },
+      {
+        "id": "web_scraping_needed",
+        "title": "Web scraping capability is necessary",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_summarization_needed",
+        "title": "AI-powered text summarization is required",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tech_newsletter",
+        "title": "Daily Tech News Recap",
+        "steps": [
+          "Schedule task for 7pm",
+          "Scrape headlines from selected tech news sites",
+          "Summarize news using chosen AI model",
+          "Compose email with summarized content",
+          "Send email using selected email service"
+        ],
+        "requires": ["scheduler", "web_scraper", "ai_summarization", "email_sender"]
+      }
+    ],
+    "connectionsRequired": ["openai", "gmail"]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up hourly cron job to fetch BTC price"
+      },
+      {
+        "text": "Store fetched prices with timestamps"
+      },
+      {
+        "text": "Calculate percentage change over last 4 hours"
+      },
+      {
+        "text": "If change > 2%, trigger alert process"
+      },
+      {
+        "text": "Generate AI rationale for price movement"
+      },
+      {
+        "text": "Send SMS alert with price change and rationale"
+      },
+      {
+        "text": "Send Slack alert with price change and rationale"
+      }
+    ],
+    "questions": [
+      {
+        "id": "pricing_api",
+        "label": "Which cryptocurrency pricing API do you prefer?",
+        "choices": [
+          "CoinGecko",
+          "CoinMarketCap",
+          "Binance",
+          "Other"
+        ]
+      },
+      {
+        "id": "sms_provider",
+        "label": "Which SMS service provider do you want to use?",
+        "choices": [
+          "Twilio",
+          "Nexmo",
+          "AWS SNS",
+          "Other"
+        ]
+      },
+      {
+        "id": "storage_method",
+        "label": "How do you want to store the historical price data?",
+        "choices": [
+          "Database",
+          "File system",
+          "In-memory",
+          "Cloud storage"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "ai_model_required",
+        "title": "An AI model is needed to generate price movement rationale",
+        "confidence": 0.9
+      },
+      {
+        "id": "data_retention",
+        "title": "Historical price data needs to be retained for at least 4 hours",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "fetch_price",
+        "title": "Fetch and Store BTC Price",
+        "steps": [
+          "Call pricing API",
+          "Parse response",
+          "Store price with timestamp",
+          "Calculate 4-hour price change"
+        ]
+      },
+      {
+        "id": "send_alerts",
+        "title": "Generate and Send Alerts",
+        "steps": [
+          "Generate AI rationale",
+          "Compose alert message",
+          "Send SMS alert",
+          "Send Slack alert"
+        ],
+        "requires": [
+          "fetch_price"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "openai"
+    ]
+  }
+}

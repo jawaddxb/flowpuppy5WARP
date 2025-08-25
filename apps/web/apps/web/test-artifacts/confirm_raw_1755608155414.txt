@@ -1,0 +1,40 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "projectRequirements": "string",
+      "buildMaterials": "array",
+      "constructionSite": "object"
+    },
+    "sources": {
+      "blueprints": {
+        "provider": "cad",
+        "type": "3dModel"
+      },
+      "regulations": {
+        "provider": "governmentDatabase",
+        "type": "constructionCodes"
+      }
+    },
+    "analysis": {
+      "materialCalculations": "function",
+      "structuralIntegrity": "function",
+      "regulationCompliance": "function"
+    },
+    "decision": {
+      "buildStrategy": "function",
+      "resourceAllocation": "function"
+    },
+    "actions": {
+      "scheduleTasks": "function",
+      "assignWorkers": "function",
+      "orderMaterials": "function",
+      "constructComponents": "function"
+    },
+    "channels": [
+      "siteManagement",
+      "supplierCommunication",
+      "inspectionReporting"
+    ]
+  }
+}

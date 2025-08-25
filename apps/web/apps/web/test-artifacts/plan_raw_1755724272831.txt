@@ -1,0 +1,62 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a monitoring system to ping https://api.example.com/health every 5 minutes"},
+      {"text": "Implement a failure counter to track consecutive failures"},
+      {"text": "Configure Slack notification system"},
+      {"text": "Set up email notification for on-call personnel"},
+      {"text": "Create logic to send notifications after two consecutive failures"},
+      {"text": "Implement error handling and logging"}
+    ],
+    "questions": [
+      {
+        "id": "slack_channel",
+        "label": "Which Slack channel should receive the notifications?",
+        "choices": ["#alerts", "#general", "#on-call"]
+      },
+      {
+        "id": "email_address",
+        "label": "What is the email address for the on-call personnel?",
+        "choices": ["oncall@example.com", "support@example.com", "team@example.com"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "api_health_endpoint",
+        "title": "API health endpoint identified",
+        "confidence": 1
+      },
+      {
+        "id": "notification_channels",
+        "title": "Multiple notification channels required (Slack and email)",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "health_check",
+        "title": "API Health Check Pipeline",
+        "steps": [
+          "Ping https://api.example.com/health",
+          "Check response status",
+          "Update failure counter if needed",
+          "Trigger notifications if failure count reaches 2",
+          "Reset failure counter on successful ping"
+        ]
+      },
+      {
+        "id": "notification",
+        "title": "Notification Pipeline",
+        "steps": [
+          "Send Slack message to specified channel",
+          "Send email to on-call personnel"
+        ],
+        "requires": ["slack_channel", "email_address"]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "smtp"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "agentSpec": {
+    "name": "BuildBot",
+    "inputs": {
+      "projectRequirements": "string",
+      "buildInstructions": "string",
+      "materialsList": "array"
+    },
+    "sources": {
+      "buildingCodes": {
+        "provider": "constructionDatabase",
+        "query": "latest building codes"
+      },
+      "materialPrices": {
+        "provider": "supplierAPI",
+        "endpoint": "/prices"
+      }
+    },
+    "analysis": {
+      "costEstimation": "Calculate total cost based on material prices and quantities",
+      "complianceCheck": "Verify project against building codes"
+    },
+    "decision": {
+      "approveProject": "Determine if project meets requirements and budget"
+    },
+    "actions": {
+      "generateBuildPlan": "Create detailed construction timeline",
+      "orderMaterials": "Place orders for required materials"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware"
+    ]
+  }
+}

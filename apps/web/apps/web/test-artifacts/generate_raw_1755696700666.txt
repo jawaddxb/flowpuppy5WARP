@@ -1,0 +1,85 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-api",
+      "type": "API",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "https://api.openweathermap.org/data/2.5/weather"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-check",
+      "type": "DECISION",
+      "config": {
+        "condition": "temperature > 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "warm-response",
+      "type": "TEXT_GENERATION",
+      "config": {
+        "provider": "openai",
+        "prompt": "Generate a warm and cozy message about the current weather."
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "cool-response",
+      "type": "TEXT_GENERATION",
+      "config": {
+        "provider": "openai",
+        "prompt": "Generate a message about staying warm in cool weather."
+      },
+      "position": {
+        "x": 500,
+        "y": 200
+      }
+    },
+    {
+      "id": "output-message",
+      "type": "USER_MESSAGE",
+      "position": {
+        "x": 700,
+        "y": 150
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "weather-api",
+      "target": "temperature-check",
+      "label": "Weather data"
+    },
+    {
+      "source": "temperature-check",
+      "target": "warm-response",
+      "label": "If warm"
+    },
+    {
+      "source": "temperature-check",
+      "target": "cool-response",
+      "label": "If cool"
+    },
+    {
+      "source": "warm-response",
+      "target": "output-message"
+    },
+    {
+      "source": "cool-response",
+      "target": "output-message"
+    }
+  ]
+}

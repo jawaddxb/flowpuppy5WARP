@@ -1,0 +1,70 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Start with light cardio for 5-10 minutes"
+      },
+      {
+        "text": "Perform dynamic stretches focusing on major muscle groups"
+      },
+      {
+        "text": "Do a few bodyweight exercises like squats and arm circles"
+      },
+      {
+        "text": "Gradually increase intensity with sport-specific movements"
+      },
+      {
+        "text": "End with a brief period of light activity to transition to main workout"
+      }
+    ],
+    "questions": [
+      {
+        "id": "workout_type",
+        "label": "What type of workout are you warming up for?",
+        "choices": [
+          "Strength training",
+          "Cardio",
+          "Sports",
+          "Yoga",
+          "General fitness"
+        ]
+      },
+      {
+        "id": "time_available",
+        "label": "How much time do you have for your warm-up?",
+        "choices": [
+          "5 minutes",
+          "10 minutes",
+          "15 minutes",
+          "20+ minutes"
+        ]
+      },
+      {
+        "id": "fitness_level",
+        "label": "What is your current fitness level?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Advanced"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "injury_prevention",
+        "title": "Proper warm-up reduces injury risk",
+        "confidence": 0.95
+      },
+      {
+        "id": "performance_boost",
+        "title": "Warm-up improves workout performance",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "defaults": {
+    "workout_type": "General fitness",
+    "time_available": "10 minutes",
+    "fitness_level": "Intermediate"
+  }
+}

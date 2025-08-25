@@ -1,0 +1,94 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a Twitter account if not already done"
+      },
+      {
+        "text": "Research current AI trends and developments"
+      },
+      {
+        "text": "Create a content calendar for daily tweets"
+      },
+      {
+        "text": "Write engaging tweets about AI trends"
+      },
+      {
+        "text": "Schedule tweets using Twitter's built-in scheduler or a third-party tool"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "twitterAccount",
+        "label": "Do you already have a Twitter account for sharing AI trends?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "aiKnowledge",
+        "label": "How would you rate your current knowledge of AI trends?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Advanced",
+          "Expert"
+        ]
+      },
+      {
+        "id": "tweetFrequency",
+        "label": "How many times per day do you want to tweet?",
+        "choices": [
+          "Once",
+          "Twice",
+          "Three times",
+          "More than three times"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "aiTrendSources",
+        "title": "Identify reliable sources for AI trends",
+        "confidence": 0.8
+      },
+      {
+        "id": "twitterBestPractices",
+        "title": "Learn Twitter best practices for engagement",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "dailyTweetProcess",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Research latest AI trends",
+          "Summarize key points",
+          "Craft engaging tweet",
+          "Add relevant hashtags",
+          "Schedule or post tweet",
+          "Monitor engagement"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "nextQuestions": [
+    {
+      "id": "twitterAccount"
+    },
+    {
+      "id": "aiKnowledge"
+    },
+    {
+      "id": "tweetFrequency"
+    }
+  ]
+}

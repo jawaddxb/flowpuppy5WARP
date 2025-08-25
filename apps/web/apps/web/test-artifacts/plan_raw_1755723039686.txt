@@ -1,0 +1,89 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a trigger for when a calendar event ends"},
+      {"text": "Fetch the meeting transcript"},
+      {"text": "Use AI to summarize the transcript"},
+      {"text": "Compile an email with the summary"},
+      {"text": "Send the email to all attendees"}
+    ],
+    "questions": [
+      {
+        "id": "calendar_provider",
+        "label": "Which calendar provider do you use?",
+        "choices": ["Google Calendar", "Microsoft Outlook", "Apple Calendar", "Other"]
+      },
+      {
+        "id": "transcript_source",
+        "label": "Where will the meeting transcript come from?",
+        "choices": ["Zoom", "Google Meet", "Microsoft Teams", "Other"]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarization?",
+        "choices": ["OpenAI GPT", "Google PaLM", "Anthropic Claude", "Other"]
+      },
+      {
+        "id": "email_provider",
+        "label": "Which email provider will you use to send the summary?",
+        "choices": ["Gmail", "Outlook", "SendGrid", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "calendar_integration",
+        "title": "Calendar integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "transcript_access",
+        "title": "Access to meeting transcripts is necessary",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI-powered summarization is needed",
+        "confidence": 1
+      },
+      {
+        "id": "email_sending",
+        "title": "Email sending capability is required",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "main_pipeline",
+        "title": "Calendar Event End to Email Summary",
+        "steps": [
+          "Detect calendar event end",
+          "Fetch meeting transcript",
+          "Summarize transcript with AI",
+          "Compose email with summary",
+          "Send email to attendees"
+        ],
+        "requires": ["calendar", "transcript", "ai", "email"]
+      }
+    ],
+    "connectionsRequired": [
+      "google_calendar",
+      "microsoft_outlook",
+      "apple_calendar",
+      "zoom",
+      "google_meet",
+      "microsoft_teams",
+      "openai",
+      "google_palm",
+      "anthropic",
+      "gmail",
+      "outlook",
+      "sendgrid"
+    ]
+  },
+  "nextQuestions": [
+    "calendar_provider",
+    "transcript_source",
+    "ai_model",
+    "email_provider"
+  ]
+}

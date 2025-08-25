@@ -1,0 +1,68 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-api",
+      "type": "API",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "https://api.openweathermap.org/data/2.5/weather"
+      },
+      "position": {"x": 100, "y": 100}
+    },
+    {
+      "id": "location-input",
+      "type": "UserInput",
+      "config": {
+        "prompt": "Enter your location:"
+      },
+      "position": {"x": 100, "y": 200}
+    },
+    {
+      "id": "temperature-check",
+      "type": "Condition",
+      "config": {
+        "condition": "temperature > 20"
+      },
+      "position": {"x": 300, "y": 150}
+    },
+    {
+      "id": "warm-message",
+      "type": "Output",
+      "config": {
+        "message": "It's warm outside!"
+      },
+      "position": {"x": 500, "y": 100}
+    },
+    {
+      "id": "cold-message",
+      "type": "Output",
+      "config": {
+        "message": "It's not warm outside."
+      },
+      "position": {"x": 500, "y": 200}
+    }
+  ],
+  "edges": [
+    {
+      "source": "location-input",
+      "target": "weather-api",
+      "label": "Location"
+    },
+    {
+      "source": "weather-api",
+      "target": "temperature-check",
+      "label": "Weather Data"
+    },
+    {
+      "source": "temperature-check",
+      "target": "warm-message",
+      "label": "True"
+    },
+    {
+      "source": "temperature-check",
+      "target": "cold-message",
+      "label": "False"
+    }
+  ]
+}

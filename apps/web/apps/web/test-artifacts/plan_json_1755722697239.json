@@ -1,0 +1,90 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a daily scheduled task to run at 9am UTC"
+      },
+      {
+        "text": "Fetch top AI trending articles from a reliable source"
+      },
+      {
+        "text": "Summarize the articles into a concise format"
+      },
+      {
+        "text": "Create a tweet thread from the summaries"
+      },
+      {
+        "text": "Post the tweet thread"
+      },
+      {
+        "text": "Log the activity and results to Google Sheets"
+      }
+    ],
+    "questions": [
+      {
+        "id": "article_source",
+        "label": "Which source would you like to use for AI trending articles?",
+        "choices": [
+          "TechCrunch",
+          "ArXiv",
+          "MIT Technology Review",
+          "AI News"
+        ]
+      },
+      {
+        "id": "summary_length",
+        "label": "How many sentences should each article summary contain?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      {
+        "id": "thread_length",
+        "label": "How many articles should be included in each daily thread?",
+        "choices": [
+          "3",
+          "5",
+          "7",
+          "10"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "scheduling_tool",
+        "title": "A scheduling tool is needed to run the task daily at 9am UTC",
+        "confidence": 0.9
+      },
+      {
+        "id": "summarization_api",
+        "title": "An AI-powered summarization API may be useful for creating concise article summaries",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_ai_news_thread",
+        "title": "Generate and Post Daily AI News Thread",
+        "steps": [
+          "Fetch top AI articles",
+          "Summarize articles",
+          "Create tweet thread",
+          "Post tweet thread",
+          "Log activity to Google Sheets"
+        ],
+        "requires": [
+          "twitter",
+          "google_sheets"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "google_sheets"
+    ]
+  }
+}

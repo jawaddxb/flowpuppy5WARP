@@ -1,0 +1,40 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {
+      "input1": {
+        "type": "text",
+        "required": true
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "your_api_key",
+        "apiSecret": "your_api_secret"
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "model": "sentiment-analysis-v1",
+        "threshold": 0.5
+      }
+    },
+    "decision": {
+      "criteria": {
+        "minScore": 0.7
+      }
+    },
+    "actions": {
+      "notify": {
+        "method": "email",
+        "recipient": "user@example.com"
+      }
+    },
+    "channels": [
+      "email",
+      "sms",
+      "push"
+    ]
+  }
+}

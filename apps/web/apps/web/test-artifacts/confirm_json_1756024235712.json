@@ -1,0 +1,30 @@
+{
+  "agentSpec": {
+    "name": "Daily Health Tweets",
+    "inputs": {
+      "frequency": "daily",
+      "topic": "health"
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "query": "#health"
+      }
+    },
+    "analysis": {
+      "sentiment": "positive"
+    },
+    "decision": {
+      "threshold": 0.7
+    },
+    "actions": {
+      "post": {
+        "platform": "twitter",
+        "message": "Stay healthy! Here’s your daily health tip."
+      }
+    },
+    "channels": [
+      "twitter"
+    ]
+  }
+}

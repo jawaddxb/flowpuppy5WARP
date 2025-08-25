@@ -1,0 +1,54 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Connect to Twitter account"},
+      {"text": "Research current AI trends"},
+      {"text": "Generate daily tweet content"},
+      {"text": "Schedule and post tweet"},
+      {"text": "Monitor engagement and adjust strategy"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How often do you want to tweet AI trends?",
+        "choices": ["Once daily", "Twice daily", "Weekly"]
+      },
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": ["Formal", "Casual", "Technical", "Mix"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "ai_trend_sources",
+        "title": "Identify reliable AI trend sources",
+        "confidence": 0.8
+      },
+      {
+        "id": "optimal_posting_time",
+        "title": "Determine optimal posting time for engagement",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Generate and Post Daily AI Trend Tweet",
+        "steps": [
+          "Research trending AI topics",
+          "Generate tweet content",
+          "Review and approve content",
+          "Post tweet at optimal time"
+        ],
+        "requires": ["twitter", "openai"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "openai"]
+  },
+  "defaults": {
+    "tweet_frequency": "Once daily",
+    "tweet_style": "Mix"
+  },
+  "nextQuestions": ["tweet_frequency", "tweet_style"]
+}

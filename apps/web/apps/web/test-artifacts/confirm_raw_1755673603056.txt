@@ -1,0 +1,40 @@
+{
+  "agentSpec": {
+    "name": "AgentBuilder",
+    "inputs": {
+      "agentName": "string",
+      "agentDescription": "string",
+      "agentGoals": "string[]"
+    },
+    "sources": {
+      "codebase": {
+        "provider": "github",
+        "repo": "string"
+      },
+      "aiModels": {
+        "provider": "openai",
+        "models": ["string"]
+      }
+    },
+    "analysis": {
+      "codeReview": "boolean",
+      "securityCheck": "boolean",
+      "dependencyAnalysis": "boolean"
+    },
+    "decision": {
+      "agentArchitecture": "string",
+      "frameworkSelection": "string",
+      "modelSelection": "string"
+    },
+    "actions": {
+      "generateCode": "boolean",
+      "testAgent": "boolean",
+      "deployAgent": "boolean"
+    },
+    "channels": [
+      "cli",
+      "web",
+      "api"
+    ]
+  }
+}

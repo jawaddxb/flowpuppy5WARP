@@ -1,0 +1,120 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for welcome sequence"
+      },
+      {
+        "text": "Create compelling subject lines for each email"
+      },
+      {
+        "text": "Draft welcome email content"
+      },
+      {
+        "text": "Draft day 2 follow-up email content"
+      },
+      {
+        "text": "Draft day 3 follow-up email content"
+      },
+      {
+        "text": "Set up email automation workflow"
+      },
+      {
+        "text": "Test and optimize sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is the target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Other"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of this email sequence?",
+        "choices": [
+          "Onboarding",
+          "Product education",
+          "Conversion to paid",
+          "Engagement"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone should the emails have?",
+        "choices": [
+          "Formal",
+          "Friendly",
+          "Enthusiastic",
+          "Professional"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "openRate",
+        "title": "Average open rate for welcome emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "clickRate",
+        "title": "Average click-through rate for follow-up emails",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailCreation",
+        "title": "Email Content Creation",
+        "steps": [
+          "Research",
+          "Outline",
+          "Draft",
+          "Edit",
+          "Review"
+        ],
+        "requires": [
+          "openai"
+        ]
+      },
+      {
+        "id": "automationSetup",
+        "title": "Email Automation Setup",
+        "steps": [
+          "Choose platform",
+          "Configure workflow",
+          "Set triggers",
+          "Test sequence"
+        ],
+        "requires": [
+          "mailchimp"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "openai",
+      "mailchimp"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "tone"
+    }
+  ]
+}

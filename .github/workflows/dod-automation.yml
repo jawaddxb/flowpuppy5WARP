@@ -1,0 +1,60 @@
+name: DoD Automation
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Daily at 02:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run-dod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run DoD executor (phase)
+        run: |
+          node scripts/dod-executor.mjs phase || true
+
+      - name: Show status
+        id: status
+        run: |
+          node scripts/dod-tracker.mjs report | tee dod-status.txt
+
+      - name: Commit DoD updates (if any)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/PRODUCTION_READINESS_DOD.md .dod-*
+          git commit -m "chore(dod): automated phase run and status update" || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
+          git push origin HEAD:main || echo "Nothing to push"
+
+      - name: Create or update status issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ISSUE_NUMBER=$(gh issue list --search "DoD Status (Automated)" --state open --limit 1 --json number --jq '.[0].number' || echo "")
+          if [ -z "$ISSUE_NUMBER" ]; then
+            gh issue create --title "DoD Status (Automated)" --body-file dod-status.txt
+          else
+            gh issue comment $ISSUE_NUMBER --body-file dod-status.txt
+          fi
+

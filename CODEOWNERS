@@ -1,0 +1,11 @@
+# Code Owners
+
+# Format: one pattern per line, followed by one or more GitHub usernames
+# Example:
+# /apps/web/ @owner
+
+/apps/web/ @jawaddxb
+/packages/ @jawaddxb
+/scripts/ @jawaddxb
+/.github/ @jawaddxb
+

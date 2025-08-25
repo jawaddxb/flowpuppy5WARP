@@ -1,0 +1,51 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Connect Twitter account"},
+      {"text": "Set up AI news sources"},
+      {"text": "Create a schedule for daily tweets"},
+      {"text": "Write tweet templates"},
+      {"text": "Implement AI to summarize daily trends"},
+      {"text": "Set up automation to post tweets"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": ["1", "2", "3", "More than 3"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": ["ArXiv", "Google AI Blog", "OpenAI Blog", "MIT Technology Review", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required for automated posting",
+        "confidence": 0.95
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI summarization tool needed to condense daily trends",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation and Posting",
+        "steps": [
+          "Collect AI news from selected sources",
+          "Summarize trends using AI",
+          "Generate tweet using template",
+          "Post tweet to Twitter"
+        ],
+        "requires": ["twitter", "openai"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "openai"]
+  },
+  "nextQuestions": ["tweet_frequency", "ai_sources"]
+}

@@ -1,0 +1,103 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Create a system to track and analyze AI trends"
+      },
+      {
+        "text": "Develop a daily tweet generation process"
+      },
+      {
+        "text": "Implement automated tweeting"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweetFrequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "More than 3"
+        ]
+      },
+      {
+        "id": "aiTrendSources",
+        "label": "What sources would you like to use for AI trends?",
+        "choices": [
+          "News websites",
+          "Academic journals",
+          "Social media",
+          "Industry reports",
+          "All of the above"
+        ]
+      },
+      {
+        "id": "tweetStyle",
+        "label": "What style of tweets do you prefer?",
+        "choices": [
+          "Formal",
+          "Casual",
+          "Humorous",
+          "Mix of styles"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitterAPILimits",
+        "title": "Twitter API has rate limits that may affect tweet frequency",
+        "confidence": 0.9
+      },
+      {
+        "id": "aiTrendAnalysis",
+        "title": "AI-powered trend analysis tools can help identify emerging topics",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "dailyTweetProcess",
+        "title": "Daily AI Trend Tweet Generation",
+        "steps": [
+          "Collect AI news and updates",
+          "Analyze trends",
+          "Generate tweet content",
+          "Schedule tweet",
+          "Post tweet",
+          "Analyze engagement"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "tweetFrequency": "1",
+    "aiTrendSources": "All of the above",
+    "tweetStyle": "Mix of styles"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweetFrequency"
+    },
+    {
+      "id": "aiTrendSources"
+    },
+    {
+      "id": "tweetStyle"
+    }
+  ]
+}

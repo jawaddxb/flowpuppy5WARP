@@ -1,0 +1,54 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "thermostat-check",
+      "type": "sensor",
+      "config": {
+        "provider": "smart-home",
+        "sensorType": "temperature"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "increase-temperature",
+      "type": "action",
+      "config": {
+        "provider": "smart-home",
+        "device": "thermostat",
+        "action": "increase_temperature",
+        "amount": 2
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "notify-user",
+      "type": "action",
+      "config": {
+        "provider": "pushover",
+        "message": "Temperature increased to make you warmer"
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "thermostat-check",
+      "target": "increase-temperature",
+      "label": "If temp < 20°C"
+    },
+    {
+      "source": "increase-temperature",
+      "target": "notify-user"
+    }
+  ]
+}

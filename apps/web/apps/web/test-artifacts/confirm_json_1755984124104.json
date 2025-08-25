@@ -1,0 +1,62 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's initial query or request"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "params": {
+          "searchTerm": "${inputs.userQuery}",
+          "resultCount": 10
+        }
+      },
+      "webSearch": {
+        "provider": "googleSearch",
+        "params": {
+          "query": "${inputs.userQuery}",
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "summarize": {
+        "type": "textSummarization",
+        "input": "${sources.twitter.results} ${sources.webSearch.results}",
+        "params": {
+          "maxLength": 200
+        }
+      }
+    },
+    "decision": {
+      "responseType": {
+        "type": "classification",
+        "input": "${analysis.summarize}",
+        "options": [
+          "informative",
+          "action-oriented",
+          "further-query-needed"
+        ]
+      }
+    },
+    "actions": {
+      "generateResponse": {
+        "type": "textGeneration",
+        "input": "${analysis.summarize}",
+        "params": {
+          "style": "${decision.responseType}"
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "output": "${actions.generateResponse}"
+      }
+    ]
+  }
+}

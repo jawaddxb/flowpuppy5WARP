@@ -1,0 +1,68 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a Twitter account if not already done"},
+      {"text": "Research current AI trends and developments"},
+      {"text": "Prepare a list of daily AI topics"},
+      {"text": "Write concise tweets about AI trends"},
+      {"text": "Schedule tweets for daily posting"},
+      {"text": "Engage with followers and AI community"},
+      {"text": "Analyze tweet performance and adjust strategy"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI-related tweets do you want to post per day?",
+        "choices": ["1", "2-3", "4-5", "More than 5"]
+      },
+      {
+        "id": "ai_focus",
+        "label": "Which areas of AI do you want to focus on?",
+        "choices": ["Machine Learning", "Natural Language Processing", "Computer Vision", "Robotics", "All of the above"]
+      },
+      {
+        "id": "content_source",
+        "label": "Where do you plan to source your AI trend information?",
+        "choices": ["Research papers", "Tech news websites", "AI conferences", "Industry experts", "Multiple sources"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_algorithm",
+        "title": "Understanding Twitter's algorithm for better reach",
+        "confidence": 0.8
+      },
+      {
+        "id": "ai_hashtags",
+        "title": "Popular AI-related hashtags for increased visibility",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation",
+        "steps": [
+          "Research latest AI trends",
+          "Summarize key points",
+          "Craft engaging tweet",
+          "Add relevant hashtags",
+          "Schedule tweet",
+          "Monitor engagement"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_focus": "All of the above",
+    "content_source": "Multiple sources"
+  },
+  "nextQuestions": [
+    "tweet_frequency",
+    "ai_focus",
+    "content_source"
+  ]
+}

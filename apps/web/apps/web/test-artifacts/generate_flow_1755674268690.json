@@ -1,0 +1,101 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "detect-temperature",
+        "type": "sensor",
+        "title": "sensor",
+        "laneId": "lane-transform",
+        "data": {
+          "sensorType": "temperature",
+          "unit": "celsius"
+        }
+      },
+      {
+        "id": "check-temp-threshold",
+        "type": "function",
+        "title": "function",
+        "laneId": "lane-transform",
+        "data": {
+          "function": "if (temperature < 20) return 'cold'; else if (temperature > 25) return 'hot'; else return 'warm';"
+        }
+      },
+      {
+        "id": "adjust-thermostat",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "data": {
+          "deviceType": "thermostat",
+          "action": "setTemperature",
+          "targetTemp": 22
+        }
+      },
+      {
+        "id": "notify-user",
+        "type": "notification",
+        "title": "notification",
+        "laneId": "lane-transform",
+        "data": {
+          "channel": "push",
+          "message": "Temperature adjusted to maintain warmth."
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "detect-temperature"
+        },
+        "target": {
+          "nodeId": "check-temp-threshold"
+        },
+        "label": "Temperature data"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "check-temp-threshold"
+        },
+        "target": {
+          "nodeId": "adjust-thermostat"
+        },
+        "label": "Temperature status"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "adjust-thermostat"
+        },
+        "target": {
+          "nodeId": "notify-user"
+        },
+        "label": "Action taken"
+      }
+    ]
+  }
+}

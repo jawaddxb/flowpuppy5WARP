@@ -1,0 +1,56 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Connect to Twitter account"},
+      {"text": "Research current AI trends"},
+      {"text": "Generate daily tweet content"},
+      {"text": "Schedule and post tweets"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": ["1", "2", "3", "4", "5"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": ["TechCrunch", "MIT Technology Review", "AI News", "VentureBeat", "ArXiv"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "audience_engagement",
+        "title": "Optimal posting times for maximum engagement",
+        "confidence": 0.8
+      },
+      {
+        "id": "trending_hashtags",
+        "title": "Popular AI-related hashtags",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Generate and Post Daily AI Trend Tweet",
+        "steps": [
+          "Fetch latest AI news",
+          "Summarize key trends",
+          "Generate tweet content",
+          "Post to Twitter"
+        ],
+        "requires": ["twitter", "openai"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "openai"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": ["TechCrunch", "MIT Technology Review"]
+  },
+  "nextQuestions": [
+    {"id": "tweet_frequency"},
+    {"id": "ai_sources"}
+  ]
+}

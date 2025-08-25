@@ -1,0 +1,107 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-api",
+      "type": "API",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "/data/2.5/weather",
+        "method": "GET"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "location-input",
+      "type": "UserInput",
+      "config": {
+        "prompt": "Enter your location:"
+      },
+      "position": {
+        "x": 100,
+        "y": 200
+      }
+    },
+    {
+      "id": "temperature-check",
+      "type": "Condition",
+      "config": {
+        "condition": "temperature > 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "warm-message",
+      "type": "TextGenerator",
+      "config": {
+        "provider": "openai",
+        "prompt": "Generate a message about how warm it is today."
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "cool-message",
+      "type": "TextGenerator",
+      "config": {
+        "provider": "openai",
+        "prompt": "Generate a message about how it's not very warm today."
+      },
+      "position": {
+        "x": 500,
+        "y": 200
+      }
+    },
+    {
+      "id": "output-display",
+      "type": "Display",
+      "config": {
+        "format": "text"
+      },
+      "position": {
+        "x": 700,
+        "y": 150
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "location-input",
+      "target": "weather-api",
+      "label": "Location"
+    },
+    {
+      "source": "weather-api",
+      "target": "temperature-check",
+      "label": "Weather Data"
+    },
+    {
+      "source": "temperature-check",
+      "target": "warm-message",
+      "label": "True"
+    },
+    {
+      "source": "temperature-check",
+      "target": "cool-message",
+      "label": "False"
+    },
+    {
+      "source": "warm-message",
+      "target": "output-display",
+      "label": "Warm Message"
+    },
+    {
+      "source": "cool-message",
+      "target": "output-display",
+      "label": "Cool Message"
+    }
+  ]
+}

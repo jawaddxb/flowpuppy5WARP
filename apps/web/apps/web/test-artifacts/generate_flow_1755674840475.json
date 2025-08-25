@@ -1,0 +1,101 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "weather-check",
+        "type": "httpRequest",
+        "title": "httpRequest",
+        "laneId": "lane-transform",
+        "data": {
+          "url": "https://api.openweathermap.org/data/2.5/weather",
+          "method": "GET",
+          "params": {
+            "q": "{{city}}",
+            "appid": "{{OPENWEATHER_API_KEY}}",
+            "units": "metric"
+          }
+        }
+      },
+      {
+        "id": "temperature-evaluation",
+        "type": "javascript",
+        "title": "javascript",
+        "laneId": "lane-transform",
+        "data": {
+          "code": "const temp = input.main.temp;\nif (temp >= 20) return 'warm';\nelse if (temp >= 15) return 'mild';\nelse return 'cool';"
+        }
+      },
+      {
+        "id": "response-generation",
+        "type": "llmCompletion",
+        "title": "llmCompletion",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Generate a short, friendly message about the weather being {{temperature}}. The current temperature is {{temp}}°C."
+        }
+      },
+      {
+        "id": "output",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "weather-check"
+        },
+        "target": {
+          "nodeId": "temperature-evaluation"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-evaluation"
+        },
+        "target": {
+          "nodeId": "response-generation"
+        },
+        "label": "Evaluate temperature"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "response-generation"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      }
+    ]
+  }
+}

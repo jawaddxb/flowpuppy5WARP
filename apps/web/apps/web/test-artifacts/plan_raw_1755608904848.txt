@@ -1,0 +1,58 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Create a script to fetch daily AI news"},
+      {"text": "Summarize AI trends"},
+      {"text": "Compose and schedule tweets"},
+      {"text": "Monitor engagement and adjust strategy"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day?",
+        "choices": ["1", "2", "3", "4", "5"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": ["TechCrunch", "MIT Technology Review", "AI News", "VentureBeat", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "api_access",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_knowledge",
+        "title": "Basic understanding of AI trends is necessary",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet",
+        "title": "Daily AI Trend Tweet Pipeline",
+        "steps": [
+          "Fetch AI news",
+          "Summarize trends",
+          "Compose tweet",
+          "Schedule tweet",
+          "Track engagement"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": "MIT Technology Review"
+  },
+  "nextQuestions": [
+    {"id": "tweet_frequency"},
+    {"id": "ai_sources"}
+  ]
+}

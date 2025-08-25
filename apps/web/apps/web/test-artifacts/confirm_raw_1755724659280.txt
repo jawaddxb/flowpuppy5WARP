@@ -1,0 +1,39 @@
+{
+  "agentSpec": {
+    "name": "Generic Agent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's initial query or request"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    "decision": {
+      "provider": "openai",
+      "model": "gpt-3.5-turbo"
+    },
+    "actions": {
+      "generateResponse": {
+        "type": "function",
+        "description": "Generate a response based on analysis and decision"
+      }
+    },
+    "channels": [
+      "text",
+      "email"
+    ]
+  }
+}

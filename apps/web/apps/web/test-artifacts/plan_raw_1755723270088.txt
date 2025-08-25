@@ -1,0 +1,60 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a nightly scheduled job"},
+      {"text": "Connect to Google Drive and access the CSV file"},
+      {"text": "Read and parse the CSV file containing user events"},
+      {"text": "Analyze user events to identify churn risk indicators"},
+      {"text": "Flag users with high churn risk"},
+      {"text": "Generate a list of top 10 users at highest churn risk"},
+      {"text": "Compose an email with the top 10 churn risk users"},
+      {"text": "Send the email to the Customer Success Manager (CSM)"}
+    ],
+    "questions": [
+      {
+        "id": "csv_location",
+        "label": "What is the specific location or path of the CSV file in Google Drive?",
+        "choices": ["Root folder", "Specific folder path", "Shared drive"]
+      },
+      {
+        "id": "churn_risk_factors",
+        "label": "What are the main factors to consider for churn risk?",
+        "choices": ["Login frequency", "Feature usage", "Subscription status", "Customer support tickets", "Custom metrics"]
+      },
+      {
+        "id": "csm_email",
+        "label": "What is the email address of the Customer Success Manager?",
+        "choices": ["Enter email manually", "Use predefined email"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "data_quality",
+        "title": "CSV data quality and consistency check needed",
+        "confidence": 0.8
+      },
+      {
+        "id": "error_handling",
+        "title": "Implement error handling for file access and parsing",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "churn_analysis",
+        "title": "Nightly Churn Risk Analysis",
+        "steps": [
+          "Access Google Drive",
+          "Read CSV file",
+          "Parse user events",
+          "Apply churn risk algorithm",
+          "Generate top 10 list",
+          "Compose email",
+          "Send email to CSM"
+        ],
+        "requires": ["google_drive", "smtp"]
+      }
+    ],
+    "connectionsRequired": ["google_drive", "smtp"]
+  }
+}

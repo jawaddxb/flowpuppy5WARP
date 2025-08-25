@@ -1,0 +1,140 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "inputKey": "userQuery",
+        "label": "User Query"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "twitter-search",
+      "type": "source",
+      "config": {
+        "provider": "twitter",
+        "params": {
+          "query": "{{userQuery}}",
+          "limit": 10
+        }
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "web-search",
+      "type": "source",
+      "config": {
+        "provider": "google",
+        "params": {
+          "query": "{{userQuery}}",
+          "numResults": 5
+        }
+      },
+      "position": {
+        "x": 200,
+        "y": 100
+      }
+    },
+    {
+      "id": "sentiment-analysis",
+      "type": "analysis",
+      "config": {
+        "provider": "openai",
+        "params": {
+          "model": "text-davinci-002",
+          "prompt": "Analyze the sentiment of the following text: {{twitter-search.text}}"
+        }
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    },
+    {
+      "id": "response-decision",
+      "type": "decision",
+      "config": {
+        "provider": "openai",
+        "params": {
+          "model": "text-davinci-002",
+          "prompt": "Based on the sentiment analysis and web search results, decide on an appropriate response to the user query."
+        }
+      },
+      "position": {
+        "x": 600,
+        "y": 50
+      }
+    },
+    {
+      "id": "generate-response",
+      "type": "action",
+      "config": {
+        "provider": "openai",
+        "params": {
+          "model": "text-davinci-002",
+          "prompt": "Generate a response based on the decision: {{response-decision}}"
+        }
+      },
+      "position": {
+        "x": 800,
+        "y": 50
+      }
+    },
+    {
+      "id": "output-response",
+      "type": "output",
+      "config": {
+        "channel": "console"
+      },
+      "position": {
+        "x": 1000,
+        "y": 50
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "twitter-search",
+      "label": "User Query"
+    },
+    {
+      "source": "user-input",
+      "target": "web-search",
+      "label": "User Query"
+    },
+    {
+      "source": "twitter-search",
+      "target": "sentiment-analysis",
+      "label": "Twitter Data"
+    },
+    {
+      "source": "sentiment-analysis",
+      "target": "response-decision",
+      "label": "Sentiment Analysis"
+    },
+    {
+      "source": "web-search",
+      "target": "response-decision",
+      "label": "Web Search Results"
+    },
+    {
+      "source": "response-decision",
+      "target": "generate-response",
+      "label": "Decision"
+    },
+    {
+      "source": "generate-response",
+      "target": "output-response",
+      "label": "Generated Response"
+    }
+  ]
+}

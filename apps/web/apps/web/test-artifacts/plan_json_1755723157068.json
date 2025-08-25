@@ -1,0 +1,82 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Hacker News monitoring for 'LLM' keyword"
+      },
+      {
+        "text": "Configure hourly checks"
+      },
+      {
+        "text": "Implement filter for stories with over 100 points"
+      },
+      {
+        "text": "Set up Slack integration for #research channel"
+      },
+      {
+        "text": "Create workflow to post filtered stories to Slack"
+      }
+    ],
+    "questions": [
+      {
+        "id": "slack_webhook",
+        "label": "What is your Slack webhook URL for the #research channel?",
+        "choices": [
+          "Enter URL manually",
+          "I need help finding this"
+        ]
+      },
+      {
+        "id": "notification_preference",
+        "label": "How would you like to be notified of errors or issues?",
+        "choices": [
+          "Email",
+          "Slack DM",
+          "SMS",
+          "None"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "hn_api",
+        "title": "Hacker News provides a public API for fetching stories",
+        "confidence": 0.95
+      },
+      {
+        "id": "slack_rate_limit",
+        "title": "Slack has rate limits for incoming webhooks",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "hn_to_slack",
+        "title": "Hacker News to Slack Pipeline",
+        "steps": [
+          "Fetch new stories from Hacker News API",
+          "Filter stories containing 'LLM'",
+          "Check if story points > 100",
+          "Format message for Slack",
+          "Post to Slack webhook"
+        ],
+        "requires": [
+          "slack_webhook"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "hackernews",
+      "slack"
+    ]
+  },
+  "defaults": {
+    "hn_keyword": "LLM",
+    "hn_points_threshold": 100,
+    "check_frequency": "1h"
+  },
+  "nextQuestions": [
+    "slack_webhook",
+    "notification_preference"
+  ]
+}

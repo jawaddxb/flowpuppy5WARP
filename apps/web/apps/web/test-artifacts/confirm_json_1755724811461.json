@@ -1,0 +1,18 @@
+{
+  "agentSpec": {
+    "name": "DefaultAgent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter"
+      },
+      "web": {
+        "provider": "web"
+      }
+    },
+    "analysis": {},
+    "decision": {},
+    "actions": {},
+    "channels": []
+  }
+}

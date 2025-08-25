@@ -1,0 +1,108 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define the goal and target audience for the email sequence"
+      },
+      {
+        "text": "Create a compelling subject line and content for the welcome email"
+      },
+      {
+        "text": "Design the layout and format of the welcome email"
+      },
+      {
+        "text": "Set up the email automation tool"
+      },
+      {
+        "text": "Write content for the day 1 follow-up email"
+      },
+      {
+        "text": "Write content for the day 2 follow-up email"
+      },
+      {
+        "text": "Write content for the day 3 follow-up email"
+      },
+      {
+        "text": "Review and edit all emails for consistency and brand voice"
+      },
+      {
+        "text": "Set up tracking and analytics for the email sequence"
+      },
+      {
+        "text": "Test the email sequence before launching"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_tool",
+        "label": "Which email marketing tool will you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "SendinBlue",
+          "Other"
+        ]
+      },
+      {
+        "id": "audience_size",
+        "label": "What is the approximate size of your email list?",
+        "choices": [
+          "Less than 1,000",
+          "1,000 - 10,000",
+          "10,000 - 50,000",
+          "More than 50,000"
+        ]
+      },
+      {
+        "id": "industry",
+        "label": "What industry is your business in?",
+        "choices": [
+          "E-commerce",
+          "SaaS",
+          "Education",
+          "Health and Wellness",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "personalization",
+        "title": "Personalization improves email open rates",
+        "confidence": 0.9
+      },
+      {
+        "id": "timing",
+        "title": "Optimal email sending times vary by industry",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_sequence",
+        "title": "Create and Schedule Email Sequence",
+        "steps": [
+          "Draft welcome email",
+          "Draft day 1 follow-up",
+          "Draft day 2 follow-up",
+          "Draft day 3 follow-up",
+          "Set up automation in email tool",
+          "Schedule sequence"
+        ],
+        "requires": [
+          "email_tool"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "constantcontact",
+      "sendinblue"
+    ]
+  },
+  "nextQuestions": [
+    "email_tool",
+    "audience_size",
+    "industry"
+  ]
+}

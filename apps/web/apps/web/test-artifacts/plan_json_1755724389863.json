@@ -1,0 +1,112 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a calendar event listener"
+      },
+      {
+        "text": "When an event ends, fetch the meeting transcript"
+      },
+      {
+        "text": "Use AI to summarize the transcript"
+      },
+      {
+        "text": "Retrieve attendees' email addresses"
+      },
+      {
+        "text": "Send summary email to all attendees"
+      }
+    ],
+    "questions": [
+      {
+        "id": "calendar_provider",
+        "label": "Which calendar provider are you using?",
+        "choices": [
+          "Google Calendar",
+          "Microsoft Outlook",
+          "Apple Calendar",
+          "Other"
+        ]
+      },
+      {
+        "id": "transcript_source",
+        "label": "Where will the meeting transcript come from?",
+        "choices": [
+          "Zoom",
+          "Microsoft Teams",
+          "Google Meet",
+          "Manual input",
+          "Other"
+        ]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarization?",
+        "choices": [
+          "GPT-3",
+          "GPT-4",
+          "Claude",
+          "Other"
+        ]
+      },
+      {
+        "id": "email_provider",
+        "label": "Which email provider will you use to send the summary?",
+        "choices": [
+          "Gmail",
+          "Outlook",
+          "SendGrid",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "calendar_integration",
+        "title": "Calendar integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "transcript_access",
+        "title": "Access to meeting transcripts is needed",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI-powered summarization is a key component",
+        "confidence": 1
+      },
+      {
+        "id": "email_sending",
+        "title": "Email sending capability is necessary",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "main_pipeline",
+        "title": "Event End to Summary Email",
+        "steps": [
+          "Listen for calendar event end",
+          "Fetch meeting transcript",
+          "Summarize transcript with AI",
+          "Get attendees' email addresses",
+          "Send summary email"
+        ],
+        "requires": [
+          "calendar_provider",
+          "transcript_source",
+          "ai_model",
+          "email_provider"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "google",
+      "microsoft",
+      "openai",
+      "zoom",
+      "sendgrid"
+    ]
+  }
+}

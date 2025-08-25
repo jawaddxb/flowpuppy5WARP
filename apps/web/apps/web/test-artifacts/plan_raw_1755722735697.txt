@@ -1,0 +1,88 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up an email automation workflow for new signups"
+      },
+      {
+        "text": "Create a welcome email template"
+      },
+      {
+        "text": "Implement a 2-day wait period after the welcome email"
+      },
+      {
+        "text": "Create a follow-up email template"
+      },
+      {
+        "text": "Set up conditional logic to send follow-up if no reply"
+      },
+      {
+        "text": "Test the entire workflow"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_provider",
+        "label": "Which email service provider do you use?",
+        "choices": [
+          "Mailchimp",
+          "SendGrid",
+          "AWS SES",
+          "Other"
+        ]
+      },
+      {
+        "id": "signup_source",
+        "label": "Where are new signups stored?",
+        "choices": [
+          "Database",
+          "CRM",
+          "Spreadsheet",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "automation_needed",
+        "title": "Email automation workflow is required",
+        "confidence": 1
+      },
+      {
+        "id": "conditional_logic",
+        "title": "Conditional logic is needed for follow-up email",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "welcome_email",
+        "title": "Send Welcome Email",
+        "steps": [
+          "Trigger on new signup",
+          "Fetch user details",
+          "Send welcome email"
+        ]
+      },
+      {
+        "id": "followup_email",
+        "title": "Send Follow-up Email",
+        "steps": [
+          "Wait 2 days",
+          "Check for reply",
+          "If no reply, send follow-up email"
+        ],
+        "requires": [
+          "welcome_email"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email"
+    ]
+  },
+  "nextQuestions": [
+    "email_provider",
+    "signup_source"
+  ]
+}

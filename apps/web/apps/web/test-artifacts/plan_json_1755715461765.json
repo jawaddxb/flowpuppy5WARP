@@ -1,0 +1,102 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for the email sequence"
+      },
+      {
+        "text": "Create a compelling welcome email"
+      },
+      {
+        "text": "Design first follow-up email (Day 1)"
+      },
+      {
+        "text": "Develop second follow-up email (Day 2)"
+      },
+      {
+        "text": "Craft final follow-up email (Day 3)"
+      },
+      {
+        "text": "Set up email automation workflow"
+      },
+      {
+        "text": "Test and optimize the sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Event attendees"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your email sequence?",
+        "choices": [
+          "Onboarding",
+          "Product education",
+          "Conversion to paid",
+          "Engagement boost"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone would you like to use in your emails?",
+        "choices": [
+          "Friendly and casual",
+          "Professional and formal",
+          "Enthusiastic and energetic",
+          "Informative and helpful"
+        ]
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "create_sequence",
+        "title": "Create Email Sequence",
+        "steps": [
+          "Draft welcome email",
+          "Draft Day 1 follow-up",
+          "Draft Day 2 follow-up",
+          "Draft Day 3 follow-up"
+        ],
+        "requires": [
+          "openai"
+        ]
+      },
+      {
+        "id": "setup_automation",
+        "title": "Set Up Email Automation",
+        "steps": [
+          "Configure email service",
+          "Set up triggers and delays",
+          "Import email drafts",
+          "Test automation flow"
+        ],
+        "requires": [
+          "mailchimp"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "openai",
+      "mailchimp"
+    ]
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "tone"
+    }
+  ]
+}

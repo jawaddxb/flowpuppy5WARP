@@ -1,0 +1,71 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "query": {
+        "type": "string",
+        "description": "User query or input"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "num_results": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    "decision": {
+      "type": "rule_based",
+      "rules": [
+        {
+          "if": "sentiment.score > 0.5",
+          "then": "positive_response"
+        },
+        {
+          "if": "sentiment.score < -0.5",
+          "then": "negative_response"
+        },
+        {
+          "if": "default",
+          "then": "neutral_response"
+        }
+      ]
+    },
+    "actions": {
+      "positive_response": {
+        "type": "text_generation",
+        "provider": "openai",
+        "params": {
+          "prompt": "Generate a positive response based on the query"
+        }
+      },
+      "negative_response": {
+        "type": "text_generation",
+        "provider": "openai",
+        "params": {
+          "prompt": "Generate a sympathetic response based on the query"
+        }
+      },
+      "neutral_response": {
+        "type": "text_generation",
+        "provider": "openai",
+        "params": {
+          "prompt": "Generate a neutral, factual response based on the query"
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "text",
+        "provider": "console"
+      }
+    ]
+  }
+}

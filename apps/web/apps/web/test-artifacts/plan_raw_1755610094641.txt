@@ -1,0 +1,72 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define target audience and goals for welcome sequence"},
+      {"text": "Create compelling subject lines for each email"},
+      {"text": "Draft welcome email content"},
+      {"text": "Draft day 2 follow-up email content"},
+      {"text": "Draft day 3 follow-up email content"},
+      {"text": "Set up email automation workflow"},
+      {"text": "Test and refine email sequence"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Event attendees"]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your welcome sequence?",
+        "choices": ["Increase engagement", "Drive sales", "Educate users", "Build brand awareness"]
+      },
+      {
+        "id": "tone",
+        "label": "What tone should the emails have?",
+        "choices": ["Friendly and casual", "Professional and formal", "Enthusiastic and energetic", "Helpful and informative"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "timing",
+        "title": "Optimal timing for follow-up emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "content",
+        "title": "Key elements to include in welcome emails",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "create_sequence",
+        "title": "Create Email Sequence",
+        "steps": [
+          "Draft welcome email",
+          "Draft day 2 follow-up",
+          "Draft day 3 follow-up",
+          "Review and edit content",
+          "Set up automation"
+        ]
+      },
+      {
+        "id": "test_sequence",
+        "title": "Test and Refine Sequence",
+        "steps": [
+          "Send test emails",
+          "Analyze open and click rates",
+          "Gather feedback",
+          "Make improvements"
+        ],
+        "requires": ["create_sequence"]
+      }
+    ],
+    "connectionsRequired": ["mailchimp", "customerio"]
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "tone"}
+  ]
+}

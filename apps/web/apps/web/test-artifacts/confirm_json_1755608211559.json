@@ -1,0 +1,40 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "projectRequirements": "string",
+      "deadline": "date",
+      "budget": "number"
+    },
+    "sources": {
+      "projectManagement": {
+        "provider": "jira",
+        "projectId": "string"
+      },
+      "codeRepository": {
+        "provider": "github",
+        "repoUrl": "string"
+      }
+    },
+    "analysis": {
+      "taskBreakdown": "object",
+      "resourceAllocation": "object",
+      "riskAssessment": "object"
+    },
+    "decision": {
+      "buildStrategy": "string",
+      "technologyStack": "array",
+      "teamComposition": "object"
+    },
+    "actions": {
+      "createTasks": "function",
+      "assignResources": "function",
+      "scheduleMillestones": "function"
+    },
+    "channels": [
+      "slack",
+      "email",
+      "jira"
+    ]
+  }
+}

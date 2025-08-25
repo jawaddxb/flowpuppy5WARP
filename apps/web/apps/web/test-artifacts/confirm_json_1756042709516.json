@@ -1,0 +1,37 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {
+      "input1": {
+        "type": "text",
+        "provider": "exampleProvider"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "account": "exampleAccount"
+      }
+    },
+    "analysis": {
+      "type": "sentiment",
+      "provider": "sentimentAnalysisProvider"
+    },
+    "decision": {
+      "type": "threshold",
+      "provider": "decisionProvider",
+      "threshold": 0.5
+    },
+    "actions": {
+      "notify": {
+        "type": "email",
+        "provider": "emailProvider",
+        "recipient": "example@example.com"
+      }
+    },
+    "channels": [
+      "email",
+      "sms"
+    ]
+  }
+}

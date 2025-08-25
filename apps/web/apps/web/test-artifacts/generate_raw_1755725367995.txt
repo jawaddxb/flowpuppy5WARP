@@ -1,0 +1,98 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "sensor",
+      "config": {
+        "sensorType": "temperature",
+        "unit": "celsius",
+        "updateInterval": 60
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "thermostat-control",
+      "type": "actuator",
+      "config": {
+        "actuatorType": "thermostat",
+        "minTemp": 20,
+        "maxTemp": 25
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-analysis",
+      "type": "processor",
+      "config": {
+        "algorithm": "moving-average",
+        "windowSize": 5
+      },
+      "position": {
+        "x": 200,
+        "y": 200
+      }
+    },
+    {
+      "id": "weather-api",
+      "type": "api",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "forecast",
+        "updateInterval": 3600
+      },
+      "position": {
+        "x": 400,
+        "y": 200
+      }
+    },
+    {
+      "id": "smart-heating-decision",
+      "type": "decision",
+      "config": {
+        "rules": [
+          {
+            "condition": "currentTemp < desiredTemp",
+            "action": "increaseThermostat"
+          },
+          {
+            "condition": "currentTemp > desiredTemp",
+            "action": "decreaseThermostat"
+          }
+        ]
+      },
+      "position": {
+        "x": 300,
+        "y": 300
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "temperature-analysis",
+      "label": "Raw temperature data"
+    },
+    {
+      "source": "temperature-analysis",
+      "target": "smart-heating-decision",
+      "label": "Processed temperature data"
+    },
+    {
+      "source": "weather-api",
+      "target": "smart-heating-decision",
+      "label": "Weather forecast"
+    },
+    {
+      "source": "smart-heating-decision",
+      "target": "thermostat-control",
+      "label": "Heating adjustment"
+    }
+  ]
+}

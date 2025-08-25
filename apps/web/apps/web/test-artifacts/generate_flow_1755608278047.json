@@ -1,0 +1,89 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "get-weather-data",
+        "type": "http-request",
+        "title": "http-request",
+        "laneId": "lane-transform",
+        "data": {
+          "url": "https://api.openweathermap.org/data/2.5/weather",
+          "method": "GET",
+          "params": {
+            "q": "New York",
+            "appid": "{{OPENWEATHER_API_KEY}}",
+            "units": "metric"
+          }
+        }
+      },
+      {
+        "id": "generate-summary",
+        "type": "llm-prompt",
+        "title": "llm-prompt",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Summarize the following weather data in a concise, friendly paragraph:\n{{weather_data}}"
+        }
+      },
+      {
+        "id": "send-email",
+        "type": "email",
+        "title": "email",
+        "laneId": "lane-output",
+        "data": {
+          "to": "user@example.com",
+          "subject": "Daily Weather Summary",
+          "body": "{{weather_summary}}"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "get-weather-data"
+        },
+        "target": {
+          "nodeId": "generate-summary"
+        },
+        "label": "Weather Data"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "generate-summary"
+        },
+        "target": {
+          "nodeId": "send-email"
+        },
+        "label": "Weather Summary"
+      }
+    ]
+  }
+}

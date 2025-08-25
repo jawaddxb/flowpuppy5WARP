@@ -1,0 +1,57 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Create a script to fetch daily AI news"},
+      {"text": "Implement natural language processing to summarize trends"},
+      {"text": "Develop a scheduling system for daily tweets"},
+      {"text": "Set up error handling and notifications"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day?",
+        "choices": ["1", "2", "3", "4", "5"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": ["TechCrunch", "MIT Technology Review", "Wired", "VentureBeat", "AI News"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api_limits",
+        "title": "Twitter API has rate limits",
+        "confidence": 0.9
+      },
+      {
+        "id": "nlp_summarization",
+        "title": "NLP libraries can help summarize articles",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Fetch AI news from selected sources",
+          "Summarize trends using NLP",
+          "Generate tweet content",
+          "Post tweet using Twitter API",
+          "Log activity and check for errors"
+        ],
+        "requires": ["twitter", "news_api"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "news_api"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": ["TechCrunch", "MIT Technology Review"]
+  },
+  "nextQuestions": [
+    {"id": "tweet_style", "label": "What style of tweets do you prefer?", "choices": ["Formal", "Casual", "Technical", "Humorous"]}
+  ]
+}

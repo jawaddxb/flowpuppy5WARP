@@ -1,0 +1,58 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Create a list of AI news sources"},
+      {"text": "Develop a script to scrape and summarize AI news"},
+      {"text": "Implement daily scheduling for tweets"},
+      {"text": "Test and refine the automation process"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": ["1", "2", "3", "4", "5"]
+      },
+      {
+        "id": "news_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": ["TechCrunch", "MIT Technology Review", "AI News", "VentureBeat", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "api_limits",
+        "title": "Twitter API rate limits may affect tweet frequency",
+        "confidence": 0.9
+      },
+      {
+        "id": "content_variety",
+        "title": "Diverse news sources improve content quality",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Pipeline",
+        "steps": [
+          "Scrape AI news sources",
+          "Summarize trending topics",
+          "Generate tweet content",
+          "Post tweet",
+          "Log activity"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "news_sources": ["TechCrunch", "MIT Technology Review"]
+  },
+  "nextQuestions": [
+    {"id": "tweet_frequency"},
+    {"id": "news_sources"}
+  ]
+}

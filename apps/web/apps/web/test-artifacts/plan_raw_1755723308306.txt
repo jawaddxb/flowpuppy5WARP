@@ -1,0 +1,62 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Sentry webhook to trigger on new issues"},
+      {"text": "Extract stacktrace and relevant information from Sentry issue"},
+      {"text": "Use AI to summarize the stacktrace"},
+      {"text": "Determine issue severity based on AI summary"},
+      {"text": "Label issue in Sentry with determined severity"},
+      {"text": "If severity is high, create a Jira ticket with issue details"},
+      {"text": "Link Jira ticket back to Sentry issue if created"}
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarizing the stacktrace?",
+        "choices": ["GPT-3.5", "GPT-4", "Claude", "Custom model"]
+      },
+      {
+        "id": "severity_levels",
+        "label": "What severity levels would you like to use?",
+        "choices": ["Low/Medium/High", "P1/P2/P3/P4", "Critical/Major/Minor/Trivial"]
+      },
+      {
+        "id": "high_severity_threshold",
+        "label": "What should be considered 'high' severity for creating Jira tickets?",
+        "choices": ["Only highest level", "Top two levels", "Custom logic"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "ai_summary_length",
+        "title": "Determine optimal length for AI-generated summaries",
+        "confidence": 0.8
+      },
+      {
+        "id": "severity_criteria",
+        "title": "Define specific criteria for each severity level",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "process_sentry_issue",
+        "title": "Process new Sentry issue",
+        "steps": [
+          "Receive Sentry webhook",
+          "Extract stacktrace",
+          "Summarize with AI",
+          "Determine severity",
+          "Label in Sentry",
+          "Create Jira ticket if high severity",
+          "Link Jira to Sentry"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "sentry",
+      "openai",
+      "jira"
+    ]
+  }
+}

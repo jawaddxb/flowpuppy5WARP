@@ -1,0 +1,128 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "user-input",
+        "type": "input",
+        "title": "User Query",
+        "laneId": "lane-input",
+        "data": {
+          "inputKey": "userQuery",
+          "label": "User Query"
+        }
+      },
+      {
+        "id": "web-search",
+        "type": "websearch",
+        "title": "websearch",
+        "laneId": "lane-transform",
+        "provider": "google",
+        "data": {
+          "provider": "google",
+          "numResults": 5
+        }
+      },
+      {
+        "id": "sentiment-analysis",
+        "type": "textanalysis",
+        "title": "textanalysis",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "text-davinci-003",
+          "task": "sentiment"
+        }
+      },
+      {
+        "id": "decision-making",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo"
+        }
+      },
+      {
+        "id": "response-output",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output",
+        "data": {
+          "outputKey": "response",
+          "channels": [
+            "chat",
+            "email"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "web-search"
+        },
+        "label": "Query"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "web-search"
+        },
+        "target": {
+          "nodeId": "sentiment-analysis"
+        },
+        "label": "Search Results"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "sentiment-analysis"
+        },
+        "target": {
+          "nodeId": "decision-making"
+        },
+        "label": "Analyzed Data"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "decision-making"
+        },
+        "target": {
+          "nodeId": "response-output"
+        },
+        "label": "Generated Response"
+      }
+    ]
+  }
+}

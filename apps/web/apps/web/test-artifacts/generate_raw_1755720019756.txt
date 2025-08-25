@@ -1,0 +1,75 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "input-collector",
+      "type": "input",
+      "config": {
+        "inputs": [
+          {
+            "name": "user_query",
+            "type": "text",
+            "description": "User's query or request"
+          }
+        ]
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "llm-processor",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7,
+        "max_tokens": 150
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "output-formatter",
+      "type": "transform",
+      "config": {
+        "operation": "format_response"
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    },
+    {
+      "id": "response-sender",
+      "type": "output",
+      "config": {
+        "channel": "default"
+      },
+      "position": {
+        "x": 600,
+        "y": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "input-collector",
+      "target": "llm-processor",
+      "label": "Process query"
+    },
+    {
+      "source": "llm-processor",
+      "target": "output-formatter",
+      "label": "Format response"
+    },
+    {
+      "source": "output-formatter",
+      "target": "response-sender",
+      "label": "Send response"
+    }
+  ]
+}

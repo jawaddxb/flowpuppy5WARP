@@ -1,0 +1,44 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {
+      "inputType": "text",
+      "inputSource": "user"
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "your_api_key",
+        "apiSecret": "your_api_secret"
+      },
+      "news": {
+        "provider": "newsAPI",
+        "apiKey": "your_news_api_key"
+      }
+    },
+    "analysis": {
+      "method": "sentimentAnalysis",
+      "model": "sentimentModelV1"
+    },
+    "decision": {
+      "threshold": 0.5,
+      "actionIfPositive": "engage",
+      "actionIfNegative": "monitor"
+    },
+    "actions": {
+      "engage": {
+        "type": "reply",
+        "message": "Thank you for your input!"
+      },
+      "monitor": {
+        "type": "log",
+        "message": "User feedback logged for review."
+      }
+    },
+    "channels": [
+      "twitter",
+      "email",
+      "sms"
+    ]
+  }
+}

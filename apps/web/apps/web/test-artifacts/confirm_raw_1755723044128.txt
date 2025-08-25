@@ -1,0 +1,34 @@
+{
+  "agentSpec": {
+    "name": "Basic Agent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter"
+      },
+      "rss": {
+        "provider": "rss"
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai"
+      },
+      "summarization": {
+        "provider": "anthropic"
+      }
+    },
+    "decision": {
+      "provider": "openai"
+    },
+    "actions": {
+      "email": {
+        "provider": "sendgrid"
+      }
+    },
+    "channels": [
+      "email",
+      "slack"
+    ]
+  }
+}

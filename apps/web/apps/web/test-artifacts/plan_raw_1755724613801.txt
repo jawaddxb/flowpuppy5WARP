@@ -1,0 +1,57 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a nightly scheduled job"},
+      {"text": "Connect to Google Drive and access the CSV file"},
+      {"text": "Parse and analyze user events data"},
+      {"text": "Implement churn risk prediction algorithm"},
+      {"text": "Identify top 10 users at risk of churning"},
+      {"text": "Generate report with churn risk users"},
+      {"text": "Send email to CSM with the report"}
+    ],
+    "questions": [
+      {
+        "id": "csv_location",
+        "label": "What is the specific location or name of the CSV file in Google Drive?",
+        "choices": ["Specify path", "Specify filename", "Not sure"]
+      },
+      {
+        "id": "churn_risk_factors",
+        "label": "What factors should be considered for churn risk prediction?",
+        "choices": ["Usage frequency", "Feature adoption", "Customer support tickets", "Billing issues", "Other"]
+      },
+      {
+        "id": "csm_email",
+        "label": "What is the email address of the CSM who should receive the report?",
+        "choices": ["Enter email address", "Use default CSM email"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "data_analysis",
+        "title": "Data analysis and churn prediction required",
+        "confidence": 0.9
+      },
+      {
+        "id": "automation",
+        "title": "Automation for nightly processing needed",
+        "confidence": 0.95
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "nightly_churn_analysis",
+        "title": "Nightly Churn Risk Analysis and Reporting",
+        "steps": [
+          "Access CSV from Google Drive",
+          "Process user events data",
+          "Predict churn risk",
+          "Generate top 10 at-risk users report",
+          "Email report to CSM"
+        ],
+        "requires": ["google_drive", "email"]
+      }
+    ],
+    "connectionsRequired": ["google_drive", "gmail"]
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "temperature-sensor",
+        "type": "sensor",
+        "title": "sensor",
+        "laneId": "lane-transform",
+        "data": {
+          "sensorType": "temperature",
+          "unit": "celsius",
+          "updateInterval": 60
+        }
+      },
+      {
+        "id": "thermostat-control",
+        "type": "actuator",
+        "title": "actuator",
+        "laneId": "lane-transform",
+        "data": {
+          "actuatorType": "thermostat",
+          "minTemp": 20,
+          "maxTemp": 25
+        }
+      },
+      {
+        "id": "temperature-analysis",
+        "type": "processor",
+        "title": "processor",
+        "laneId": "lane-transform",
+        "data": {
+          "algorithm": "moving-average",
+          "windowSize": 5
+        }
+      },
+      {
+        "id": "weather-api",
+        "type": "api",
+        "title": "api",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "endpoint": "forecast",
+          "updateInterval": 3600
+        }
+      },
+      {
+        "id": "smart-heating-decision",
+        "type": "decision",
+        "title": "decision",
+        "laneId": "lane-decision",
+        "data": {
+          "rules": [
+            {
+              "condition": "currentTemp < desiredTemp",
+              "action": "increaseThermostat"
+            },
+            {
+              "condition": "currentTemp > desiredTemp",
+              "action": "decreaseThermostat"
+            }
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "temperature-sensor"
+        },
+        "target": {
+          "nodeId": "temperature-analysis"
+        },
+        "label": "Raw temperature data"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-analysis"
+        },
+        "target": {
+          "nodeId": "smart-heating-decision"
+        },
+        "label": "Processed temperature data"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "weather-api"
+        },
+        "target": {
+          "nodeId": "smart-heating-decision"
+        },
+        "label": "Weather forecast"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "smart-heating-decision"
+        },
+        "target": {
+          "nodeId": "thermostat-control"
+        },
+        "label": "Heating adjustment"
+      }
+    ]
+  }
+}

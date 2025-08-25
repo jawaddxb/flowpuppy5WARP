@@ -1,0 +1,56 @@
+{
+  "agentSpec": {
+    "name": "BuilderAgent",
+    "inputs": {
+      "projectRequirements": "string",
+      "budget": "number",
+      "timeline": "string"
+    },
+    "sources": {
+      "constructionDatabase": {
+        "provider": "constructionDB",
+        "tables": ["materials", "contractors", "regulations"]
+      },
+      "marketPrices": {
+        "provider": "financialAPI",
+        "endpoint": "/construction-materials"
+      }
+    },
+    "analysis": {
+      "costEstimation": {
+        "inputs": ["projectRequirements", "marketPrices"],
+        "output": "estimatedCost"
+      },
+      "timelineAssessment": {
+        "inputs": ["projectRequirements", "constructionDatabase.contractors"],
+        "output": "estimatedTimeline"
+      }
+    },
+    "decision": {
+      "approveProject": {
+        "inputs": ["estimatedCost", "estimatedTimeline", "budget", "timeline"],
+        "output": "projectApproval"
+      }
+    },
+    "actions": {
+      "createProjectPlan": {
+        "inputs": ["projectApproval", "projectRequirements"],
+        "output": "projectPlan"
+      },
+      "assignContractors": {
+        "inputs": ["projectPlan", "constructionDatabase.contractors"],
+        "output": "contractorAssignments"
+      }
+    },
+    "channels": [
+      {
+        "type": "email",
+        "address": "project-manager@construction.com"
+      },
+      {
+        "type": "api",
+        "endpoint": "/project-management-system"
+      }
+    ]
+  }
+}

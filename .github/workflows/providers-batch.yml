@@ -1,0 +1,56 @@
+name: Providers Batch
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: providers-batch-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run-batch:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      PW_GREP: "@providers-admin"
+      # Optionally enable Supabase-backed run by setting these in repo/org secrets:
+      # NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      # SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run providers batch (headless)
+        run: npm run ab:providers -- --org=org-demo --include-openapi --include-mcp
+
+      - name: Upload providers batch log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: providers-batch-log
+          path: .qa/providers-last.log
+
+      - name: Upload QA summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-last-json
+          path: .qa/last.json
+
+

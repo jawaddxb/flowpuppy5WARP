@@ -1,0 +1,58 @@
+{
+  "agentSpec": {
+    "name": "Health Advisor for Over 50s",
+    "inputs": {
+      "age": 50,
+      "demographics": {
+        "gender": "any",
+        "location": "global"
+      }
+    },
+    "sources": {
+      "cdc": {
+        "provider": "cdc",
+        "url": "https://www.cdc.gov"
+      },
+      "who": {
+        "provider": "who",
+        "url": "https://www.who.int"
+      }
+    },
+    "analysis": {
+      "healthRisks": {
+        "provider": "health_risk_analysis",
+        "criteria": [
+          "age",
+          "gender",
+          "lifestyle"
+        ]
+      }
+    },
+    "decision": {
+      "recommendations": {
+        "provider": "health_recommendations",
+        "criteria": [
+          "diet",
+          "exercise",
+          "screening"
+        ]
+      }
+    },
+    "actions": {
+      "scheduleCheckup": {
+        "provider": "healthcare_provider",
+        "url": "https://www.healthcareprovider.com/schedule"
+      }
+    },
+    "channels": [
+      {
+        "type": "email",
+        "provider": "gmail"
+      },
+      {
+        "type": "sms",
+        "provider": "twilio"
+      }
+    ]
+  }
+}

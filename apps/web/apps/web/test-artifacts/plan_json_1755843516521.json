@@ -1,0 +1,79 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API connection"
+      },
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Create a list of daily AI topics"
+      },
+      {
+        "text": "Write engaging tweet content"
+      },
+      {
+        "text": "Schedule daily tweets"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "More than 3"
+        ]
+      },
+      {
+        "id": "ai_focus",
+        "label": "Which area of AI do you want to focus on?",
+        "choices": [
+          "General AI",
+          "Machine Learning",
+          "Natural Language Processing",
+          "Computer Vision",
+          "Robotics",
+          "All of the above"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_knowledge",
+        "title": "In-depth knowledge of AI trends is necessary",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "tweet_pipeline",
+        "title": "Daily AI Trend Tweet Pipeline",
+        "steps": [
+          "Research AI trends",
+          "Select top trend",
+          "Craft engaging tweet",
+          "Post tweet",
+          "Analyze engagement"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  }
+}

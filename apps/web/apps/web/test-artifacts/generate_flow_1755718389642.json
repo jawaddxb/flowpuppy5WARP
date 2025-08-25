@@ -1,0 +1,81 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "user-input",
+        "type": "user-input",
+        "title": "user-input",
+        "laneId": "lane-transform",
+        "data": {
+          "prompt": "What would you like assistance with?"
+        }
+      },
+      {
+        "id": "openai-analysis",
+        "type": "llm-chain",
+        "title": "llm-chain",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.7,
+          "max_tokens": 500,
+          "prompt": "Analyze the following user input and provide a helpful response: {{user-input}}"
+        }
+      },
+      {
+        "id": "text-output",
+        "type": "text-output",
+        "title": "text-output",
+        "laneId": "lane-transform",
+        "data": {
+          "text": "{{openai-analysis}}"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "openai-analysis"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "openai-analysis"
+        },
+        "target": {
+          "nodeId": "text-output"
+        }
+      }
+    ]
+  }
+}

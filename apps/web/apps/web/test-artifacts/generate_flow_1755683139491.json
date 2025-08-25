@@ -1,0 +1,113 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "input-receiver",
+        "type": "input",
+        "title": "input",
+        "laneId": "lane-input"
+      },
+      {
+        "id": "task-analyzer",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.7
+        }
+      },
+      {
+        "id": "decision-maker",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.5
+        }
+      },
+      {
+        "id": "action-executor",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform"
+      },
+      {
+        "id": "output-sender",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "input-receiver"
+        },
+        "target": {
+          "nodeId": "task-analyzer"
+        },
+        "label": "User input"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "task-analyzer"
+        },
+        "target": {
+          "nodeId": "decision-maker"
+        },
+        "label": "Task analysis"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "decision-maker"
+        },
+        "target": {
+          "nodeId": "action-executor"
+        },
+        "label": "Action decision"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "action-executor"
+        },
+        "target": {
+          "nodeId": "output-sender"
+        },
+        "label": "Action result"
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "agentSpec": {
+    "name": "BuilderBot",
+    "inputs": {
+      "projectRequirements": "string",
+      "buildingMaterials": "array",
+      "budget": "number",
+      "timeline": "string"
+    },
+    "sources": {
+      "materialDatabase": {
+        "provider": "internalDatabase",
+        "endpoint": "/api/materials"
+      },
+      "constructionGuidelines": {
+        "provider": "externalApi",
+        "url": "https://constructionstandards.org/api"
+      }
+    },
+    "analysis": {
+      "costEstimation": "function",
+      "timelineProjection": "function",
+      "materialCompatibility": "function"
+    },
+    "decision": {
+      "buildPlanSelection": "function",
+      "riskAssessment": "function"
+    },
+    "actions": {
+      "generateBuildPlan": "function",
+      "orderMaterials": "function",
+      "scheduleTasks": "function"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware",
+      "mobileApp"
+    ]
+  }
+}

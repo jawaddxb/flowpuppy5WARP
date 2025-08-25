@@ -1,0 +1,93 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Research current AI trends and developments"
+      },
+      {
+        "text": "Create a content calendar for AI trend topics"
+      },
+      {
+        "text": "Write engaging tweets about AI trends"
+      },
+      {
+        "text": "Schedule daily tweets"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "twitter_account",
+        "label": "Do you have a Twitter account?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "ai_knowledge",
+        "label": "How would you rate your knowledge of AI?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Advanced",
+          "Expert"
+        ]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "More than 3"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API is required for automated tweeting",
+        "confidence": 0.95
+      },
+      {
+        "id": "ai_research",
+        "title": "Regular research on AI trends is necessary",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Research latest AI trends",
+          "Draft tweet content",
+          "Review and edit tweet",
+          "Schedule tweet",
+          "Monitor engagement"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "1"
+  },
+  "nextQuestions": [
+    "twitter_account",
+    "ai_knowledge",
+    "tweet_frequency"
+  ]
+}

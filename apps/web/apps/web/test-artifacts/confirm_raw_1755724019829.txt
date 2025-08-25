@@ -1,0 +1,88 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "projectRequirements": {
+        "type": "string",
+        "description": "Detailed project requirements and specifications"
+      },
+      "timeline": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "budget": {
+        "type": "number",
+        "description": "Available budget for the project"
+      }
+    },
+    "sources": {
+      "projectManagement": {
+        "provider": "jira",
+        "description": "Project management tool for tracking tasks and progress"
+      },
+      "codeRepository": {
+        "provider": "github",
+        "description": "Version control system for managing code"
+      },
+      "communicationPlatform": {
+        "provider": "slack",
+        "description": "Team communication and collaboration platform"
+      }
+    },
+    "analysis": {
+      "taskBreakdown": {
+        "description": "Analyze project requirements and break them down into manageable tasks"
+      },
+      "resourceAllocation": {
+        "description": "Determine optimal allocation of resources based on task requirements and team skills"
+      },
+      "riskAssessment": {
+        "description": "Identify potential risks and develop mitigation strategies"
+      }
+    },
+    "decision": {
+      "prioritization": {
+        "description": "Decide on task priorities based on dependencies and project timeline"
+      },
+      "technologyStack": {
+        "description": "Choose appropriate technologies and frameworks for the project"
+      },
+      "milestones": {
+        "description": "Set key milestones and deliverables for the project"
+      }
+    },
+    "actions": {
+      "createTasks": {
+        "description": "Create and assign tasks in the project management tool"
+      },
+      "scheduleTeamMeetings": {
+        "description": "Set up regular team meetings and status updates"
+      },
+      "initiateCodeRepository": {
+        "description": "Set up the initial code repository structure"
+      },
+      "configureCIPipeline": {
+        "description": "Set up continuous integration and deployment pipeline"
+      }
+    },
+    "channels": [
+      {
+        "name": "projectUpdates",
+        "description": "Channel for sharing project updates and progress reports"
+      },
+      {
+        "name": "technicalDiscussions",
+        "description": "Channel for discussing technical challenges and solutions"
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a webhook endpoint to receive new order notifications"
+      },
+      {
+        "text": "Validate the incoming payload from the webhook"
+      },
+      {
+        "text": "Append the order data to a Google Sheet"
+      },
+      {
+        "text": "Send a notification to the sales channel in Slack"
+      }
+    ],
+    "questions": [
+      {
+        "id": "sheets_id",
+        "label": "What is the ID of the Google Sheet you want to append to?",
+        "choices": [
+          "Enter Google Sheet ID"
+        ]
+      },
+      {
+        "id": "slack_channel",
+        "label": "What is the name of the Slack channel for sales notifications?",
+        "choices": [
+          "Enter Slack channel name"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "webhook_setup",
+        "title": "Webhook endpoint needs to be created",
+        "confidence": 0.9
+      },
+      {
+        "id": "data_validation",
+        "title": "Payload validation is required",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "process_new_order",
+        "title": "Process New Order Pipeline",
+        "steps": [
+          "Receive webhook",
+          "Validate payload",
+          "Append to Google Sheets",
+          "Send Slack notification"
+        ],
+        "requires": [
+          "google_sheets",
+          "slack"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "google_sheets",
+      "slack"
+    ]
+  }
+}

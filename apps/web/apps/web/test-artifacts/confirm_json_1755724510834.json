@@ -1,0 +1,44 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's initial query or request"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "googleSearch",
+        "params": {
+          "query": "${inputs.userQuery}",
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "summarize": {
+        "input": "${sources.web}",
+        "output": "summary"
+      }
+    },
+    "decision": {
+      "determine_action": {
+        "input": "${analysis.summarize.summary}",
+        "output": "action"
+      }
+    },
+    "actions": {
+      "respond": {
+        "input": "${decision.determine_action.action}",
+        "output": "response"
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "openai"
+      }
+    ]
+  }
+}

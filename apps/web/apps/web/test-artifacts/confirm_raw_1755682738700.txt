@@ -1,0 +1,35 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "projectRequirements": "string",
+      "buildInstructions": "string",
+      "materialsList": "array"
+    },
+    "sources": {
+      "buildingCodes": {
+        "provider": "buildingCodeDatabase",
+        "query": "latest construction regulations"
+      },
+      "materialPrices": {
+        "provider": "supplierAPI",
+        "endpoint": "/prices"
+      }
+    },
+    "analysis": {
+      "costEstimation": "Calculate total cost based on material prices and quantities",
+      "regulationCompliance": "Check if build plans comply with latest building codes"
+    },
+    "decision": {
+      "buildApproval": "Determine if project can proceed based on cost and compliance"
+    },
+    "actions": {
+      "generateBuildPlan": "Create detailed construction plan",
+      "orderMaterials": "Place orders for required materials"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware"
+    ]
+  }
+}

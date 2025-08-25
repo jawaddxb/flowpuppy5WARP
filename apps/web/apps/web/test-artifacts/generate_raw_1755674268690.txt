@@ -1,0 +1,70 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "detect-temperature",
+      "type": "sensor",
+      "config": {
+        "sensorType": "temperature",
+        "unit": "celsius"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "check-temp-threshold",
+      "type": "function",
+      "config": {
+        "function": "if (temperature < 20) return 'cold'; else if (temperature > 25) return 'hot'; else return 'warm';"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "adjust-thermostat",
+      "type": "action",
+      "config": {
+        "deviceType": "thermostat",
+        "action": "setTemperature",
+        "targetTemp": 22
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "notify-user",
+      "type": "notification",
+      "config": {
+        "channel": "push",
+        "message": "Temperature adjusted to maintain warmth."
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "detect-temperature",
+      "target": "check-temp-threshold",
+      "label": "Temperature data"
+    },
+    {
+      "source": "check-temp-threshold",
+      "target": "adjust-thermostat",
+      "label": "Temperature status"
+    },
+    {
+      "source": "adjust-thermostat",
+      "target": "notify-user",
+      "label": "Action taken"
+    }
+  ]
+}

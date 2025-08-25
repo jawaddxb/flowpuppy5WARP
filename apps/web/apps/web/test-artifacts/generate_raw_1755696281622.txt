@@ -1,0 +1,17 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "empty-agent",
+      "type": "agent",
+      "config": {
+        "name": "EmptyAgent"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "edges": []
+}

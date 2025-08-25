@@ -1,0 +1,53 @@
+{
+  "agentSpec": {
+    "name": "InformationGatherer",
+    "inputs": {
+      "query": "string",
+      "timeframe": "string"
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "numResults": 5
+        }
+      },
+      "news": {
+        "provider": "newsapi",
+        "params": {
+          "category": "technology"
+        }
+      },
+      "social": {
+        "provider": "twitter",
+        "params": {
+          "limit": 100
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "textblob"
+      },
+      "keywords": {
+        "provider": "rake"
+      }
+    },
+    "decision": {
+      "relevanceScore": {
+        "provider": "custom",
+        "algorithm": "weightedAverage"
+      }
+    },
+    "actions": {
+      "generateReport": {
+        "provider": "template",
+        "template": "summary.md"
+      }
+    },
+    "channels": [
+      "email",
+      "slack"
+    ]
+  }
+}

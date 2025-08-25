@@ -1,0 +1,62 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Research current AI trends"},
+      {"text": "Curate the most interesting and relevant trends"},
+      {"text": "Compose concise tweets summarizing each trend"},
+      {"text": "Schedule tweets to be posted daily"},
+      {"text": "Monitor engagement and adjust content strategy as needed"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": ["Formal and informative", "Casual and conversational", "Mix of both"]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day?",
+        "choices": ["1", "2", "3", "More than 3"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "ai_news_sources",
+        "title": "Reliable AI news sources needed",
+        "confidence": 0.9
+      },
+      {
+        "id": "trending_hashtags",
+        "title": "Relevant AI hashtags to increase visibility",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_process",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Research trends",
+          "Select top trend",
+          "Compose tweet",
+          "Schedule tweet",
+          "Analyze engagement"
+        ],
+        "requires": ["twitter", "news_api"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "news_api"]
+  },
+  "defaults": {
+    "tweet_style": "Mix of both",
+    "tweet_frequency": "1"
+  },
+  "nextQuestions": [
+    {
+      "id": "preferred_sources",
+      "label": "What are your preferred AI news sources?",
+      "type": "multi_select",
+      "choices": ["TechCrunch", "MIT Technology Review", "Wired", "ArXiv", "AI research labs blogs"]
+    }
+  ]
+}

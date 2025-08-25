@@ -1,0 +1,86 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Create a system to monitor AI news and trends"
+      },
+      {
+        "text": "Develop a content creation process for daily tweets"
+      },
+      {
+        "text": "Implement scheduling for daily tweets"
+      },
+      {
+        "text": "Set up analytics to track engagement"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": [
+          "Formal and informative",
+          "Casual and engaging",
+          "Mix of both"
+        ]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day?",
+        "choices": [
+          "1",
+          "2-3",
+          "4-5",
+          "More than 5"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "api_required",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_monitoring",
+        "title": "AI news monitoring system needed",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_process",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Monitor AI news sources",
+          "Identify trending topics",
+          "Draft tweet content",
+          "Review and approve tweet",
+          "Schedule and post tweet",
+          "Analyze engagement"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_style": "Mix of both",
+    "tweet_frequency": "1"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweet_style"
+    },
+    {
+      "id": "tweet_frequency"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "sensor",
+      "config": {
+        "sensorType": "temperature",
+        "units": "celsius",
+        "updateInterval": 60
+      },
+      "position": {"x": 100, "y": 100}
+    },
+    {
+      "id": "temperature-threshold",
+      "type": "conditional",
+      "config": {
+        "condition": "temperature < 20"
+      },
+      "position": {"x": 300, "y": 100}
+    },
+    {
+      "id": "heater-control",
+      "type": "actuator",
+      "config": {
+        "deviceType": "heater",
+        "action": "turnOn"
+      },
+      "position": {"x": 500, "y": 100}
+    },
+    {
+      "id": "notification-sender",
+      "type": "notification",
+      "config": {
+        "provider": "twilio",
+        "message": "Heater turned on due to low temperature"
+      },
+      "position": {"x": 700, "y": 100}
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "temperature-threshold",
+      "label": "Temperature reading"
+    },
+    {
+      "source": "temperature-threshold",
+      "target": "heater-control",
+      "label": "If temperature is low"
+    },
+    {
+      "source": "heater-control",
+      "target": "notification-sender",
+      "label": "Heater activated"
+    }
+  ]
+}

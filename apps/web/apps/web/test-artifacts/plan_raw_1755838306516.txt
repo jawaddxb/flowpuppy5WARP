@@ -1,0 +1,60 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Research current AI trends"},
+      {"text": "Create a content calendar"},
+      {"text": "Write engaging tweets about AI trends"},
+      {"text": "Schedule daily tweets"},
+      {"text": "Monitor engagement and adjust strategy"}
+    ],
+    "questions": [
+      {
+        "id": "twitter_account",
+        "label": "Do you have a Twitter account?",
+        "choices": ["Yes", "No"]
+      },
+      {
+        "id": "ai_knowledge",
+        "label": "How would you rate your knowledge of AI?",
+        "choices": ["Beginner", "Intermediate", "Advanced", "Expert"]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many times per day do you want to tweet?",
+        "choices": ["Once", "Twice", "Three times", "More than three times"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1.0
+      },
+      {
+        "id": "ai_research",
+        "title": "Regular research on AI trends is necessary",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "tweet_pipeline",
+        "title": "Daily AI Trend Tweet Pipeline",
+        "steps": [
+          "Research AI trends",
+          "Draft tweet",
+          "Review and edit",
+          "Schedule tweet",
+          "Analyze engagement"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_frequency": "Once"
+  },
+  "nextQuestions": ["twitter_account", "ai_knowledge", "tweet_frequency"]
+}

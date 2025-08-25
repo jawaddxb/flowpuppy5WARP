@@ -1,0 +1,97 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Curate the most interesting and relevant trends"
+      },
+      {
+        "text": "Compose concise tweets summarizing each trend"
+      },
+      {
+        "text": "Schedule tweets to be posted daily"
+      },
+      {
+        "text": "Monitor engagement and adjust content strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "More than 3"
+        ]
+      },
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": [
+          "Formal",
+          "Casual",
+          "Technical",
+          "Mix of styles"
+        ]
+      },
+      {
+        "id": "trend_sources",
+        "label": "Where do you want to source AI trends from?",
+        "choices": [
+          "News websites",
+          "Academic papers",
+          "Tech blogs",
+          "Social media",
+          "All of the above"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "ai_news_api",
+        "title": "AI News API availability",
+        "confidence": 0.8
+      },
+      {
+        "id": "twitter_api_limits",
+        "title": "Twitter API rate limits",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Pipeline",
+        "steps": [
+          "Fetch latest AI trends",
+          "Summarize trend",
+          "Generate tweet",
+          "Post tweet",
+          "Track engagement"
+        ],
+        "requires": [
+          "twitter",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "tweet_style": "Mix of styles",
+    "trend_sources": "All of the above"
+  },
+  "nextQuestions": [
+    "tweet_frequency",
+    "tweet_style",
+    "trend_sources"
+  ]
+}

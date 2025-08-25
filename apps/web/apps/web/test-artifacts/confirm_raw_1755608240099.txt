@@ -1,0 +1,39 @@
+{
+  "agentSpec": {
+    "name": "Daily AI Trends Tweeter",
+    "sources": {
+      "ai_news": {
+        "provider": "rss",
+        "url": "https://news.google.com/rss/search?q=artificial+intelligence"
+      },
+      "twitter_trends": {
+        "provider": "twitter",
+        "query": "#ArtificialIntelligence"
+      }
+    },
+    "analysis": {
+      "trend_identification": {
+        "input": ["ai_news", "twitter_trends"],
+        "output": "daily_trends"
+      }
+    },
+    "decision": {
+      "tweet_content": {
+        "input": "daily_trends",
+        "output": "tweet_text"
+      }
+    },
+    "actions": {
+      "post_tweet": {
+        "provider": "twitter",
+        "tweet_text": "tweet_text"
+      }
+    },
+    "channels": [
+      {
+        "provider": "twitter",
+        "account": "AITrendsDaily"
+      }
+    ]
+  }
+}

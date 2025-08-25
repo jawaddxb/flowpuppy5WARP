@@ -1,0 +1,77 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "projectRequirements": {
+        "type": "string",
+        "description": "Detailed project requirements and specifications"
+      },
+      "timeline": {
+        "type": "string",
+        "description": "Project timeline and deadlines"
+      },
+      "budget": {
+        "type": "number",
+        "description": "Available budget for the project"
+      }
+    },
+    "sources": {
+      "github": {
+        "provider": "github",
+        "repos": ["relevantRepo1", "relevantRepo2"]
+      },
+      "jira": {
+        "provider": "jira",
+        "projects": ["PROJ1", "PROJ2"]
+      }
+    },
+    "analysis": {
+      "codeReview": {
+        "type": "function",
+        "description": "Analyze code quality and adherence to project requirements"
+      },
+      "timelineAssessment": {
+        "type": "function",
+        "description": "Evaluate project progress against the timeline"
+      },
+      "budgetTracking": {
+        "type": "function",
+        "description": "Monitor expenses and compare to the allocated budget"
+      }
+    },
+    "decision": {
+      "prioritizeTasks": {
+        "type": "function",
+        "description": "Determine task priorities based on analysis results"
+      },
+      "resourceAllocation": {
+        "type": "function",
+        "description": "Decide on optimal resource allocation"
+      }
+    },
+    "actions": {
+      "assignTasks": {
+        "type": "function",
+        "description": "Assign tasks to team members"
+      },
+      "updateTimeline": {
+        "type": "function",
+        "description": "Update project timeline based on progress and decisions"
+      },
+      "generateReport": {
+        "type": "function",
+        "description": "Create progress report for stakeholders"
+      }
+    },
+    "channels": [
+      {
+        "type": "slack",
+        "channelId": "build-updates"
+      },
+      {
+        "type": "email",
+        "recipients": ["project-manager@example.com", "team-lead@example.com"]
+      }
+    ]
+  }
+}

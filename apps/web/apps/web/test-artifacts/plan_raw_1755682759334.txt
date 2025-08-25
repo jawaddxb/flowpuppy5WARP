@@ -1,0 +1,61 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Create a script to fetch daily AI news"},
+      {"text": "Implement natural language processing to summarize trends"},
+      {"text": "Develop a scheduling system for daily tweets"},
+      {"text": "Test and refine the tweet generation process"},
+      {"text": "Monitor engagement and adjust content strategy"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": ["1", "2", "3", "More than 3"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": ["Tech blogs", "Academic journals", "Industry reports", "Social media trends"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "api_limits",
+        "title": "Twitter API rate limits may affect posting frequency",
+        "confidence": 0.9
+      },
+      {
+        "id": "nlp_accuracy",
+        "title": "NLP accuracy impacts trend summarization quality",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "tweet_generation",
+        "title": "Daily Tweet Generation Pipeline",
+        "steps": [
+          "Fetch AI news from selected sources",
+          "Summarize trends using NLP",
+          "Generate tweet content",
+          "Post tweet to Twitter"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "openai"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": ["Tech blogs", "Industry reports"]
+  },
+  "nextQuestions": [
+    {
+      "id": "hashtag_strategy",
+      "label": "Do you want to include hashtags in your tweets?",
+      "choices": ["Yes", "No"]
+    }
+  ]
+}

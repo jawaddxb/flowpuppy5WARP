@@ -1,0 +1,102 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "temperature-sensor",
+        "type": "sensor",
+        "title": "sensor",
+        "laneId": "lane-transform",
+        "data": {
+          "sensorType": "temperature",
+          "units": "celsius",
+          "updateInterval": 60
+        }
+      },
+      {
+        "id": "temperature-threshold",
+        "type": "conditional",
+        "title": "conditional",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "temperature < 20"
+        }
+      },
+      {
+        "id": "heater-control",
+        "type": "actuator",
+        "title": "actuator",
+        "laneId": "lane-transform",
+        "data": {
+          "deviceType": "heater",
+          "action": "turnOn"
+        }
+      },
+      {
+        "id": "notification-sender",
+        "type": "notification",
+        "title": "notification",
+        "laneId": "lane-transform",
+        "provider": "twilio",
+        "data": {
+          "provider": "twilio",
+          "message": "Heater turned on due to low temperature"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "temperature-sensor"
+        },
+        "target": {
+          "nodeId": "temperature-threshold"
+        },
+        "label": "Temperature reading"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-threshold"
+        },
+        "target": {
+          "nodeId": "heater-control"
+        },
+        "label": "If temperature is low"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "heater-control"
+        },
+        "target": {
+          "nodeId": "notification-sender"
+        },
+        "label": "Heater activated"
+      }
+    ]
+  }
+}

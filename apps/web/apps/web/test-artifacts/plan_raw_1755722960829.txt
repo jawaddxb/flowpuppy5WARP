@@ -1,0 +1,64 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a weekly schedule to run every Monday at 8am"},
+      {"text": "Scrape 5 top AI posts from a reliable source"},
+      {"text": "Use AI to summarize the scraped posts"},
+      {"text": "Connect to Mailchimp and send the summarized content to the audience"}
+    ],
+    "questions": [
+      {
+        "id": "source",
+        "label": "Which source would you like to scrape the AI posts from?",
+        "choices": ["Reddit r/artificial", "Hacker News", "ArXiv", "TechCrunch", "Other"]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you prefer for summarization?",
+        "choices": ["GPT-3", "GPT-4", "BART", "T5", "Other"]
+      },
+      {
+        "id": "mailchimp_list",
+        "label": "What is the name of your Mailchimp audience list?",
+        "choices": ["Enter manually"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "scheduling",
+        "title": "Cron job or task scheduler needed",
+        "confidence": 0.9
+      },
+      {
+        "id": "scraping",
+        "title": "Web scraping tool required",
+        "confidence": 0.8
+      },
+      {
+        "id": "summarization",
+        "title": "AI-powered text summarization needed",
+        "confidence": 0.95
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "weekly_ai_digest",
+        "title": "Weekly AI Digest Pipeline",
+        "steps": [
+          "Schedule task for Monday 8am",
+          "Scrape top 5 AI posts",
+          "Summarize posts using AI",
+          "Format email content",
+          "Send to Mailchimp audience"
+        ],
+        "requires": ["scheduler", "web_scraper", "ai_summarizer", "mailchimp"]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "openai"
+    ]
+  },
+  "defaults": {},
+  "nextQuestions": []
+}

@@ -1,0 +1,72 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a Google Sheets spreadsheet to track invoices"
+      },
+      {
+        "text": "Create an email template for polite reminders"
+      },
+      {
+        "text": "Set up a Google Apps Script to automate the process"
+      },
+      {
+        "text": "Schedule the script to run every weekday at 10am"
+      },
+      {
+        "text": "Test the automation to ensure it works correctly"
+      }
+    ],
+    "questions": [
+      {
+        "id": "invoice_sheet_exists",
+        "label": "Do you already have a Google Sheets spreadsheet for tracking invoices?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "email_template_exists",
+        "label": "Do you have an existing email template for invoice reminders?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "automation_complexity",
+        "title": "Google Apps Script knowledge may be required",
+        "confidence": 0.8
+      },
+      {
+        "id": "data_organization",
+        "title": "Proper invoice data organization in Google Sheets is crucial",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "setup_automation",
+        "title": "Set up invoice reminder automation",
+        "steps": [
+          "Create or update Google Sheets for invoice tracking",
+          "Develop email reminder template",
+          "Write Google Apps Script for automation",
+          "Set up time-based trigger for script execution",
+          "Test and refine the automation process"
+        ],
+        "requires": [
+          "google_sheets",
+          "gmail"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "google_sheets",
+      "gmail"
+    ]
+  }
+}

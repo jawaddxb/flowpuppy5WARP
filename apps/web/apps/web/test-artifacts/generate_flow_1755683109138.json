@@ -1,0 +1,139 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "get-weather",
+        "type": "apiCall",
+        "title": "apiCall",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "endpoint": "/weather",
+          "method": "GET",
+          "params": {
+            "q": "{{city}}",
+            "units": "metric",
+            "appid": "{{OPENWEATHERMAP_API_KEY}}"
+          }
+        }
+      },
+      {
+        "id": "check-temperature",
+        "type": "condition",
+        "title": "condition",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "{{get-weather.main.temp}} > 20"
+        }
+      },
+      {
+        "id": "suggest-warm-activity",
+        "type": "llmTask",
+        "title": "llmTask",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.7,
+          "prompt": "Suggest a warm weather activity for {{city}} where the temperature is {{get-weather.main.temp}}°C."
+        }
+      },
+      {
+        "id": "suggest-cool-activity",
+        "type": "llmTask",
+        "title": "llmTask",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.7,
+          "prompt": "Suggest an activity to warm up in {{city}} where the temperature is {{get-weather.main.temp}}°C."
+        }
+      },
+      {
+        "id": "format-response",
+        "type": "transform",
+        "title": "transform",
+        "laneId": "lane-transform",
+        "data": {
+          "template": "In {{city}}, it's {{get-weather.main.temp}}°C. {{activity}}"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "get-weather"
+        },
+        "target": {
+          "nodeId": "check-temperature"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "check-temperature"
+        },
+        "target": {
+          "nodeId": "suggest-warm-activity"
+        },
+        "label": "True"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "check-temperature"
+        },
+        "target": {
+          "nodeId": "suggest-cool-activity"
+        },
+        "label": "False"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "suggest-warm-activity"
+        },
+        "target": {
+          "nodeId": "format-response"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "suggest-cool-activity"
+        },
+        "target": {
+          "nodeId": "format-response"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a Google Sheets integration to access invoice data"},
+      {"text": "Create an email template for polite reminders"},
+      {"text": "Set up a Gmail integration to send emails"},
+      {"text": "Create a scheduled task to run every weekday at 10am"},
+      {"text": "Write a script to check for overdue invoices and send reminders"}
+    ],
+    "questions": [
+      {
+        "id": "invoice_sheet",
+        "label": "What is the name of your Google Sheet containing invoice data?",
+        "choices": ["Invoices", "Customer Billing", "Accounts Receivable", "Other"]
+      },
+      {
+        "id": "reminder_tone",
+        "label": "How would you like the tone of the reminder emails?",
+        "choices": ["Very polite", "Formal", "Friendly", "Direct"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "has_gmail",
+        "title": "User has a Gmail account",
+        "confidence": 0.9
+      },
+      {
+        "id": "uses_sheets",
+        "title": "User uses Google Sheets for invoice tracking",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "check_and_remind",
+        "title": "Check Overdue Invoices and Send Reminders",
+        "steps": [
+          "Fetch invoice data from Google Sheets",
+          "Identify overdue invoices",
+          "Generate reminder emails",
+          "Send emails via Gmail"
+        ],
+        "requires": ["google_sheets", "gmail"]
+      }
+    ],
+    "connectionsRequired": ["google_sheets", "gmail"]
+  },
+  "defaults": {
+    "invoice_sheet": "Invoices",
+    "reminder_tone": "Very polite"
+  },
+  "nextQuestions": [
+    "invoice_sheet",
+    "reminder_tone"
+  ]
+}

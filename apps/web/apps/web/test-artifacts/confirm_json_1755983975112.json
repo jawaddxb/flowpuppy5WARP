@@ -1,0 +1,66 @@
+{
+  "agentSpec": {
+    "name": "GenericAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query or request"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    "decision": {
+      "method": "rule-based",
+      "rules": [
+        {
+          "condition": "sentiment.score > 0.5",
+          "action": "positive_response"
+        },
+        {
+          "condition": "sentiment.score < -0.5",
+          "action": "negative_response"
+        },
+        {
+          "condition": "default",
+          "action": "neutral_response"
+        }
+      ]
+    },
+    "actions": {
+      "positive_response": {
+        "type": "text",
+        "content": "I'm glad you feel positively about that!"
+      },
+      "negative_response": {
+        "type": "text",
+        "content": "I'm sorry to hear you feel negatively about that."
+      },
+      "neutral_response": {
+        "type": "text",
+        "content": "I understand. Let me know if you need more information."
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "telegram"
+      },
+      {
+        "type": "voice",
+        "provider": "twilio"
+      }
+    ]
+  }
+}

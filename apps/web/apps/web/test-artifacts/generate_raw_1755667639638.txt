@@ -1,0 +1,118 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "inputKey": "userQuery",
+        "inputType": "string"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "web-search",
+      "type": "web-search",
+      "config": {
+        "provider": "google",
+        "numResults": 5
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "sentiment-analysis",
+      "type": "text-analysis",
+      "config": {
+        "provider": "openai",
+        "model": "text-davinci-003",
+        "analysisType": "sentiment"
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    },
+    {
+      "id": "decision",
+      "type": "conditional",
+      "config": {
+        "condition": "sentiment.score > 0.5"
+      },
+      "position": {
+        "x": 600,
+        "y": 0
+      }
+    },
+    {
+      "id": "positive-response",
+      "type": "text-output",
+      "config": {
+        "content": "I'm glad you're feeling positive about this!"
+      },
+      "position": {
+        "x": 800,
+        "y": -100
+      }
+    },
+    {
+      "id": "neutral-response",
+      "type": "text-output",
+      "config": {
+        "content": "I understand. Let me know if you need more information."
+      },
+      "position": {
+        "x": 800,
+        "y": 100
+      }
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "config": {
+        "channels": ["chat", "email"]
+      },
+      "position": {
+        "x": 1000,
+        "y": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "web-search"
+    },
+    {
+      "source": "web-search",
+      "target": "sentiment-analysis"
+    },
+    {
+      "source": "sentiment-analysis",
+      "target": "decision"
+    },
+    {
+      "source": "decision",
+      "target": "positive-response",
+      "label": "true"
+    },
+    {
+      "source": "decision",
+      "target": "neutral-response",
+      "label": "false"
+    },
+    {
+      "source": "positive-response",
+      "target": "output"
+    },
+    {
+      "source": "neutral-response",
+      "target": "output"
+    }
+  ]
+}

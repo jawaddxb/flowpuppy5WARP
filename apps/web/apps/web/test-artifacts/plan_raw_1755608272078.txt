@@ -1,0 +1,23 @@
+{
+  "options": {
+    "plan": [
+      { "text": "Send weather information" },
+      { "text": "Email summary of weather" }
+    ],
+    "questions": [
+      {
+        "id": "weather_source",
+        "label": "Which weather service would you like to use?",
+        "choices": ["openweathermap", "weatherapi", "accuweather"]
+      },
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use?",
+        "choices": ["gmail", "outlook", "sendgrid"]
+      }
+    ],
+    "connectionsRequired": ["openweathermap", "gmail"]
+  },
+  "defaults": {},
+  "nextQuestions": []
+}

@@ -1,0 +1,50 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "googleSearch",
+        "params": {
+          "query": "{inputs.userQuery}"
+        }
+      }
+    },
+    "analysis": {
+      "summarize": {
+        "input": "{sources.web}",
+        "provider": "openai",
+        "params": {
+          "prompt": "Summarize the following web search results: {input}"
+        }
+      }
+    },
+    "decision": {
+      "generateResponse": {
+        "input": "{analysis.summarize}",
+        "provider": "openai",
+        "params": {
+          "prompt": "Based on the summary, generate a response to the user query: {inputs.userQuery}"
+        }
+      }
+    },
+    "actions": {
+      "respondToUser": {
+        "input": "{decision.generateResponse}",
+        "type": "function",
+        "function": "displayText"
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "discord"
+      }
+    ]
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "twitter-input",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "twitter",
+        "data": {
+          "provider": "twitter",
+          "query": "general news",
+          "limit": 10
+        }
+      },
+      {
+        "id": "sentiment-analysis",
+        "type": "analysis",
+        "title": "analysis",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "type": "sentiment",
+          "provider": "openai"
+        }
+      },
+      {
+        "id": "decision-maker",
+        "type": "decision",
+        "title": "decision",
+        "laneId": "lane-decision",
+        "data": {
+          "rules": [
+            {
+              "condition": "sentiment.score > 0.5",
+              "action": "share"
+            },
+            {
+              "condition": "sentiment.score < -0.5",
+              "action": "ignore"
+            }
+          ]
+        }
+      },
+      {
+        "id": "tweet-action",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "twitter",
+        "data": {
+          "type": "tweet",
+          "provider": "twitter"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "twitter-input"
+        },
+        "target": {
+          "nodeId": "sentiment-analysis"
+        },
+        "label": "Analyze tweets"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "sentiment-analysis"
+        },
+        "target": {
+          "nodeId": "decision-maker"
+        },
+        "label": "Make decision"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "decision-maker"
+        },
+        "target": {
+          "nodeId": "tweet-action"
+        },
+        "label": "Share positive tweets"
+      }
+    ]
+  }
+}

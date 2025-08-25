@@ -1,0 +1,39 @@
+name: Uptime Health
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # Every 30 minutes
+  workflow_dispatch:
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - name: Build web
+        run: npm -w @flowpuppy/web run build
+      - name: Start web
+        run: |
+          nohup npm -w @flowpuppy/web run start:3001 &
+          echo $! > web.pid
+          sleep 5
+      - name: Curl /api/health
+        run: |
+          set -e
+          curl -fsS http://127.0.0.1:3001/api/health | tee health.json
+      - name: Upload health.json
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: health
+          path: health.json
+      - name: Stop web
+        if: always()
+        run: |
+          kill $(cat web.pid) || true
+

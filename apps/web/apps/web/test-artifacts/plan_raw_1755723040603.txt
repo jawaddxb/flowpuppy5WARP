@@ -1,0 +1,72 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a trigger for when a calendar event ends"},
+      {"text": "Fetch the meeting transcript"},
+      {"text": "Use AI to summarize the transcript"},
+      {"text": "Retrieve attendees' email addresses"},
+      {"text": "Compose an email with the summary"},
+      {"text": "Send the email to all attendees"}
+    ],
+    "questions": [
+      {
+        "id": "calendar_provider",
+        "label": "Which calendar provider are you using?",
+        "choices": ["Google Calendar", "Microsoft Outlook", "Apple Calendar", "Other"]
+      },
+      {
+        "id": "transcript_source",
+        "label": "Where will the meeting transcript come from?",
+        "choices": ["Zoom", "Google Meet", "Microsoft Teams", "Other"]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarization?",
+        "choices": ["OpenAI GPT-3", "Google PaLM", "Custom model"]
+      },
+      {
+        "id": "email_provider",
+        "label": "Which email provider will you use to send the summary?",
+        "choices": ["Gmail", "Outlook", "Custom SMTP"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "has_calendar_integration",
+        "title": "User has a compatible calendar integration",
+        "confidence": 0.8
+      },
+      {
+        "id": "has_transcript_access",
+        "title": "User can access meeting transcripts",
+        "confidence": 0.7
+      },
+      {
+        "id": "has_ai_access",
+        "title": "User has access to an AI summarization service",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "fetch_transcript",
+        "title": "Fetch meeting transcript",
+        "steps": ["Authenticate with transcript provider", "Retrieve transcript data", "Convert to text if necessary"],
+        "requires": ["transcript_source"]
+      },
+      {
+        "id": "summarize_transcript",
+        "title": "Summarize transcript using AI",
+        "steps": ["Prepare transcript for AI input", "Send to AI model", "Receive and format summary"],
+        "requires": ["ai_model"]
+      },
+      {
+        "id": "send_email",
+        "title": "Send summary email to attendees",
+        "steps": ["Compose email with summary", "Fetch attendee list", "Send email to all attendees"],
+        "requires": ["email_provider"]
+      }
+    ],
+    "connectionsRequired": ["google", "microsoft", "zoom", "openai"]
+  }
+}

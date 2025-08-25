@@ -1,0 +1,142 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "user-input",
+        "type": "input",
+        "title": "input",
+        "laneId": "lane-input",
+        "data": {
+          "prompt": "What would you like the agent to do?"
+        }
+      },
+      {
+        "id": "task-analysis",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Analyze the following user request and break it down into subtasks:\n{{user-input}}"
+        }
+      },
+      {
+        "id": "action-planner",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Based on the task analysis, generate a plan of action:\n{{task-analysis}}"
+        }
+      },
+      {
+        "id": "execute-action",
+        "type": "function",
+        "title": "function",
+        "laneId": "lane-transform",
+        "data": {
+          "function": "executeAction",
+          "args": {
+            "plan": "{{action-planner}}"
+          }
+        }
+      },
+      {
+        "id": "generate-response",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Generate a response to the user based on the executed action:\n{{execute-action}}"
+        }
+      },
+      {
+        "id": "output-response",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output",
+        "data": {
+          "output": "{{generate-response}}"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "task-analysis"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "task-analysis"
+        },
+        "target": {
+          "nodeId": "action-planner"
+        }
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "action-planner"
+        },
+        "target": {
+          "nodeId": "execute-action"
+        }
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "execute-action"
+        },
+        "target": {
+          "nodeId": "generate-response"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "generate-response"
+        },
+        "target": {
+          "nodeId": "output-response"
+        }
+      }
+    ]
+  }
+}

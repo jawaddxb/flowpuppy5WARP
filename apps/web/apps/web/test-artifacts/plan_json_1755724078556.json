@@ -1,0 +1,76 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Create an email workflow for new signups"
+      },
+      {
+        "text": "Send welcome email immediately after signup"
+      },
+      {
+        "text": "Wait for 2 days"
+      },
+      {
+        "text": "Check if user has replied to welcome email"
+      },
+      {
+        "text": "If no reply, send a follow-up email"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_service",
+        "label": "Which email service provider do you use?",
+        "choices": [
+          "Mailchimp",
+          "SendGrid",
+          "AWS SES",
+          "Other"
+        ]
+      },
+      {
+        "id": "crm_integration",
+        "label": "Do you want to integrate this workflow with a CRM?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "automation_needed",
+        "title": "Email automation is required for this workflow",
+        "confidence": 1
+      },
+      {
+        "id": "follow_up_important",
+        "title": "Follow-up emails can improve user engagement",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "welcome_email_flow",
+        "title": "New Signup Welcome Email Flow",
+        "steps": [
+          "Trigger on new user signup",
+          "Send welcome email",
+          "Wait 2 days",
+          "Check for user reply",
+          "Send follow-up if no reply"
+        ],
+        "requires": [
+          "email_service"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email"
+    ]
+  },
+  "nextQuestions": [
+    "email_service",
+    "crm_integration"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "options": {
+    "plan": [
+      { "text": "Define target audience and goals for the email sequence" },
+      { "text": "Create a compelling welcome email" },
+      { "text": "Design follow-up emails for days 2 and 3" },
+      { "text": "Set up email automation" },
+      { "text": "Test and refine the sequence" }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Other"]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your email sequence?",
+        "choices": ["Onboarding", "Engagement", "Conversion", "Education"]
+      },
+      {
+        "id": "tone",
+        "label": "What tone would you like to use in your emails?",
+        "choices": ["Friendly and casual", "Professional and formal", "Enthusiastic and energetic", "Informative and helpful"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailFrequency",
+        "title": "Optimal email frequency for new subscribers",
+        "confidence": 0.8
+      },
+      {
+        "id": "subjectLines",
+        "title": "Effective subject line strategies",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "createEmails",
+        "title": "Generate email content",
+        "steps": ["Draft welcome email", "Draft day 2 follow-up", "Draft day 3 follow-up"],
+        "requires": ["openai"]
+      },
+      {
+        "id": "setupAutomation",
+        "title": "Set up email automation",
+        "steps": ["Configure email service", "Set up triggers", "Schedule emails"],
+        "requires": ["mailchimp"]
+      }
+    ],
+    "connectionsRequired": ["openai", "mailchimp"]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly and casual"
+  },
+  "nextQuestions": [
+    { "id": "audience" },
+    { "id": "goal" },
+    { "id": "tone" }
+  ]
+}

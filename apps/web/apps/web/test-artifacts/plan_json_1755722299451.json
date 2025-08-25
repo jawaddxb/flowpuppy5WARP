@@ -1,0 +1,105 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for welcome sequence"
+      },
+      {
+        "text": "Create compelling subject lines for each email"
+      },
+      {
+        "text": "Draft welcome email content"
+      },
+      {
+        "text": "Draft day 2 follow-up email content"
+      },
+      {
+        "text": "Draft day 3 follow-up email content"
+      },
+      {
+        "text": "Design email templates"
+      },
+      {
+        "text": "Set up email automation workflow"
+      },
+      {
+        "text": "Test email sequence"
+      },
+      {
+        "text": "Launch welcome sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Other"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your welcome sequence?",
+        "choices": [
+          "Introduce brand",
+          "Provide valuable information",
+          "Drive sales",
+          "Encourage engagement"
+        ]
+      },
+      {
+        "id": "emailPlatform",
+        "label": "Which email marketing platform do you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "SendGrid",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "personalization",
+        "title": "Personalization increases email open rates",
+        "confidence": 0.9
+      },
+      {
+        "id": "timing",
+        "title": "Optimal timing for follow-up emails affects engagement",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "createEmails",
+        "title": "Create Email Content",
+        "steps": [
+          "Write welcome email",
+          "Write day 2 follow-up",
+          "Write day 3 follow-up"
+        ]
+      },
+      {
+        "id": "setupAutomation",
+        "title": "Set Up Email Automation",
+        "steps": [
+          "Configure email platform",
+          "Set up trigger for welcome email",
+          "Schedule follow-up emails",
+          "Test automation flow"
+        ],
+        "requires": [
+          "createEmails"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "sendgrid"
+    ]
+  }
+}

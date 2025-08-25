@@ -1,0 +1,53 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Connect to Twitter account"},
+      {"text": "Research current AI trends"},
+      {"text": "Generate daily AI trend summary"},
+      {"text": "Compose tweet with AI trend summary"},
+      {"text": "Schedule and post tweet"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How often do you want to tweet AI trends?",
+        "choices": ["Daily", "Weekly", "Bi-weekly"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which sources would you like to use for AI trend research?",
+        "choices": ["Tech news sites", "Academic journals", "Social media", "AI company blogs"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_research",
+        "title": "AI trend research capability needed",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_ai_tweet",
+        "title": "Generate and Post Daily AI Trend Tweet",
+        "steps": [
+          "Research AI trends",
+          "Summarize trends",
+          "Compose tweet",
+          "Post to Twitter"
+        ],
+        "requires": ["twitter", "web_scraping", "text_summarization"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "openai"]
+  },
+  "defaults": {
+    "tweet_frequency": "Daily"
+  },
+  "nextQuestions": ["tweet_frequency", "ai_sources"]
+}

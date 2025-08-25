@@ -1,0 +1,82 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "temperature-sensor",
+        "type": "input",
+        "title": "input",
+        "laneId": "lane-input",
+        "provider": "iot-sensor",
+        "data": {
+          "provider": "iot-sensor",
+          "sensorType": "temperature"
+        }
+      },
+      {
+        "id": "thermostat-control",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output",
+        "provider": "smart-home",
+        "data": {
+          "provider": "smart-home",
+          "deviceType": "thermostat"
+        }
+      },
+      {
+        "id": "temperature-analysis",
+        "type": "process",
+        "title": "process",
+        "laneId": "lane-transform",
+        "data": {
+          "targetTemperature": 22
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "temperature-sensor"
+        },
+        "target": {
+          "nodeId": "temperature-analysis"
+        },
+        "label": "Current temperature"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-analysis"
+        },
+        "target": {
+          "nodeId": "thermostat-control"
+        },
+        "label": "Adjustment needed"
+      }
+    ]
+  }
+}

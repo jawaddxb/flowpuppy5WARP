@@ -1,0 +1,59 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Stripe webhook to trigger on new customer creation"},
+      {"text": "Configure email service for sending welcome email"},
+      {"text": "Create welcome email template"},
+      {"text": "Set up delay mechanism for 3-day wait"},
+      {"text": "Create onboarding tips email template"},
+      {"text": "Set up delay mechanism for 10-day wait after onboarding tips"},
+      {"text": "Create customer survey"},
+      {"text": "Configure email service for sending survey"}
+    ],
+    "questions": [
+      {
+        "id": "email_service",
+        "label": "Which email service do you want to use?",
+        "choices": ["SendGrid", "Mailchimp", "AWS SES", "Other"]
+      },
+      {
+        "id": "delay_mechanism",
+        "label": "How do you want to handle the delay between emails?",
+        "choices": ["Cron job", "Queue system", "Workflow automation tool"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "stripe_integration",
+        "title": "Stripe integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "email_service_needed",
+        "title": "An email service is needed for sending emails",
+        "confidence": 1
+      },
+      {
+        "id": "delay_mechanism_needed",
+        "title": "A mechanism for handling delays between actions is required",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "welcome_sequence",
+        "title": "New Customer Welcome Sequence",
+        "steps": [
+          "Receive Stripe webhook for new customer",
+          "Send welcome email",
+          "Wait 3 days",
+          "Send onboarding tips email",
+          "Wait 10 days",
+          "Send customer survey"
+        ],
+        "requires": ["stripe", "email_service", "delay_mechanism"]
+      }
+    ],
+    "connectionsRequired": ["stripe", "sendgrid"]
+  }
+}

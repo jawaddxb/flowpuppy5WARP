@@ -1,0 +1,39 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "query": {
+        "type": "string",
+        "description": "User input query"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "num_results": 5
+        }
+      }
+    },
+    "analysis": {
+      "summarize": {
+        "input": "$.sources.web.results",
+        "output": "summary"
+      }
+    },
+    "decision": {
+      "respond": {
+        "input": "$.analysis.summarize.summary",
+        "output": "response"
+      }
+    },
+    "actions": {
+      "reply": {
+        "input": "$.decision.respond.response"
+      }
+    },
+    "channels": [
+      "chat"
+    ]
+  }
+}

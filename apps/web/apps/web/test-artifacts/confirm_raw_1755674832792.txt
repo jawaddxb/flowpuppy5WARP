@@ -1,0 +1,38 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "projectSpecs": "string",
+      "materialsList": "array",
+      "buildTimeline": "object"
+    },
+    "sources": {
+      "blueprints": {
+        "provider": "cad",
+        "type": "3dModel"
+      },
+      "supplierInventory": {
+        "provider": "erp",
+        "type": "database"
+      }
+    },
+    "analysis": {
+      "resourceAllocation": "function",
+      "schedulingOptimization": "function"
+    },
+    "decision": {
+      "buildStrategy": "function",
+      "riskAssessment": "function"
+    },
+    "actions": {
+      "orderMaterials": "function",
+      "assignTasks": "function",
+      "updateTimeline": "function"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware",
+      "mobileApp"
+    ]
+  }
+}

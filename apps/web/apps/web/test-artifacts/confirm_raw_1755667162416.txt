@@ -1,0 +1,39 @@
+{
+  "agentSpec": {
+    "name": "Builder Agent",
+    "inputs": {
+      "blueprints": "required",
+      "materials": "required",
+      "timeline": "optional"
+    },
+    "sources": {
+      "constructionDatabase": {
+        "provider": "database",
+        "table": "construction_specs"
+      },
+      "materialSupplier": {
+        "provider": "api",
+        "endpoint": "inventory_check"
+      }
+    },
+    "analysis": {
+      "blueprintReview": "Analyze blueprints for feasibility",
+      "materialCalculation": "Calculate required materials",
+      "timelineEstimation": "Estimate project timeline"
+    },
+    "decision": {
+      "approveConstruction": "Decide whether to proceed with construction",
+      "adjustTimeline": "Determine if timeline adjustments are needed"
+    },
+    "actions": {
+      "orderMaterials": "Place orders for required materials",
+      "assignTasks": "Assign construction tasks to team members",
+      "updateProgress": "Update project progress in system"
+    },
+    "channels": [
+      "email",
+      "project_management_software",
+      "team_communication_app"
+    ]
+  }
+}

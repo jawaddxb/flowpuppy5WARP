@@ -1,0 +1,72 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Check current weather conditions"
+      },
+      {
+        "text": "Generate weather summary"
+      },
+      {
+        "text": "Compose email with weather summary"
+      },
+      {
+        "text": "Send email"
+      }
+    ],
+    "questions": [
+      {
+        "id": "location",
+        "label": "What location do you want the weather for?",
+        "choices": [
+          "Current location",
+          "Specific city"
+        ]
+      },
+      {
+        "id": "email",
+        "label": "What email address should receive the summary?",
+        "choices": [
+          "Use default email",
+          "Enter new email"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "weatherData",
+        "title": "Current weather data",
+        "confidence": 0.9
+      },
+      {
+        "id": "emailSent",
+        "title": "Email sent successfully",
+        "confidence": 0.95
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "getWeather",
+        "title": "Retrieve weather data",
+        "steps": [
+          "Connect to weather API",
+          "Fetch current conditions",
+          "Parse weather data"
+        ]
+      },
+      {
+        "id": "sendEmail",
+        "title": "Send email with weather summary",
+        "steps": [
+          "Compose email body",
+          "Connect to email service",
+          "Send email"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "weather_api",
+      "email_service"
+    ]
+  }
+}

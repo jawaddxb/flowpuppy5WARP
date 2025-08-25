@@ -1,0 +1,67 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define target audience and goals for the email sequence"},
+      {"text": "Create a compelling welcome email"},
+      {"text": "Design first follow-up email (Day 2)"},
+      {"text": "Develop second follow-up email (Day 3)"},
+      {"text": "Set up email automation workflow"},
+      {"text": "Test and optimize the sequence"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is the target audience for this email sequence?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Event attendees"]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of this email sequence?",
+        "choices": ["Onboarding", "Product education", "Conversion to paid", "Engagement boost"]
+      },
+      {
+        "id": "tone",
+        "label": "What tone should the emails have?",
+        "choices": ["Friendly and casual", "Professional and formal", "Exciting and energetic", "Helpful and informative"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "open_rate",
+        "title": "Average open rate for welcome emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "click_rate",
+        "title": "Average click-through rate for follow-up emails",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_sequence",
+        "title": "Create and set up email sequence",
+        "steps": [
+          "Draft welcome email",
+          "Draft Day 2 follow-up",
+          "Draft Day 3 follow-up",
+          "Design email templates",
+          "Set up automation workflow",
+          "Test emails and workflow"
+        ],
+        "requires": ["audience", "goal", "tone"]
+      }
+    ],
+    "connectionsRequired": ["mailchimp", "convertkit", "sendgrid"]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly and casual"
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "tone"}
+  ]
+}

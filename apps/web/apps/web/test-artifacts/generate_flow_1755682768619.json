@@ -1,0 +1,142 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "user-input",
+        "type": "input",
+        "title": "input",
+        "laneId": "lane-input",
+        "data": {
+          "prompt": "What would you like the agent to do?"
+        }
+      },
+      {
+        "id": "task-analysis",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Analyze the following user request and break it down into steps: {{user-input}}"
+        }
+      },
+      {
+        "id": "decision-maker",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Based on the task analysis, decide on the next action to take: {{task-analysis}}"
+        }
+      },
+      {
+        "id": "action-executor",
+        "type": "function",
+        "title": "function",
+        "laneId": "lane-transform",
+        "data": {
+          "function": "executeAction",
+          "args": {
+            "action": "{{decision-maker}}"
+          }
+        }
+      },
+      {
+        "id": "response-generator",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Generate a response based on the action executed: {{action-executor}}"
+        }
+      },
+      {
+        "id": "output",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output",
+        "data": {
+          "message": "{{response-generator}}"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "task-analysis"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "task-analysis"
+        },
+        "target": {
+          "nodeId": "decision-maker"
+        }
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "decision-maker"
+        },
+        "target": {
+          "nodeId": "action-executor"
+        }
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "action-executor"
+        },
+        "target": {
+          "nodeId": "response-generator"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "response-generator"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      }
+    ]
+  }
+}

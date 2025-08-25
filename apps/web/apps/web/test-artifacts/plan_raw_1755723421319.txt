@@ -1,0 +1,56 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a recurring schedule for every Friday at 6pm"},
+      {"text": "Collect meeting notes and transcripts from the week"},
+      {"text": "Use AI to summarize meetings by team"},
+      {"text": "Generate a report with team summaries"},
+      {"text": "Post the report to Slack"}
+    ],
+    "questions": [
+      {
+        "id": "meeting_source",
+        "label": "Where are your meeting notes and transcripts stored?",
+        "choices": ["Google Drive", "Microsoft Teams", "Notion", "Other"]
+      },
+      {
+        "id": "ai_service",
+        "label": "Which AI service would you like to use for summarization?",
+        "choices": ["OpenAI", "Google Cloud Natural Language", "Amazon Comprehend", "Custom solution"]
+      },
+      {
+        "id": "team_structure",
+        "label": "How are your teams structured?",
+        "choices": ["By department", "By project", "Cross-functional", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "meeting_frequency",
+        "title": "Frequency of meetings per week",
+        "confidence": 0.7
+      },
+      {
+        "id": "avg_meeting_duration",
+        "title": "Average duration of meetings",
+        "confidence": 0.6
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "weekly_meeting_summary",
+        "title": "Weekly Meeting Summary Pipeline",
+        "steps": [
+          "Collect meeting data",
+          "Organize by team",
+          "Summarize with AI",
+          "Generate report",
+          "Post to Slack"
+        ],
+        "requires": ["meeting_source", "ai_service"]
+      }
+    ],
+    "connectionsRequired": ["slack", "calendar"]
+  },
+  "nextQuestions": ["meeting_source", "ai_service", "team_structure"]
+}

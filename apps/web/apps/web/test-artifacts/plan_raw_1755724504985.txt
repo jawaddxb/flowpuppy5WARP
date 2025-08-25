@@ -1,0 +1,50 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Hacker News API monitoring for 'LLM' keyword"},
+      {"text": "Configure hourly checks for new stories"},
+      {"text": "Implement point threshold check (>100 points)"},
+      {"text": "Set up Slack integration for #research channel"},
+      {"text": "Create posting mechanism for qualifying stories"}
+    ],
+    "questions": [
+      {
+        "id": "hn_api_key",
+        "label": "Do you have a Hacker News API key?",
+        "choices": ["Yes", "No"]
+      },
+      {
+        "id": "slack_webhook",
+        "label": "Do you have a Slack webhook URL for the #research channel?",
+        "choices": ["Yes", "No", "Need to create one"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "hn_rate_limit",
+        "title": "Hacker News API has rate limiting",
+        "confidence": 0.9
+      },
+      {
+        "id": "slack_formatting",
+        "title": "Slack messages support markdown formatting",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "hn_monitor",
+        "title": "Monitor Hacker News and Post to Slack",
+        "steps": [
+          "Fetch new stories from Hacker News API",
+          "Filter stories for 'LLM' keyword",
+          "Check story points",
+          "Format qualifying stories for Slack",
+          "Post to Slack #research channel"
+        ],
+        "requires": ["hn_api_key", "slack_webhook"]
+      }
+    ],
+    "connectionsRequired": ["hackernews", "slack"]
+  }
+}

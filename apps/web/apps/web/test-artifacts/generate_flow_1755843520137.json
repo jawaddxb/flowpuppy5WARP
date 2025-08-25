@@ -1,0 +1,147 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "twitter-input",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "twitter",
+        "data": {
+          "provider": "twitter"
+        }
+      },
+      {
+        "id": "web-input",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "web",
+        "data": {
+          "provider": "web"
+        }
+      },
+      {
+        "id": "data-aggregator",
+        "type": "transform",
+        "title": "transform",
+        "laneId": "lane-transform",
+        "data": {
+          "operation": "merge"
+        }
+      },
+      {
+        "id": "sentiment-analyzer",
+        "type": "analysis",
+        "title": "analysis",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "text-davinci-002",
+          "task": "sentiment-analysis"
+        }
+      },
+      {
+        "id": "decision-maker",
+        "type": "decision",
+        "title": "decision",
+        "laneId": "lane-decision",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "text-davinci-002",
+          "task": "decision-making"
+        }
+      },
+      {
+        "id": "action-executor",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "data": {
+          "actions": [
+            "tweet",
+            "email",
+            "log"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "twitter-input"
+        },
+        "target": {
+          "nodeId": "data-aggregator"
+        },
+        "label": "Twitter data"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "web-input"
+        },
+        "target": {
+          "nodeId": "data-aggregator"
+        },
+        "label": "Web data"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "data-aggregator"
+        },
+        "target": {
+          "nodeId": "sentiment-analyzer"
+        },
+        "label": "Aggregated data"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "sentiment-analyzer"
+        },
+        "target": {
+          "nodeId": "decision-maker"
+        },
+        "label": "Sentiment analysis"
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "decision-maker"
+        },
+        "target": {
+          "nodeId": "action-executor"
+        },
+        "label": "Decision"
+      }
+    ]
+  }
+}

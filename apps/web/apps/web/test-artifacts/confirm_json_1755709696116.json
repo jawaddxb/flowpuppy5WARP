@@ -1,0 +1,39 @@
+{
+  "agentSpec": {
+    "name": "Builder",
+    "inputs": {
+      "projectRequirements": "string",
+      "budget": "number",
+      "timeline": "string"
+    },
+    "sources": {
+      "constructionDatabase": {
+        "provider": "constructionDB",
+        "query": "SELECT materials, costs, suppliers FROM projects WHERE type = :projectType"
+      },
+      "regulatoryUpdates": {
+        "provider": "governmentAPI",
+        "endpoint": "/building-codes/latest"
+      }
+    },
+    "analysis": {
+      "costEstimation": "Calculate total cost based on materials and labor",
+      "timelineProjection": "Estimate project duration considering tasks and resources",
+      "regulatoryCompliance": "Check project plans against current building codes"
+    },
+    "decision": {
+      "approveProject": "Determine if project meets requirements, budget, and timeline",
+      "selectSuppliers": "Choose suppliers based on cost and reliability"
+    },
+    "actions": {
+      "createProjectPlan": "Generate detailed project plan with tasks and milestones",
+      "orderMaterials": "Place orders with selected suppliers",
+      "scheduleInspections": "Arrange necessary inspections at key project stages"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware",
+      "mobileApp"
+    ]
+  }
+}

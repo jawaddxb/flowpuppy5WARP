@@ -1,0 +1,72 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a webhook endpoint for /orders/new"
+      },
+      {
+        "text": "Validate the incoming payload"
+      },
+      {
+        "text": "Append order data to Google Sheets"
+      },
+      {
+        "text": "Send notification to Slack sales channel"
+      }
+    ],
+    "questions": [
+      {
+        "id": "sheets_range",
+        "label": "What Google Sheets range should the order data be appended to?",
+        "choices": [
+          "Orders!A:Z",
+          "New Orders!A:F",
+          "Custom range"
+        ]
+      },
+      {
+        "id": "slack_channel",
+        "label": "Which Slack channel should receive the sales notifications?",
+        "choices": [
+          "#sales",
+          "#new-orders",
+          "#general"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "payload_structure",
+        "title": "Determine the structure of the incoming order payload",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "process_new_order",
+        "title": "Process New Order",
+        "steps": [
+          "Validate webhook payload",
+          "Append to Google Sheets",
+          "Send Slack notification"
+        ],
+        "requires": [
+          "google_sheets",
+          "slack"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "google_sheets",
+      "slack"
+    ]
+  },
+  "defaults": {
+    "sheets_range": "Orders!A:Z",
+    "slack_channel": "#sales"
+  },
+  "nextQuestions": [
+    "sheets_range",
+    "slack_channel"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "get-weather",
+      "type": "APICall",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "current",
+        "params": {
+          "q": "{{city}}",
+          "units": "metric"
+        }
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "check-temperature",
+      "type": "Branch",
+      "config": {
+        "condition": "{{get-weather.main.temp}} > 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "warm-response",
+      "type": "TextTemplate",
+      "config": {
+        "template": "It's warm in {{city}} with a temperature of {{get-weather.main.temp}}°C."
+      },
+      "position": {
+        "x": 500,
+        "y": 50
+      }
+    },
+    {
+      "id": "cold-response",
+      "type": "TextTemplate",
+      "config": {
+        "template": "It's not warm in {{city}}. The current temperature is {{get-weather.main.temp}}°C."
+      },
+      "position": {
+        "x": 500,
+        "y": 150
+      }
+    },
+    {
+      "id": "output",
+      "type": "Output",
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "get-weather",
+      "target": "check-temperature"
+    },
+    {
+      "source": "check-temperature",
+      "target": "warm-response",
+      "label": "True"
+    },
+    {
+      "source": "check-temperature",
+      "target": "cold-response",
+      "label": "False"
+    },
+    {
+      "source": "warm-response",
+      "target": "output"
+    },
+    {
+      "source": "cold-response",
+      "target": "output"
+    }
+  ]
+}

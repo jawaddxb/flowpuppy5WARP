@@ -1,0 +1,102 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "prompt": "What would you like the agent to do?"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "task-analysis",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Analyze the following user request and break it down into steps: {{user-input}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 100
+      }
+    },
+    {
+      "id": "decision-maker",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Based on the task analysis, decide on the next action to take: {{task-analysis}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 200
+      }
+    },
+    {
+      "id": "action-executor",
+      "type": "function",
+      "config": {
+        "function": "executeAction",
+        "args": {
+          "action": "{{decision-maker}}"
+        }
+      },
+      "position": {
+        "x": 0,
+        "y": 300
+      }
+    },
+    {
+      "id": "response-generator",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Generate a response based on the action executed: {{action-executor}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 400
+      }
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "config": {
+        "message": "{{response-generator}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 500
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "task-analysis"
+    },
+    {
+      "source": "task-analysis",
+      "target": "decision-maker"
+    },
+    {
+      "source": "decision-maker",
+      "target": "action-executor"
+    },
+    {
+      "source": "action-executor",
+      "target": "response-generator"
+    },
+    {
+      "source": "response-generator",
+      "target": "output"
+    }
+  ]
+}

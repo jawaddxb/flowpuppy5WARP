@@ -1,0 +1,103 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "sensor",
+      "config": {
+        "sensorType": "temperature",
+        "units": "celsius",
+        "updateInterval": 60
+      },
+      "position": {"x": 100, "y": 100}
+    },
+    {
+      "id": "thermostat-control",
+      "type": "control",
+      "config": {
+        "deviceType": "thermostat",
+        "minTemp": 20,
+        "maxTemp": 25
+      },
+      "position": {"x": 300, "y": 100}
+    },
+    {
+      "id": "heating-system",
+      "type": "actuator",
+      "config": {
+        "systemType": "centralHeating"
+      },
+      "position": {"x": 500, "y": 100}
+    },
+    {
+      "id": "weather-api",
+      "type": "api",
+      "config": {
+        "provider": "openweathermap",
+        "dataType": "forecast",
+        "updateInterval": 3600
+      },
+      "position": {"x": 100, "y": 300}
+    },
+    {
+      "id": "energy-optimizer",
+      "type": "processor",
+      "config": {
+        "algorithm": "predictiveHeating"
+      },
+      "position": {"x": 300, "y": 300}
+    },
+    {
+      "id": "user-preferences",
+      "type": "database",
+      "config": {
+        "schema": {
+          "userId": "string",
+          "preferredTemp": "number",
+          "schedules": "array"
+        }
+      },
+      "position": {"x": 500, "y": 300}
+    },
+    {
+      "id": "notification-service",
+      "type": "messaging",
+      "config": {
+        "channels": ["push", "email"]
+      },
+      "position": {"x": 700, "y": 200}
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "thermostat-control",
+      "label": "Current Temperature"
+    },
+    {
+      "source": "thermostat-control",
+      "target": "heating-system",
+      "label": "Heating Commands"
+    },
+    {
+      "source": "weather-api",
+      "target": "energy-optimizer",
+      "label": "Weather Forecast"
+    },
+    {
+      "source": "user-preferences",
+      "target": "energy-optimizer",
+      "label": "User Settings"
+    },
+    {
+      "source": "energy-optimizer",
+      "target": "thermostat-control",
+      "label": "Optimal Settings"
+    },
+    {
+      "source": "thermostat-control",
+      "target": "notification-service",
+      "label": "Status Updates"
+    }
+  ]
+}

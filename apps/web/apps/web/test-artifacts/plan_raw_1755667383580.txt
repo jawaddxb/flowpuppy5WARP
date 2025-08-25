@@ -1,0 +1,70 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define project requirements and goals"},
+      {"text": "Choose a technology stack"},
+      {"text": "Set up development environment"},
+      {"text": "Design the application architecture"},
+      {"text": "Implement core features"},
+      {"text": "Test and debug"},
+      {"text": "Deploy the application"},
+      {"text": "Gather user feedback"},
+      {"text": "Iterate and improve"}
+    ],
+    "questions": [
+      {
+        "id": "project_type",
+        "label": "What type of project are you building?",
+        "choices": ["Web application", "Mobile app", "Desktop application", "API service"]
+      },
+      {
+        "id": "programming_language",
+        "label": "Which primary programming language do you want to use?",
+        "choices": ["JavaScript", "Python", "Java", "C#", "Ruby"]
+      },
+      {
+        "id": "database",
+        "label": "What type of database do you need?",
+        "choices": ["SQL (e.g., PostgreSQL)", "NoSQL (e.g., MongoDB)", "In-memory (e.g., Redis)", "None"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "tech_stack",
+        "title": "Recommended technology stack",
+        "confidence": 0.8
+      },
+      {
+        "id": "development_time",
+        "title": "Estimated development time",
+        "confidence": 0.6
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "setup_environment",
+        "title": "Set up development environment",
+        "steps": [
+          "Install necessary software and tools",
+          "Configure version control",
+          "Set up project structure"
+        ]
+      },
+      {
+        "id": "implement_features",
+        "title": "Implement core features",
+        "steps": [
+          "Create user interface",
+          "Develop backend logic",
+          "Integrate with database"
+        ],
+        "requires": ["setup_environment"]
+      }
+    ],
+    "connectionsRequired": ["github", "aws"]
+  },
+  "nextQuestions": [
+    {"id": "project_type"},
+    {"id": "programming_language"}
+  ]
+}

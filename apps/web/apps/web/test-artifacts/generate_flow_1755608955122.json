@@ -1,0 +1,222 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "project-management-jira",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "jira",
+        "data": {
+          "provider": "jira",
+          "fields": [
+            "tasks",
+            "progress",
+            "issues"
+          ]
+        }
+      },
+      {
+        "id": "code-repository-github",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "github",
+        "data": {
+          "provider": "github",
+          "fields": [
+            "commits",
+            "pullRequests",
+            "branches"
+          ]
+        }
+      },
+      {
+        "id": "progress-tracking-burndown",
+        "type": "analysis",
+        "title": "analysis",
+        "laneId": "lane-transform",
+        "data": {
+          "method": "burndownChart",
+          "metrics": [
+            "velocity",
+            "completionRate"
+          ]
+        }
+      },
+      {
+        "id": "code-quality-static-analysis",
+        "type": "analysis",
+        "title": "analysis",
+        "laneId": "lane-transform",
+        "data": {
+          "method": "staticAnalysis",
+          "tools": [
+            "sonarqube",
+            "eslint"
+          ]
+        }
+      },
+      {
+        "id": "resource-allocation-priority-queue",
+        "type": "decision",
+        "title": "decision",
+        "laneId": "lane-decision",
+        "data": {
+          "algorithm": "priorityQueue",
+          "factors": [
+            "taskUrgency",
+            "developerAvailability"
+          ]
+        }
+      },
+      {
+        "id": "risk-assessment-monte-carlo",
+        "type": "decision",
+        "title": "decision",
+        "laneId": "lane-decision",
+        "data": {
+          "method": "monteCarlo",
+          "iterations": 1000
+        }
+      },
+      {
+        "id": "assign-tasks-automatic",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "data": {
+          "target": "developers",
+          "method": "automaticAssignment"
+        }
+      },
+      {
+        "id": "generate-reports-weekly",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "data": {
+          "frequency": "weekly",
+          "format": "pdf"
+        }
+      },
+      {
+        "id": "channel-slack",
+        "type": "channel",
+        "title": "channel",
+        "laneId": "lane-transform",
+        "data": {
+          "type": "slack",
+          "purpose": "teamCommunication"
+        }
+      },
+      {
+        "id": "channel-email",
+        "type": "channel",
+        "title": "channel",
+        "laneId": "lane-transform",
+        "data": {
+          "type": "email",
+          "purpose": "stakeholderUpdates"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "project-management-jira"
+        },
+        "target": {
+          "nodeId": "progress-tracking-burndown"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "code-repository-github"
+        },
+        "target": {
+          "nodeId": "code-quality-static-analysis"
+        }
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "progress-tracking-burndown"
+        },
+        "target": {
+          "nodeId": "resource-allocation-priority-queue"
+        }
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "code-quality-static-analysis"
+        },
+        "target": {
+          "nodeId": "risk-assessment-monte-carlo"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "resource-allocation-priority-queue"
+        },
+        "target": {
+          "nodeId": "assign-tasks-automatic"
+        }
+      },
+      {
+        "id": "e5",
+        "source": {
+          "nodeId": "risk-assessment-monte-carlo"
+        },
+        "target": {
+          "nodeId": "generate-reports-weekly"
+        }
+      },
+      {
+        "id": "e6",
+        "source": {
+          "nodeId": "assign-tasks-automatic"
+        },
+        "target": {
+          "nodeId": "channel-slack"
+        }
+      },
+      {
+        "id": "e7",
+        "source": {
+          "nodeId": "generate-reports-weekly"
+        },
+        "target": {
+          "nodeId": "channel-email"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define project requirements and scope"},
+      {"text": "Set up development environment"},
+      {"text": "Choose appropriate technologies and frameworks"},
+      {"text": "Design system architecture"},
+      {"text": "Implement core features"},
+      {"text": "Conduct testing and debugging"},
+      {"text": "Deploy the application"},
+      {"text": "Perform post-deployment monitoring and maintenance"}
+    ],
+    "questions": [
+      {
+        "id": "project_type",
+        "label": "What type of project are you building?",
+        "choices": ["Web application", "Mobile app", "Desktop software", "API service"]
+      },
+      {
+        "id": "target_platform",
+        "label": "What is your target platform?",
+        "choices": ["iOS", "Android", "Cross-platform", "Web browsers", "Windows", "macOS", "Linux"]
+      },
+      {
+        "id": "development_experience",
+        "label": "What is your level of development experience?",
+        "choices": ["Beginner", "Intermediate", "Advanced", "Expert"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "tech_stack",
+        "title": "Recommended technology stack",
+        "confidence": 0.8
+      },
+      {
+        "id": "timeline",
+        "title": "Estimated project timeline",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "setup_pipeline",
+        "title": "Development Environment Setup",
+        "steps": [
+          "Install necessary software and tools",
+          "Configure version control system",
+          "Set up project structure",
+          "Install dependencies"
+        ]
+      },
+      {
+        "id": "deployment_pipeline",
+        "title": "Deployment Process",
+        "steps": [
+          "Prepare deployment environment",
+          "Build production-ready version",
+          "Run final tests",
+          "Deploy to production server",
+          "Conduct post-deployment checks"
+        ]
+      }
+    ],
+    "connectionsRequired": ["github", "aws"]
+  },
+  "nextQuestions": [
+    {"id": "project_type"},
+    {"id": "target_platform"},
+    {"id": "development_experience"}
+  ]
+}

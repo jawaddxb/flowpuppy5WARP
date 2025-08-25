@@ -1,0 +1,60 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a Google Drive folder monitoring system"},
+      {"text": "Detect new PDF files in the 'Contracts' folder"},
+      {"text": "Extract text content from the PDF"},
+      {"text": "Use AI to summarize the contract and identify key terms and risks"},
+      {"text": "Compose an email with the summary, key terms, and risks"},
+      {"text": "Send the email to legal@company.com"}
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarization?",
+        "choices": ["GPT-3", "GPT-4", "Claude", "Custom model"]
+      },
+      {
+        "id": "email_frequency",
+        "label": "How often should the system check for new PDFs?",
+        "choices": ["Real-time", "Hourly", "Daily", "Weekly"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "pdf_processing",
+        "title": "PDF processing library required",
+        "confidence": 0.9
+      },
+      {
+        "id": "email_config",
+        "title": "Email server configuration needed",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "contract_summary",
+        "title": "Contract Summarization Pipeline",
+        "steps": [
+          "Monitor Google Drive folder",
+          "Extract PDF text",
+          "Summarize with AI",
+          "Identify key terms and risks",
+          "Compose email",
+          "Send email"
+        ],
+        "requires": ["google_drive", "openai", "smtp"]
+      }
+    ],
+    "connectionsRequired": ["google_drive", "openai", "smtp"]
+  },
+  "defaults": {
+    "ai_model": "GPT-4",
+    "email_frequency": "Hourly"
+  },
+  "nextQuestions": [
+    "ai_model",
+    "email_frequency"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Start with light cardio (5-10 minutes)"
+      },
+      {
+        "text": "Perform dynamic stretches"
+      },
+      {
+        "text": "Do joint rotations"
+      },
+      {
+        "text": "Gradually increase intensity"
+      },
+      {
+        "text": "Finish with sport-specific movements"
+      }
+    ],
+    "questions": [
+      {
+        "id": "activity",
+        "label": "What activity are you warming up for?",
+        "choices": [
+          "Running",
+          "Weightlifting",
+          "Team sports",
+          "Yoga",
+          "Other"
+        ]
+      },
+      {
+        "id": "time",
+        "label": "How much time do you have for your warm-up?",
+        "choices": [
+          "5 minutes",
+          "10 minutes",
+          "15 minutes",
+          "20+ minutes"
+        ]
+      },
+      {
+        "id": "intensity",
+        "label": "What is the intended intensity of your main workout?",
+        "choices": [
+          "Light",
+          "Moderate",
+          "High",
+          "Very high"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "injury_risk",
+        "title": "Proper warm-up reduces injury risk",
+        "confidence": 0.95
+      },
+      {
+        "id": "performance_boost",
+        "title": "Warm-up improves overall performance",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "defaults": {
+    "activity": "Running",
+    "time": "10 minutes",
+    "intensity": "Moderate"
+  }
+}

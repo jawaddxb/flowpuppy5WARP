@@ -1,0 +1,118 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define the goal and target audience for the welcome sequence"
+      },
+      {
+        "text": "Create a compelling subject line for the welcome email"
+      },
+      {
+        "text": "Draft the content for the welcome email"
+      },
+      {
+        "text": "Design a template for the welcome email"
+      },
+      {
+        "text": "Set up the automated trigger for sending the welcome email"
+      },
+      {
+        "text": "Create subject line for the 3-day follow-up email"
+      },
+      {
+        "text": "Draft content for the 3-day follow-up email"
+      },
+      {
+        "text": "Design a template for the 3-day follow-up email"
+      },
+      {
+        "text": "Set up the automated trigger for sending the 3-day follow-up email"
+      },
+      {
+        "text": "Test the email sequence"
+      },
+      {
+        "text": "Monitor and analyze the performance of the email sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_platform",
+        "label": "Which email marketing platform do you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "SendinBlue",
+          "Other"
+        ]
+      },
+      {
+        "id": "audience_size",
+        "label": "What is the approximate size of your email list?",
+        "choices": [
+          "Less than 1,000",
+          "1,000 - 10,000",
+          "10,000 - 50,000",
+          "More than 50,000"
+        ]
+      },
+      {
+        "id": "industry",
+        "label": "What industry is your business in?",
+        "choices": [
+          "E-commerce",
+          "SaaS",
+          "Education",
+          "Healthcare",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "personalization",
+        "title": "Personalization improves email open rates",
+        "confidence": 0.9
+      },
+      {
+        "id": "timing",
+        "title": "Optimal timing for follow-up email is within 3 days",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "create_welcome_email",
+        "title": "Create Welcome Email",
+        "steps": [
+          "Define audience",
+          "Craft subject line",
+          "Write email content",
+          "Design email template",
+          "Set up automation"
+        ]
+      },
+      {
+        "id": "create_followup_email",
+        "title": "Create 3-Day Follow-up Email",
+        "steps": [
+          "Craft subject line",
+          "Write email content",
+          "Design email template",
+          "Set up automation"
+        ],
+        "requires": [
+          "create_welcome_email"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp"
+    ]
+  },
+  "nextQuestions": [
+    "email_platform",
+    "audience_size",
+    "industry"
+  ]
+}

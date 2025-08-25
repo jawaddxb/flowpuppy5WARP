@@ -1,0 +1,63 @@
+{
+  "options": {
+    "plan": [
+      { "text": "Set up a Twitter account if not already done" },
+      { "text": "Research and identify reliable AI news sources" },
+      { "text": "Create a system to monitor AI trends daily" },
+      { "text": "Develop a content calendar for tweets" },
+      { "text": "Write and schedule daily tweets about AI trends" },
+      { "text": "Engage with followers and track tweet performance" }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": ["1", "2-3", "4-5", "More than 5"]
+      },
+      {
+        "id": "ai_focus",
+        "label": "Which area of AI do you want to focus on?",
+        "choices": ["General AI", "Machine Learning", "Natural Language Processing", "Computer Vision", "Robotics", "All areas"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "audience_engagement",
+        "title": "Higher engagement with visual content",
+        "confidence": 0.8
+      },
+      {
+        "id": "optimal_time",
+        "title": "Best posting times for AI content",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation",
+        "steps": [
+          "Monitor AI news sources",
+          "Identify trending topics",
+          "Draft tweet content",
+          "Add relevant hashtags",
+          "Schedule tweet",
+          "Analyze performance"
+        ],
+        "requires": ["twitter", "openai"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "openai"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_focus": "General AI"
+  },
+  "nextQuestions": [
+    {
+      "id": "content_type",
+      "label": "What type of content do you prefer for your tweets?",
+      "choices": ["Text only", "Text with images", "Text with links", "Mix of all"]
+    }
+  ]
+}

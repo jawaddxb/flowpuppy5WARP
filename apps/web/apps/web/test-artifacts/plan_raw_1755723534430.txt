@@ -1,0 +1,62 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up hourly API call to retrieve BTC pricing data"},
+      {"text": "Calculate BTC price movement percentage over last 4 hours"},
+      {"text": "Check if price movement exceeds 2% threshold"},
+      {"text": "If threshold exceeded, generate AI rationale for price movement"},
+      {"text": "Send SMS alert with price movement and AI rationale"},
+      {"text": "Send Slack alert with price movement and AI rationale"}
+    ],
+    "questions": [
+      {
+        "id": "pricing_api",
+        "label": "Which cryptocurrency pricing API would you like to use?",
+        "choices": ["CoinGecko", "CoinMarketCap", "Binance", "Other"]
+      },
+      {
+        "id": "sms_provider",
+        "label": "Which SMS provider do you prefer for sending alerts?",
+        "choices": ["Twilio", "Nexmo", "MessageBird", "Other"]
+      },
+      {
+        "id": "slack_webhook",
+        "label": "Do you have a Slack webhook URL for sending alerts?",
+        "choices": ["Yes", "No"]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for generating price movement rationale?",
+        "choices": ["GPT-3.5", "GPT-4", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "hourly_execution",
+        "title": "Hourly execution mechanism required",
+        "confidence": 0.9
+      },
+      {
+        "id": "data_storage",
+        "title": "Temporary data storage needed for 4-hour price comparison",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "btc_price_alert",
+        "title": "BTC Price Movement Alert Pipeline",
+        "steps": [
+          "Fetch BTC price from API",
+          "Calculate 4-hour price movement",
+          "Check 2% threshold",
+          "Generate AI rationale",
+          "Send SMS alert",
+          "Send Slack alert"
+        ],
+        "requires": ["pricing_api", "sms_provider", "slack_webhook", "ai_model"]
+      }
+    ],
+    "connectionsRequired": ["slack", "openai"]
+  }
+}

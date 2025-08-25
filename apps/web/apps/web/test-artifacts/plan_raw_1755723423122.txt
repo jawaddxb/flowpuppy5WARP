@@ -1,0 +1,74 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a weekly trigger for Fridays at 6pm"},
+      {"text": "Retrieve meeting data for the past week"},
+      {"text": "Group meetings by team"},
+      {"text": "Use AI to summarize meetings for each team"},
+      {"text": "Format the summaries into a report"},
+      {"text": "Post the report to Slack"}
+    ],
+    "questions": [
+      {
+        "id": "meeting_source",
+        "label": "Where are your meetings stored?",
+        "choices": ["Google Calendar", "Microsoft Outlook", "Other"]
+      },
+      {
+        "id": "ai_provider",
+        "label": "Which AI service would you like to use for summarization?",
+        "choices": ["OpenAI", "Google AI", "Azure AI", "Other"]
+      },
+      {
+        "id": "slack_channel",
+        "label": "Which Slack channel should the report be posted to?",
+        "choices": ["#general", "#reports", "#team-updates", "Create new channel"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "meeting_frequency",
+        "title": "Frequency of meetings per team",
+        "confidence": 0.8
+      },
+      {
+        "id": "summary_length",
+        "title": "Optimal summary length for readability",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "meeting_retrieval",
+        "title": "Retrieve and group meetings",
+        "steps": [
+          "Connect to calendar service",
+          "Fetch meetings from the past week",
+          "Group meetings by team"
+        ],
+        "requires": ["meeting_source"]
+      },
+      {
+        "id": "ai_summarization",
+        "title": "Summarize meetings using AI",
+        "steps": [
+          "Process meeting data",
+          "Send to AI service for summarization",
+          "Receive and format summaries"
+        ],
+        "requires": ["ai_provider"]
+      },
+      {
+        "id": "slack_posting",
+        "title": "Post report to Slack",
+        "steps": [
+          "Format summaries into a report",
+          "Connect to Slack API",
+          "Post report to specified channel"
+        ],
+        "requires": ["slack_channel"]
+      }
+    ],
+    "connectionsRequired": ["calendar", "openai", "slack"]
+  }
+}

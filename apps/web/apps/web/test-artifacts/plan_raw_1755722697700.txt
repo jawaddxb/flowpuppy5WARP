@@ -1,0 +1,56 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a daily scheduled task to run at 9am UTC"},
+      {"text": "Fetch top AI trending articles from a reliable source"},
+      {"text": "Summarize the articles into a concise thread format"},
+      {"text": "Post the summary thread as a tweet"},
+      {"text": "Log the activity and article details to Google Sheets"}
+    ],
+    "questions": [
+      {
+        "id": "article_source",
+        "label": "Which source would you like to use for fetching top AI trending articles?",
+        "choices": ["TechCrunch", "MIT Technology Review", "ArXiv", "Google News"]
+      },
+      {
+        "id": "num_articles",
+        "label": "How many top articles would you like to summarize each day?",
+        "choices": ["3", "5", "10"]
+      },
+      {
+        "id": "summary_length",
+        "label": "What should be the approximate length of each article summary in the tweet thread?",
+        "choices": ["100 characters", "200 characters", "280 characters"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "scheduling",
+        "title": "A scheduling service is needed to trigger the task daily at 9am UTC",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI-powered summarization may be beneficial for creating concise article summaries",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_ai_news_tweet",
+        "title": "Daily AI News Tweet Pipeline",
+        "steps": [
+          "Trigger scheduled task",
+          "Fetch top AI articles",
+          "Summarize articles",
+          "Create tweet thread",
+          "Post tweet thread",
+          "Log activity to Google Sheets"
+        ],
+        "requires": ["twitter", "google_sheets", "openai"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "google_sheets", "openai"]
+  }
+}

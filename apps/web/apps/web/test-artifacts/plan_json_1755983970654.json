@@ -1,0 +1,118 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a daily schedule to run at 9am UTC"
+      },
+      {
+        "text": "Fetch top AI trending articles"
+      },
+      {
+        "text": "Generate a summary of the articles"
+      },
+      {
+        "text": "Create a tweet thread from the summary"
+      },
+      {
+        "text": "Post the tweet thread"
+      },
+      {
+        "text": "Log the activity to Google Sheets"
+      }
+    ],
+    "questions": [
+      {
+        "id": "article_source",
+        "label": "Where would you like to fetch the top AI trending articles from?",
+        "choices": [
+          "Google News",
+          "Reddit r/artificial",
+          "TechCrunch",
+          "ArXiv"
+        ]
+      },
+      {
+        "id": "summary_length",
+        "label": "How long should the summary be?",
+        "choices": [
+          "Short (1-2 sentences)",
+          "Medium (3-4 sentences)",
+          "Long (5+ sentences)"
+        ]
+      },
+      {
+        "id": "tweet_count",
+        "label": "How many tweets should be in the thread?",
+        "choices": [
+          "3-5",
+          "6-8",
+          "9-12"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "scheduling",
+        "title": "Daily scheduling at 9am UTC is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_content",
+        "title": "Content is focused on AI trending articles",
+        "confidence": 1
+      },
+      {
+        "id": "tweet_thread",
+        "title": "Output should be in the form of a tweet thread",
+        "confidence": 1
+      },
+      {
+        "id": "logging",
+        "title": "Activity needs to be logged to Google Sheets",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "fetch_articles",
+        "title": "Fetch Top AI Articles",
+        "steps": [
+          "Connect to article source",
+          "Retrieve top AI articles",
+          "Filter and sort articles"
+        ]
+      },
+      {
+        "id": "generate_summary",
+        "title": "Generate Article Summary",
+        "steps": [
+          "Process article content",
+          "Generate concise summary",
+          "Format summary for tweeting"
+        ]
+      },
+      {
+        "id": "post_tweets",
+        "title": "Post Tweet Thread",
+        "steps": [
+          "Create tweet thread",
+          "Post tweets sequentially",
+          "Verify successful posting"
+        ]
+      },
+      {
+        "id": "log_activity",
+        "title": "Log to Google Sheets",
+        "steps": [
+          "Connect to Google Sheets",
+          "Prepare log entry",
+          "Append entry to sheet"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "google_sheets"
+    ]
+  }
+}

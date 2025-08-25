@@ -1,0 +1,47 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "your_api_key",
+        "apiSecret": "your_api_secret"
+      },
+      "facebook": {
+        "provider": "facebook",
+        "appId": "your_app_id",
+        "appSecret": "your_app_secret"
+      }
+    },
+    "analysis": {
+      "type": "sentiment",
+      "model": "sentiment-analysis-v1"
+    },
+    "decision": {
+      "threshold": 0.7,
+      "actionIfAbove": "alert",
+      "actionIfBelow": "ignore"
+    },
+    "actions": {
+      "alert": {
+        "type": "notification",
+        "message": "High sentiment detected!"
+      },
+      "ignore": {
+        "type": "log",
+        "message": "Sentiment below threshold."
+      }
+    },
+    "channels": [
+      {
+        "type": "email",
+        "recipient": "user@example.com"
+      },
+      {
+        "type": "sms",
+        "recipient": "+1234567890"
+      }
+    ]
+  }
+}

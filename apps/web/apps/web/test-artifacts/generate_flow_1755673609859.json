@@ -1,0 +1,105 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "weather-api",
+        "type": "ApiCall",
+        "title": "ApiCall",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "endpoint": "/weather",
+          "method": "GET",
+          "params": {
+            "q": "{{location}}",
+            "units": "metric",
+            "appid": "{{API_KEY}}"
+          }
+        }
+      },
+      {
+        "id": "temperature-check",
+        "type": "Condition",
+        "title": "Condition",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "{{weather-api.main.temp}} < 20"
+        }
+      },
+      {
+        "id": "heating-control",
+        "type": "IoTControl",
+        "title": "IoTControl",
+        "laneId": "lane-transform",
+        "data": {
+          "device": "smart-thermostat",
+          "action": "setTemperature",
+          "value": "22"
+        }
+      },
+      {
+        "id": "notification",
+        "type": "Notification",
+        "title": "Notification",
+        "laneId": "lane-transform",
+        "data": {
+          "message": "Heating turned on to keep you warm!"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "weather-api"
+        },
+        "target": {
+          "nodeId": "temperature-check"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-check"
+        },
+        "target": {
+          "nodeId": "heating-control"
+        },
+        "label": "If cold"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "heating-control"
+        },
+        "target": {
+          "nodeId": "notification"
+        }
+      }
+    ]
+  }
+}

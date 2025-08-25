@@ -1,0 +1,40 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "empty-agent",
+        "type": "agent",
+        "title": "agent",
+        "laneId": "lane-transform",
+        "data": {
+          "name": "EmptyAgent",
+          "description": "An agent with no channels or capabilities"
+        }
+      }
+    ],
+    "edges": []
+  }
+}

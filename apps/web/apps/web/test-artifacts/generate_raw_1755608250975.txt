@@ -1,0 +1,223 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "project-requirements",
+      "type": "input",
+      "config": {
+        "label": "Project Requirements",
+        "type": "string"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "deadline",
+      "type": "input",
+      "config": {
+        "label": "Deadline",
+        "type": "date"
+      },
+      "position": {
+        "x": 100,
+        "y": 200
+      }
+    },
+    {
+      "id": "budget",
+      "type": "input",
+      "config": {
+        "label": "Budget",
+        "type": "number"
+      },
+      "position": {
+        "x": 100,
+        "y": 300
+      }
+    },
+    {
+      "id": "jira-project-management",
+      "type": "source",
+      "config": {
+        "provider": "jira",
+        "projectId": "string"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "github-code-repository",
+      "type": "source",
+      "config": {
+        "provider": "github",
+        "repoUrl": "string"
+      },
+      "position": {
+        "x": 300,
+        "y": 200
+      }
+    },
+    {
+      "id": "task-breakdown",
+      "type": "analysis",
+      "config": {
+        "label": "Task Breakdown",
+        "type": "object"
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "resource-allocation",
+      "type": "analysis",
+      "config": {
+        "label": "Resource Allocation",
+        "type": "object"
+      },
+      "position": {
+        "x": 500,
+        "y": 200
+      }
+    },
+    {
+      "id": "risk-assessment",
+      "type": "analysis",
+      "config": {
+        "label": "Risk Assessment",
+        "type": "object"
+      },
+      "position": {
+        "x": 500,
+        "y": 300
+      }
+    },
+    {
+      "id": "build-strategy",
+      "type": "decision",
+      "config": {
+        "label": "Build Strategy",
+        "type": "string"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    },
+    {
+      "id": "technology-stack",
+      "type": "decision",
+      "config": {
+        "label": "Technology Stack",
+        "type": "array"
+      },
+      "position": {
+        "x": 700,
+        "y": 200
+      }
+    },
+    {
+      "id": "team-composition",
+      "type": "decision",
+      "config": {
+        "label": "Team Composition",
+        "type": "object"
+      },
+      "position": {
+        "x": 700,
+        "y": 300
+      }
+    },
+    {
+      "id": "create-tasks",
+      "type": "action",
+      "config": {
+        "label": "Create Tasks",
+        "type": "function"
+      },
+      "position": {
+        "x": 900,
+        "y": 100
+      }
+    },
+    {
+      "id": "assign-resources",
+      "type": "action",
+      "config": {
+        "label": "Assign Resources",
+        "type": "function"
+      },
+      "position": {
+        "x": 900,
+        "y": 200
+      }
+    },
+    {
+      "id": "schedule-milestones",
+      "type": "action",
+      "config": {
+        "label": "Schedule Milestones",
+        "type": "function"
+      },
+      "position": {
+        "x": 900,
+        "y": 300
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "project-requirements",
+      "target": "jira-project-management"
+    },
+    {
+      "source": "deadline",
+      "target": "jira-project-management"
+    },
+    {
+      "source": "budget",
+      "target": "jira-project-management"
+    },
+    {
+      "source": "github-code-repository",
+      "target": "task-breakdown"
+    },
+    {
+      "source": "task-breakdown",
+      "target": "resource-allocation"
+    },
+    {
+      "source": "resource-allocation",
+      "target": "risk-assessment"
+    },
+    {
+      "source": "risk-assessment",
+      "target": "build-strategy"
+    },
+    {
+      "source": "build-strategy",
+      "target": "technology-stack"
+    },
+    {
+      "source": "technology-stack",
+      "target": "team-composition"
+    },
+    {
+      "source": "team-composition",
+      "target": "create-tasks"
+    },
+    {
+      "source": "create-tasks",
+      "target": "assign-resources"
+    },
+    {
+      "source": "assign-resources",
+      "target": "schedule-milestones"
+    }
+  ]
+}

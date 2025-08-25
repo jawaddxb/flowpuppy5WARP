@@ -1,0 +1,108 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for welcome sequence"
+      },
+      {
+        "text": "Create compelling subject lines for each email"
+      },
+      {
+        "text": "Draft welcome email content"
+      },
+      {
+        "text": "Draft day 2 follow-up email content"
+      },
+      {
+        "text": "Draft day 3 follow-up email content"
+      },
+      {
+        "text": "Set up email automation workflow"
+      },
+      {
+        "text": "Test and optimize sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Event attendees"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your welcome sequence?",
+        "choices": [
+          "Increase engagement",
+          "Drive sales",
+          "Educate users",
+          "Build brand awareness"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone would you like to use in your emails?",
+        "choices": [
+          "Friendly and casual",
+          "Professional and formal",
+          "Enthusiastic and energetic",
+          "Informative and helpful"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "best_time",
+        "title": "Optimal send times for welcome emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "subject_lines",
+        "title": "Effective subject line formulas",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_sequence",
+        "title": "Create and schedule email sequence",
+        "steps": [
+          "Draft email content",
+          "Design email templates",
+          "Set up automation workflow",
+          "Schedule emails",
+          "Monitor performance"
+        ],
+        "requires": [
+          "email_provider"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "sendgrid",
+      "klaviyo"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Increase engagement",
+    "tone": "Friendly and casual"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "tone"
+    }
+  ]
+}

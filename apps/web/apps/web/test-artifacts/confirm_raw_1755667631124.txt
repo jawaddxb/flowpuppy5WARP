@@ -1,0 +1,45 @@
+{
+  "agentSpec": {
+    "name": "SimpleAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's initial query or request"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    "decision": {
+      "type": "if-then-else",
+      "condition": "sentiment.score > 0.5",
+      "then": "actions.positiveResponse",
+      "else": "actions.neutralResponse"
+    },
+    "actions": {
+      "positiveResponse": {
+        "type": "text",
+        "content": "I'm glad you're feeling positive about this!"
+      },
+      "neutralResponse": {
+        "type": "text",
+        "content": "I understand. Let me know if you need more information."
+      }
+    },
+    "channels": [
+      "chat",
+      "email"
+    ]
+  }
+}

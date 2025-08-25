@@ -1,0 +1,116 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Create a list of AI news sources"
+      },
+      {
+        "text": "Develop a script to scrape and summarize AI news"
+      },
+      {
+        "text": "Implement a scheduling system for daily tweets"
+      },
+      {
+        "text": "Create tweet templates for consistency"
+      },
+      {
+        "text": "Set up error handling and notifications"
+      },
+      {
+        "text": "Test the system with sample tweets"
+      },
+      {
+        "text": "Launch and monitor the daily AI trends tweets"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": [
+          "TechCrunch",
+          "MIT Technology Review",
+          "AI News",
+          "VentureBeat",
+          "Other"
+        ]
+      },
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": [
+          "Formal",
+          "Casual",
+          "Humorous",
+          "Technical"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "api_limits",
+        "title": "Twitter API rate limits may affect posting frequency",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_trends_volatility",
+        "title": "AI trends can change rapidly, requiring frequent updates",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation",
+        "steps": [
+          "Scrape AI news sources",
+          "Summarize top trends",
+          "Generate tweet content",
+          "Post tweet",
+          "Log activity"
+        ],
+        "requires": [
+          "twitter",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": [
+      "TechCrunch",
+      "MIT Technology Review"
+    ],
+    "tweet_style": "Casual"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweet_frequency"
+    },
+    {
+      "id": "ai_sources"
+    },
+    {
+      "id": "tweet_style"
+    }
+  ]
+}

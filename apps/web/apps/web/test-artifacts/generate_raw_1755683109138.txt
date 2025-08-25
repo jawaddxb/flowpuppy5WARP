@@ -1,0 +1,97 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "get-weather",
+      "type": "apiCall",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "/weather",
+        "method": "GET",
+        "params": {
+          "q": "{{city}}",
+          "units": "metric",
+          "appid": "{{OPENWEATHERMAP_API_KEY}}"
+        }
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "check-temperature",
+      "type": "condition",
+      "config": {
+        "condition": "{{get-weather.main.temp}} > 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "suggest-warm-activity",
+      "type": "llmTask",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7,
+        "prompt": "Suggest a warm weather activity for {{city}} where the temperature is {{get-weather.main.temp}}°C."
+      },
+      "position": {
+        "x": 500,
+        "y": 50
+      }
+    },
+    {
+      "id": "suggest-cool-activity",
+      "type": "llmTask",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7,
+        "prompt": "Suggest an activity to warm up in {{city}} where the temperature is {{get-weather.main.temp}}°C."
+      },
+      "position": {
+        "x": 500,
+        "y": 150
+      }
+    },
+    {
+      "id": "format-response",
+      "type": "transform",
+      "config": {
+        "template": "In {{city}}, it's {{get-weather.main.temp}}°C. {{activity}}"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "get-weather",
+      "target": "check-temperature"
+    },
+    {
+      "source": "check-temperature",
+      "target": "suggest-warm-activity",
+      "label": "True"
+    },
+    {
+      "source": "check-temperature",
+      "target": "suggest-cool-activity",
+      "label": "False"
+    },
+    {
+      "source": "suggest-warm-activity",
+      "target": "format-response"
+    },
+    {
+      "source": "suggest-cool-activity",
+      "target": "format-response"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "sensor",
+      "config": {
+        "provider": "arduino",
+        "sensorType": "temperature",
+        "units": "celsius"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-threshold",
+      "type": "logic",
+      "config": {
+        "operator": "greaterThan",
+        "value": 20
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "heater-control",
+      "type": "actuator",
+      "config": {
+        "provider": "smartthings",
+        "deviceType": "heater",
+        "action": "turnOn"
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "temperature-threshold",
+      "label": "Temperature Data"
+    },
+    {
+      "source": "temperature-threshold",
+      "target": "heater-control",
+      "label": "Activation Signal",
+      "data": {
+        "condition": "when temperature <= 20°C"
+      }
+    }
+  ]
+}

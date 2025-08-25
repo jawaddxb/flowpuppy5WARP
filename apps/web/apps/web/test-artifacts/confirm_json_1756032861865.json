@@ -1,0 +1,42 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {
+      "input1": {
+        "type": "text",
+        "provider": "inputProvider1"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "your_api_key"
+      },
+      "news": {
+        "provider": "newsAPI",
+        "apiKey": "your_news_api_key"
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "sentimentAnalysis",
+        "model": "v1"
+      }
+    },
+    "decision": {
+      "threshold": 0.5,
+      "provider": "decisionEngine"
+    },
+    "actions": {
+      "notify": {
+        "provider": "notificationService",
+        "method": "email"
+      }
+    },
+    "channels": [
+      "email",
+      "sms",
+      "push"
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Send a welcome email to new signup"
+      },
+      {
+        "text": "Wait for 2 days"
+      },
+      {
+        "text": "Check if there's a reply from the user"
+      },
+      {
+        "text": "If no reply, send a follow-up email"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use?",
+        "choices": [
+          "SendGrid",
+          "Mailchimp",
+          "AWS SES",
+          "Custom SMTP"
+        ]
+      },
+      {
+        "id": "welcome_email_template",
+        "label": "Do you have a welcome email template ready?",
+        "choices": [
+          "Yes",
+          "No, I need to create one"
+        ]
+      },
+      {
+        "id": "followup_email_template",
+        "label": "Do you have a follow-up email template ready?",
+        "choices": [
+          "Yes",
+          "No, I need to create one"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "email_automation",
+        "title": "Email automation is required for this workflow",
+        "confidence": 1
+      },
+      {
+        "id": "delay_mechanism",
+        "title": "A delay mechanism is needed for the 2-day wait",
+        "confidence": 1
+      },
+      {
+        "id": "conditional_logic",
+        "title": "Conditional logic is required to check for user reply",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "welcome_email",
+        "title": "Send Welcome Email",
+        "steps": [
+          "Trigger on new signup",
+          "Fetch user details",
+          "Compose welcome email",
+          "Send email"
+        ]
+      },
+      {
+        "id": "followup_email",
+        "title": "Send Follow-up Email",
+        "steps": [
+          "Wait for 2 days",
+          "Check for user reply",
+          "If no reply, compose follow-up email",
+          "Send follow-up email"
+        ],
+        "requires": [
+          "welcome_email"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email"
+    ]
+  }
+}

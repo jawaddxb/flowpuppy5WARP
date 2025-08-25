@@ -1,0 +1,105 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "temperature-sensor",
+        "type": "sensor",
+        "title": "sensor",
+        "laneId": "lane-transform",
+        "data": {
+          "sensorType": "temperature",
+          "units": "celsius",
+          "updateInterval": 60
+        }
+      },
+      {
+        "id": "temperature-threshold",
+        "type": "condition",
+        "title": "condition",
+        "laneId": "lane-transform",
+        "data": {
+          "operator": "<",
+          "value": 20
+        }
+      },
+      {
+        "id": "heater-control",
+        "type": "actuator",
+        "title": "actuator",
+        "laneId": "lane-transform",
+        "data": {
+          "deviceType": "heater",
+          "action": "turn_on"
+        }
+      },
+      {
+        "id": "notification-sender",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "twilio",
+        "data": {
+          "provider": "twilio",
+          "action": "send_sms",
+          "recipient": "+1234567890",
+          "message": "Heater turned on due to low temperature"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "temperature-sensor"
+        },
+        "target": {
+          "nodeId": "temperature-threshold"
+        },
+        "label": "Temperature reading"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-threshold"
+        },
+        "target": {
+          "nodeId": "heater-control"
+        },
+        "label": "If temperature < 20°C"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "heater-control"
+        },
+        "target": {
+          "nodeId": "notification-sender"
+        },
+        "label": "After heater activation"
+      }
+    ]
+  }
+}

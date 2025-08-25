@@ -1,0 +1,92 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Create a content calendar"
+      },
+      {
+        "text": "Write engaging tweets"
+      },
+      {
+        "text": "Schedule daily tweets"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      {
+        "id": "ai_focus",
+        "label": "Which areas of AI do you want to focus on?",
+        "choices": [
+          "Machine Learning",
+          "Natural Language Processing",
+          "Computer Vision",
+          "Robotics",
+          "All of the above"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "trending_hashtags",
+        "title": "Identify trending AI-related hashtags",
+        "confidence": 0.8
+      },
+      {
+        "id": "best_posting_times",
+        "title": "Determine optimal posting times for engagement",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation and Posting",
+        "steps": [
+          "Research latest AI news",
+          "Summarize key points",
+          "Craft tweet with relevant hashtags",
+          "Schedule tweet for optimal time",
+          "Post tweet",
+          "Analyze engagement"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_focus": "All of the above"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweet_frequency"
+    },
+    {
+      "id": "ai_focus"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a trigger to monitor the 'Contracts' folder in Google Drive for new PDF files"
+      },
+      {
+        "text": "When a new PDF is detected, download the file"
+      },
+      {
+        "text": "Use an AI service to summarize the PDF content"
+      },
+      {
+        "text": "Extract key terms and potential risks from the summary"
+      },
+      {
+        "text": "Compose an email with the summary, key terms, and risks"
+      },
+      {
+        "text": "Send the email to the legal@company.com address"
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai_service",
+        "label": "Which AI service would you like to use for summarization?",
+        "choices": [
+          "OpenAI GPT",
+          "Google Cloud Natural Language AI",
+          "Azure Cognitive Services"
+        ]
+      },
+      {
+        "id": "email_format",
+        "label": "How would you like the email formatted?",
+        "choices": [
+          "Plain text",
+          "HTML with sections",
+          "PDF attachment"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "contract_volume",
+        "title": "Estimated volume of new contracts per week",
+        "confidence": 0.7
+      },
+      {
+        "id": "legal_team_size",
+        "title": "Size of the legal team receiving summaries",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "pdf_processing",
+        "title": "PDF Processing and Summarization",
+        "steps": [
+          "Monitor Google Drive folder",
+          "Download new PDF",
+          "Convert PDF to text",
+          "Summarize text with AI",
+          "Extract key terms and risks"
+        ],
+        "requires": [
+          "google_drive",
+          "pdf_converter",
+          "openai"
+        ]
+      },
+      {
+        "id": "email_dispatch",
+        "title": "Email Composition and Sending",
+        "steps": [
+          "Compose email with summary",
+          "Add key terms and risks",
+          "Send email to legal team"
+        ],
+        "requires": [
+          "smtp"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "google_drive",
+      "openai",
+      "smtp"
+    ]
+  },
+  "defaults": {
+    "ai_service": "OpenAI GPT",
+    "email_format": "HTML with sections"
+  },
+  "nextQuestions": [
+    "ai_service",
+    "email_format"
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define project requirements and specifications"
+      },
+      {
+        "text": "Set up development environment"
+      },
+      {
+        "text": "Design user interface"
+      },
+      {
+        "text": "Implement core functionality"
+      },
+      {
+        "text": "Integrate necessary APIs"
+      },
+      {
+        "text": "Perform testing and debugging"
+      },
+      {
+        "text": "Deploy the application"
+      },
+      {
+        "text": "Gather user feedback"
+      }
+    ],
+    "questions": [
+      {
+        "id": "project_type",
+        "label": "What type of project are you building?",
+        "choices": [
+          "Web application",
+          "Mobile app",
+          "Desktop software",
+          "API service"
+        ]
+      },
+      {
+        "id": "programming_language",
+        "label": "Which primary programming language will you use?",
+        "choices": [
+          "JavaScript",
+          "Python",
+          "Java",
+          "C#",
+          "Ruby"
+        ]
+      },
+      {
+        "id": "deployment_platform",
+        "label": "Where do you plan to deploy the project?",
+        "choices": [
+          "AWS",
+          "Google Cloud",
+          "Azure",
+          "Heroku",
+          "Self-hosted"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "tech_stack",
+        "title": "Determine appropriate tech stack",
+        "confidence": 0.8
+      },
+      {
+        "id": "timeline",
+        "title": "Estimate project timeline",
+        "confidence": 0.6
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "setup_pipeline",
+        "title": "Set up development pipeline",
+        "steps": [
+          "Install version control system",
+          "Set up project repository",
+          "Configure development environment",
+          "Install necessary dependencies"
+        ]
+      },
+      {
+        "id": "deployment_pipeline",
+        "title": "Create deployment pipeline",
+        "steps": [
+          "Set up continuous integration",
+          "Configure automated testing",
+          "Set up staging environment",
+          "Configure production deployment"
+        ],
+        "requires": [
+          "setup_pipeline"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "github",
+      "aws"
+    ]
+  },
+  "defaults": {
+    "project_type": "Web application",
+    "programming_language": "JavaScript"
+  },
+  "nextQuestions": [
+    {
+      "id": "project_type"
+    },
+    {
+      "id": "programming_language"
+    },
+    {
+      "id": "deployment_platform"
+    }
+  ]
+}

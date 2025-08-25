@@ -1,0 +1,55 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API connection"},
+      {"text": "Research current AI trends"},
+      {"text": "Create a list of daily AI topics"},
+      {"text": "Write engaging tweets about AI trends"},
+      {"text": "Schedule tweets for daily posting"},
+      {"text": "Monitor engagement and adjust strategy"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": ["1", "2", "3", "4", "5"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which sources do you prefer for AI trend research?",
+        "choices": ["Academic journals", "Tech news sites", "AI conferences", "Social media", "Industry reports"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1.0
+      },
+      {
+        "id": "ai_knowledge",
+        "title": "In-depth AI knowledge is necessary",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Research AI trends",
+          "Select top trend",
+          "Craft engaging tweet",
+          "Post tweet",
+          "Analyze engagement"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_frequency": "1"
+  },
+  "nextQuestions": ["tweet_frequency", "ai_sources"]
+}

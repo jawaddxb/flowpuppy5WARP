@@ -1,0 +1,70 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "default-agent",
+      "type": "agent",
+      "config": {
+        "name": "DefaultAgent",
+        "description": "A basic agent with no specific capabilities"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "chat-interface",
+      "type": "user-input",
+      "config": {
+        "inputType": "text",
+        "prompt": "How can I assist you today?"
+      },
+      "position": {
+        "x": -200,
+        "y": 100
+      }
+    },
+    {
+      "id": "response-generation",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7
+      },
+      "position": {
+        "x": 0,
+        "y": 200
+      }
+    },
+    {
+      "id": "output-display",
+      "type": "user-output",
+      "config": {
+        "outputType": "text"
+      },
+      "position": {
+        "x": 200,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "chat-interface",
+      "target": "default-agent",
+      "label": "User input"
+    },
+    {
+      "source": "default-agent",
+      "target": "response-generation",
+      "label": "Generate response"
+    },
+    {
+      "source": "response-generation",
+      "target": "output-display",
+      "label": "Display response"
+    }
+  ]
+}

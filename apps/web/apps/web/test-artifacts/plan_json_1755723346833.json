@@ -1,0 +1,103 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Stripe webhook to detect new customers"
+      },
+      {
+        "text": "Configure email service for sending welcome emails"
+      },
+      {
+        "text": "Create welcome email template"
+      },
+      {
+        "text": "Set up 3-day delay mechanism"
+      },
+      {
+        "text": "Create onboarding tips email template"
+      },
+      {
+        "text": "Set up 10-day delay mechanism"
+      },
+      {
+        "text": "Create customer survey"
+      },
+      {
+        "text": "Configure email service for sending surveys"
+      },
+      {
+        "text": "Implement workflow to trigger emails and survey based on timeline"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use?",
+        "choices": [
+          "SendGrid",
+          "Mailchimp",
+          "Amazon SES",
+          "Custom SMTP"
+        ]
+      },
+      {
+        "id": "delay_mechanism",
+        "label": "How would you like to implement the delay mechanism?",
+        "choices": [
+          "Cron jobs",
+          "Message queue",
+          "Workflow engine"
+        ]
+      },
+      {
+        "id": "survey_tool",
+        "label": "Which tool would you prefer for creating and sending the survey?",
+        "choices": [
+          "Google Forms",
+          "SurveyMonkey",
+          "Typeform",
+          "Custom solution"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "stripe_integration",
+        "title": "Stripe integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "email_automation",
+        "title": "Email automation system is needed",
+        "confidence": 0.9
+      },
+      {
+        "id": "timing_mechanism",
+        "title": "A mechanism for timing and scheduling emails is necessary",
+        "confidence": 0.95
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "welcome_flow",
+        "title": "New Customer Welcome Flow",
+        "steps": [
+          "Receive Stripe webhook for new customer",
+          "Send welcome email",
+          "Wait 3 days",
+          "Send onboarding tips email",
+          "Wait 7 days",
+          "Send customer survey"
+        ],
+        "requires": [
+          "stripe",
+          "email_service"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "stripe",
+      "email_service"
+    ]
+  }
+}

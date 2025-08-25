@@ -1,0 +1,74 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Create a new draft blog post in Notion"
+      },
+      {
+        "text": "Extract content from the Notion page"
+      },
+      {
+        "text": "Use AI to generate a meta description based on the content"
+      },
+      {
+        "text": "Use AI to generate 5 relevant keywords based on the content"
+      },
+      {
+        "text": "Update the Notion page with the generated meta description and keywords"
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for generating the meta description and keywords?",
+        "choices": [
+          "GPT-3.5",
+          "GPT-4",
+          "Claude",
+          "Custom model"
+        ]
+      },
+      {
+        "id": "notion_integration",
+        "label": "Do you have a Notion integration set up?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "notion_api",
+        "title": "Notion API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_api",
+        "title": "Access to an AI API (e.g., OpenAI) is needed",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "generate_meta_content",
+        "title": "Generate Meta Description and Keywords",
+        "steps": [
+          "Extract blog post content from Notion",
+          "Send content to AI model",
+          "Generate meta description",
+          "Generate 5 keywords",
+          "Update Notion page with new meta content"
+        ],
+        "requires": [
+          "notion",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "notion",
+      "openai"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "buildSpecs": "string",
+      "codeRepository": "string",
+      "environmentVariables": "object"
+    },
+    "sources": {
+      "git": {
+        "provider": "github",
+        "repository": "string"
+      },
+      "buildTools": {
+        "provider": "jenkins"
+      }
+    },
+    "analysis": {
+      "codeQuality": "boolean",
+      "securityScan": "boolean",
+      "dependencyCheck": "boolean"
+    },
+    "decision": {
+      "buildApproval": "boolean",
+      "deploymentApproval": "boolean"
+    },
+    "actions": {
+      "compileBuild": "function",
+      "runTests": "function",
+      "packageArtifacts": "function",
+      "deployToStaging": "function"
+    },
+    "channels": [
+      "slack",
+      "email"
+    ]
+  }
+}

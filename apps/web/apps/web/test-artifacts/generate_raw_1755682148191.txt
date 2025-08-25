@@ -1,0 +1,71 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-api",
+      "type": "API",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "https://api.openweathermap.org/data/2.5/weather"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-check",
+      "type": "DECISION",
+      "config": {
+        "condition": "temperature > 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "heater-control",
+      "type": "IOT_DEVICE",
+      "config": {
+        "deviceType": "smart-heater",
+        "action": "turn-on"
+      },
+      "position": {
+        "x": 500,
+        "y": 200
+      }
+    },
+    {
+      "id": "notification",
+      "type": "NOTIFICATION",
+      "config": {
+        "message": "Heater turned on to warm the room"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "weather-api",
+      "target": "temperature-check",
+      "label": "Get current temperature"
+    },
+    {
+      "source": "temperature-check",
+      "target": "heater-control",
+      "label": "If cold",
+      "data": {
+        "condition": false
+      }
+    },
+    {
+      "source": "heater-control",
+      "target": "notification",
+      "label": "Heater activated"
+    }
+  ]
+}

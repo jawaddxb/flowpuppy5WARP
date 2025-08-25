@@ -1,0 +1,92 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter account if not already done"
+      },
+      {
+        "text": "Research current AI trends and developments"
+      },
+      {
+        "text": "Create a list of daily AI topics to tweet about"
+      },
+      {
+        "text": "Write engaging tweets about AI trends"
+      },
+      {
+        "text": "Schedule tweets for daily posting"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "twitter_account",
+        "label": "Do you already have a Twitter account for posting AI trends?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "ai_knowledge",
+        "label": "How would you rate your current knowledge of AI trends?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Expert"
+        ]
+      },
+      {
+        "id": "posting_frequency",
+        "label": "How many times per day do you want to tweet about AI trends?",
+        "choices": [
+          "Once",
+          "Twice",
+          "Three times",
+          "More than three times"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required for automated posting",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_resources",
+        "title": "Regular access to AI news sources and research papers is necessary",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Research latest AI trends",
+          "Summarize key points",
+          "Craft engaging tweet",
+          "Post tweet to Twitter",
+          "Analyze engagement metrics"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "posting_frequency": "Once"
+  },
+  "nextQuestions": [
+    "twitter_account",
+    "ai_knowledge",
+    "posting_frequency"
+  ]
+}

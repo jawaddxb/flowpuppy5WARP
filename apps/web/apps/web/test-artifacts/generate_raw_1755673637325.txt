@@ -1,0 +1,111 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "inputType": "text",
+        "prompt": "What would you like the agent to do?"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "task-analysis",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "promptTemplate": "Analyze the following user request and break it down into steps: {{input}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 100
+      }
+    },
+    {
+      "id": "decision-maker",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "promptTemplate": "Based on the task analysis, decide on the next action to take: {{analysis}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 200
+      }
+    },
+    {
+      "id": "action-executor",
+      "type": "function",
+      "config": {
+        "functionName": "executeAction",
+        "parameters": [
+          {
+            "name": "action",
+            "type": "string"
+          }
+        ]
+      },
+      "position": {
+        "x": 0,
+        "y": 300
+      }
+    },
+    {
+      "id": "output-formatter",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "promptTemplate": "Format the following action result for user display: {{result}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 400
+      }
+    },
+    {
+      "id": "user-output",
+      "type": "output",
+      "config": {
+        "outputType": "text"
+      },
+      "position": {
+        "x": 0,
+        "y": 500
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "task-analysis",
+      "label": "User request"
+    },
+    {
+      "source": "task-analysis",
+      "target": "decision-maker",
+      "label": "Task breakdown"
+    },
+    {
+      "source": "decision-maker",
+      "target": "action-executor",
+      "label": "Action to execute"
+    },
+    {
+      "source": "action-executor",
+      "target": "output-formatter",
+      "label": "Action result"
+    },
+    {
+      "source": "output-formatter",
+      "target": "user-output",
+      "label": "Formatted output"
+    }
+  ]
+}

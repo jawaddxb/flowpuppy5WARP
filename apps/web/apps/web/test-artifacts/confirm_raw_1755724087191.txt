@@ -1,0 +1,68 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query or request"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "limit": 10
+        }
+      },
+      "web": {
+        "provider": "googleSearch",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "params": {
+          "model": "gpt-3.5-turbo",
+          "prompt": "Analyze the sentiment of the following text: {{sources.twitter.text}}"
+        }
+      },
+      "summary": {
+        "provider": "openai",
+        "params": {
+          "model": "gpt-3.5-turbo",
+          "prompt": "Summarize the following web search results: {{sources.web.results}}"
+        }
+      }
+    },
+    "decision": {
+      "provider": "openai",
+      "params": {
+        "model": "gpt-3.5-turbo",
+        "prompt": "Based on the sentiment analysis {{analysis.sentiment}} and web search summary {{analysis.summary}}, decide on the most appropriate response to the user query: {{inputs.userQuery}}"
+      }
+    },
+    "actions": {
+      "respond": {
+        "provider": "output",
+        "params": {
+          "message": "{{decision.response}}"
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "discord"
+      },
+      {
+        "type": "voice",
+        "provider": "twilio"
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a nightly scheduled job"},
+      {"text": "Connect to Google Drive and retrieve CSV file"},
+      {"text": "Parse and analyze user events from CSV"},
+      {"text": "Identify users at risk of churn"},
+      {"text": "Generate list of top 10 churn risk users"},
+      {"text": "Compose email with churn risk information"},
+      {"text": "Send email to Customer Success Manager"}
+    ],
+    "questions": [
+      {
+        "id": "csv_location",
+        "label": "What is the specific location or path of the CSV file in Google Drive?",
+        "choices": ["Root folder", "Specific folder path", "Shared drive"]
+      },
+      {
+        "id": "churn_risk_criteria",
+        "label": "What criteria should be used to determine churn risk?",
+        "choices": ["Inactivity period", "Declining usage", "Support ticket frequency", "Combination of factors"]
+      },
+      {
+        "id": "csm_email",
+        "label": "What is the email address of the Customer Success Manager?",
+        "choices": ["Enter email manually", "Use predefined email", "Fetch from company directory"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "data_volume",
+        "title": "Determine the volume of data to be processed nightly",
+        "confidence": 0.8
+      },
+      {
+        "id": "data_schema",
+        "title": "Identify the schema of the CSV file",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "churn_analysis",
+        "title": "Churn Risk Analysis Pipeline",
+        "steps": [
+          "Retrieve CSV from Google Drive",
+          "Parse CSV data",
+          "Apply churn risk algorithm",
+          "Generate top 10 at-risk users",
+          "Create email report"
+        ],
+        "requires": ["google_drive", "email"]
+      }
+    ],
+    "connectionsRequired": ["google_drive", "email"]
+  },
+  "defaults": {
+    "schedule": "daily at midnight"
+  },
+  "nextQuestions": [
+    "csv_location",
+    "churn_risk_criteria",
+    "csm_email"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter"
+      },
+      "facebook": {
+        "provider": "facebook"
+      }
+    },
+    "analysis": {},
+    "decision": {},
+    "actions": {},
+    "channels": []
+  }
+}

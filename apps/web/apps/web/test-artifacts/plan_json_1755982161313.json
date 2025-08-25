@@ -1,0 +1,78 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Research current AI trends and news sources"
+      },
+      {
+        "text": "Create a system to aggregate daily AI news"
+      },
+      {
+        "text": "Develop a tweet composition algorithm"
+      },
+      {
+        "text": "Schedule daily tweets"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": [
+          "ArXiv",
+          "MIT Technology Review",
+          "AI News",
+          "VentureBeat",
+          "TechCrunch"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_knowledge",
+        "title": "In-depth AI knowledge is beneficial",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet",
+        "title": "Daily AI Trend Tweet Pipeline",
+        "steps": [
+          "Aggregate AI news",
+          "Analyze trends",
+          "Compose tweet",
+          "Post to Twitter"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  }
+}

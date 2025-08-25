@@ -1,0 +1,60 @@
+{
+  "agentSpec": {
+    "name": "Daily AI Trends Tweeter",
+    "sources": {
+      "news": {
+        "provider": "newsapi",
+        "query": "artificial intelligence OR machine learning",
+        "frequency": "daily"
+      },
+      "twitter": {
+        "provider": "twitter",
+        "query": "#AItrends OR #MachineLearning",
+        "frequency": "daily"
+      }
+    },
+    "analysis": {
+      "trending_topics": {
+        "type": "keyword_extraction",
+        "source": [
+          "news",
+          "twitter"
+        ]
+      },
+      "sentiment": {
+        "type": "sentiment_analysis",
+        "source": [
+          "news",
+          "twitter"
+        ]
+      }
+    },
+    "decision": {
+      "top_trend": {
+        "type": "ranking",
+        "source": "trending_topics",
+        "criteria": [
+          "frequency",
+          "relevance"
+        ]
+      }
+    },
+    "actions": {
+      "compose_tweet": {
+        "type": "text_generation",
+        "input": [
+          "top_trend",
+          "sentiment"
+        ],
+        "max_length": 280
+      }
+    },
+    "channels": [
+      {
+        "type": "twitter",
+        "action": "compose_tweet",
+        "frequency": "daily"
+      }
+    ]
+  }
+}

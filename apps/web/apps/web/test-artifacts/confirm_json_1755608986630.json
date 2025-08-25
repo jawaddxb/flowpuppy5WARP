@@ -1,0 +1,54 @@
+{
+  "agentSpec": {
+    "name": "Basic Agent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "User's initial query or request"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    "decision": {
+      "type": "rule-based",
+      "rules": [
+        {
+          "if": "sentiment.score > 0.5",
+          "then": "respond_positively"
+        },
+        {
+          "if": "sentiment.score < -0.5",
+          "then": "respond_empathetically"
+        }
+      ]
+    },
+    "actions": {
+      "respond_positively": {
+        "type": "text_generation",
+        "provider": "openai",
+        "model": "text-davinci-003"
+      },
+      "respond_empathetically": {
+        "type": "text_generation",
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    "channels": [
+      "chat",
+      "email"
+    ]
+  }
+}

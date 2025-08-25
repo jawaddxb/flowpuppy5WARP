@@ -1,0 +1,159 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "web-search",
+        "type": "web",
+        "title": "web",
+        "laneId": "lane-transform",
+        "provider": "google",
+        "data": {
+          "provider": "google",
+          "maxResults": 5
+        }
+      },
+      {
+        "id": "news-fetch",
+        "type": "news",
+        "title": "news",
+        "laneId": "lane-transform",
+        "provider": "newsapi",
+        "data": {
+          "provider": "newsapi",
+          "categories": [
+            "technology",
+            "business"
+          ]
+        }
+      },
+      {
+        "id": "sentiment-analysis",
+        "type": "analysis",
+        "title": "analysis",
+        "laneId": "lane-transform",
+        "provider": "nltk",
+        "data": {
+          "provider": "nltk",
+          "method": "vader"
+        }
+      },
+      {
+        "id": "text-summarization",
+        "type": "analysis",
+        "title": "analysis",
+        "laneId": "lane-transform",
+        "provider": "gpt3",
+        "data": {
+          "provider": "gpt3",
+          "maxLength": 200
+        }
+      },
+      {
+        "id": "decision-making",
+        "type": "decision",
+        "title": "decision",
+        "laneId": "lane-decision",
+        "data": {
+          "method": "rulebased",
+          "rules": [
+            "if sentiment > 0.5 then positive",
+            "if sentiment < -0.5 then negative",
+            "else neutral"
+          ]
+        }
+      },
+      {
+        "id": "response-generation",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "gpt3",
+        "data": {
+          "provider": "gpt3",
+          "model": "text-davinci-002"
+        }
+      },
+      {
+        "id": "database-save",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "mongodb",
+        "data": {
+          "provider": "mongodb",
+          "collection": "responses"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "web-search"
+        },
+        "target": {
+          "nodeId": "sentiment-analysis"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "news-fetch"
+        },
+        "target": {
+          "nodeId": "sentiment-analysis"
+        }
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "sentiment-analysis"
+        },
+        "target": {
+          "nodeId": "decision-making"
+        }
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "decision-making"
+        },
+        "target": {
+          "nodeId": "response-generation"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "response-generation"
+        },
+        "target": {
+          "nodeId": "database-save"
+        }
+      }
+    ]
+  }
+}

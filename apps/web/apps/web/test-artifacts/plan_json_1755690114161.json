@@ -1,0 +1,78 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Start with a light jog for 5 minutes to increase heart rate"
+      },
+      {
+        "text": "Perform dynamic stretches for major muscle groups"
+      },
+      {
+        "text": "Do 10 jumping jacks to further elevate heart rate"
+      },
+      {
+        "text": "Perform arm circles, 10 forward and 10 backward"
+      },
+      {
+        "text": "Do 10 leg swings for each leg"
+      },
+      {
+        "text": "Perform 10 bodyweight squats"
+      },
+      {
+        "text": "Do 10 lunges for each leg"
+      },
+      {
+        "text": "Finish with 5 minutes of brisk walking to cool down"
+      }
+    ],
+    "questions": [
+      {
+        "id": "fitness_level",
+        "label": "What is your current fitness level?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Advanced"
+        ]
+      },
+      {
+        "id": "time_available",
+        "label": "How much time do you have for the warm-up?",
+        "choices": [
+          "5 minutes",
+          "10 minutes",
+          "15 minutes",
+          "20+ minutes"
+        ]
+      },
+      {
+        "id": "workout_type",
+        "label": "What type of workout are you warming up for?",
+        "choices": [
+          "Cardio",
+          "Strength training",
+          "Flexibility",
+          "Sports-specific"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "injury_risk",
+        "title": "Proper warm-up reduces injury risk",
+        "confidence": 0.95
+      },
+      {
+        "id": "performance_boost",
+        "title": "Warm-up improves workout performance",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "defaults": {
+    "fitness_level": "Intermediate",
+    "time_available": "10 minutes",
+    "workout_type": "Cardio"
+  }
+}

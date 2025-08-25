@@ -1,0 +1,90 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Sentry webhook to trigger on new issues"
+      },
+      {
+        "text": "Extract stacktrace information from Sentry issue"
+      },
+      {
+        "text": "Use AI to summarize stacktrace"
+      },
+      {
+        "text": "Analyze summary to determine issue severity"
+      },
+      {
+        "text": "Label issue with determined severity in Sentry"
+      },
+      {
+        "text": "If severity is high, create Jira ticket with issue details"
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarizing the stacktrace?",
+        "choices": [
+          "GPT-3.5",
+          "GPT-4",
+          "Claude",
+          "Custom model"
+        ]
+      },
+      {
+        "id": "severity_levels",
+        "label": "What severity levels would you like to use?",
+        "choices": [
+          "Low/Medium/High",
+          "1/2/3/4/5",
+          "Minor/Major/Critical"
+        ]
+      },
+      {
+        "id": "high_severity_threshold",
+        "label": "What should be considered 'high' severity for creating Jira tickets?",
+        "choices": [
+          "High",
+          "4 and 5",
+          "Critical"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "sentry_webhook",
+        "title": "Sentry provides webhook functionality for new issues",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI can effectively summarize technical stacktraces",
+        "confidence": 0.8
+      },
+      {
+        "id": "jira_integration",
+        "title": "Jira has an API for programmatically creating tickets",
+        "confidence": 0.95
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "process_sentry_issue",
+        "title": "Process new Sentry issue",
+        "steps": [
+          "Receive webhook from Sentry",
+          "Extract stacktrace",
+          "Summarize with AI",
+          "Determine severity",
+          "Label in Sentry",
+          "Create Jira ticket if high severity"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "sentry",
+      "openai",
+      "jira"
+    ]
+  }
+}

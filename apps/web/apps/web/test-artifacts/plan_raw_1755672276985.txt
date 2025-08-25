@@ -1,0 +1,74 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define project requirements and goals"},
+      {"text": "Choose a technology stack"},
+      {"text": "Set up development environment"},
+      {"text": "Create project structure"},
+      {"text": "Implement core features"},
+      {"text": "Test and debug"},
+      {"text": "Deploy the application"}
+    ],
+    "questions": [
+      {
+        "id": "project_type",
+        "label": "What type of project are you building?",
+        "choices": ["Web application", "Mobile app", "Desktop application", "API"]
+      },
+      {
+        "id": "framework",
+        "label": "Which framework do you prefer?",
+        "choices": ["React", "Vue", "Angular", "No framework"]
+      },
+      {
+        "id": "backend",
+        "label": "What backend technology do you want to use?",
+        "choices": ["Node.js", "Python", "Java", "Ruby"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "tech_stack",
+        "title": "Recommended technology stack",
+        "confidence": 0.8
+      },
+      {
+        "id": "dev_time",
+        "title": "Estimated development time",
+        "confidence": 0.6
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "setup_env",
+        "title": "Set up development environment",
+        "steps": [
+          "Install necessary software",
+          "Configure version control",
+          "Set up project dependencies"
+        ]
+      },
+      {
+        "id": "deployment",
+        "title": "Deploy the application",
+        "steps": [
+          "Choose hosting provider",
+          "Configure deployment settings",
+          "Deploy application"
+        ],
+        "requires": ["setup_env"]
+      }
+    ],
+    "connectionsRequired": ["github", "npm"]
+  },
+  "defaults": {
+    "project_type": "Web application",
+    "framework": "React",
+    "backend": "Node.js"
+  },
+  "nextQuestions": [
+    {"id": "project_type"},
+    {"id": "framework"},
+    {"id": "backend"}
+  ]
+}

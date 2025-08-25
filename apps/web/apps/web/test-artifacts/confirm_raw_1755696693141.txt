@@ -1,0 +1,75 @@
+{
+  "agentSpec": {
+    "name": "BuilderBot",
+    "inputs": {
+      "projectRequirements": {
+        "type": "text",
+        "description": "Detailed project requirements and specifications"
+      },
+      "budget": {
+        "type": "number",
+        "description": "Available budget for the project"
+      },
+      "deadline": {
+        "type": "date",
+        "description": "Project completion deadline"
+      }
+    },
+    "sources": {
+      "constructionDatabase": {
+        "provider": "postgresql",
+        "query": "SELECT * FROM materials WHERE availability = true"
+      },
+      "weatherForecast": {
+        "provider": "openweathermap",
+        "location": "project_site"
+      },
+      "regulationUpdates": {
+        "provider": "rss",
+        "url": "https://buildingcodes.gov/feed"
+      }
+    },
+    "analysis": {
+      "costEstimation": {
+        "inputs": ["projectRequirements", "constructionDatabase"],
+        "output": "estimatedCost"
+      },
+      "timelineProjection": {
+        "inputs": ["projectRequirements", "weatherForecast"],
+        "output": "projectedTimeline"
+      },
+      "complianceCheck": {
+        "inputs": ["projectRequirements", "regulationUpdates"],
+        "output": "complianceStatus"
+      }
+    },
+    "decision": {
+      "projectApproval": {
+        "inputs": ["estimatedCost", "projectedTimeline", "complianceStatus", "budget", "deadline"],
+        "output": "approvalStatus"
+      }
+    },
+    "actions": {
+      "generateBuildPlan": {
+        "condition": "approvalStatus == 'approved'",
+        "inputs": ["projectRequirements", "estimatedCost", "projectedTimeline"],
+        "output": "buildPlan"
+      },
+      "requestRevision": {
+        "condition": "approvalStatus == 'rejected'",
+        "inputs": ["projectRequirements", "estimatedCost", "projectedTimeline", "complianceStatus"],
+        "output": "revisionRequest"
+      }
+    },
+    "channels": [
+      {
+        "type": "email",
+        "address": "project_manager@construction.com"
+      },
+      {
+        "type": "sms",
+        "number": "+1234567890"
+      }
+    ]
+  }
+}

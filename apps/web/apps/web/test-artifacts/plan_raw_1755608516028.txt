@@ -1,0 +1,62 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define the welcome email content"},
+      {"text": "Create the welcome email template"},
+      {"text": "Set up the welcome email automation"},
+      {"text": "Define the 3-day follow-up email content"},
+      {"text": "Create the 3-day follow-up email template"},
+      {"text": "Set up the 3-day follow-up email automation"},
+      {"text": "Test the email sequence"},
+      {"text": "Monitor and analyze performance"}
+    ],
+    "questions": [
+      {
+        "id": "email_platform",
+        "label": "Which email marketing platform will you use?",
+        "choices": ["Mailchimp", "Constant Contact", "SendGrid", "Other"]
+      },
+      {
+        "id": "personalization",
+        "label": "Do you want to include personalization in the emails?",
+        "choices": ["Yes", "No"]
+      },
+      {
+        "id": "welcome_offer",
+        "label": "Will you include a special offer in the welcome email?",
+        "choices": ["Yes", "No"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "automation_capability",
+        "title": "Email platform automation capability",
+        "confidence": 0.8
+      },
+      {
+        "id": "personalization_data",
+        "title": "Availability of personalization data",
+        "confidence": 0.6
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_sequence",
+        "title": "Create and Set Up Email Sequence",
+        "steps": [
+          "Create welcome email",
+          "Set up welcome email automation",
+          "Create 3-day follow-up email",
+          "Set up 3-day follow-up automation"
+        ],
+        "requires": ["email_platform"]
+      }
+    ],
+    "connectionsRequired": ["email_marketing_platform"]
+  },
+  "nextQuestions": [
+    {"id": "email_platform"},
+    {"id": "personalization"},
+    {"id": "welcome_offer"}
+  ]
+}

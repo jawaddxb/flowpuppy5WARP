@@ -1,0 +1,74 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a recurring health check ping to https://api.example.com/health every 5 minutes"
+      },
+      {
+        "text": "Implement a failure counter to track consecutive failures"
+      },
+      {
+        "text": "Configure Slack notification system"
+      },
+      {
+        "text": "Set up email notification for on-call personnel"
+      },
+      {
+        "text": "Create logic to trigger notifications after two consecutive failures"
+      }
+    ],
+    "questions": [
+      {
+        "id": "slack_channel",
+        "label": "Which Slack channel should receive the notifications?",
+        "choices": [
+          "#alerts",
+          "#general",
+          "#engineering",
+          "Create a new channel"
+        ]
+      },
+      {
+        "id": "email_address",
+        "label": "What is the email address for the on-call personnel?",
+        "choices": [
+          "oncall@example.com",
+          "support@example.com",
+          "engineering@example.com",
+          "Other (specify)"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "health_check_interval",
+        "title": "Health check interval is set to 5 minutes",
+        "confidence": 1
+      },
+      {
+        "id": "failure_threshold",
+        "title": "Notification triggers after two consecutive failures",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "health_check_pipeline",
+        "title": "API Health Check and Notification Pipeline",
+        "steps": [
+          "Ping https://api.example.com/health",
+          "Check response status",
+          "Update failure counter",
+          "If failure counter >= 2, trigger notifications",
+          "Send Slack notification",
+          "Send email to on-call personnel",
+          "Reset failure counter on successful ping"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "smtp"
+    ]
+  }
+}

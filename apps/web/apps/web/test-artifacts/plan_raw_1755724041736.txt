@@ -1,0 +1,62 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Research current AI trends and developments"},
+      {"text": "Curate the most interesting and relevant AI trends"},
+      {"text": "Compose concise and engaging tweets about AI trends"},
+      {"text": "Schedule tweets to be posted daily"},
+      {"text": "Monitor engagement and adjust content strategy as needed"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": ["Formal and informative", "Casual and conversational", "Mix of both"]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day would you like to post?",
+        "choices": ["1", "2", "3", "More than 3"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "ai_sources",
+        "title": "Reliable AI news sources identified",
+        "confidence": 0.9
+      },
+      {
+        "id": "tweet_scheduling",
+        "title": "Optimal times for tweeting AI content determined",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation and Posting",
+        "steps": [
+          "Research AI trends",
+          "Select top trend",
+          "Compose tweet",
+          "Schedule tweet",
+          "Post tweet",
+          "Analyze engagement"
+        ],
+        "requires": ["twitter_api", "ai_news_api"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_style": "Mix of both",
+    "tweet_frequency": "1"
+  },
+  "nextQuestions": [
+    {
+      "id": "ai_topics",
+      "label": "Which AI topics are you most interested in tweeting about?",
+      "choices": ["Machine Learning", "Natural Language Processing", "Computer Vision", "Robotics", "Ethics in AI"]
+    }
+  ]
+}

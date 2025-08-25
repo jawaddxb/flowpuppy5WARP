@@ -1,0 +1,109 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "fetch-ai-news",
+        "type": "DataFetcher",
+        "title": "DataFetcher",
+        "laneId": "lane-transform",
+        "provider": "newsapi",
+        "data": {
+          "provider": "newsapi",
+          "query": "artificial intelligence",
+          "frequency": "daily"
+        }
+      },
+      {
+        "id": "summarize-trends",
+        "type": "TextSummarizer",
+        "title": "TextSummarizer",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "maxTokens": 100
+        }
+      },
+      {
+        "id": "generate-tweet",
+        "type": "ContentGenerator",
+        "title": "ContentGenerator",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Create a tweet about the latest AI trends:",
+          "maxLength": 280
+        }
+      },
+      {
+        "id": "post-tweet",
+        "type": "SocialMediaPoster",
+        "title": "SocialMediaPoster",
+        "laneId": "lane-transform",
+        "provider": "twitter",
+        "data": {
+          "provider": "twitter",
+          "schedule": "daily at 9:00 AM"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "fetch-ai-news"
+        },
+        "target": {
+          "nodeId": "summarize-trends"
+        },
+        "label": "AI news articles"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "summarize-trends"
+        },
+        "target": {
+          "nodeId": "generate-tweet"
+        },
+        "label": "Summarized AI trends"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "generate-tweet"
+        },
+        "target": {
+          "nodeId": "post-tweet"
+        },
+        "label": "Tweet content"
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Curate the most interesting daily AI developments"
+      },
+      {
+        "text": "Compose concise tweets summarizing key AI trends"
+      },
+      {
+        "text": "Schedule tweets for daily posting"
+      },
+      {
+        "text": "Monitor engagement and adjust content strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": [
+          "Research papers",
+          "Tech blogs",
+          "Industry news sites",
+          "Social media",
+          "All of the above"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "engagement_metrics",
+        "title": "Track engagement metrics for optimization",
+        "confidence": 0.9
+      },
+      {
+        "id": "hashtag_strategy",
+        "title": "Develop a hashtag strategy for increased visibility",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Pipeline",
+        "steps": [
+          "Research AI trends",
+          "Select top trend",
+          "Compose tweet",
+          "Schedule tweet",
+          "Analyze performance"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": "All of the above"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweet_frequency"
+    },
+    {
+      "id": "ai_sources"
+    }
+  ]
+}

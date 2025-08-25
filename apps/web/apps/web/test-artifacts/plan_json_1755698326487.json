@@ -1,0 +1,101 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define welcome email content"
+      },
+      {
+        "text": "Create welcome email template"
+      },
+      {
+        "text": "Set up automated welcome email trigger"
+      },
+      {
+        "text": "Define day 1 follow-up email content"
+      },
+      {
+        "text": "Create day 1 follow-up email template"
+      },
+      {
+        "text": "Define day 3 follow-up email content"
+      },
+      {
+        "text": "Create day 3 follow-up email template"
+      },
+      {
+        "text": "Set up automated follow-up email sequence"
+      },
+      {
+        "text": "Test email sequence"
+      },
+      {
+        "text": "Monitor and analyze email performance"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_platform",
+        "label": "Which email marketing platform will you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "SendGrid",
+          "Other"
+        ]
+      },
+      {
+        "id": "personalization",
+        "label": "Will you include personalization in the emails?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "content_type",
+        "label": "What type of content will you include in the welcome email?",
+        "choices": [
+          "Product information",
+          "Company story",
+          "Special offer",
+          "Getting started guide"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "timing",
+        "title": "Optimal timing for follow-up emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "subject_lines",
+        "title": "Effective subject lines for welcome series",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_sequence",
+        "title": "Create and set up email sequence",
+        "steps": [
+          "Draft email content",
+          "Design email templates",
+          "Set up automation rules",
+          "Test sequence"
+        ],
+        "requires": [
+          "email_platform"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email_service_provider"
+    ]
+  },
+  "nextQuestions": [
+    {
+      "id": "email_platform"
+    }
+  ]
+}

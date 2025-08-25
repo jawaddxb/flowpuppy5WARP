@@ -1,0 +1,60 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Connect to Twitter account"},
+      {"text": "Set up a daily schedule for tweeting"},
+      {"text": "Research and curate AI trends"},
+      {"text": "Compose tweets about AI trends"},
+      {"text": "Schedule and post tweets"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": ["1", "2", "3", "4", "5"]
+      },
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": ["Formal", "Casual", "Technical", "Mixed"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which sources would you like to use for AI trends?",
+        "choices": ["Research papers", "Tech news sites", "AI conferences", "Social media", "All of the above"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "tweet_char_limit",
+        "title": "Twitter character limit is 280",
+        "confidence": 1
+      },
+      {
+        "id": "ai_trend_volatility",
+        "title": "AI trends can change rapidly",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Research AI trends",
+          "Curate most relevant trend",
+          "Compose tweet",
+          "Schedule tweet",
+          "Post tweet"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "tweet_style": "Mixed",
+    "ai_sources": "All of the above"
+  }
+}

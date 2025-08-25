@@ -1,0 +1,98 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a nightly scheduled job"
+      },
+      {
+        "text": "Connect to Google Drive and retrieve the CSV file"
+      },
+      {
+        "text": "Parse and analyze user events from the CSV"
+      },
+      {
+        "text": "Implement churn risk analysis algorithm"
+      },
+      {
+        "text": "Identify top 10 users at risk of churning"
+      },
+      {
+        "text": "Generate email report for CSM"
+      },
+      {
+        "text": "Send email to CSM with churn risk information"
+      }
+    ],
+    "questions": [
+      {
+        "id": "csv_location",
+        "label": "What is the specific location or name of the CSV file in Google Drive?",
+        "choices": [
+          "Root folder",
+          "Specific folder path",
+          "Exact file name"
+        ]
+      },
+      {
+        "id": "churn_risk_factors",
+        "label": "What factors should be considered for churn risk analysis?",
+        "choices": [
+          "Usage frequency",
+          "Feature adoption",
+          "Customer support tickets",
+          "Billing issues",
+          "Custom metrics"
+        ]
+      },
+      {
+        "id": "csm_email",
+        "label": "What is the email address of the CSM who should receive the report?",
+        "choices": [
+          "Enter email manually",
+          "Use predefined email",
+          "Fetch from database"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "data_source",
+        "title": "User events data is stored in a CSV file on Google Drive",
+        "confidence": 0.9
+      },
+      {
+        "id": "analysis_frequency",
+        "title": "Analysis needs to be performed nightly",
+        "confidence": 1
+      },
+      {
+        "id": "output_format",
+        "title": "Results should be emailed to CSM",
+        "confidence": 0.95
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "churn_analysis",
+        "title": "Nightly Churn Risk Analysis",
+        "steps": [
+          "Retrieve CSV from Google Drive",
+          "Parse CSV data",
+          "Analyze user events",
+          "Calculate churn risk scores",
+          "Identify top 10 at-risk users",
+          "Generate email report",
+          "Send email to CSM"
+        ],
+        "requires": [
+          "google_drive",
+          "smtp"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "google_drive",
+      "smtp"
+    ]
+  }
+}

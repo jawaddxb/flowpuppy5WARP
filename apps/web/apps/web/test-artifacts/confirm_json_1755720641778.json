@@ -1,0 +1,11 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {},
+    "sources": {},
+    "analysis": {},
+    "decision": {},
+    "actions": {},
+    "channels": []
+  }
+}

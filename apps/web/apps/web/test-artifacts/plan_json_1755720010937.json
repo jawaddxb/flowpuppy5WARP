@@ -1,0 +1,89 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Connect to Twitter account"
+      },
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Generate engaging tweet content"
+      },
+      {
+        "text": "Schedule daily tweets"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweetFrequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      {
+        "id": "aiTopics",
+        "label": "Which AI topics are you most interested in?",
+        "choices": [
+          "Machine Learning",
+          "Natural Language Processing",
+          "Computer Vision",
+          "Robotics",
+          "All of the above"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitterAudience",
+        "title": "Determine target Twitter audience for AI content",
+        "confidence": 0.8
+      },
+      {
+        "id": "trendingSources",
+        "title": "Identify reliable sources for AI trend information",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "dailyTweetPipeline",
+        "title": "Generate and Post Daily AI Trend Tweet",
+        "steps": [
+          "Research current AI trends",
+          "Generate tweet content",
+          "Review and approve content",
+          "Post tweet to Twitter"
+        ],
+        "requires": [
+          "twitter",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "tweetFrequency": "1",
+    "aiTopics": "All of the above"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweetFrequency"
+    },
+    {
+      "id": "aiTopics"
+    }
+  ]
+}

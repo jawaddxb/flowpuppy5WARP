@@ -1,0 +1,84 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a daily Slack workflow trigger for 9am on weekdays"
+      },
+      {
+        "text": "Create a list of engineers to message"
+      },
+      {
+        "text": "Develop a Slack bot to send DMs to each engineer"
+      },
+      {
+        "text": "Collect responses from engineers"
+      },
+      {
+        "text": "Use AI to summarize the collected updates"
+      },
+      {
+        "text": "Post the AI-generated summary to #standup channel"
+      }
+    ],
+    "questions": [
+      {
+        "id": "engineer_list",
+        "label": "Do you have a list of engineers to message?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "slack_bot",
+        "label": "Do you have a Slack bot set up for sending messages?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarization?",
+        "choices": [
+          "OpenAI GPT",
+          "Google BERT",
+          "Custom model"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "automation_needed",
+        "title": "Automation is required for daily task execution",
+        "confidence": 0.95
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI summarization is needed for efficient reporting",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_standup",
+        "title": "Daily Standup Automation",
+        "steps": [
+          "Trigger Slack workflow",
+          "Send DMs to engineers",
+          "Collect responses",
+          "Summarize with AI",
+          "Post to #standup"
+        ],
+        "requires": [
+          "slack",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "openai"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "fetch-ai-news",
+      "type": "DataFetcher",
+      "config": {
+        "provider": "newsapi",
+        "query": "artificial intelligence",
+        "frequency": "daily"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "summarize-trends",
+      "type": "TextSummarizer",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "maxTokens": 100
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "generate-tweet",
+      "type": "ContentGenerator",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Create a tweet about the latest AI trends:",
+        "maxLength": 280
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "post-tweet",
+      "type": "SocialMediaPoster",
+      "config": {
+        "provider": "twitter",
+        "schedule": "daily at 9:00 AM"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "fetch-ai-news",
+      "target": "summarize-trends",
+      "label": "AI news articles"
+    },
+    {
+      "source": "summarize-trends",
+      "target": "generate-tweet",
+      "label": "Summarized AI trends"
+    },
+    {
+      "source": "generate-tweet",
+      "target": "post-tweet",
+      "label": "Tweet content"
+    }
+  ]
+}

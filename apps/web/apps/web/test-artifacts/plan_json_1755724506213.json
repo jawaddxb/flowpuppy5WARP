@@ -1,0 +1,75 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a system to monitor Hacker News for the keyword 'LLM'"
+      },
+      {
+        "text": "Configure the monitoring to occur hourly"
+      },
+      {
+        "text": "Implement a filter to check if story points exceed 100"
+      },
+      {
+        "text": "Create a connection to post filtered stories to Slack #research channel"
+      },
+      {
+        "text": "Test the entire workflow to ensure it's functioning correctly"
+      }
+    ],
+    "questions": [
+      {
+        "id": "slack_channel",
+        "label": "What is the exact name of your Slack research channel?",
+        "choices": [
+          "#research",
+          "#llm-research",
+          "#ai-news",
+          "Other"
+        ]
+      },
+      {
+        "id": "monitoring_frequency",
+        "label": "Is hourly monitoring sufficient, or do you need a different frequency?",
+        "choices": [
+          "Hourly is sufficient",
+          "Need more frequent updates",
+          "Need less frequent updates"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "hn_api",
+        "title": "Hacker News provides a public API for fetching stories",
+        "confidence": 0.9
+      },
+      {
+        "id": "slack_integration",
+        "title": "Slack offers webhooks for easy message posting",
+        "confidence": 0.95
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "hn_to_slack",
+        "title": "Hacker News to Slack Pipeline",
+        "steps": [
+          "Fetch new stories from Hacker News API",
+          "Filter stories containing 'LLM' keyword",
+          "Check if story points > 100",
+          "Format message for Slack",
+          "Post message to Slack channel"
+        ],
+        "requires": [
+          "hackernews",
+          "slack"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "hackernews",
+      "slack"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "agentSpec": {
+    "name": "Generic Agent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter"
+      },
+      "web": {
+        "provider": "web"
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai"
+      },
+      "topics": {
+        "provider": "openai"
+      }
+    },
+    "decision": {
+      "provider": "openai"
+    },
+    "actions": {
+      "tweet": {
+        "provider": "twitter"
+      },
+      "email": {
+        "provider": "sendgrid"
+      }
+    },
+    "channels": [
+      "twitter",
+      "email"
+    ]
+  }
+}

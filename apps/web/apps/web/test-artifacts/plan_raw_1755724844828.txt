@@ -1,0 +1,67 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a Slack integration to send DMs and post to channels"
+      },
+      {
+        "text": "Create a schedule to run the task every weekday at 9am"
+      },
+      {
+        "text": "Implement logic to identify and DM each engineer"
+      },
+      {
+        "text": "Collect responses from engineers"
+      },
+      {
+        "text": "Use AI to summarize the collected updates"
+      },
+      {
+        "text": "Post the AI-generated summary to the #standup channel"
+      }
+    ],
+    "questions": [
+      {
+        "id": "engineers_list",
+        "label": "Do you have a list of engineers to DM?",
+        "choices": ["Yes", "No"]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you prefer for summarization?",
+        "choices": ["OpenAI GPT", "Google BERT", "Custom model"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "slack_integration",
+        "title": "Slack integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI-powered summarization is needed",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_standup",
+        "title": "Daily Standup Pipeline",
+        "steps": [
+          "Trigger at 9am weekdays",
+          "Fetch list of engineers",
+          "Send DMs to engineers",
+          "Collect responses",
+          "Summarize updates using AI",
+          "Post summary to #standup channel"
+        ],
+        "requires": ["slack", "openai"]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "openai"
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up GitHub webhook to trigger on new pull request"
+      },
+      {
+        "text": "Retrieve pull request details and changes"
+      },
+      {
+        "text": "Use AI to summarize changes"
+      },
+      {
+        "text": "Generate review checklist"
+      },
+      {
+        "text": "Post summary and checklist as a PR comment"
+      },
+      {
+        "text": "Send notification to Slack with PR link and summary"
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarizing changes?",
+        "choices": [
+          "GPT-3.5",
+          "GPT-4",
+          "Claude"
+        ]
+      },
+      {
+        "id": "checklist_type",
+        "label": "What type of review checklist would you prefer?",
+        "choices": [
+          "General",
+          "Security-focused",
+          "Performance-oriented",
+          "Custom"
+        ]
+      },
+      {
+        "id": "slack_channel",
+        "label": "Which Slack channel should receive the notification?",
+        "choices": [
+          "#engineering",
+          "#code-review",
+          "#general"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "repo_language",
+        "title": "Primary programming language of the repository",
+        "confidence": 0.8
+      },
+      {
+        "id": "pr_size",
+        "title": "Size of the pull request (number of changes)",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "summarize_changes",
+        "title": "Summarize PR changes using AI",
+        "steps": [
+          "Retrieve PR diff",
+          "Process diff with AI model",
+          "Generate concise summary"
+        ],
+        "requires": [
+          "ai_model"
+        ]
+      },
+      {
+        "id": "generate_checklist",
+        "title": "Generate review checklist",
+        "steps": [
+          "Determine checklist type",
+          "Create checklist items based on type and repo language",
+          "Format checklist for GitHub comment"
+        ],
+        "requires": [
+          "checklist_type",
+          "repo_language"
+        ]
+      },
+      {
+        "id": "post_pr_comment",
+        "title": "Post summary and checklist as PR comment",
+        "steps": [
+          "Combine AI summary and checklist",
+          "Format as GitHub comment",
+          "Post comment to PR"
+        ]
+      },
+      {
+        "id": "send_slack_notification",
+        "title": "Send notification to Slack",
+        "steps": [
+          "Compose Slack message with PR link and summary",
+          "Send message to specified Slack channel"
+        ],
+        "requires": [
+          "slack_channel"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "github",
+      "openai",
+      "slack"
+    ]
+  }
+}

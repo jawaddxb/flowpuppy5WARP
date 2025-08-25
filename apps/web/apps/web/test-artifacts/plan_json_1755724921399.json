@@ -1,0 +1,99 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a daily scheduler to run at 7pm"
+      },
+      {
+        "text": "Scrape top 3 tech news sites for latest articles"
+      },
+      {
+        "text": "Use AI to summarize the scraped articles"
+      },
+      {
+        "text": "Compose an email with the summarized content"
+      },
+      {
+        "text": "Send the email as a daily recap newsletter"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tech_sites",
+        "label": "Which 3 tech news sites would you like to scrape?",
+        "choices": [
+          "TechCrunch",
+          "The Verge",
+          "Wired",
+          "Ars Technica",
+          "Engadget"
+        ]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you prefer for summarization?",
+        "choices": [
+          "GPT-3",
+          "GPT-4",
+          "BART",
+          "T5"
+        ]
+      },
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use for sending the newsletter?",
+        "choices": [
+          "Gmail",
+          "SendGrid",
+          "Mailchimp",
+          "Amazon SES"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "scheduling_needed",
+        "title": "Daily scheduling at 7pm is required",
+        "confidence": 0.95
+      },
+      {
+        "id": "web_scraping_needed",
+        "title": "Web scraping capability is necessary",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_summarization_needed",
+        "title": "AI-powered text summarization is required",
+        "confidence": 0.95
+      },
+      {
+        "id": "email_composition_needed",
+        "title": "Email composition functionality is needed",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tech_newsletter",
+        "title": "Daily Tech News Recap Newsletter",
+        "steps": [
+          "Schedule daily run at 7pm",
+          "Scrape selected tech news sites",
+          "Summarize articles using AI",
+          "Compose email with summaries",
+          "Send email newsletter"
+        ],
+        "requires": [
+          "scheduler",
+          "web_scraper",
+          "ai_summarizer",
+          "email_sender"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "openai",
+      "gmail"
+    ]
+  }
+}

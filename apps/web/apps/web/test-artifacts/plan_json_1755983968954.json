@@ -1,0 +1,94 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a daily scheduled task to run at 9am UTC"
+      },
+      {
+        "text": "Fetch top AI trending articles from a reliable source"
+      },
+      {
+        "text": "Generate a summary of the articles"
+      },
+      {
+        "text": "Create a tweet thread from the summary"
+      },
+      {
+        "text": "Post the tweet thread"
+      },
+      {
+        "text": "Log the activity to Google Sheets"
+      }
+    ],
+    "questions": [
+      {
+        "id": "article_source",
+        "label": "Which source would you like to use for fetching AI trending articles?",
+        "choices": [
+          "TechCrunch",
+          "ArXiv",
+          "MIT Technology Review",
+          "AI News"
+        ]
+      },
+      {
+        "id": "summary_length",
+        "label": "How long should the summary be?",
+        "choices": [
+          "Short (1-2 sentences per article)",
+          "Medium (3-4 sentences per article)",
+          "Long (5+ sentences per article)"
+        ]
+      },
+      {
+        "id": "tweet_count",
+        "label": "How many tweets should be in the thread?",
+        "choices": [
+          "3-5",
+          "6-8",
+          "9-12",
+          "13+"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "article_fetching",
+        "title": "Article fetching may require web scraping or API access",
+        "confidence": 0.9
+      },
+      {
+        "id": "summarization",
+        "title": "AI-powered summarization might be needed for efficient article processing",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_ai_tweet",
+        "title": "Daily AI Article Summary Tweet Thread",
+        "steps": [
+          "Fetch articles",
+          "Summarize articles",
+          "Create tweet thread",
+          "Post tweets",
+          "Log to Google Sheets"
+        ],
+        "requires": [
+          "article_source",
+          "summary_length",
+          "tweet_count"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "google_sheets"
+    ]
+  },
+  "nextQuestions": [
+    "article_source",
+    "summary_length",
+    "tweet_count"
+  ]
+}

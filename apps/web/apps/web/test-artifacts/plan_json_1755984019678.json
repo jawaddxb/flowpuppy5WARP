@@ -1,0 +1,91 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Create a daily AI trends content calendar"
+      },
+      {
+        "text": "Write engaging tweets about AI trends"
+      },
+      {
+        "text": "Schedule tweets using Twitter's scheduling feature"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "twitter_account",
+        "label": "Do you have a Twitter account?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "ai_knowledge",
+        "label": "How would you rate your knowledge of AI?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Expert"
+        ]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How often do you want to tweet about AI trends?",
+        "choices": [
+          "Once daily",
+          "Multiple times daily",
+          "Few times a week"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_research",
+        "title": "Regular research on AI trends is necessary",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "tweet_creation",
+        "title": "AI Trend Tweet Creation Pipeline",
+        "steps": [
+          "Research latest AI trends",
+          "Summarize key points",
+          "Craft engaging tweet",
+          "Add relevant hashtags",
+          "Schedule tweet"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "Once daily"
+  },
+  "nextQuestions": [
+    "twitter_account",
+    "ai_knowledge",
+    "tweet_frequency"
+  ]
+}

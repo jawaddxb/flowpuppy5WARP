@@ -1,0 +1,37 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "your_api_key",
+        "apiSecret": "your_api_secret"
+      },
+      "facebook": {
+        "provider": "facebook",
+        "appId": "your_app_id",
+        "appSecret": "your_app_secret"
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "model": "sentiment-analysis-v1",
+        "threshold": 0.5
+      }
+    },
+    "decision": {
+      "strategy": "majority-vote"
+    },
+    "actions": {
+      "post": {
+        "provider": "twitter",
+        "message": "Automated response based on analysis."
+      }
+    },
+    "channels": [
+      "twitter",
+      "facebook"
+    ]
+  }
+}

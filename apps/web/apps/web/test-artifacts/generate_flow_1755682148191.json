@@ -1,0 +1,100 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "weather-api",
+        "type": "API",
+        "title": "API",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "endpoint": "https://api.openweathermap.org/data/2.5/weather"
+        }
+      },
+      {
+        "id": "temperature-check",
+        "type": "DECISION",
+        "title": "DECISION",
+        "laneId": "lane-decision",
+        "data": {
+          "condition": "temperature > 20"
+        }
+      },
+      {
+        "id": "heater-control",
+        "type": "IOT_DEVICE",
+        "title": "IOT_DEVICE",
+        "laneId": "lane-transform",
+        "data": {
+          "deviceType": "smart-heater",
+          "action": "turn-on"
+        }
+      },
+      {
+        "id": "notification",
+        "type": "NOTIFICATION",
+        "title": "NOTIFICATION",
+        "laneId": "lane-transform",
+        "data": {
+          "message": "Heater turned on to warm the room"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "weather-api"
+        },
+        "target": {
+          "nodeId": "temperature-check"
+        },
+        "label": "Get current temperature"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-check"
+        },
+        "target": {
+          "nodeId": "heater-control"
+        },
+        "label": "If cold"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "heater-control"
+        },
+        "target": {
+          "nodeId": "notification"
+        },
+        "label": "Heater activated"
+      }
+    ]
+  }
+}

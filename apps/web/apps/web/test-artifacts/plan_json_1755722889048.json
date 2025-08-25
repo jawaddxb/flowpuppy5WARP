@@ -1,0 +1,90 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Detect new lead added to CRM"
+      },
+      {
+        "text": "Call enrichment API to get additional data on lead"
+      },
+      {
+        "text": "Analyze enriched data to determine if lead matches Ideal Customer Profile (ICP)"
+      },
+      {
+        "text": "If lead matches ICP, compose and send intro email via Gmail"
+      },
+      {
+        "text": "Update lead status in CRM based on actions taken"
+      }
+    ],
+    "questions": [
+      {
+        "id": "crm_provider",
+        "label": "Which CRM system are you using?",
+        "choices": [
+          "Salesforce",
+          "HubSpot",
+          "Pipedrive",
+          "Other"
+        ]
+      },
+      {
+        "id": "enrichment_api",
+        "label": "Which enrichment API do you plan to use?",
+        "choices": [
+          "Clearbit",
+          "ZoomInfo",
+          "FullContact",
+          "Other"
+        ]
+      },
+      {
+        "id": "icp_criteria",
+        "label": "What are the key criteria for your Ideal Customer Profile?",
+        "choices": [
+          "Company size",
+          "Industry",
+          "Location",
+          "Revenue",
+          "Technology stack",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "auto_enrichment",
+        "title": "Automatic lead enrichment can significantly improve lead quality",
+        "confidence": 0.9
+      },
+      {
+        "id": "icp_targeting",
+        "title": "Focusing on ICP-matched leads increases conversion rates",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "lead_processing",
+        "title": "New Lead Processing and Outreach",
+        "steps": [
+          "Monitor CRM for new leads",
+          "Enrich lead data",
+          "Evaluate ICP match",
+          "Send intro email if matched",
+          "Update CRM status"
+        ],
+        "requires": [
+          "crm",
+          "enrichment_api",
+          "gmail"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "crm",
+      "enrichment_api",
+      "gmail"
+    ]
+  }
+}

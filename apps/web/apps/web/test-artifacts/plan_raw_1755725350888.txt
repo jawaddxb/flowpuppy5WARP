@@ -1,0 +1,53 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Start with light cardio to increase heart rate"},
+      {"text": "Perform dynamic stretches to improve flexibility"},
+      {"text": "Do some light bodyweight exercises"},
+      {"text": "Gradually increase intensity"},
+      {"text": "Cool down with static stretches"}
+    ],
+    "questions": [
+      {
+        "id": "workout_location",
+        "label": "Where will you be warming up?",
+        "choices": ["Gym", "Home", "Outdoors"]
+      },
+      {
+        "id": "fitness_level",
+        "label": "What is your current fitness level?",
+        "choices": ["Beginner", "Intermediate", "Advanced"]
+      },
+      {
+        "id": "time_available",
+        "label": "How much time do you have for the warm-up?",
+        "choices": ["5 minutes", "10 minutes", "15 minutes", "20+ minutes"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "importance_of_warmup",
+        "title": "Importance of proper warm-up",
+        "confidence": 0.95
+      },
+      {
+        "id": "injury_prevention",
+        "title": "Warm-up helps prevent injuries",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "customize_warmup",
+        "title": "Customize warm-up routine",
+        "steps": [
+          "Determine workout location",
+          "Assess fitness level",
+          "Consider time available",
+          "Select appropriate exercises",
+          "Adjust intensity"
+        ]
+      }
+    ]
+  }
+}

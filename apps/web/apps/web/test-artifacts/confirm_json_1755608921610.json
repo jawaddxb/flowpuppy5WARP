@@ -1,0 +1,77 @@
+{
+  "agentSpec": {
+    "name": "BuildBot",
+    "inputs": {
+      "projectRequirements": "string",
+      "deadlines": "date",
+      "budget": "number"
+    },
+    "sources": {
+      "projectManagement": {
+        "provider": "jira",
+        "fields": [
+          "tasks",
+          "progress",
+          "issues"
+        ]
+      },
+      "codeRepository": {
+        "provider": "github",
+        "fields": [
+          "commits",
+          "pullRequests",
+          "branches"
+        ]
+      }
+    },
+    "analysis": {
+      "progressTracking": {
+        "method": "burndownChart",
+        "metrics": [
+          "velocity",
+          "completionRate"
+        ]
+      },
+      "codeQuality": {
+        "method": "staticAnalysis",
+        "tools": [
+          "sonarqube",
+          "eslint"
+        ]
+      }
+    },
+    "decision": {
+      "resourceAllocation": {
+        "algorithm": "priorityQueue",
+        "factors": [
+          "taskUrgency",
+          "developerAvailability"
+        ]
+      },
+      "riskAssessment": {
+        "method": "monteCarlo",
+        "iterations": 1000
+      }
+    },
+    "actions": {
+      "assignTasks": {
+        "target": "developers",
+        "method": "automaticAssignment"
+      },
+      "generateReports": {
+        "frequency": "weekly",
+        "format": "pdf"
+      }
+    },
+    "channels": [
+      {
+        "type": "slack",
+        "purpose": "teamCommunication"
+      },
+      {
+        "type": "email",
+        "purpose": "stakeholderUpdates"
+      }
+    ]
+  }
+}

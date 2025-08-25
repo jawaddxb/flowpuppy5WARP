@@ -1,0 +1,68 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "sensor",
+      "config": {
+        "sensorType": "temperature",
+        "unit": "celsius"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "thermostat",
+      "type": "controller",
+      "config": {
+        "targetTemperature": 22
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "heater",
+      "type": "actuator",
+      "config": {
+        "type": "electric-heater"
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "notification-service",
+      "type": "notifier",
+      "config": {
+        "provider": "twilio",
+        "phoneNumber": "+1234567890"
+      },
+      "position": {
+        "x": 300,
+        "y": 300
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "thermostat",
+      "label": "Current Temperature"
+    },
+    {
+      "source": "thermostat",
+      "target": "heater",
+      "label": "Control Signal"
+    },
+    {
+      "source": "thermostat",
+      "target": "notification-service",
+      "label": "Status Update"
+    }
+  ]
+}

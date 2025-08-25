@@ -1,0 +1,31 @@
+{
+  "version": "1.1",
+  "lanes": [
+    { "id": "lane-input", "title": "Input", "order": 1 },
+    { "id": "lane-transform", "title": "Transform", "order": 2 },
+    { "id": "lane-decision", "title": "Decision", "order": 3 },
+    { "id": "lane-output", "title": "Output", "order": 4 }
+  ],
+  "nodes": [
+    { "id": "n-trigger", "type": "input", "title": "Hourly Energy Check", "laneId": "lane-input", "data": { "schedule": "hourly" } },
+    { "id": "n-prices", "type": "action", "title": "Get Power Prices", "laneId": "lane-transform", "provider": "http", "data": { "method": "GET", "url": "https://api.eia.gov/prices" } },
+    { "id": "n-weather", "type": "action", "title": "Get Weather Data", "laneId": "lane-transform", "provider": "openweather", "data": { "method": "GET", "url": "https://api.openweathermap.org/..." } },
+    { "id": "n-ai", "type": "agent", "title": "Analyze & Decide", "laneId": "lane-transform", "provider": "ai", "data": { "model": "claude-3.5" } },
+    { "id": "n-decision", "type": "decision", "title": "Route Decision", "laneId": "lane-decision" },
+    { "id": "n-email-charge", "type": "output", "title": "Email CHARGE Action", "laneId": "lane-output", "provider": "gmail" },
+    { "id": "n-email-sell", "type": "output", "title": "Email SELL Action", "laneId": "lane-output", "provider": "gmail" },
+    { "id": "n-email-hold", "type": "output", "title": "Email HOLD Action", "laneId": "lane-output", "provider": "gmail" }
+  ],
+  "edges": [
+    { "id": "e1", "source": { "nodeId": "n-trigger" }, "target": { "nodeId": "n-prices" } },
+    { "id": "e2", "source": { "nodeId": "n-prices" }, "target": { "nodeId": "n-weather" } },
+    { "id": "e3", "source": { "nodeId": "n-weather" }, "target": { "nodeId": "n-ai" } },
+    { "id": "e4", "source": { "nodeId": "n-ai" }, "target": { "nodeId": "n-decision" } },
+    { "id": "ed1", "source": { "nodeId": "n-decision" }, "target": { "nodeId": "n-email-charge" }, "label": "CHARGE" },
+    { "id": "ed2", "source": { "nodeId": "n-decision" }, "target": { "nodeId": "n-email-sell" }, "label": "SELL" },
+    { "id": "ed3", "source": { "nodeId": "n-decision" }, "target": { "nodeId": "n-email-hold" }, "label": "HOLD" }
+  ]
+}
+
+
+

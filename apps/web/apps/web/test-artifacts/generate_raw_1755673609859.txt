@@ -1,0 +1,73 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-api",
+      "type": "ApiCall",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "/weather",
+        "method": "GET",
+        "params": {
+          "q": "{{location}}",
+          "units": "metric",
+          "appid": "{{API_KEY}}"
+        }
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-check",
+      "type": "Condition",
+      "config": {
+        "condition": "{{weather-api.main.temp}} < 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "heating-control",
+      "type": "IoTControl",
+      "config": {
+        "device": "smart-thermostat",
+        "action": "setTemperature",
+        "value": "22"
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "notification",
+      "type": "Notification",
+      "config": {
+        "message": "Heating turned on to keep you warm!"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "weather-api",
+      "target": "temperature-check"
+    },
+    {
+      "source": "temperature-check",
+      "target": "heating-control",
+      "label": "If cold"
+    },
+    {
+      "source": "heating-control",
+      "target": "notification"
+    }
+  ]
+}

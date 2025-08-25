@@ -1,0 +1,38 @@
+{
+  "agentSpec": {
+    "name": "BuildBot",
+    "inputs": {
+      "projectSpecs": "string",
+      "buildInstructions": "string",
+      "materialsList": "array"
+    },
+    "sources": {
+      "projectDatabase": {
+        "provider": "postgres",
+        "table": "projects"
+      },
+      "supplierCatalog": {
+        "provider": "restapi",
+        "endpoint": "/suppliers/catalog"
+      }
+    },
+    "analysis": {
+      "feasibilityCheck": "function",
+      "costEstimation": "function"
+    },
+    "decision": {
+      "buildApproval": "boolean",
+      "supplierSelection": "string"
+    },
+    "actions": {
+      "orderMaterials": "function",
+      "scheduleBuild": "function",
+      "notifyTeam": "function"
+    },
+    "channels": [
+      "email",
+      "slack",
+      "projectManagementTool"
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-api",
+      "type": "DataSource",
+      "config": {
+        "provider": "openweathermap",
+        "apiKey": "{{OPENWEATHERMAP_API_KEY}}",
+        "endpoint": "https://api.openweathermap.org/data/2.5/weather"
+      },
+      "position": {"x": 100, "y": 100}
+    },
+    {
+      "id": "location-input",
+      "type": "UserInput",
+      "config": {
+        "prompt": "Enter your location:"
+      },
+      "position": {"x": 100, "y": 200}
+    },
+    {
+      "id": "fetch-weather",
+      "type": "Action",
+      "config": {
+        "method": "GET",
+        "params": {
+          "q": "{{location-input.value}}",
+          "units": "metric",
+          "appid": "{{weather-api.config.apiKey}}"
+        }
+      },
+      "position": {"x": 300, "y": 150}
+    },
+    {
+      "id": "parse-temperature",
+      "type": "Transform",
+      "config": {
+        "expression": "{{fetch-weather.response.main.temp}}"
+      },
+      "position": {"x": 500, "y": 150}
+    },
+    {
+      "id": "check-temperature",
+      "type": "Condition",
+      "config": {
+        "condition": "{{parse-temperature.output}} > 20"
+      },
+      "position": {"x": 700, "y": 150}
+    },
+    {
+      "id": "warm-response",
+      "type": "Output",
+      "config": {
+        "message": "It's warm! The temperature is {{parse-temperature.output}}°C."
+      },
+      "position": {"x": 900, "y": 100}
+    },
+    {
+      "id": "not-warm-response",
+      "type": "Output",
+      "config": {
+        "message": "It's not warm. The temperature is {{parse-temperature.output}}°C."
+      },
+      "position": {"x": 900, "y": 200}
+    }
+  ],
+  "edges": [
+    {
+      "source": "location-input",
+      "target": "fetch-weather",
+      "label": "Location"
+    },
+    {
+      "source": "weather-api",
+      "target": "fetch-weather",
+      "label": "API Config"
+    },
+    {
+      "source": "fetch-weather",
+      "target": "parse-temperature",
+      "label": "Weather Data"
+    },
+    {
+      "source": "parse-temperature",
+      "target": "check-temperature",
+      "label": "Temperature"
+    },
+    {
+      "source": "check-temperature",
+      "target": "warm-response",
+      "label": "True"
+    },
+    {
+      "source": "check-temperature",
+      "target": "not-warm-response",
+      "label": "False"
+    }
+  ]
+}

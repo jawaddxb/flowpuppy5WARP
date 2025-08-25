@@ -1,0 +1,54 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "sensor",
+      "config": {
+        "sensorType": "temperature",
+        "units": "celsius",
+        "updateInterval": 60
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "thermostat-control",
+      "type": "actuator",
+      "config": {
+        "deviceType": "thermostat",
+        "minTemp": 20,
+        "maxTemp": 25
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-logic",
+      "type": "function",
+      "config": {
+        "code": "if (input.temperature < 20) return {action: 'heat'}; else if (input.temperature > 25) return {action: 'cool'}; else return {action: 'maintain'};"
+      },
+      "position": {
+        "x": 200,
+        "y": 200
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "temperature-logic",
+      "label": "Current Temperature"
+    },
+    {
+      "source": "temperature-logic",
+      "target": "thermostat-control",
+      "label": "Heating/Cooling Action"
+    }
+  ]
+}

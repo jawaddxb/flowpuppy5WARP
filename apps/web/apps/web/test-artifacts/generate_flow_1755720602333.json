@@ -1,0 +1,105 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "input-processor",
+        "type": "input",
+        "title": "input",
+        "laneId": "lane-input",
+        "data": {
+          "inputType": "text"
+        }
+      },
+      {
+        "id": "openai-analysis",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.7
+        }
+      },
+      {
+        "id": "decision-maker",
+        "type": "decision",
+        "title": "decision",
+        "laneId": "lane-decision",
+        "data": {
+          "rules": [
+            {
+              "condition": "true",
+              "action": "output"
+            }
+          ]
+        }
+      },
+      {
+        "id": "output-generator",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output",
+        "data": {
+          "outputType": "text"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "input-processor"
+        },
+        "target": {
+          "nodeId": "openai-analysis"
+        },
+        "label": "Process input"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "openai-analysis"
+        },
+        "target": {
+          "nodeId": "decision-maker"
+        },
+        "label": "Analyze"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "decision-maker"
+        },
+        "target": {
+          "nodeId": "output-generator"
+        },
+        "label": "Generate response"
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "get-weather",
+        "type": "http-request",
+        "title": "http-request",
+        "laneId": "lane-transform",
+        "data": {
+          "url": "https://api.openweathermap.org/data/2.5/weather",
+          "method": "GET",
+          "params": {
+            "q": "London,uk",
+            "appid": "{{env.OPENWEATHER_API_KEY}}",
+            "units": "metric"
+          }
+        }
+      },
+      {
+        "id": "format-weather",
+        "type": "transform",
+        "title": "transform",
+        "laneId": "lane-transform",
+        "data": {
+          "script": "return `Current weather in ${input.name}: ${input.main.temp}°C, ${input.weather[0].description}`;"
+        }
+      },
+      {
+        "id": "send-email",
+        "type": "notification",
+        "title": "notification",
+        "laneId": "lane-transform",
+        "provider": "email",
+        "data": {
+          "provider": "email",
+          "to": "user@example.com",
+          "subject": "Daily Weather Summary",
+          "body": "{{input}}"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "get-weather"
+        },
+        "target": {
+          "nodeId": "format-weather"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "format-weather"
+        },
+        "target": {
+          "nodeId": "send-email"
+        }
+      }
+    ]
+  }
+}

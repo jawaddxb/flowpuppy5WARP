@@ -1,0 +1,281 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "project-requirements",
+        "type": "input",
+        "title": "Project Requirements",
+        "laneId": "lane-input",
+        "data": {
+          "label": "Project Requirements",
+          "type": "string"
+        }
+      },
+      {
+        "id": "deadline",
+        "type": "input",
+        "title": "Deadline",
+        "laneId": "lane-input",
+        "data": {
+          "label": "Deadline",
+          "type": "date"
+        }
+      },
+      {
+        "id": "budget",
+        "type": "input",
+        "title": "Budget",
+        "laneId": "lane-input",
+        "data": {
+          "label": "Budget",
+          "type": "number"
+        }
+      },
+      {
+        "id": "jira-project-management",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "jira",
+        "data": {
+          "provider": "jira",
+          "projectId": "string"
+        }
+      },
+      {
+        "id": "github-code-repository",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "github",
+        "data": {
+          "provider": "github",
+          "repoUrl": "string"
+        }
+      },
+      {
+        "id": "task-breakdown",
+        "type": "analysis",
+        "title": "Task Breakdown",
+        "laneId": "lane-transform",
+        "data": {
+          "label": "Task Breakdown",
+          "type": "object"
+        }
+      },
+      {
+        "id": "resource-allocation",
+        "type": "analysis",
+        "title": "Resource Allocation",
+        "laneId": "lane-transform",
+        "data": {
+          "label": "Resource Allocation",
+          "type": "object"
+        }
+      },
+      {
+        "id": "risk-assessment",
+        "type": "analysis",
+        "title": "Risk Assessment",
+        "laneId": "lane-transform",
+        "data": {
+          "label": "Risk Assessment",
+          "type": "object"
+        }
+      },
+      {
+        "id": "build-strategy",
+        "type": "decision",
+        "title": "Build Strategy",
+        "laneId": "lane-decision",
+        "data": {
+          "label": "Build Strategy",
+          "type": "string"
+        }
+      },
+      {
+        "id": "technology-stack",
+        "type": "decision",
+        "title": "Technology Stack",
+        "laneId": "lane-decision",
+        "data": {
+          "label": "Technology Stack",
+          "type": "array"
+        }
+      },
+      {
+        "id": "team-composition",
+        "type": "decision",
+        "title": "Team Composition",
+        "laneId": "lane-decision",
+        "data": {
+          "label": "Team Composition",
+          "type": "object"
+        }
+      },
+      {
+        "id": "create-tasks",
+        "type": "action",
+        "title": "Create Tasks",
+        "laneId": "lane-transform",
+        "data": {
+          "label": "Create Tasks",
+          "type": "function"
+        }
+      },
+      {
+        "id": "assign-resources",
+        "type": "action",
+        "title": "Assign Resources",
+        "laneId": "lane-transform",
+        "data": {
+          "label": "Assign Resources",
+          "type": "function"
+        }
+      },
+      {
+        "id": "schedule-milestones",
+        "type": "action",
+        "title": "Schedule Milestones",
+        "laneId": "lane-input",
+        "data": {
+          "label": "Schedule Milestones",
+          "type": "function"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "project-requirements"
+        },
+        "target": {
+          "nodeId": "jira-project-management"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "deadline"
+        },
+        "target": {
+          "nodeId": "jira-project-management"
+        }
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "budget"
+        },
+        "target": {
+          "nodeId": "jira-project-management"
+        }
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "github-code-repository"
+        },
+        "target": {
+          "nodeId": "task-breakdown"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "task-breakdown"
+        },
+        "target": {
+          "nodeId": "resource-allocation"
+        }
+      },
+      {
+        "id": "e5",
+        "source": {
+          "nodeId": "resource-allocation"
+        },
+        "target": {
+          "nodeId": "risk-assessment"
+        }
+      },
+      {
+        "id": "e6",
+        "source": {
+          "nodeId": "risk-assessment"
+        },
+        "target": {
+          "nodeId": "build-strategy"
+        }
+      },
+      {
+        "id": "e7",
+        "source": {
+          "nodeId": "build-strategy"
+        },
+        "target": {
+          "nodeId": "technology-stack"
+        }
+      },
+      {
+        "id": "e8",
+        "source": {
+          "nodeId": "technology-stack"
+        },
+        "target": {
+          "nodeId": "team-composition"
+        }
+      },
+      {
+        "id": "e9",
+        "source": {
+          "nodeId": "team-composition"
+        },
+        "target": {
+          "nodeId": "create-tasks"
+        }
+      },
+      {
+        "id": "e10",
+        "source": {
+          "nodeId": "create-tasks"
+        },
+        "target": {
+          "nodeId": "assign-resources"
+        }
+      },
+      {
+        "id": "e11",
+        "source": {
+          "nodeId": "assign-resources"
+        },
+        "target": {
+          "nodeId": "schedule-milestones"
+        }
+      }
+    ]
+  }
+}

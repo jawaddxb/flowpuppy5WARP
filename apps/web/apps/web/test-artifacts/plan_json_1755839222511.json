@@ -1,0 +1,94 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Create a content calendar"
+      },
+      {
+        "text": "Write engaging tweets about AI trends"
+      },
+      {
+        "text": "Schedule tweets for daily posting"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy"
+      }
+    ],
+    "questions": [
+      {
+        "id": "twitter_experience",
+        "label": "Do you have experience using the Twitter API?",
+        "choices": [
+          "Yes",
+          "No",
+          "Some"
+        ]
+      },
+      {
+        "id": "ai_knowledge",
+        "label": "How would you rate your knowledge of AI trends?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Expert"
+        ]
+      },
+      {
+        "id": "posting_frequency",
+        "label": "How many AI-related tweets do you want to post daily?",
+        "choices": [
+          "1",
+          "2-3",
+          "4+"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api_complexity",
+        "title": "Twitter API setup may require technical knowledge",
+        "confidence": 0.8
+      },
+      {
+        "id": "content_creation_time",
+        "title": "Creating daily AI content can be time-consuming",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "tweet_creation",
+        "title": "AI Trend Tweet Creation Pipeline",
+        "steps": [
+          "Research trending AI topics",
+          "Draft tweet content",
+          "Review and edit",
+          "Add relevant hashtags",
+          "Schedule for posting"
+        ]
+      },
+      {
+        "id": "engagement_analysis",
+        "title": "Tweet Engagement Analysis",
+        "steps": [
+          "Collect engagement metrics",
+          "Analyze performance",
+          "Identify top-performing topics",
+          "Adjust content strategy"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  }
+}

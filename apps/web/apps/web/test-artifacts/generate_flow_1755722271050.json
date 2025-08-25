@@ -1,0 +1,229 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "user-input",
+        "type": "input",
+        "title": "User Query",
+        "laneId": "lane-input",
+        "data": {
+          "inputKey": "userQuery",
+          "label": "User Query"
+        }
+      },
+      {
+        "id": "twitter-search",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "twitter",
+        "data": {
+          "provider": "twitter",
+          "query": "${inputs.userQuery}",
+          "maxResults": 10
+        }
+      },
+      {
+        "id": "web-search",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "googleSearch",
+        "data": {
+          "provider": "googleSearch",
+          "query": "${inputs.userQuery}",
+          "numResults": 5
+        }
+      },
+      {
+        "id": "sentiment-analysis",
+        "type": "analysis",
+        "title": "analysis",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "prompt": "Analyze the sentiment of the following text: ${sources.twitter.results}"
+        }
+      },
+      {
+        "id": "summarization",
+        "type": "analysis",
+        "title": "analysis",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "prompt": "Summarize the key points from the following search results: ${sources.webSearch.results}"
+        }
+      },
+      {
+        "id": "response-generation",
+        "type": "decision",
+        "title": "decision",
+        "laneId": "lane-decision",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "prompt": "Based on the sentiment analysis (${analysis.sentimentAnalysis}) and summary (${analysis.summarization}), generate a response to the user query: ${inputs.userQuery}"
+        }
+      },
+      {
+        "id": "send-response",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "output",
+        "data": {
+          "provider": "output",
+          "message": "${decision.responseGeneration}"
+        }
+      },
+      {
+        "id": "web-interface",
+        "type": "channel",
+        "title": "channel",
+        "laneId": "lane-transform",
+        "provider": "webInterface",
+        "data": {
+          "provider": "webInterface"
+        }
+      },
+      {
+        "id": "slack-channel",
+        "type": "channel",
+        "title": "channel",
+        "laneId": "lane-transform",
+        "provider": "slack",
+        "data": {
+          "provider": "slack"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "twitter-search"
+        },
+        "label": "User Query"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "web-search"
+        },
+        "label": "User Query"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "twitter-search"
+        },
+        "target": {
+          "nodeId": "sentiment-analysis"
+        },
+        "label": "Twitter Results"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "web-search"
+        },
+        "target": {
+          "nodeId": "summarization"
+        },
+        "label": "Web Search Results"
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "sentiment-analysis"
+        },
+        "target": {
+          "nodeId": "response-generation"
+        },
+        "label": "Sentiment Analysis"
+      },
+      {
+        "id": "e5",
+        "source": {
+          "nodeId": "summarization"
+        },
+        "target": {
+          "nodeId": "response-generation"
+        },
+        "label": "Summary"
+      },
+      {
+        "id": "e6",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "response-generation"
+        },
+        "label": "User Query"
+      },
+      {
+        "id": "e7",
+        "source": {
+          "nodeId": "response-generation"
+        },
+        "target": {
+          "nodeId": "send-response"
+        },
+        "label": "Generated Response"
+      },
+      {
+        "id": "e8",
+        "source": {
+          "nodeId": "send-response"
+        },
+        "target": {
+          "nodeId": "web-interface"
+        },
+        "label": "Output"
+      },
+      {
+        "id": "e9",
+        "source": {
+          "nodeId": "send-response"
+        },
+        "target": {
+          "nodeId": "slack-channel"
+        },
+        "label": "Output"
+      }
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "weather-api",
+        "type": "API",
+        "title": "API",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "endpoint": "/data/2.5/weather",
+          "method": "GET"
+        }
+      },
+      {
+        "id": "location-input",
+        "type": "UserInput",
+        "title": "UserInput",
+        "laneId": "lane-transform",
+        "data": {
+          "prompt": "Enter your location:"
+        }
+      },
+      {
+        "id": "temperature-check",
+        "type": "Condition",
+        "title": "Condition",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "temperature > 20"
+        }
+      },
+      {
+        "id": "warm-message",
+        "type": "TextGenerator",
+        "title": "TextGenerator",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "prompt": "Generate a message about how warm it is today."
+        }
+      },
+      {
+        "id": "cool-message",
+        "type": "TextGenerator",
+        "title": "TextGenerator",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "prompt": "Generate a message about how it's not very warm today."
+        }
+      },
+      {
+        "id": "output-display",
+        "type": "Display",
+        "title": "Display",
+        "laneId": "lane-transform",
+        "data": {
+          "format": "text"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "location-input"
+        },
+        "target": {
+          "nodeId": "weather-api"
+        },
+        "label": "Location"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "weather-api"
+        },
+        "target": {
+          "nodeId": "temperature-check"
+        },
+        "label": "Weather Data"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "temperature-check"
+        },
+        "target": {
+          "nodeId": "warm-message"
+        },
+        "label": "True"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "temperature-check"
+        },
+        "target": {
+          "nodeId": "cool-message"
+        },
+        "label": "False"
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "warm-message"
+        },
+        "target": {
+          "nodeId": "output-display"
+        },
+        "label": "Warm Message"
+      },
+      {
+        "id": "e5",
+        "source": {
+          "nodeId": "cool-message"
+        },
+        "target": {
+          "nodeId": "output-display"
+        },
+        "label": "Cool Message"
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-api",
+      "type": "ApiCall",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "/weather",
+        "params": {
+          "q": "{{city}}",
+          "units": "metric",
+          "appid": "{{API_KEY}}"
+        }
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-check",
+      "type": "Condition",
+      "config": {
+        "condition": "{{weather-api.main.temp}} > 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "warm-message",
+      "type": "TextGenerator",
+      "config": {
+        "provider": "openai",
+        "prompt": "Generate a short message about how warm it is in {{city}} with a temperature of {{weather-api.main.temp}}°C."
+      },
+      "position": {
+        "x": 500,
+        "y": 50
+      }
+    },
+    {
+      "id": "not-warm-message",
+      "type": "TextGenerator",
+      "config": {
+        "provider": "openai",
+        "prompt": "Generate a short message about how it's not particularly warm in {{city}} with a temperature of {{weather-api.main.temp}}°C."
+      },
+      "position": {
+        "x": 500,
+        "y": 150
+      }
+    },
+    {
+      "id": "output",
+      "type": "Output",
+      "config": {
+        "message": "{{selected_message}}"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "weather-api",
+      "target": "temperature-check"
+    },
+    {
+      "source": "temperature-check",
+      "target": "warm-message",
+      "label": "Yes"
+    },
+    {
+      "source": "temperature-check",
+      "target": "not-warm-message",
+      "label": "No"
+    },
+    {
+      "source": "warm-message",
+      "target": "output",
+      "data": {
+        "mapping": {
+          "selected_message": "{{warm-message}}"
+        }
+      }
+    },
+    {
+      "source": "not-warm-message",
+      "target": "output",
+      "data": {
+        "mapping": {
+          "selected_message": "{{not-warm-message}}"
+        }
+      }
+    }
+  ]
+}

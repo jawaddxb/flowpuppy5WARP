@@ -1,0 +1,50 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "prompt": "What would you like assistance with?"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "openai-analysis",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Analyze the following user input and provide a helpful response: {{user-input}}"
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "text-output",
+      "type": "output",
+      "config": {
+        "field": "response"
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "openai-analysis"
+    },
+    {
+      "source": "openai-analysis",
+      "target": "text-output"
+    }
+  ]
+}

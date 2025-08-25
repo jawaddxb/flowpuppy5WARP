@@ -1,0 +1,78 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "get-weather",
+      "type": "httpRequest",
+      "config": {
+        "url": "https://api.openweathermap.org/data/2.5/weather",
+        "method": "GET",
+        "params": {
+          "q": "{{city}}",
+          "appid": "{{OPENWEATHER_API_KEY}}",
+          "units": "metric"
+        }
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "check-temperature",
+      "type": "branch",
+      "config": {
+        "conditions": [
+          {
+            "condition": "{{get-weather.main.temp}} >= 20",
+            "target": "warm-response"
+          },
+          {
+            "condition": "{{get-weather.main.temp}} < 20",
+            "target": "not-warm-response"
+          }
+        ]
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "warm-response",
+      "type": "textResponse",
+      "config": {
+        "text": "It's warm! The temperature in {{city}} is {{get-weather.main.temp}}°C."
+      },
+      "position": {
+        "x": 400,
+        "y": -100
+      }
+    },
+    {
+      "id": "not-warm-response",
+      "type": "textResponse",
+      "config": {
+        "text": "It's not warm. The temperature in {{city}} is {{get-weather.main.temp}}°C."
+      },
+      "position": {
+        "x": 400,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "get-weather",
+      "target": "check-temperature"
+    },
+    {
+      "source": "check-temperature",
+      "target": "warm-response"
+    },
+    {
+      "source": "check-temperature",
+      "target": "not-warm-response"
+    }
+  ]
+}

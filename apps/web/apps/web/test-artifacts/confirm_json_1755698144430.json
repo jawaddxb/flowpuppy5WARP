@@ -1,0 +1,41 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "projectType": "string",
+      "requirements": "array"
+    },
+    "sources": {
+      "codeRepository": {
+        "provider": "github",
+        "repository": "string"
+      },
+      "buildTools": {
+        "provider": "npm"
+      }
+    },
+    "analysis": {
+      "codeQuality": {
+        "provider": "sonarqube"
+      },
+      "dependencies": {
+        "provider": "snyk"
+      }
+    },
+    "decision": {
+      "buildApproval": "boolean"
+    },
+    "actions": {
+      "runBuild": {
+        "provider": "jenkins"
+      },
+      "deployArtifact": {
+        "provider": "aws"
+      }
+    },
+    "channels": [
+      "slack",
+      "email"
+    ]
+  }
+}

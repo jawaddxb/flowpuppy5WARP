@@ -1,0 +1,57 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "buildSpecification": "string",
+      "codeRepository": "string",
+      "environmentVariables": "object"
+    },
+    "sources": {
+      "git": {
+        "provider": "github",
+        "repository": "string"
+      },
+      "artifactRegistry": {
+        "provider": "dockerHub",
+        "repository": "string"
+      }
+    },
+    "analysis": {
+      "codeQuality": {
+        "provider": "sonarqube",
+        "rules": "array"
+      },
+      "securityScan": {
+        "provider": "snyk",
+        "vulnerabilityThreshold": "string"
+      }
+    },
+    "decision": {
+      "buildApproval": {
+        "requiredApprovers": "number",
+        "timeoutMinutes": "number"
+      }
+    },
+    "actions": {
+      "build": {
+        "provider": "jenkins",
+        "pipeline": "string"
+      },
+      "deploy": {
+        "provider": "kubernetes",
+        "namespace": "string",
+        "deploymentFile": "string"
+      }
+    },
+    "channels": [
+      {
+        "type": "slack",
+        "channel": "string"
+      },
+      {
+        "type": "email",
+        "recipients": "array"
+      }
+    ]
+  }
+}

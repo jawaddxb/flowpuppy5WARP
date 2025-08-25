@@ -1,0 +1,83 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a nightly scheduled task to run at 1am UTC"
+      },
+      {
+        "text": "Connect to the CRM system and export leads data"
+      },
+      {
+        "text": "Create or update a Google Sheet with the exported leads"
+      },
+      {
+        "text": "Generate a CSV file from the leads data"
+      },
+      {
+        "text": "Compose an email with the CSV attachment and row count information"
+      },
+      {
+        "text": "Send the email to ops@"
+      }
+    ],
+    "questions": [
+      {
+        "id": "crm_system",
+        "label": "Which CRM system are you using?",
+        "choices": ["Salesforce", "HubSpot", "Pipedrive", "Other"]
+      },
+      {
+        "id": "google_sheet_id",
+        "label": "Do you have an existing Google Sheet to update, or should a new one be created?",
+        "choices": ["Use existing Sheet", "Create new Sheet"]
+      },
+      {
+        "id": "email_sender",
+        "label": "Which email address should be used to send the nightly report?",
+        "choices": ["Use default system email", "Specify a different email"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "nightly_schedule",
+        "title": "Nightly task scheduled for 1am UTC",
+        "confidence": 1
+      },
+      {
+        "id": "email_recipient",
+        "title": "Email recipient is ops@",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "export_to_sheets",
+        "title": "Export CRM Leads to Google Sheets",
+        "steps": [
+          "Connect to CRM",
+          "Fetch leads data",
+          "Authenticate with Google Sheets API",
+          "Create or update Google Sheet",
+          "Write leads data to sheet"
+        ],
+        "requires": ["crm", "google_sheets"]
+      },
+      {
+        "id": "send_csv_email",
+        "title": "Send CSV via Email",
+        "steps": [
+          "Generate CSV from leads data",
+          "Compose email with row count",
+          "Attach CSV to email",
+          "Send email to ops@"
+        ],
+        "requires": ["smtp"]
+      }
+    ],
+    "connectionsRequired": [
+      "crm",
+      "google_sheets",
+      "smtp"
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "temperature-sensor",
+        "type": "sensor",
+        "title": "sensor",
+        "laneId": "lane-transform",
+        "data": {
+          "sensorType": "temperature",
+          "units": "celsius"
+        }
+      },
+      {
+        "id": "thermostat-control",
+        "type": "controller",
+        "title": "controller",
+        "laneId": "lane-transform",
+        "data": {
+          "setPoint": 22,
+          "tolerance": 1
+        }
+      },
+      {
+        "id": "heating-system",
+        "type": "actuator",
+        "title": "actuator",
+        "laneId": "lane-transform",
+        "data": {
+          "type": "furnace"
+        }
+      },
+      {
+        "id": "notification-service",
+        "type": "notifier",
+        "title": "notifier",
+        "laneId": "lane-transform",
+        "provider": "twilio",
+        "data": {
+          "provider": "twilio",
+          "method": "sms"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "temperature-sensor"
+        },
+        "target": {
+          "nodeId": "thermostat-control"
+        },
+        "label": "temperature data"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "thermostat-control"
+        },
+        "target": {
+          "nodeId": "heating-system"
+        },
+        "label": "heating commands"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "thermostat-control"
+        },
+        "target": {
+          "nodeId": "notification-service"
+        },
+        "label": "status updates"
+      }
+    ]
+  }
+}

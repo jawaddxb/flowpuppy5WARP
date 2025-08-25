@@ -1,0 +1,109 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for the email sequence"
+      },
+      {
+        "text": "Draft welcome email content"
+      },
+      {
+        "text": "Create content for day 2 follow-up email"
+      },
+      {
+        "text": "Develop content for day 3 follow-up email"
+      },
+      {
+        "text": "Set up email automation workflow"
+      },
+      {
+        "text": "Test and review email sequence"
+      },
+      {
+        "text": "Launch and monitor the email campaign"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Event attendees"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your email sequence?",
+        "choices": [
+          "Onboarding",
+          "Product education",
+          "Upselling",
+          "Gathering feedback"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone would you like to use in your emails?",
+        "choices": [
+          "Formal",
+          "Friendly",
+          "Professional",
+          "Humorous"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "engagement",
+        "title": "Email engagement metrics are crucial for success",
+        "confidence": 0.9
+      },
+      {
+        "id": "personalization",
+        "title": "Personalized content increases open and click-through rates",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_sequence",
+        "title": "Create and Schedule Email Sequence",
+        "steps": [
+          "Draft email content",
+          "Design email templates",
+          "Set up automation workflow",
+          "Schedule emails",
+          "Monitor performance"
+        ],
+        "requires": [
+          "email_provider"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "hubspot",
+      "sendgrid"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {
+      "id": "email_provider",
+      "label": "Which email marketing platform do you use?",
+      "choices": [
+        "Mailchimp",
+        "HubSpot",
+        "SendGrid",
+        "Other"
+      ]
+    }
+  ]
+}

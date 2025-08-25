@@ -1,0 +1,98 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a Twitter account if you don't have one"
+      },
+      {
+        "text": "Research current AI trends and developments"
+      },
+      {
+        "text": "Create a content calendar for daily tweets"
+      },
+      {
+        "text": "Write engaging tweets about AI trends"
+      },
+      {
+        "text": "Schedule tweets using a social media management tool"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "twitter_account",
+        "label": "Do you have an existing Twitter account?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "ai_knowledge",
+        "label": "How would you rate your knowledge of AI?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Advanced"
+        ]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many times per day do you want to tweet?",
+        "choices": [
+          "Once",
+          "Twice",
+          "Three times",
+          "More than three times"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_importance",
+        "title": "Twitter is a key platform for sharing AI trends",
+        "confidence": 0.9
+      },
+      {
+        "id": "consistency_matters",
+        "title": "Consistent daily tweeting is crucial for building an audience",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "research_pipeline",
+        "title": "AI Trend Research Pipeline",
+        "steps": [
+          "Identify reputable AI news sources",
+          "Set up RSS feeds or alerts",
+          "Review and summarize daily updates",
+          "Identify key trends and developments"
+        ]
+      },
+      {
+        "id": "tweet_creation_pipeline",
+        "title": "Tweet Creation and Scheduling Pipeline",
+        "steps": [
+          "Draft tweet content based on research",
+          "Add relevant hashtags",
+          "Include links or media if applicable",
+          "Schedule tweet using management tool"
+        ],
+        "requires": [
+          "research_pipeline"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "nextQuestions": [
+    "twitter_account",
+    "ai_knowledge",
+    "tweet_frequency"
+  ]
+}

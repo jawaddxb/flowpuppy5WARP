@@ -1,0 +1,67 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-data",
+      "type": "input",
+      "config": {
+        "provider": "openweathermap",
+        "dataType": "current",
+        "location": "user_location"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-check",
+      "type": "function",
+      "config": {
+        "code": "return input.main.temp > 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "warm-response",
+      "type": "output",
+      "config": {
+        "message": "It's warm today!"
+      },
+      "position": {
+        "x": 500,
+        "y": 50
+      }
+    },
+    {
+      "id": "cool-response",
+      "type": "output",
+      "config": {
+        "message": "It's not warm today."
+      },
+      "position": {
+        "x": 500,
+        "y": 150
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "weather-data",
+      "target": "temperature-check"
+    },
+    {
+      "source": "temperature-check",
+      "target": "warm-response",
+      "label": "true"
+    },
+    {
+      "source": "temperature-check",
+      "target": "cool-response",
+      "label": "false"
+    }
+  ]
+}

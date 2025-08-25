@@ -1,0 +1,66 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define welcome email content"},
+      {"text": "Create first follow-up email (Day 1)"},
+      {"text": "Design second follow-up email (Day 2)"},
+      {"text": "Develop third follow-up email (Day 3)"},
+      {"text": "Set up email automation sequence"},
+      {"text": "Test and optimize email sequence"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is the target audience for this email sequence?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Event attendees"]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of this email sequence?",
+        "choices": ["Onboarding", "Engagement", "Conversion", "Retention"]
+      },
+      {
+        "id": "tone",
+        "label": "What tone should the emails have?",
+        "choices": ["Formal", "Friendly", "Professional", "Humorous"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "best_time",
+        "title": "Optimal send times for email sequence",
+        "confidence": 0.8
+      },
+      {
+        "id": "subject_lines",
+        "title": "Effective subject lines for each email",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_creation",
+        "title": "Email Content Creation",
+        "steps": ["Draft copy", "Design layout", "Add images", "Proofread"],
+        "requires": ["openai"]
+      },
+      {
+        "id": "automation_setup",
+        "title": "Email Automation Setup",
+        "steps": ["Choose platform", "Configure triggers", "Set delays", "Test sequence"],
+        "requires": ["mailchimp"]
+      }
+    ],
+    "connectionsRequired": ["openai", "mailchimp"]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "tone"}
+  ]
+}

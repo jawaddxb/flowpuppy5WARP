@@ -1,0 +1,37 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "blueprints": "string",
+      "materials": "object",
+      "timeline": "date"
+    },
+    "sources": {
+      "buildingCodes": {
+        "provider": "localDatabase",
+        "query": "SELECT * FROM building_codes"
+      },
+      "supplierInventory": {
+        "provider": "api",
+        "endpoint": "https://supplier-api.com/inventory"
+      }
+    },
+    "analysis": {
+      "costEstimation": "function",
+      "timelineValidation": "function"
+    },
+    "decision": {
+      "approveConstruction": "boolean"
+    },
+    "actions": {
+      "orderMaterials": "function",
+      "scheduleWorkers": "function",
+      "updateProjectStatus": "function"
+    },
+    "channels": [
+      "email",
+      "sms",
+      "projectManagementSystem"
+    ]
+  }
+}

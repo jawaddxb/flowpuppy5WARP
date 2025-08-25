@@ -1,0 +1,52 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "input",
+      "config": {
+        "provider": "iot-sensor",
+        "sensorType": "temperature"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "thermostat-control",
+      "type": "output",
+      "config": {
+        "provider": "smart-home",
+        "deviceType": "thermostat"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-analysis",
+      "type": "process",
+      "config": {
+        "targetTemperature": 22
+      },
+      "position": {
+        "x": 200,
+        "y": 200
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "temperature-analysis",
+      "label": "Current temperature"
+    },
+    {
+      "source": "temperature-analysis",
+      "target": "thermostat-control",
+      "label": "Adjustment needed"
+    }
+  ]
+}

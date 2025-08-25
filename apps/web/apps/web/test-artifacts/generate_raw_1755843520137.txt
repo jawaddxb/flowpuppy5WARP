@@ -1,0 +1,102 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "twitter-input",
+      "type": "source",
+      "config": {
+        "provider": "twitter"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "web-input",
+      "type": "source",
+      "config": {
+        "provider": "web"
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "data-aggregator",
+      "type": "transform",
+      "config": {
+        "operation": "merge"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "sentiment-analyzer",
+      "type": "analysis",
+      "config": {
+        "provider": "openai",
+        "model": "text-davinci-002",
+        "task": "sentiment-analysis"
+      },
+      "position": {
+        "x": 100,
+        "y": 200
+      }
+    },
+    {
+      "id": "decision-maker",
+      "type": "decision",
+      "config": {
+        "provider": "openai",
+        "model": "text-davinci-002",
+        "task": "decision-making"
+      },
+      "position": {
+        "x": 100,
+        "y": 300
+      }
+    },
+    {
+      "id": "action-executor",
+      "type": "action",
+      "config": {
+        "actions": ["tweet", "email", "log"]
+      },
+      "position": {
+        "x": 100,
+        "y": 400
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "twitter-input",
+      "target": "data-aggregator",
+      "label": "Twitter data"
+    },
+    {
+      "source": "web-input",
+      "target": "data-aggregator",
+      "label": "Web data"
+    },
+    {
+      "source": "data-aggregator",
+      "target": "sentiment-analyzer",
+      "label": "Aggregated data"
+    },
+    {
+      "source": "sentiment-analyzer",
+      "target": "decision-maker",
+      "label": "Sentiment analysis"
+    },
+    {
+      "source": "decision-maker",
+      "target": "action-executor",
+      "label": "Decision"
+    }
+  ]
+}

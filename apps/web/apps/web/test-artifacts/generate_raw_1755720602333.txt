@@ -1,0 +1,73 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "input-processor",
+      "type": "input",
+      "config": {
+        "inputType": "text"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "openai-analysis",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "decision-maker",
+      "type": "decision",
+      "config": {
+        "rules": [
+          {
+            "condition": "true",
+            "action": "output"
+          }
+        ]
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "output-generator",
+      "type": "output",
+      "config": {
+        "outputType": "text"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "input-processor",
+      "target": "openai-analysis",
+      "label": "Process input"
+    },
+    {
+      "source": "openai-analysis",
+      "target": "decision-maker",
+      "label": "Analyze"
+    },
+    {
+      "source": "decision-maker",
+      "target": "output-generator",
+      "label": "Generate response"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "inputType": "text",
+        "label": "User Query"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "analyze-query",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Analyze the following user query and provide a concise summary of the user's intent:\n\n{user_query}"
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "generate-response",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Based on the following analysis of user intent, generate an appropriate response:\n\n{analysis}\n\nResponse:"
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    },
+    {
+      "id": "output-response",
+      "type": "output",
+      "config": {
+        "outputType": "text"
+      },
+      "position": {
+        "x": 600,
+        "y": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "analyze-query",
+      "label": "User Query"
+    },
+    {
+      "source": "analyze-query",
+      "target": "generate-response",
+      "label": "Analysis"
+    },
+    {
+      "source": "generate-response",
+      "target": "output-response",
+      "label": "Generated Response"
+    }
+  ]
+}

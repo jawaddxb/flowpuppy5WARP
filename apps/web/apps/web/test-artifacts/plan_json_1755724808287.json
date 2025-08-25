@@ -1,0 +1,89 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a Google Drive folder monitor for 'Contracts'"
+      },
+      {
+        "text": "When a new PDF is detected, download it"
+      },
+      {
+        "text": "Use AI to summarize the PDF content"
+      },
+      {
+        "text": "Extract key terms and potential risks from the summary"
+      },
+      {
+        "text": "Compose an email with the summary, key terms, and risks"
+      },
+      {
+        "text": "Send the email to legal@company.com"
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarization?",
+        "choices": [
+          "GPT-3",
+          "GPT-4",
+          "Claude",
+          "Custom model"
+        ]
+      },
+      {
+        "id": "email_format",
+        "label": "What format would you prefer for the email?",
+        "choices": [
+          "Plain text",
+          "HTML",
+          "Markdown"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "folder_exists",
+        "title": "Check if 'Contracts' folder exists in Google Drive",
+        "confidence": 0.9
+      },
+      {
+        "id": "legal_email",
+        "title": "Verify legal@company.com is a valid email address",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "pdf_processing",
+        "title": "PDF Processing Pipeline",
+        "steps": [
+          "Download PDF from Google Drive",
+          "Convert PDF to text",
+          "Summarize text using AI",
+          "Extract key terms and risks"
+        ],
+        "requires": [
+          "google_drive",
+          "openai"
+        ]
+      },
+      {
+        "id": "email_sending",
+        "title": "Email Composition and Sending",
+        "steps": [
+          "Compose email with summary, terms, and risks",
+          "Send email to legal team"
+        ],
+        "requires": [
+          "smtp"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "google_drive",
+      "openai",
+      "smtp"
+    ]
+  }
+}

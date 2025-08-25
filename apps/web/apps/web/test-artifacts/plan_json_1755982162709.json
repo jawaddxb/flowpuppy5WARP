@@ -1,0 +1,94 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Research current AI trends and developments"
+      },
+      {
+        "text": "Create a content calendar for daily tweets"
+      },
+      {
+        "text": "Write engaging tweets about AI trends"
+      },
+      {
+        "text": "Schedule tweets using a social media management tool"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "twitter_account",
+        "label": "Do you have a Twitter account set up for posting AI trends?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "api_access",
+        "label": "Do you have Twitter API access?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ]
+      },
+      {
+        "id": "posting_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": [
+          "1",
+          "2-3",
+          "4-5",
+          "More than 5"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_importance",
+        "title": "Twitter is a key platform for sharing AI trends",
+        "confidence": 0.9
+      },
+      {
+        "id": "content_calendar",
+        "title": "A content calendar is crucial for consistent posting",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "tweet_creation",
+        "title": "AI Trend Tweet Creation Pipeline",
+        "steps": [
+          "Research latest AI trends",
+          "Summarize key points",
+          "Craft engaging tweet",
+          "Add relevant hashtags",
+          "Schedule tweet"
+        ]
+      },
+      {
+        "id": "engagement_analysis",
+        "title": "Tweet Engagement Analysis Pipeline",
+        "steps": [
+          "Collect engagement metrics",
+          "Analyze performance",
+          "Identify top-performing content",
+          "Adjust strategy based on insights"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "1. Detect new lead added to CRM"
+      },
+      {
+        "text": "2. Call enrichment API to gather additional data"
+      },
+      {
+        "text": "3. Evaluate if lead matches Ideal Customer Profile (ICP)"
+      },
+      {
+        "text": "4. If ICP match, compose and send intro email via Gmail"
+      },
+      {
+        "text": "5. Update CRM with enrichment data and email status"
+      }
+    ],
+    "questions": [
+      {
+        "id": "crm_provider",
+        "label": "Which CRM system are you using?",
+        "choices": [
+          "Salesforce",
+          "HubSpot",
+          "Pipedrive",
+          "Other"
+        ]
+      },
+      {
+        "id": "enrichment_api",
+        "label": "Which enrichment API do you prefer?",
+        "choices": [
+          "Clearbit",
+          "FullContact",
+          "ZoomInfo",
+          "Other"
+        ]
+      },
+      {
+        "id": "icp_criteria",
+        "label": "What are your main ICP criteria?",
+        "choices": [
+          "Company size",
+          "Industry",
+          "Location",
+          "Revenue",
+          "Technology stack"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "lead_trigger",
+        "title": "New lead trigger in CRM needed",
+        "confidence": 0.9
+      },
+      {
+        "id": "enrichment_integration",
+        "title": "Enrichment API integration required",
+        "confidence": 0.95
+      },
+      {
+        "id": "icp_logic",
+        "title": "ICP matching logic to be implemented",
+        "confidence": 0.8
+      },
+      {
+        "id": "email_automation",
+        "title": "Email automation via Gmail needed",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "lead_process",
+        "title": "Lead Processing Pipeline",
+        "steps": [
+          "Detect new lead",
+          "Enrich lead data",
+          "Evaluate ICP match",
+          "Send intro email if match",
+          "Update CRM"
+        ],
+        "requires": [
+          "crm_provider",
+          "enrichment_api",
+          "gmail"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "crm",
+      "enrichment_api",
+      "gmail"
+    ]
+  }
+}

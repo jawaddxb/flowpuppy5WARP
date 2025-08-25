@@ -1,0 +1,93 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Monitor CRM for new leads"
+      },
+      {
+        "text": "When new lead detected, call enrichment API"
+      },
+      {
+        "text": "Analyze enriched data to determine if lead matches Ideal Customer Profile (ICP)"
+      },
+      {
+        "text": "If lead matches ICP, compose and send intro email via Gmail"
+      },
+      {
+        "text": "Update CRM with enrichment data and email status"
+      }
+    ],
+    "questions": [
+      {
+        "id": "crm_provider",
+        "label": "Which CRM system are you using?",
+        "choices": [
+          "Salesforce",
+          "HubSpot",
+          "Pipedrive",
+          "Other"
+        ]
+      },
+      {
+        "id": "enrichment_api",
+        "label": "Which enrichment API do you prefer?",
+        "choices": [
+          "Clearbit",
+          "ZoomInfo",
+          "FullContact",
+          "Other"
+        ]
+      },
+      {
+        "id": "icp_criteria",
+        "label": "What are your main ICP criteria?",
+        "choices": [
+          "Company size",
+          "Industry",
+          "Location",
+          "Revenue",
+          "Technology stack"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "auto_enrichment",
+        "title": "Automatic lead enrichment can save time and improve data quality",
+        "confidence": 0.9
+      },
+      {
+        "id": "icp_targeting",
+        "title": "Focusing on ICP leads can increase conversion rates",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "lead_processing",
+        "title": "New Lead Processing Pipeline",
+        "steps": [
+          "Monitor CRM for new leads",
+          "Enrich lead data",
+          "Evaluate ICP match",
+          "Send intro email if matched",
+          "Update CRM"
+        ],
+        "requires": [
+          "crm",
+          "enrichment_api",
+          "gmail"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "gmail",
+      "crm"
+    ]
+  },
+  "nextQuestions": [
+    "crm_provider",
+    "enrichment_api",
+    "icp_criteria"
+  ]
+}

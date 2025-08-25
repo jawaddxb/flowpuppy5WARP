@@ -1,0 +1,144 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "get-weather",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "action": "getCurrentWeather",
+          "params": {
+            "location": "{{user.location}}"
+          }
+        }
+      },
+      {
+        "id": "check-temperature",
+        "type": "branch",
+        "title": "branch",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "{{get-weather.temperature}} >= 20"
+        }
+      },
+      {
+        "id": "suggest-warm-activity",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "action": "generateText",
+          "params": {
+            "prompt": "Suggest a warm weather activity based on the current temperature of {{get-weather.temperature}}°C"
+          }
+        }
+      },
+      {
+        "id": "suggest-indoor-activity",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "action": "generateText",
+          "params": {
+            "prompt": "Suggest an indoor activity to stay warm, given the current temperature is {{get-weather.temperature}}°C"
+          }
+        }
+      },
+      {
+        "id": "send-suggestion",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "telegram",
+        "data": {
+          "provider": "telegram",
+          "action": "sendMessage",
+          "params": {
+            "chatId": "{{user.chatId}}",
+            "message": "{{activity_suggestion}}"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "get-weather"
+        },
+        "target": {
+          "nodeId": "check-temperature"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "check-temperature"
+        },
+        "target": {
+          "nodeId": "suggest-warm-activity"
+        },
+        "label": "Yes"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "check-temperature"
+        },
+        "target": {
+          "nodeId": "suggest-indoor-activity"
+        },
+        "label": "No"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "suggest-warm-activity"
+        },
+        "target": {
+          "nodeId": "send-suggestion"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "suggest-indoor-activity"
+        },
+        "target": {
+          "nodeId": "send-suggestion"
+        }
+      }
+    ]
+  }
+}

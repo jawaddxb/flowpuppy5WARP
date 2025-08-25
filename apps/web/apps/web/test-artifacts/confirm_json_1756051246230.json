@@ -1,0 +1,48 @@
+{
+  "agentSpec": {
+    "name": "Daily AI Trends",
+    "inputs": {
+      "frequency": "daily"
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "query": "#AI OR #ArtificialIntelligence OR #MachineLearning",
+        "limit": 10
+      },
+      "rss": {
+        "provider": "rss",
+        "feedUrl": "https://example.com/ai-trends-feed",
+        "limit": 5
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "sentiment-analysis",
+        "model": "latest"
+      }
+    },
+    "decision": {
+      "threshold": {
+        "provider": "threshold-evaluator",
+        "value": 0.7
+      }
+    },
+    "actions": {
+      "postTweet": {
+        "provider": "twitter",
+        "messageTemplate": "Today's AI Trend: {trend}"
+      }
+    },
+    "channels": [
+      {
+        "type": "twitter",
+        "provider": "twitter"
+      },
+      {
+        "type": "email",
+        "provider": "email"
+      }
+    ]
+  }
+}

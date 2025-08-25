@@ -1,0 +1,123 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "weather-api",
+        "type": "api",
+        "title": "api",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "endpoint": "https://api.openweathermap.org/data/2.5/weather"
+        }
+      },
+      {
+        "id": "temperature-check",
+        "type": "conditional",
+        "title": "conditional",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "temperature > 20"
+        }
+      },
+      {
+        "id": "warm-response",
+        "type": "text",
+        "title": "text",
+        "laneId": "lane-transform",
+        "data": {
+          "text": "It's warm outside!"
+        }
+      },
+      {
+        "id": "cold-response",
+        "type": "text",
+        "title": "text",
+        "laneId": "lane-transform",
+        "data": {
+          "text": "It's not warm yet."
+        }
+      },
+      {
+        "id": "output",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "weather-api"
+        },
+        "target": {
+          "nodeId": "temperature-check"
+        },
+        "label": "Weather data"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-check"
+        },
+        "target": {
+          "nodeId": "warm-response"
+        },
+        "label": "True"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "temperature-check"
+        },
+        "target": {
+          "nodeId": "cold-response"
+        },
+        "label": "False"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "warm-response"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "cold-response"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      }
+    ]
+  }
+}

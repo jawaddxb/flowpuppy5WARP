@@ -1,0 +1,162 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "weather-api",
+        "type": "DataSource",
+        "title": "DataSource",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "apiKey": "{{OPENWEATHERMAP_API_KEY}}",
+          "endpoint": "https://api.openweathermap.org/data/2.5/weather"
+        }
+      },
+      {
+        "id": "location-input",
+        "type": "UserInput",
+        "title": "UserInput",
+        "laneId": "lane-transform",
+        "data": {
+          "prompt": "Enter your location:"
+        }
+      },
+      {
+        "id": "fetch-weather",
+        "type": "Action",
+        "title": "Action",
+        "laneId": "lane-transform",
+        "data": {
+          "method": "GET",
+          "params": {
+            "q": "{{location-input.value}}",
+            "units": "metric",
+            "appid": "{{weather-api.config.apiKey}}"
+          }
+        }
+      },
+      {
+        "id": "parse-temperature",
+        "type": "Transform",
+        "title": "Transform",
+        "laneId": "lane-transform",
+        "data": {
+          "expression": "{{fetch-weather.response.main.temp}}"
+        }
+      },
+      {
+        "id": "check-temperature",
+        "type": "Condition",
+        "title": "Condition",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "{{parse-temperature.output}} > 20"
+        }
+      },
+      {
+        "id": "warm-response",
+        "type": "Output",
+        "title": "Output",
+        "laneId": "lane-output",
+        "data": {
+          "message": "It's warm! The temperature is {{parse-temperature.output}}°C."
+        }
+      },
+      {
+        "id": "not-warm-response",
+        "type": "Output",
+        "title": "Output",
+        "laneId": "lane-output",
+        "data": {
+          "message": "It's not warm. The temperature is {{parse-temperature.output}}°C."
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "location-input"
+        },
+        "target": {
+          "nodeId": "fetch-weather"
+        },
+        "label": "Location"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "weather-api"
+        },
+        "target": {
+          "nodeId": "fetch-weather"
+        },
+        "label": "API Config"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "fetch-weather"
+        },
+        "target": {
+          "nodeId": "parse-temperature"
+        },
+        "label": "Weather Data"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "parse-temperature"
+        },
+        "target": {
+          "nodeId": "check-temperature"
+        },
+        "label": "Temperature"
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "check-temperature"
+        },
+        "target": {
+          "nodeId": "warm-response"
+        },
+        "label": "True"
+      },
+      {
+        "id": "e5",
+        "source": {
+          "nodeId": "check-temperature"
+        },
+        "target": {
+          "nodeId": "not-warm-response"
+        },
+        "label": "False"
+      }
+    ]
+  }
+}

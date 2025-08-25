@@ -1,0 +1,65 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a Twitter account if not already done"},
+      {"text": "Research and identify reliable AI news sources"},
+      {"text": "Create a system to monitor and collect daily AI trends"},
+      {"text": "Develop a concise format for tweeting AI trends"},
+      {"text": "Schedule daily tweets at optimal times"},
+      {"text": "Engage with followers and the AI community on Twitter"},
+      {"text": "Analyze tweet performance and adjust strategy as needed"}
+    ],
+    "questions": [
+      {
+        "id": "twitterAccount",
+        "label": "Do you already have a Twitter account for tweeting AI trends?",
+        "choices": ["Yes", "No"]
+      },
+      {
+        "id": "aiKnowledge",
+        "label": "How would you rate your current knowledge of AI trends?",
+        "choices": ["Beginner", "Intermediate", "Advanced", "Expert"]
+      },
+      {
+        "id": "tweetFrequency",
+        "label": "How many AI trend tweets do you plan to post daily?",
+        "choices": ["1", "2-3", "4-5", "More than 5"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitterEngagement",
+        "title": "Twitter engagement is crucial for growing an AI trends account",
+        "confidence": 0.9
+      },
+      {
+        "id": "consistentPosting",
+        "title": "Consistent daily posting is key to building a following",
+        "confidence": 0.95
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "dailyTweetProcess",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Monitor AI news sources",
+          "Identify top trend of the day",
+          "Craft concise tweet",
+          "Schedule and post tweet",
+          "Engage with responses"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweetFrequency": "1"
+  },
+  "nextQuestions": [
+    {"id": "twitterAccount"},
+    {"id": "aiKnowledge"},
+    {"id": "tweetFrequency"}
+  ]
+}

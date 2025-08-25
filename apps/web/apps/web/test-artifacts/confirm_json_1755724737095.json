@@ -1,0 +1,71 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "query": {
+        "type": "string",
+        "description": "User's input query"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "num_results": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "model": "text-davinci-002"
+      }
+    },
+    "decision": {
+      "type": "rule_based",
+      "rules": [
+        {
+          "if": "sentiment.score > 0.5",
+          "then": "respond_positively"
+        },
+        {
+          "if": "sentiment.score < -0.5",
+          "then": "respond_negatively"
+        },
+        {
+          "if": "true",
+          "then": "respond_neutrally"
+        }
+      ]
+    },
+    "actions": {
+      "respond_positively": {
+        "type": "text_generation",
+        "provider": "openai",
+        "params": {
+          "prompt": "Generate a positive response"
+        }
+      },
+      "respond_negatively": {
+        "type": "text_generation",
+        "provider": "openai",
+        "params": {
+          "prompt": "Generate a negative response"
+        }
+      },
+      "respond_neutrally": {
+        "type": "text_generation",
+        "provider": "openai",
+        "params": {
+          "prompt": "Generate a neutral response"
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "telegram"
+      }
+    ]
+  }
+}

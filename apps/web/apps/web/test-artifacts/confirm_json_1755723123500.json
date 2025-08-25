@@ -1,0 +1,66 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "maxResults": 10
+        }
+      },
+      "webSearch": {
+        "provider": "googleSearch",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "params": {
+          "prompt": "Analyze the sentiment of the following text: {{sources.twitter.results}}",
+          "model": "gpt-3.5-turbo"
+        }
+      },
+      "summary": {
+        "provider": "openai",
+        "params": {
+          "prompt": "Summarize the following search results: {{sources.webSearch.results}}",
+          "model": "gpt-3.5-turbo"
+        }
+      }
+    },
+    "decision": {
+      "provider": "openai",
+      "params": {
+        "prompt": "Based on the sentiment analysis {{analysis.sentiment}} and summary {{analysis.summary}}, decide on the most appropriate response to the user query.",
+        "model": "gpt-3.5-turbo"
+      }
+    },
+    "actions": {
+      "respondToUser": {
+        "provider": "output",
+        "params": {
+          "message": "{{decision}}"
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "websocket",
+        "params": {
+          "port": 8080
+        }
+      }
+    ]
+  }
+}

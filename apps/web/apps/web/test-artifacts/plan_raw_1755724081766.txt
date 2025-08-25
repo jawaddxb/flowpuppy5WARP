@@ -1,0 +1,101 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define the goal and target audience for the email sequence"
+      },
+      {
+        "text": "Create a compelling welcome email"
+      },
+      {
+        "text": "Design the first follow-up email (Day 2)"
+      },
+      {
+        "text": "Develop the second follow-up email (Day 3)"
+      },
+      {
+        "text": "Set up the email automation sequence"
+      },
+      {
+        "text": "Test the email sequence"
+      },
+      {
+        "text": "Launch the email welcome and follow-up sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is the target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Webinar attendees"
+        ]
+      },
+      {
+        "id": "emailPlatform",
+        "label": "Which email marketing platform will you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "SendGrid",
+          "HubSpot",
+          "Other"
+        ]
+      },
+      {
+        "id": "welcomeContent",
+        "label": "What is the primary goal of the welcome email?",
+        "choices": [
+          "Introduce the company/product",
+          "Provide a special offer",
+          "Share important resources",
+          "Set expectations for future communications"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailFrequency",
+        "title": "Optimal email frequency for engagement",
+        "confidence": 0.8
+      },
+      {
+        "id": "subjectLines",
+        "title": "Effective subject lines for higher open rates",
+        "confidence": 0.75
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "createEmails",
+        "title": "Create Email Content",
+        "steps": [
+          "Draft welcome email",
+          "Draft Day 2 follow-up email",
+          "Draft Day 3 follow-up email",
+          "Review and edit all emails",
+          "Add visuals and formatting"
+        ]
+      },
+      {
+        "id": "setupAutomation",
+        "title": "Set Up Email Automation",
+        "steps": [
+          "Choose email marketing platform",
+          "Create new automation sequence",
+          "Set up triggers and timing",
+          "Import email content",
+          "Configure tracking and analytics"
+        ],
+        "requires": ["createEmails"]
+      }
+    ],
+    "connectionsRequired": [
+      "gmail",
+      "mailchimp"
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-api",
+      "type": "API",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "/weather"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-check",
+      "type": "CONDITIONAL",
+      "config": {
+        "condition": "temperature > 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "warm-message",
+      "type": "TEXT_GENERATION",
+      "config": {
+        "provider": "openai",
+        "prompt": "Generate a warm weather message"
+      },
+      "position": {
+        "x": 500,
+        "y": 50
+      }
+    },
+    {
+      "id": "cool-message",
+      "type": "TEXT_GENERATION",
+      "config": {
+        "provider": "openai",
+        "prompt": "Generate a cool weather message"
+      },
+      "position": {
+        "x": 500,
+        "y": 150
+      }
+    },
+    {
+      "id": "twitter-post",
+      "type": "SOCIAL_MEDIA_POST",
+      "config": {
+        "provider": "twitter"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "weather-api",
+      "target": "temperature-check",
+      "label": "Weather data"
+    },
+    {
+      "source": "temperature-check",
+      "target": "warm-message",
+      "label": "If warm"
+    },
+    {
+      "source": "temperature-check",
+      "target": "cool-message",
+      "label": "If cool"
+    },
+    {
+      "source": "warm-message",
+      "target": "twitter-post",
+      "label": "Warm message"
+    },
+    {
+      "source": "cool-message",
+      "target": "twitter-post",
+      "label": "Cool message"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  { "prompt": "Daily AI trends to Twitter and email summary" },
+  { "prompt": "Scrape a website hourly and post Slack updates" },
+  { "prompt": "Monitor Bitcoin price, if > $70k send Discord alert" },
+  { "prompt": "Every morning fetch weather and email umbrella reminder" },
+  { "prompt": "New GitHub issues → Notion database with labels" },
+  { "prompt": "RSS feed to email digest every Friday 5pm" },
+  { "prompt": "Webhook trigger → transform JSON → call HTTP endpoint" },
+  { "prompt": "On 404 errors in logs, create Jira ticket via HTTP" },
+  { "prompt": "Schedule: First business day of month, email invoice reminder" },
+  { "prompt": "Parallel: fetch from API A and API B, join, then Sheets append" },
+  { "prompt": "Try/catch: call flaky API, on error send Slack DM" },
+  { "prompt": "Loop: for each row in Google Sheet, send email" },
+  { "prompt": "Airtable new record → enrich via HTTP → update record" },
+  { "prompt": "Discord command /summary calls OpenAI and posts result" },
+  { "prompt": "Every hour check status page JSON and tweet outage if down" },
+  { "prompt": "Binance price ticker → transform → HTTP webhook" },
+  { "prompt": "Salesforce export via HTTP → Notion report page" },
+  { "prompt": "When email received with subject Report, forward to Slack" },
+  { "prompt": "Cron 9am: fetch top Hacker News and email top 3" },
+  { "prompt": "Switch/cases by country code, route to different HTTP endpoints" },
+  { "prompt": "Transform JSON: compute totals and percentages" },
+  { "prompt": "Daily at noon: send Discord reminder to drink water" },
+  { "prompt": "Form webhook → validate fields → Notion task creation" },
+  { "prompt": "If CPU > 90% for 5m, send PagerDuty via HTTP" },
+  { "prompt": "New Stripe charge webhook → email receipt to customer" }
+]
+
+
+

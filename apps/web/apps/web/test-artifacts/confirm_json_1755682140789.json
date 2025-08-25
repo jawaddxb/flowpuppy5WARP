@@ -1,0 +1,40 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "projectSpecs": "string",
+      "buildEnvironment": "object",
+      "sourceCodeRepository": "string"
+    },
+    "sources": {
+      "github": {
+        "provider": "github",
+        "repository": "string"
+      },
+      "jenkins": {
+        "provider": "jenkins",
+        "jobName": "string"
+      }
+    },
+    "analysis": {
+      "codeQuality": "function",
+      "buildErrors": "function",
+      "testResults": "function"
+    },
+    "decision": {
+      "shouldDeploy": "boolean",
+      "rollbackNeeded": "boolean"
+    },
+    "actions": {
+      "triggerBuild": "function",
+      "notifyTeam": "function",
+      "deployToStaging": "function",
+      "rollbackChanges": "function"
+    },
+    "channels": [
+      "slack",
+      "email",
+      "jira"
+    ]
+  }
+}

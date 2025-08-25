@@ -1,0 +1,101 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "weather-data",
+        "type": "DataSource",
+        "title": "DataSource",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "location": "user_location"
+        }
+      },
+      {
+        "id": "temperature-check",
+        "type": "Filter",
+        "title": "Filter",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "temperature > 20"
+        }
+      },
+      {
+        "id": "warm-message",
+        "type": "TextGenerator",
+        "title": "TextGenerator",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "prompt": "Generate a message about warm weather for temperature {temperature}°C"
+        }
+      },
+      {
+        "id": "notification",
+        "type": "Notification",
+        "title": "Notification",
+        "laneId": "lane-transform",
+        "data": {
+          "channel": "push"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "weather-data"
+        },
+        "target": {
+          "nodeId": "temperature-check"
+        },
+        "label": "Temperature data"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "temperature-check"
+        },
+        "target": {
+          "nodeId": "warm-message"
+        },
+        "label": "If warm"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "warm-message"
+        },
+        "target": {
+          "nodeId": "notification"
+        },
+        "label": "Warm weather message"
+      }
+    ]
+  }
+}

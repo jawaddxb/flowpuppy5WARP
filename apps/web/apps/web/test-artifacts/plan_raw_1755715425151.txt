@@ -1,0 +1,56 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Create a script to fetch daily AI news"},
+      {"text": "Implement AI trend analysis"},
+      {"text": "Compose and schedule daily tweets"},
+      {"text": "Monitor engagement and adjust content"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day?",
+        "choices": ["1", "2", "3", "4+"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": ["arXiv", "TechCrunch", "MIT Technology Review", "AI subreddits"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api_complexity",
+        "title": "Twitter API setup may require developer account approval",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_trend_analysis_challenge",
+        "title": "AI trend analysis might need machine learning techniques",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation",
+        "steps": [
+          "Fetch AI news from selected sources",
+          "Analyze trends using NLP",
+          "Generate tweet content",
+          "Post tweet using Twitter API"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "openai"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": "arXiv"
+  },
+  "nextQuestions": [
+    {"id": "tweet_format_preference", "label": "Do you prefer tweets with images, polls, or text only?", "choices": ["Images", "Polls", "Text only"]}
+  ]
+}

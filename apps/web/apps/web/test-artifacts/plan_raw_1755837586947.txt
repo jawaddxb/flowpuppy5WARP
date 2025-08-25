@@ -1,0 +1,56 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Research current AI trends and developments"},
+      {"text": "Create a content calendar for daily tweets"},
+      {"text": "Write engaging tweet content about AI trends"},
+      {"text": "Schedule tweets using a social media management tool"},
+      {"text": "Monitor engagement and adjust strategy as needed"}
+    ],
+    "questions": [
+      {
+        "id": "twitter_access",
+        "label": "Do you have Twitter API access?",
+        "choices": ["Yes", "No"]
+      },
+      {
+        "id": "ai_knowledge",
+        "label": "How would you rate your knowledge of AI trends?",
+        "choices": ["Beginner", "Intermediate", "Expert"]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many times per day do you want to tweet?",
+        "choices": ["Once", "Twice", "Three times", "More than three times"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api_required",
+        "title": "Twitter API access is necessary for automated tweeting",
+        "confidence": 0.95
+      },
+      {
+        "id": "content_planning_important",
+        "title": "A content calendar is crucial for consistent daily tweeting",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "tweet_automation",
+        "title": "Automate daily AI trend tweets",
+        "steps": [
+          "Set up Twitter API connection",
+          "Create tweet content",
+          "Schedule tweet",
+          "Post tweet",
+          "Analyze engagement"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  }
+}

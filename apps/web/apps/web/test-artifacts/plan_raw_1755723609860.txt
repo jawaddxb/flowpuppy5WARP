@@ -1,0 +1,50 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a nightly scheduled task to run at 1am UTC"},
+      {"text": "Export CRM leads data"},
+      {"text": "Import the exported data into Google Sheets"},
+      {"text": "Generate a CSV file from the Google Sheets data"},
+      {"text": "Send an email to ops@ with the CSV attached and include row counts"}
+    ],
+    "questions": [
+      {
+        "id": "crm_provider",
+        "label": "Which CRM system are you using?",
+        "choices": ["Salesforce", "HubSpot", "Zoho", "Other"]
+      },
+      {
+        "id": "email_provider",
+        "label": "Which email service will you use to send the CSV?",
+        "choices": ["Gmail", "Outlook", "SendGrid", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "automation_tool",
+        "title": "An automation tool may be needed to orchestrate this process",
+        "confidence": 0.9
+      },
+      {
+        "id": "data_volume",
+        "title": "The volume of CRM leads may affect processing time and email attachment size",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "nightly_export_pipeline",
+        "title": "Nightly CRM Export to Sheets and Email",
+        "steps": [
+          "Schedule task for 1am UTC",
+          "Export CRM leads",
+          "Import to Google Sheets",
+          "Generate CSV",
+          "Email CSV with row counts"
+        ],
+        "requires": ["crm", "sheets", "email"]
+      }
+    ],
+    "connectionsRequired": ["crm", "google_sheets", "gmail"]
+  }
+}

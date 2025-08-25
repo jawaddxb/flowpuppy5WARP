@@ -1,0 +1,50 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up connection to Notion API"},
+      {"text": "Monitor for new blog draft creation in Notion"},
+      {"text": "Extract blog content from new draft"},
+      {"text": "Use AI to generate meta description"},
+      {"text": "Use AI to generate 5 keywords"},
+      {"text": "Update Notion page with generated meta description and keywords"}
+    ],
+    "questions": [
+      {
+        "id": "ai_provider",
+        "label": "Which AI provider would you like to use for generating meta description and keywords?",
+        "choices": ["OpenAI", "Anthropic", "Cohere"]
+      },
+      {
+        "id": "notion_workspace",
+        "label": "Which Notion workspace contains your blog drafts?",
+        "choices": ["Personal", "Work", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "notion_integration",
+        "title": "Notion API integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_integration",
+        "title": "AI API integration is required",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "generate_meta_content",
+        "title": "Generate Meta Description and Keywords",
+        "steps": [
+          "Extract blog content from Notion",
+          "Send content to AI for meta description generation",
+          "Send content to AI for keyword generation",
+          "Update Notion page with generated content"
+        ],
+        "requires": ["notion", "ai_provider"]
+      }
+    ],
+    "connectionsRequired": ["notion", "openai"]
+  }
+}

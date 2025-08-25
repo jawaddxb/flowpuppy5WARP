@@ -1,0 +1,168 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "user-input",
+        "type": "input",
+        "title": "input",
+        "laneId": "lane-input",
+        "data": {
+          "inputKey": "userQuery",
+          "inputType": "string"
+        }
+      },
+      {
+        "id": "web-search",
+        "type": "web-search",
+        "title": "web-search",
+        "laneId": "lane-transform",
+        "provider": "google",
+        "data": {
+          "provider": "google",
+          "numResults": 5
+        }
+      },
+      {
+        "id": "sentiment-analysis",
+        "type": "text-analysis",
+        "title": "text-analysis",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "text-davinci-003",
+          "analysisType": "sentiment"
+        }
+      },
+      {
+        "id": "decision",
+        "type": "conditional",
+        "title": "conditional",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "sentiment.score > 0.5"
+        }
+      },
+      {
+        "id": "positive-response",
+        "type": "text-output",
+        "title": "text-output",
+        "laneId": "lane-transform",
+        "data": {
+          "content": "I'm glad you're feeling positive about this!"
+        }
+      },
+      {
+        "id": "neutral-response",
+        "type": "text-output",
+        "title": "text-output",
+        "laneId": "lane-transform",
+        "data": {
+          "content": "I understand. Let me know if you need more information."
+        }
+      },
+      {
+        "id": "output",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output",
+        "data": {
+          "channels": [
+            "chat",
+            "email"
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "web-search"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "web-search"
+        },
+        "target": {
+          "nodeId": "sentiment-analysis"
+        }
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "sentiment-analysis"
+        },
+        "target": {
+          "nodeId": "decision"
+        }
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "decision"
+        },
+        "target": {
+          "nodeId": "positive-response"
+        },
+        "label": "true"
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "decision"
+        },
+        "target": {
+          "nodeId": "neutral-response"
+        },
+        "label": "false"
+      },
+      {
+        "id": "e5",
+        "source": {
+          "nodeId": "positive-response"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      },
+      {
+        "id": "e6",
+        "source": {
+          "nodeId": "neutral-response"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      }
+    ]
+  }
+}

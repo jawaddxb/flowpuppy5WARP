@@ -1,0 +1,99 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up GitHub webhook to trigger on new pull request"},
+      {"text": "Retrieve PR details and diff from GitHub API"},
+      {"text": "Use AI to summarize changes in the pull request"},
+      {"text": "Generate a review checklist based on best practices"},
+      {"text": "Post summary and checklist as a comment on the PR"},
+      {"text": "Send notification to Slack with PR link and summary"}
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarizing changes?",
+        "choices": ["GPT-3.5", "GPT-4", "Claude", "Custom fine-tuned model"]
+      },
+      {
+        "id": "checklist_type",
+        "label": "What type of review checklist would you prefer?",
+        "choices": ["General", "Security-focused", "Performance-oriented", "Custom"]
+      },
+      {
+        "id": "slack_channel",
+        "label": "Which Slack channel should receive the notifications?",
+        "choices": ["#engineering", "#code-reviews", "#general", "Specify custom channel"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "github_integration",
+        "title": "GitHub integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_integration",
+        "title": "AI model integration is needed for summarization",
+        "confidence": 0.9
+      },
+      {
+        "id": "slack_integration",
+        "title": "Slack integration is necessary for notifications",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "github_webhook",
+        "title": "Set up GitHub webhook",
+        "steps": [
+          "Configure GitHub repository settings",
+          "Create webhook endpoint",
+          "Implement webhook payload processing"
+        ]
+      },
+      {
+        "id": "ai_summary",
+        "title": "Generate AI summary of changes",
+        "steps": [
+          "Fetch PR diff from GitHub API",
+          "Preprocess diff data",
+          "Send to AI model for summarization",
+          "Format AI response"
+        ],
+        "requires": ["ai_model"]
+      },
+      {
+        "id": "checklist_generation",
+        "title": "Create review checklist",
+        "steps": [
+          "Define checklist items based on selected type",
+          "Format checklist for GitHub comment"
+        ],
+        "requires": ["checklist_type"]
+      },
+      {
+        "id": "post_github_comment",
+        "title": "Post comment on GitHub PR",
+        "steps": [
+          "Combine AI summary and checklist",
+          "Use GitHub API to post comment on PR"
+        ]
+      },
+      {
+        "id": "slack_notification",
+        "title": "Send Slack notification",
+        "steps": [
+          "Format notification message with PR link and summary",
+          "Send message to specified Slack channel"
+        ],
+        "requires": ["slack_channel"]
+      }
+    ],
+    "connectionsRequired": [
+      "github",
+      "openai",
+      "slack"
+    ]
+  }
+}

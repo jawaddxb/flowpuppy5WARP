@@ -1,0 +1,110 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "New lead is added to CRM"
+      },
+      {
+        "text": "Call enrichment API to get additional data"
+      },
+      {
+        "text": "Analyze enriched data to determine if lead matches Ideal Customer Profile (ICP)"
+      },
+      {
+        "text": "If lead matches ICP, send intro email via Gmail"
+      },
+      {
+        "text": "If lead doesn't match ICP, end workflow"
+      }
+    ],
+    "questions": [
+      {
+        "id": "crm_provider",
+        "label": "Which CRM provider are you using?",
+        "choices": [
+          "Salesforce",
+          "HubSpot",
+          "Pipedrive",
+          "Other"
+        ]
+      },
+      {
+        "id": "enrichment_api",
+        "label": "Which enrichment API do you want to use?",
+        "choices": [
+          "Clearbit",
+          "ZoomInfo",
+          "FullContact",
+          "Other"
+        ]
+      },
+      {
+        "id": "icp_criteria",
+        "label": "What are the key criteria for your Ideal Customer Profile?",
+        "choices": [
+          "Company size",
+          "Industry",
+          "Revenue",
+          "Location",
+          "Technology stack"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "icp_match_logic",
+        "title": "ICP matching logic needs to be defined",
+        "confidence": 0.9
+      },
+      {
+        "id": "email_template",
+        "title": "Intro email template needs to be created",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "lead_enrichment",
+        "title": "Enrich lead data",
+        "steps": [
+          "Trigger on new CRM lead",
+          "Call enrichment API",
+          "Update CRM with enriched data"
+        ],
+        "requires": [
+          "crm_provider",
+          "enrichment_api"
+        ]
+      },
+      {
+        "id": "icp_analysis",
+        "title": "Analyze ICP match",
+        "steps": [
+          "Retrieve enriched lead data",
+          "Apply ICP matching logic",
+          "Determine if lead matches ICP"
+        ],
+        "requires": [
+          "icp_criteria"
+        ]
+      },
+      {
+        "id": "send_intro_email",
+        "title": "Send introduction email",
+        "steps": [
+          "Prepare email content",
+          "Send email via Gmail",
+          "Log email activity in CRM"
+        ],
+        "requires": [
+          "crm_provider"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "gmail",
+      "crm_api",
+      "enrichment_api"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "agentSpec": {
+    "name": "Daily AI Trends Tweeter",
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "query": "AI OR \"artificial intelligence\" OR \"machine learning\"",
+        "limit": 100
+      },
+      "news": {
+        "provider": "newsapi",
+        "query": "AI OR \"artificial intelligence\" OR \"machine learning\"",
+        "limit": 20
+      }
+    },
+    "analysis": {
+      "trendExtraction": {
+        "provider": "openai",
+        "prompt": "Analyze the latest tweets and news articles to identify the top 3 trending topics in AI today."
+      }
+    },
+    "decision": {
+      "tweetContent": {
+        "provider": "openai",
+        "prompt": "Based on the identified AI trends, create a concise and engaging tweet summarizing the top 3 AI trends of the day. Include relevant hashtags."
+      }
+    },
+    "actions": {
+      "postTweet": {
+        "provider": "twitter",
+        "method": "post_tweet"
+      }
+    },
+    "channels": [
+      {
+        "name": "Twitter",
+        "provider": "twitter"
+      }
+    ]
+  }
+}

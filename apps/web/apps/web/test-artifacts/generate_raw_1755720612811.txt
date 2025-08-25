@@ -1,0 +1,52 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "input-handler",
+      "type": "input",
+      "config": {
+        "inputType": "text"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "llm-processor",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7
+      },
+      "position": {
+        "x": 300,
+        "y": 200
+      }
+    },
+    {
+      "id": "output-handler",
+      "type": "output",
+      "config": {
+        "outputType": "text"
+      },
+      "position": {
+        "x": 500,
+        "y": 300
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "input-handler",
+      "target": "llm-processor",
+      "label": "Process input"
+    },
+    {
+      "source": "llm-processor",
+      "target": "output-handler",
+      "label": "Generate response"
+    }
+  ]
+}

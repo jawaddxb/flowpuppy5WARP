@@ -1,0 +1,32 @@
+{
+  "agentSpec": {
+    "name": "AgentBuild",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter"
+      },
+      "newsAPI": {
+        "provider": "newsapi"
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "method": "vader"
+      }
+    },
+    "decision": {
+      "threshold": 0.5
+    },
+    "actions": {
+      "notify": {
+        "method": "email",
+        "recipient": "user@example.com"
+      }
+    },
+    "channels": [
+      "email",
+      "sms"
+    ]
+  }
+}

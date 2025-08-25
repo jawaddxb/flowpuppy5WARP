@@ -1,0 +1,104 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a scheduled task to run every weekday at 9am"
+      },
+      {
+        "text": "Connect to Slack API to send DMs and post to channels"
+      },
+      {
+        "text": "Retrieve list of engineers from Slack workspace"
+      },
+      {
+        "text": "Create and send DM to each engineer asking for updates"
+      },
+      {
+        "text": "Collect responses from engineers"
+      },
+      {
+        "text": "Use AI to summarize collected updates"
+      },
+      {
+        "text": "Post AI-generated summary to #standup channel"
+      }
+    ],
+    "questions": [
+      {
+        "id": "slack_workspace",
+        "label": "What is the name of your Slack workspace?",
+        "choices": [
+          "Enter workspace name"
+        ]
+      },
+      {
+        "id": "engineer_list",
+        "label": "How do you want to identify the engineers?",
+        "choices": [
+          "By Slack user group",
+          "By specific user list",
+          "All members of a channel"
+        ]
+      },
+      {
+        "id": "update_prompt",
+        "label": "What prompt do you want to use to ask for updates?",
+        "choices": [
+          "Enter custom prompt",
+          "Use default prompt"
+        ]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model do you want to use for summarization?",
+        "choices": [
+          "GPT-3.5",
+          "GPT-4",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "slack_integration",
+        "title": "Slack API integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI-powered summarization capability is needed",
+        "confidence": 0.9
+      },
+      {
+        "id": "scheduled_task",
+        "title": "A system for scheduling recurring tasks is necessary",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_standup",
+        "title": "Daily Standup Update Collection and Summary",
+        "steps": [
+          "Trigger scheduled task",
+          "Fetch engineer list",
+          "Send DMs to engineers",
+          "Collect responses",
+          "Generate AI summary",
+          "Post summary to #standup"
+        ],
+        "requires": [
+          "slack",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "update_prompt": "Please provide your daily update for the standup meeting."
+  }
+}

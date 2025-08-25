@@ -1,0 +1,35 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "your_api_key",
+        "apiSecret": "your_api_secret"
+      }
+    },
+    "analysis": {
+      "type": "sentiment",
+      "model": "sentiment-analysis-v1"
+    },
+    "decision": {
+      "threshold": 0.5,
+      "actionIfPositive": "engage",
+      "actionIfNegative": "ignore"
+    },
+    "actions": {
+      "engage": {
+        "type": "reply",
+        "message": "Thank you for your feedback!"
+      },
+      "ignore": {
+        "type": "doNothing"
+      }
+    },
+    "channels": [
+      "twitter",
+      "email"
+    ]
+  }
+}

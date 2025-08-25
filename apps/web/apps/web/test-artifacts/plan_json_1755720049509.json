@@ -1,0 +1,135 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define the target audience and goals for the welcome sequence"
+      },
+      {
+        "text": "Create a compelling subject line for the welcome email"
+      },
+      {
+        "text": "Write the content for the welcome email"
+      },
+      {
+        "text": "Design the layout and visuals for the welcome email"
+      },
+      {
+        "text": "Set up the welcome email in the email marketing platform"
+      },
+      {
+        "text": "Create subject lines for the 3 follow-up emails"
+      },
+      {
+        "text": "Write the content for the 3 follow-up emails"
+      },
+      {
+        "text": "Design the layout and visuals for the follow-up emails"
+      },
+      {
+        "text": "Set up the follow-up emails in the email marketing platform"
+      },
+      {
+        "text": "Configure the timing for the follow-up sequence"
+      },
+      {
+        "text": "Test the entire email sequence"
+      },
+      {
+        "text": "Launch the welcome and follow-up sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is the target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Webinar attendees"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of this email sequence?",
+        "choices": [
+          "Onboarding",
+          "Engagement",
+          "Sales conversion",
+          "Education"
+        ]
+      },
+      {
+        "id": "emailPlatform",
+        "label": "Which email marketing platform will you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "Klaviyo",
+          "SendGrid",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "openRates",
+        "title": "Average open rates for welcome emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "clickRates",
+        "title": "Average click-through rates for follow-up emails",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailCreation",
+        "title": "Email Creation Pipeline",
+        "steps": [
+          "Draft email content",
+          "Design email template",
+          "Add images and CTAs",
+          "Proofread and edit",
+          "Test on multiple devices"
+        ]
+      },
+      {
+        "id": "sequenceSetup",
+        "title": "Email Sequence Setup Pipeline",
+        "steps": [
+          "Configure welcome email",
+          "Set up follow-up emails",
+          "Define trigger conditions",
+          "Set sending schedule",
+          "Test sequence flow"
+        ],
+        "requires": [
+          "emailCreation"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "sendgrid",
+      "klaviyo"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "emailPlatform": "Mailchimp"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "emailPlatform"
+    }
+  ]
+}

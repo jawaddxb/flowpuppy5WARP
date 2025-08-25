@@ -1,0 +1,32 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "your_api_key",
+        "apiSecret": "your_api_secret"
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "sentimentAnalysis",
+        "model": "v1"
+      }
+    },
+    "decision": {
+      "threshold": 0.5
+    },
+    "actions": {
+      "notify": {
+        "provider": "email",
+        "recipient": "user@example.com"
+      }
+    },
+    "channels": [
+      "twitter",
+      "email"
+    ]
+  }
+}

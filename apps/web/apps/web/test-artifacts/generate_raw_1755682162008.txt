@@ -1,0 +1,102 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "prompt": "What would you like the agent to do?"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "task-analysis",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Analyze the following user request and break it down into subtasks:\n{{user-input}}"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "action-planner",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Based on the task analysis, generate a plan of action:\n{{task-analysis}}"
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "execute-action",
+      "type": "function",
+      "config": {
+        "function": "executeAction",
+        "args": {
+          "plan": "{{action-planner}}"
+        }
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    },
+    {
+      "id": "generate-response",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Generate a response to the user based on the executed action:\n{{execute-action}}"
+      },
+      "position": {
+        "x": 900,
+        "y": 100
+      }
+    },
+    {
+      "id": "output-response",
+      "type": "output",
+      "config": {
+        "output": "{{generate-response}}"
+      },
+      "position": {
+        "x": 1100,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "task-analysis"
+    },
+    {
+      "source": "task-analysis",
+      "target": "action-planner"
+    },
+    {
+      "source": "action-planner",
+      "target": "execute-action"
+    },
+    {
+      "source": "execute-action",
+      "target": "generate-response"
+    },
+    {
+      "source": "generate-response",
+      "target": "output-response"
+    }
+  ]
+}

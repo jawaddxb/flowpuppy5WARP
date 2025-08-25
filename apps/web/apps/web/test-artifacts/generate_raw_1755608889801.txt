@@ -1,0 +1,88 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-api",
+      "type": "ApiCall",
+      "config": {
+        "provider": "openweathermap",
+        "endpoint": "/weather",
+        "method": "GET",
+        "params": {
+          "q": "{{city}}",
+          "units": "metric",
+          "appid": "{{API_KEY}}"
+        }
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-check",
+      "type": "Condition",
+      "config": {
+        "condition": "{{weather-api.main.temp}} > 20"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "warm-response",
+      "type": "TextTemplate",
+      "config": {
+        "template": "It's warm in {{city}} with a temperature of {{weather-api.main.temp}}°C."
+      },
+      "position": {
+        "x": 500,
+        "y": 50
+      }
+    },
+    {
+      "id": "not-warm-response",
+      "type": "TextTemplate",
+      "config": {
+        "template": "It's not warm in {{city}}. The current temperature is {{weather-api.main.temp}}°C."
+      },
+      "position": {
+        "x": 500,
+        "y": 150
+      }
+    },
+    {
+      "id": "output",
+      "type": "Output",
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "weather-api",
+      "target": "temperature-check"
+    },
+    {
+      "source": "temperature-check",
+      "target": "warm-response",
+      "label": "Yes"
+    },
+    {
+      "source": "temperature-check",
+      "target": "not-warm-response",
+      "label": "No"
+    },
+    {
+      "source": "warm-response",
+      "target": "output"
+    },
+    {
+      "source": "not-warm-response",
+      "target": "output"
+    }
+  ]
+}

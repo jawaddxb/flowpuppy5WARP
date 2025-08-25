@@ -1,0 +1,86 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Connect to Twitter account"
+      },
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Generate a concise tweet about AI trends"
+      },
+      {
+        "text": "Schedule daily tweets"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_time",
+        "label": "What time would you like to schedule the daily tweet?",
+        "choices": [
+          "9:00 AM",
+          "12:00 PM",
+          "3:00 PM",
+          "6:00 PM"
+        ]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which sources would you like to use for AI trend research?",
+        "choices": [
+          "Tech news websites",
+          "Academic journals",
+          "Social media",
+          "AI conferences"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "trending_topics",
+        "title": "Identify trending AI topics",
+        "confidence": 0.8
+      },
+      {
+        "id": "engagement_metrics",
+        "title": "Analyze tweet engagement metrics",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "tweet_generation",
+        "title": "Generate and post daily AI trend tweet",
+        "steps": [
+          "Research AI trends",
+          "Generate tweet content",
+          "Review and approve tweet",
+          "Post tweet to Twitter"
+        ],
+        "requires": [
+          "twitter",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "tweet_time": "9:00 AM",
+    "ai_sources": [
+      "Tech news websites",
+      "Social media"
+    ]
+  },
+  "nextQuestions": [
+    "tweet_time",
+    "ai_sources"
+  ]
+}

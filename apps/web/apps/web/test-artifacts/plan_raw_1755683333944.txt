@@ -1,0 +1,67 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define target audience and goals"},
+      {"text": "Draft welcome email content"},
+      {"text": "Create first follow-up email (Day 1)"},
+      {"text": "Design second follow-up email (Day 2)"},
+      {"text": "Develop third follow-up email (Day 3)"},
+      {"text": "Set up email automation sequence"},
+      {"text": "Test and optimize email sequence"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Other"]
+      },
+      {
+        "id": "goal",
+        "label": "What's the primary goal of this email sequence?",
+        "choices": ["Onboarding", "Engagement", "Conversion", "Education"]
+      },
+      {
+        "id": "tone",
+        "label": "What tone should the emails have?",
+        "choices": ["Formal", "Friendly", "Professional", "Casual"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "personalization",
+        "title": "Personalization improves email engagement",
+        "confidence": 0.9
+      },
+      {
+        "id": "timing",
+        "title": "Optimal timing between emails affects open rates",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailSequence",
+        "title": "Create and Schedule Email Sequence",
+        "steps": [
+          "Draft email content",
+          "Design email templates",
+          "Set up automation rules",
+          "Schedule emails",
+          "Monitor performance"
+        ],
+        "requires": ["mailchimp"]
+      }
+    ],
+    "connectionsRequired": ["mailchimp"]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "tone"}
+  ]
+}

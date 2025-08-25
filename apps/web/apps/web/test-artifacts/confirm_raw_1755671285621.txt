@@ -1,0 +1,35 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "blueprints": "string",
+      "materials": "object",
+      "timeline": "date"
+    },
+    "sources": {
+      "buildingCodes": {
+        "provider": "constructionDatabase",
+        "query": "latest building codes"
+      },
+      "materialPrices": {
+        "provider": "supplierAPI",
+        "endpoint": "/prices"
+      }
+    },
+    "analysis": {
+      "costEstimation": "Calculate total cost based on materials and current prices",
+      "timelineAssessment": "Evaluate feasibility of given timeline"
+    },
+    "decision": {
+      "approveConstruction": "Boolean decision based on cost and timeline analysis"
+    },
+    "actions": {
+      "orderMaterials": "Place orders for required materials",
+      "scheduleTasks": "Create a detailed construction schedule"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware"
+    ]
+  }
+}

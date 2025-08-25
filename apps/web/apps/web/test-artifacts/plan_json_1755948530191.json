@@ -1,0 +1,33 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Greet the user"
+      },
+      {
+        "text": "Acknowledge the request for a quick response"
+      },
+      {
+        "text": "Provide a brief, friendly reply"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tone",
+        "label": "What tone should the greeting have?",
+        "choices": [
+          "Casual",
+          "Formal",
+          "Enthusiastic"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "quickResponse",
+        "title": "User wants a quick response",
+        "confidence": 0.9
+      }
+    ]
+  }
+}

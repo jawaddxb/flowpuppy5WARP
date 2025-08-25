@@ -1,0 +1,100 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "temperature-sensor",
+        "type": "sensor",
+        "title": "sensor",
+        "laneId": "lane-transform",
+        "data": {
+          "sensorType": "temperature",
+          "unit": "celsius"
+        }
+      },
+      {
+        "id": "thermostat",
+        "type": "controller",
+        "title": "controller",
+        "laneId": "lane-transform",
+        "data": {
+          "targetTemperature": 22
+        }
+      },
+      {
+        "id": "heater",
+        "type": "actuator",
+        "title": "actuator",
+        "laneId": "lane-transform",
+        "data": {
+          "type": "electric-heater"
+        }
+      },
+      {
+        "id": "notification-service",
+        "type": "notifier",
+        "title": "notifier",
+        "laneId": "lane-transform",
+        "provider": "twilio",
+        "data": {
+          "provider": "twilio",
+          "phoneNumber": "+1234567890"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "temperature-sensor"
+        },
+        "target": {
+          "nodeId": "thermostat"
+        },
+        "label": "Current Temperature"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "thermostat"
+        },
+        "target": {
+          "nodeId": "heater"
+        },
+        "label": "Control Signal"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "thermostat"
+        },
+        "target": {
+          "nodeId": "notification-service"
+        },
+        "label": "Status Update"
+      }
+    ]
+  }
+}

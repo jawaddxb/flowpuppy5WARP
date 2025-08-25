@@ -1,0 +1,119 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for welcome sequence"
+      },
+      {
+        "text": "Create compelling subject lines for each email"
+      },
+      {
+        "text": "Draft welcome email content"
+      },
+      {
+        "text": "Draft day 2 follow-up email content"
+      },
+      {
+        "text": "Draft day 3 follow-up email content"
+      },
+      {
+        "text": "Set up email automation workflow"
+      },
+      {
+        "text": "Test and refine email sequence"
+      },
+      {
+        "text": "Launch welcome sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Event attendees"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your welcome sequence?",
+        "choices": [
+          "Increase engagement",
+          "Drive sales",
+          "Educate users",
+          "Build brand loyalty"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone would you like to use in your emails?",
+        "choices": [
+          "Friendly and casual",
+          "Professional and formal",
+          "Enthusiastic and energetic",
+          "Informative and helpful"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "openRates",
+        "title": "Average open rates for welcome emails are 50-60%",
+        "confidence": 0.9
+      },
+      {
+        "id": "timing",
+        "title": "Sending follow-up emails within 24-48 hours increases engagement",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailCreation",
+        "title": "Email Content Creation",
+        "steps": [
+          "Draft email copy",
+          "Create email design",
+          "Add personalization tokens",
+          "Proofread and edit"
+        ]
+      },
+      {
+        "id": "automationSetup",
+        "title": "Email Automation Setup",
+        "steps": [
+          "Choose email marketing platform",
+          "Set up automation workflow",
+          "Configure timing and triggers",
+          "Test automation sequence"
+        ],
+        "requires": [
+          "emailCreation"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "sendgrid"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Increase engagement",
+    "tone": "Friendly and casual"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "tone"
+    }
+  ]
+}

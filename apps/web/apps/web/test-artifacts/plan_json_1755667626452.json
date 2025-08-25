@@ -1,0 +1,103 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define project requirements and goals"
+      },
+      {
+        "text": "Choose a tech stack"
+      },
+      {
+        "text": "Set up development environment"
+      },
+      {
+        "text": "Create project structure"
+      },
+      {
+        "text": "Implement core features"
+      },
+      {
+        "text": "Test and debug"
+      },
+      {
+        "text": "Deploy the application"
+      }
+    ],
+    "questions": [
+      {
+        "id": "project_type",
+        "label": "What type of project are you building?",
+        "choices": [
+          "Web application",
+          "Mobile app",
+          "Desktop application",
+          "API service"
+        ]
+      },
+      {
+        "id": "programming_language",
+        "label": "Which primary programming language do you want to use?",
+        "choices": [
+          "JavaScript",
+          "Python",
+          "Java",
+          "C#",
+          "Ruby"
+        ]
+      },
+      {
+        "id": "database",
+        "label": "What type of database do you need?",
+        "choices": [
+          "SQL",
+          "NoSQL",
+          "None"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "tech_stack",
+        "title": "Recommended tech stack based on choices",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "setup_environment",
+        "title": "Set up development environment",
+        "steps": [
+          "Install necessary software",
+          "Configure version control",
+          "Set up project dependencies"
+        ]
+      },
+      {
+        "id": "initial_development",
+        "title": "Initial development phase",
+        "steps": [
+          "Create project structure",
+          "Implement core features",
+          "Set up testing framework"
+        ],
+        "requires": [
+          "setup_environment"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "github"
+    ]
+  },
+  "nextQuestions": [
+    {
+      "id": "project_type"
+    },
+    {
+      "id": "programming_language"
+    },
+    {
+      "id": "database"
+    }
+  ]
+}

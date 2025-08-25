@@ -1,0 +1,85 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "thermostat-check",
+        "type": "sensor",
+        "title": "sensor",
+        "laneId": "lane-transform",
+        "provider": "smart-home",
+        "data": {
+          "provider": "smart-home",
+          "sensorType": "temperature"
+        }
+      },
+      {
+        "id": "increase-temperature",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "smart-home",
+        "data": {
+          "provider": "smart-home",
+          "device": "thermostat",
+          "action": "increase_temperature",
+          "amount": 2
+        }
+      },
+      {
+        "id": "notify-user",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "pushover",
+        "data": {
+          "provider": "pushover",
+          "message": "Temperature increased to make you warmer"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "thermostat-check"
+        },
+        "target": {
+          "nodeId": "increase-temperature"
+        },
+        "label": "If temp < 20°C"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "increase-temperature"
+        },
+        "target": {
+          "nodeId": "notify-user"
+        }
+      }
+    ]
+  }
+}

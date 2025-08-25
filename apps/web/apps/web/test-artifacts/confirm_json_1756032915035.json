@@ -1,0 +1,47 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "your_api_key",
+        "apiSecret": "your_api_secret"
+      },
+      "facebook": {
+        "provider": "facebook",
+        "appId": "your_app_id",
+        "appSecret": "your_app_secret"
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "model": "sentiment-analysis-v1",
+        "threshold": 0.5
+      }
+    },
+    "decision": {
+      "strategy": "rule-based",
+      "rules": [
+        {
+          "condition": "sentiment < 0.3",
+          "action": "alert"
+        }
+      ]
+    },
+    "actions": {
+      "alert": {
+        "type": "email",
+        "recipient": "admin@example.com"
+      }
+    },
+    "channels": [
+      {
+        "type": "sms",
+        "provider": "twilio",
+        "accountSid": "your_account_sid",
+        "authToken": "your_auth_token"
+      }
+    ]
+  }
+}

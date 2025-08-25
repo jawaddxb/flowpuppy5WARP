@@ -1,0 +1,77 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Start with light cardio for 5-10 minutes"
+      },
+      {
+        "text": "Perform dynamic stretches for major muscle groups"
+      },
+      {
+        "text": "Do some light bodyweight exercises"
+      },
+      {
+        "text": "Gradually increase intensity over 5-10 minutes"
+      },
+      {
+        "text": "End with sport-specific movements if applicable"
+      }
+    ],
+    "questions": [
+      {
+        "id": "workout_type",
+        "label": "What type of workout are you warming up for?",
+        "choices": [
+          "Strength training",
+          "Cardio",
+          "Sports",
+          "General fitness"
+        ]
+      },
+      {
+        "id": "fitness_level",
+        "label": "What is your current fitness level?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Advanced"
+        ]
+      },
+      {
+        "id": "time_available",
+        "label": "How much time do you have for your warm-up?",
+        "choices": [
+          "5 minutes",
+          "10 minutes",
+          "15 minutes",
+          "20+ minutes"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "importance_warmup",
+        "title": "Importance of proper warm-up",
+        "confidence": 0.95
+      },
+      {
+        "id": "injury_prevention",
+        "title": "Warm-up helps prevent injuries",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "customize_warmup",
+        "title": "Customize warm-up routine",
+        "steps": [
+          "Determine workout type",
+          "Assess fitness level",
+          "Consider time constraints",
+          "Select appropriate exercises",
+          "Adjust intensity and duration"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up RSS feed reader"
+      },
+      {
+        "text": "Configure RSS feed check every 2 hours"
+      },
+      {
+        "text": "For each new post, generate 2 unique tweets"
+      },
+      {
+        "text": "Schedule tweets via Twitter API"
+      },
+      {
+        "text": "Monitor and adjust tweet performance"
+      }
+    ],
+    "questions": [
+      {
+        "id": "rss_url",
+        "label": "What is the URL of the RSS feed you want to monitor?",
+        "choices": [
+          "Enter URL"
+        ]
+      },
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": [
+          "Informative",
+          "Engaging",
+          "Provocative",
+          "Humorous"
+        ]
+      },
+      {
+        "id": "scheduling_preference",
+        "label": "How would you like to schedule the tweets?",
+        "choices": [
+          "Immediately after generation",
+          "Spread out over the day",
+          "During peak engagement hours"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "rss_frequency",
+        "title": "RSS feed update frequency",
+        "confidence": 0.8
+      },
+      {
+        "id": "tweet_engagement",
+        "title": "Tweet engagement rates",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "rss_to_tweets",
+        "title": "RSS to Scheduled Tweets",
+        "steps": [
+          "Fetch RSS feed",
+          "Identify new posts",
+          "Generate tweets",
+          "Schedule tweets"
+        ],
+        "requires": [
+          "rss_reader",
+          "openai",
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "rss_reader",
+      "openai",
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_count_per_post": 2
+  }
+}

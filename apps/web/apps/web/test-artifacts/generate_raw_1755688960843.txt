@@ -1,0 +1,76 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "sensor",
+      "config": {
+        "sensorType": "temperature",
+        "units": "celsius",
+        "updateInterval": 60
+      },
+      "position": {"x": 100, "y": 100}
+    },
+    {
+      "id": "thermostat-control",
+      "type": "controller",
+      "config": {
+        "setPoint": 22,
+        "tolerance": 1
+      },
+      "position": {"x": 300, "y": 100}
+    },
+    {
+      "id": "heating-system",
+      "type": "actuator",
+      "config": {
+        "type": "heater",
+        "maxPower": 2000
+      },
+      "position": {"x": 500, "y": 100}
+    },
+    {
+      "id": "temperature-logger",
+      "type": "logger",
+      "config": {
+        "logInterval": 300,
+        "storageType": "database"
+      },
+      "position": {"x": 300, "y": 300}
+    },
+    {
+      "id": "notification-service",
+      "type": "notifier",
+      "config": {
+        "provider": "twilio",
+        "notificationType": "sms"
+      },
+      "position": {"x": 500, "y": 300}
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "thermostat-control",
+      "label": "Temperature Data"
+    },
+    {
+      "source": "thermostat-control",
+      "target": "heating-system",
+      "label": "Control Signal"
+    },
+    {
+      "source": "temperature-sensor",
+      "target": "temperature-logger",
+      "label": "Log Temperature"
+    },
+    {
+      "source": "thermostat-control",
+      "target": "notification-service",
+      "label": "Alert",
+      "data": {
+        "condition": "temperature < 15 || temperature > 30"
+      }
+    }
+  ]
+}

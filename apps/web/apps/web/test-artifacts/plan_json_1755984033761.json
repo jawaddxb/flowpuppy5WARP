@@ -1,0 +1,81 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Connect to Twitter account"
+      },
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Compose daily tweet about AI trends"
+      },
+      {
+        "text": "Schedule tweet for optimal engagement time"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How often do you want to tweet AI trends?",
+        "choices": [
+          "Once daily",
+          "Multiple times daily",
+          "Few times a week"
+        ]
+      },
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": [
+          "Formal and informative",
+          "Casual and conversational",
+          "Mix of both"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required for automated tweeting",
+        "confidence": 0.95
+      },
+      {
+        "id": "ai_news_sources",
+        "title": "Reliable AI news sources needed for trend curation",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Gather AI news from trusted sources",
+          "Summarize key trends",
+          "Generate tweet text",
+          "Post tweet to Twitter",
+          "Analyze engagement metrics"
+        ],
+        "requires": [
+          "twitter",
+          "news_api"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "Once daily",
+    "tweet_style": "Mix of both"
+  },
+  "nextQuestions": [
+    "tweet_frequency",
+    "tweet_style"
+  ]
+}

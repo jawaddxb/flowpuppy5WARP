@@ -1,0 +1,87 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Notion integration to retrieve completed tasks"
+      },
+      {
+        "text": "Create an email template for the weekly digest"
+      },
+      {
+        "text": "Set up an email service to send the digest"
+      },
+      {
+        "text": "Create a script to compile tasks from Notion"
+      },
+      {
+        "text": "Schedule the script to run every Friday at 4pm"
+      },
+      {
+        "text": "Test the entire workflow"
+      }
+    ],
+    "questions": [
+      {
+        "id": "notion_workspace",
+        "label": "Which Notion workspace contains the tasks?",
+        "choices": [
+          "Personal",
+          "Work",
+          "Project"
+        ]
+      },
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use?",
+        "choices": [
+          "Gmail",
+          "Outlook",
+          "SendGrid",
+          "Custom SMTP"
+        ]
+      },
+      {
+        "id": "team_members",
+        "label": "How many team members will receive the digest?",
+        "choices": [
+          "1-5",
+          "6-10",
+          "11-20",
+          "20+"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "notion_api",
+        "title": "Notion API is required for task retrieval",
+        "confidence": 0.9
+      },
+      {
+        "id": "scheduling",
+        "title": "A scheduling system (e.g., cron) is needed for automatic weekly runs",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "weekly_digest",
+        "title": "Generate and Send Weekly Digest",
+        "steps": [
+          "Retrieve completed tasks from Notion",
+          "Compile tasks into digest format",
+          "Generate email content",
+          "Send email to team members"
+        ],
+        "requires": [
+          "notion",
+          "email"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "notion",
+      "gmail"
+    ]
+  }
+}

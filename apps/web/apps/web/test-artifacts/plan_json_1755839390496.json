@@ -1,0 +1,105 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Research current AI trends and developments"
+      },
+      {
+        "text": "Create a content calendar for daily tweets"
+      },
+      {
+        "text": "Write engaging tweets about AI trends"
+      },
+      {
+        "text": "Schedule tweets using a social media management tool"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "twitter_account",
+        "label": "Do you have a Twitter account?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "ai_knowledge",
+        "label": "How would you rate your knowledge of AI?",
+        "choices": [
+          "Beginner",
+          "Intermediate",
+          "Advanced",
+          "Expert"
+        ]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many times a day do you want to tweet?",
+        "choices": [
+          "Once",
+          "Twice",
+          "Three times",
+          "More than three times"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "content_research",
+        "title": "Regular research on AI trends is necessary",
+        "confidence": 0.9
+      },
+      {
+        "id": "scheduling_tool",
+        "title": "A social media scheduling tool may be helpful",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "tweet_creation",
+        "title": "Daily Tweet Creation and Posting",
+        "steps": [
+          "Research AI trends",
+          "Write tweet",
+          "Review and edit",
+          "Schedule or post tweet",
+          "Monitor engagement"
+        ]
+      },
+      {
+        "id": "twitter_setup",
+        "title": "Twitter Account and API Setup",
+        "steps": [
+          "Create Twitter account (if needed)",
+          "Apply for Twitter API access",
+          "Set up authentication credentials",
+          "Test API connection"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "nextQuestions": [
+    "twitter_account",
+    "ai_knowledge",
+    "tweet_frequency"
+  ]
+}

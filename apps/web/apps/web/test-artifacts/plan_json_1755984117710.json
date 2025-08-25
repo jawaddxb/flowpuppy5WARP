@@ -1,0 +1,80 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up email monitoring for new support emails"
+      },
+      {
+        "text": "Use AI to classify email severity"
+      },
+      {
+        "text": "Route high severity emails to Slack #support-critical channel"
+      },
+      {
+        "text": "Set up Slack integration for automated notifications"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_provider",
+        "label": "Which email provider do you use for support?",
+        "choices": [
+          "Gmail",
+          "Outlook",
+          "Custom IMAP",
+          "Other"
+        ]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you prefer for severity classification?",
+        "choices": [
+          "OpenAI GPT",
+          "Google Vertex AI",
+          "Custom model",
+          "Unsure"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "email_integration",
+        "title": "Email integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_classification",
+        "title": "AI-based classification is needed",
+        "confidence": 1
+      },
+      {
+        "id": "slack_integration",
+        "title": "Slack integration is necessary",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_processing",
+        "title": "Email Processing and Routing Pipeline",
+        "steps": [
+          "Monitor incoming support emails",
+          "Extract email content",
+          "Classify severity using AI",
+          "Route high severity emails to Slack",
+          "Send notification to #support-critical channel"
+        ],
+        "requires": [
+          "email",
+          "openai",
+          "slack"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email",
+      "openai",
+      "slack"
+    ]
+  }
+}

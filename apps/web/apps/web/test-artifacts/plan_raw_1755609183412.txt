@@ -1,0 +1,58 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Connect to Twitter account"},
+      {"text": "Set up a system to track and analyze AI trends"},
+      {"text": "Create a daily schedule for tweeting"},
+      {"text": "Compose tweets about AI trends"},
+      {"text": "Schedule and post tweets automatically"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": ["1", "2", "3", "4", "5"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which sources would you like to use for AI trends?",
+        "choices": ["News websites", "Academic journals", "Tech blogs", "Social media", "All of the above"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 0.95
+      },
+      {
+        "id": "ai_knowledge",
+        "title": "Knowledge of current AI trends is necessary",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "trend_analysis",
+        "title": "AI Trend Analysis Pipeline",
+        "steps": ["Collect data from sources", "Analyze trends", "Summarize findings"],
+        "requires": ["openai"]
+      },
+      {
+        "id": "tweet_scheduling",
+        "title": "Tweet Scheduling Pipeline",
+        "steps": ["Compose tweet", "Schedule tweet", "Post tweet"],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "openai"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": "All of the above"
+  },
+  "nextQuestions": [
+    {"id": "tweet_frequency"},
+    {"id": "ai_sources"}
+  ]
+}

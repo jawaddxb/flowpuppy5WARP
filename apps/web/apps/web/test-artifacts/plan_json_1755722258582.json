@@ -1,0 +1,95 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Curate the most interesting and relevant trends"
+      },
+      {
+        "text": "Compose concise tweets summarizing each trend"
+      },
+      {
+        "text": "Schedule tweets to be posted daily"
+      },
+      {
+        "text": "Monitor engagement and adjust content strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "More than 3"
+        ]
+      },
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": [
+          "Formal",
+          "Casual",
+          "Technical",
+          "Mix of styles"
+        ]
+      },
+      {
+        "id": "include_hashtags",
+        "label": "Do you want to include hashtags in your tweets?",
+        "choices": [
+          "Yes",
+          "No",
+          "Sometimes"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "ai_news_sources",
+        "title": "Reliable AI news sources identified",
+        "confidence": 0.9
+      },
+      {
+        "id": "trending_ai_topics",
+        "title": "Current trending AI topics discovered",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation and Posting",
+        "steps": [
+          "Research AI trends",
+          "Select top trend",
+          "Compose tweet",
+          "Review and approve",
+          "Post to Twitter"
+        ],
+        "requires": [
+          "twitter",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "tweet_style": "Mix of styles",
+    "include_hashtags": "Sometimes"
+  },
+  "nextQuestions": [
+    "tweet_frequency",
+    "tweet_style",
+    "include_hashtags"
+  ]
+}

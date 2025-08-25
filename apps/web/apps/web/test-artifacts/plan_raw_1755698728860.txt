@@ -1,0 +1,49 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Start with light cardio (5-10 minutes)"},
+      {"text": "Perform dynamic stretching exercises"},
+      {"text": "Gradually increase intensity with sport-specific movements"},
+      {"text": "End with light mobility exercises"}
+    ],
+    "questions": [
+      {
+        "id": "workout_type",
+        "label": "What type of workout are you preparing for?",
+        "choices": ["Strength training", "Cardio", "Sports", "General fitness"]
+      },
+      {
+        "id": "time_available",
+        "label": "How much time do you have for your warm-up?",
+        "choices": ["5-10 minutes", "10-15 minutes", "15-20 minutes", "More than 20 minutes"]
+      },
+      {
+        "id": "fitness_level",
+        "label": "What is your current fitness level?",
+        "choices": ["Beginner", "Intermediate", "Advanced"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "warm_up_importance",
+        "title": "Importance of proper warm-up",
+        "confidence": 0.95
+      },
+      {
+        "id": "injury_prevention",
+        "title": "Warm-up's role in injury prevention",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "defaults": {
+    "workout_type": "General fitness",
+    "time_available": "10-15 minutes",
+    "fitness_level": "Intermediate"
+  },
+  "nextQuestions": [
+    {"id": "workout_type"},
+    {"id": "time_available"},
+    {"id": "fitness_level"}
+  ]
+}

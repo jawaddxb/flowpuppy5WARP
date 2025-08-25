@@ -1,0 +1,52 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "thermostat",
+      "type": "sensor",
+      "config": {
+        "sensorType": "temperature",
+        "unit": "celsius"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "heater",
+      "type": "actuator",
+      "config": {
+        "actuatorType": "heater",
+        "maxTemperature": 30
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-controller",
+      "type": "logic",
+      "config": {
+        "desiredTemperature": 22
+      },
+      "position": {
+        "x": 200,
+        "y": 200
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "thermostat",
+      "target": "temperature-controller",
+      "label": "Current Temperature"
+    },
+    {
+      "source": "temperature-controller",
+      "target": "heater",
+      "label": "Heating Command"
+    }
+  ]
+}

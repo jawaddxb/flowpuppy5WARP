@@ -1,0 +1,60 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up integration with Notion API to fetch completed tasks"},
+      {"text": "Create email template for weekly digest"},
+      {"text": "Implement script to compile tasks from Notion"},
+      {"text": "Set up email sending functionality"},
+      {"text": "Configure scheduler to run script every Friday at 4pm"},
+      {"text": "Test the entire workflow"}
+    ],
+    "questions": [
+      {
+        "id": "notion_workspace",
+        "label": "What is the name of your Notion workspace?",
+        "choices": ["Personal", "Work", "Project", "Other"]
+      },
+      {
+        "id": "email_service",
+        "label": "Which email service do you prefer to use?",
+        "choices": ["Gmail", "Outlook", "SendGrid", "Custom SMTP"]
+      },
+      {
+        "id": "team_size",
+        "label": "How many team members will receive the digest?",
+        "choices": ["1-5", "6-10", "11-20", "20+"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "notion_api",
+        "title": "Notion API integration required",
+        "confidence": 0.9
+      },
+      {
+        "id": "email_automation",
+        "title": "Email automation system needed",
+        "confidence": 0.8
+      },
+      {
+        "id": "scheduling",
+        "title": "Scheduling mechanism necessary",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "weekly_digest",
+        "title": "Generate and Send Weekly Digest",
+        "steps": [
+          "Fetch completed tasks from Notion",
+          "Compile tasks into digest format",
+          "Generate email content",
+          "Send email to team"
+        ],
+        "requires": ["notion", "email"]
+      }
+    ],
+    "connectionsRequired": ["notion", "email"]
+  }
+}

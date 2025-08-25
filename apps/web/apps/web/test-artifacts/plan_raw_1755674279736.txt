@@ -1,0 +1,58 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Create a system to track and analyze AI trends"},
+      {"text": "Develop a daily tweet generation process"},
+      {"text": "Implement automated tweeting"},
+      {"text": "Monitor engagement and adjust strategy"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": ["1", "2-3", "4-5", "More than 5"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "What sources will you use to gather AI trends?",
+        "choices": ["News websites", "Research papers", "Social media", "Industry reports", "All of the above"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_knowledge",
+        "title": "In-depth knowledge of AI trends is necessary",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation",
+        "steps": [
+          "Gather AI trend data",
+          "Analyze and summarize trends",
+          "Generate tweet content",
+          "Schedule and post tweet",
+          "Analyze engagement"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": "All of the above"
+  },
+  "nextQuestions": [
+    {"id": "tweet_frequency"},
+    {"id": "ai_sources"}
+  ]
+}

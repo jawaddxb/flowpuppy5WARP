@@ -1,0 +1,116 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for the email sequence"
+      },
+      {
+        "text": "Create a compelling welcome email"
+      },
+      {
+        "text": "Design follow-up email for day 2"
+      },
+      {
+        "text": "Craft final follow-up email for day 3"
+      },
+      {
+        "text": "Set up email automation workflow"
+      },
+      {
+        "text": "Test and optimize the sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Event attendees"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your email sequence?",
+        "choices": [
+          "Onboarding",
+          "Product education",
+          "Conversion to paid",
+          "Engagement boost"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone would you like to use in your emails?",
+        "choices": [
+          "Formal",
+          "Friendly",
+          "Humorous",
+          "Professional"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "open_rate",
+        "title": "Average open rate for welcome emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "click_rate",
+        "title": "Average click-through rate for follow-up emails",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_creation",
+        "title": "Email Content Creation",
+        "steps": [
+          "Draft email copy",
+          "Design email template",
+          "Add images and CTAs",
+          "Proofread and edit"
+        ],
+        "requires": [
+          "openai"
+        ]
+      },
+      {
+        "id": "automation_setup",
+        "title": "Email Automation Setup",
+        "steps": [
+          "Choose email marketing tool",
+          "Set up trigger for welcome email",
+          "Configure delays for follow-ups",
+          "Test automation flow"
+        ],
+        "requires": [
+          "mailchimp"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "openai",
+      "mailchimp"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "tone"
+    }
+  ]
+}

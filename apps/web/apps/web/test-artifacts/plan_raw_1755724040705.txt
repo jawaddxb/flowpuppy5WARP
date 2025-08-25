@@ -1,0 +1,50 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a daily scheduled task to run at 9am UTC"},
+      {"text": "Fetch top AI trending articles from reliable sources"},
+      {"text": "Summarize the articles into a concise thread format"},
+      {"text": "Post the summary thread as a tweet"},
+      {"text": "Log the activity and article details to Google Sheets"}
+    ],
+    "questions": [
+      {
+        "id": "sources",
+        "label": "Which sources would you like to fetch AI trending articles from?",
+        "choices": ["TechCrunch", "MIT Technology Review", "Wired", "ArXiv", "AI News"]
+      },
+      {
+        "id": "summary_length",
+        "label": "How many tweets would you like in the summary thread?",
+        "choices": ["3-5", "6-8", "9-12"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "scheduling",
+        "title": "A scheduling service is required to run the task daily at 9am UTC",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI-powered summarization may be needed for efficient article processing",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_ai_tweet",
+        "title": "Daily AI Article Summary Tweet",
+        "steps": [
+          "Fetch articles from selected sources",
+          "Summarize articles",
+          "Create tweet thread",
+          "Post to Twitter",
+          "Log activity to Google Sheets"
+        ],
+        "requires": ["twitter", "google_sheets"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "google_sheets"]
+  }
+}

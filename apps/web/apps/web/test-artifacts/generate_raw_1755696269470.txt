@@ -1,0 +1,57 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "sensor",
+      "config": {
+        "metric": "temperature",
+        "unit": "celsius",
+        "interval": 60
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-threshold",
+      "type": "condition",
+      "config": {
+        "operator": "<",
+        "value": 20
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "heater-control",
+      "type": "actuator",
+      "config": {
+        "device": "heater",
+        "action": "turn_on"
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "temperature-threshold",
+      "label": "Temperature reading"
+    },
+    {
+      "source": "temperature-threshold",
+      "target": "heater-control",
+      "label": "Activate heater",
+      "data": {
+        "condition": "true"
+      }
+    }
+  ]
+}

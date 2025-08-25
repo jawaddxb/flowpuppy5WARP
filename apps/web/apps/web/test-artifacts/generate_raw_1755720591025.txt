@@ -1,0 +1,107 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "get-weather",
+      "type": "action",
+      "config": {
+        "provider": "openweathermap",
+        "action": "getCurrentWeather",
+        "params": {
+          "location": "{{user.location}}"
+        }
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "check-temperature",
+      "type": "branch",
+      "config": {
+        "condition": "{{get-weather.temperature}} >= 20"
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "suggest-warm-activity",
+      "type": "action",
+      "config": {
+        "provider": "openai",
+        "action": "generateText",
+        "params": {
+          "prompt": "Suggest a warm weather activity based on the current temperature of {{get-weather.temperature}}°C"
+        }
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    },
+    {
+      "id": "suggest-indoor-activity",
+      "type": "action",
+      "config": {
+        "provider": "openai",
+        "action": "generateText",
+        "params": {
+          "prompt": "Suggest an indoor activity to stay warm, given the current temperature is {{get-weather.temperature}}°C"
+        }
+      },
+      "position": {
+        "x": 400,
+        "y": 200
+      }
+    },
+    {
+      "id": "send-suggestion",
+      "type": "action",
+      "config": {
+        "provider": "telegram",
+        "action": "sendMessage",
+        "params": {
+          "chatId": "{{user.chatId}}",
+          "message": "{{activity_suggestion}}"
+        }
+      },
+      "position": {
+        "x": 600,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "get-weather",
+      "target": "check-temperature"
+    },
+    {
+      "source": "check-temperature",
+      "target": "suggest-warm-activity",
+      "label": "Yes"
+    },
+    {
+      "source": "check-temperature",
+      "target": "suggest-indoor-activity",
+      "label": "No"
+    },
+    {
+      "source": "suggest-warm-activity",
+      "target": "send-suggestion",
+      "data": {
+        "activity_suggestion": "{{suggest-warm-activity.output}}"
+      }
+    },
+    {
+      "source": "suggest-indoor-activity",
+      "target": "send-suggestion",
+      "data": {
+        "activity_suggestion": "{{suggest-indoor-activity.output}}"
+      }
+    }
+  ]
+}

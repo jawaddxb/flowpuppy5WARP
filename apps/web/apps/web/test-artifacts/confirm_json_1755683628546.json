@@ -1,0 +1,38 @@
+{
+  "agentSpec": {
+    "name": "BuilderBot",
+    "inputs": {
+      "projectRequirements": "string",
+      "budget": "number",
+      "timeline": "string"
+    },
+    "sources": {
+      "buildingMaterials": {
+        "provider": "homedepot",
+        "query": "construction materials"
+      },
+      "constructionTechniques": {
+        "provider": "google",
+        "query": "modern building methods"
+      }
+    },
+    "analysis": {
+      "costEstimation": "Calculate total cost based on materials and labor",
+      "timelineAssessment": "Evaluate project timeline feasibility"
+    },
+    "decision": {
+      "buildPlan": "Determine optimal construction plan",
+      "resourceAllocation": "Allocate budget and resources efficiently"
+    },
+    "actions": {
+      "createBluePrints": "Generate detailed construction blueprints",
+      "orderMaterials": "Place orders for required building materials",
+      "scheduleLabor": "Coordinate and schedule construction workforce"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware",
+      "mobileApp"
+    ]
+  }
+}

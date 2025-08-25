@@ -1,0 +1,52 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a webhook to receive contact form submissions"},
+      {"text": "Process the form data and extract relevant information"},
+      {"text": "Use AI to score the intent of the submission"},
+      {"text": "If the intent score is >= 0.7, prepare a message for Slack"},
+      {"text": "Send a DM to the Account Executive via Slack with submission details"}
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for intent scoring?",
+        "choices": ["OpenAI GPT", "Hugging Face Transformer", "Custom trained model"]
+      },
+      {
+        "id": "ae_identification",
+        "label": "How will you identify which Account Executive to message?",
+        "choices": ["Fixed Slack user ID", "Lookup based on form data", "Round-robin assignment"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "intent_threshold",
+        "title": "Intent score threshold is set to 0.7",
+        "confidence": 1
+      },
+      {
+        "id": "slack_integration",
+        "title": "Slack integration is required for sending DMs",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "process_submission",
+        "title": "Process Contact Form Submission",
+        "steps": [
+          "Receive webhook data",
+          "Extract form information",
+          "Score intent with AI",
+          "Check intent score threshold",
+          "Prepare Slack message",
+          "Send Slack DM to AE"
+        ],
+        "requires": ["ai_model", "ae_identification"]
+      }
+    ],
+    "connectionsRequired": ["slack", "ai_provider"]
+  },
+  "nextQuestions": ["ai_model", "ae_identification"]
+}

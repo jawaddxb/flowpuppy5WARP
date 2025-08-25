@@ -1,0 +1,117 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for the welcome sequence"
+      },
+      {
+        "text": "Create compelling subject lines for each email"
+      },
+      {
+        "text": "Write engaging content for the welcome email"
+      },
+      {
+        "text": "Develop content for day 2 follow-up email"
+      },
+      {
+        "text": "Craft content for day 3 follow-up email"
+      },
+      {
+        "text": "Design email templates that align with brand identity"
+      },
+      {
+        "text": "Set up email automation workflow"
+      },
+      {
+        "text": "Test the email sequence"
+      },
+      {
+        "text": "Launch the welcome and follow-up sequence"
+      },
+      {
+        "text": "Monitor and analyze performance metrics"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Event attendees"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your welcome sequence?",
+        "choices": [
+          "Introduce brand",
+          "Drive first purchase",
+          "Encourage product usage",
+          "Build relationship"
+        ]
+      },
+      {
+        "id": "emailPlatform",
+        "label": "Which email marketing platform do you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "SendGrid",
+          "HubSpot",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailFrequency",
+        "title": "Email frequency impacts engagement",
+        "confidence": 0.8
+      },
+      {
+        "id": "personalization",
+        "title": "Personalized content increases open rates",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "createSequence",
+        "title": "Create Email Sequence",
+        "steps": [
+          "Draft email content",
+          "Design email templates",
+          "Set up automation workflow",
+          "Test sequence"
+        ],
+        "requires": [
+          "audience",
+          "goal"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "sendgrid",
+      "hubspot"
+    ]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Introduce brand"
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "emailPlatform"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "tweet-daily-ai-trends",
+    "prompt": "Tweet daily AI trends"
+  },
+  {
+    "id": "email-welcome-followup",
+    "prompt": "Create an email welcome and 3-day follow-up sequence"
+  }
+]
+

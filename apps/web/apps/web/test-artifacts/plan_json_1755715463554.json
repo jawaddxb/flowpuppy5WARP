@@ -1,0 +1,116 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for welcome sequence"
+      },
+      {
+        "text": "Draft compelling welcome email content"
+      },
+      {
+        "text": "Create content for Day 2 follow-up email"
+      },
+      {
+        "text": "Develop content for Day 3 follow-up email"
+      },
+      {
+        "text": "Set up email automation tool"
+      },
+      {
+        "text": "Design email templates"
+      },
+      {
+        "text": "Configure email sequence timing"
+      },
+      {
+        "text": "Test email sequence"
+      },
+      {
+        "text": "Launch welcome and follow-up sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Other"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your welcome sequence?",
+        "choices": [
+          "Onboarding",
+          "Product education",
+          "Conversion to paid",
+          "Building relationship"
+        ]
+      },
+      {
+        "id": "emailTool",
+        "label": "Which email marketing tool do you plan to use?",
+        "choices": [
+          "Mailchimp",
+          "ConvertKit",
+          "ActiveCampaign",
+          "Other",
+          "Not sure"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "personalization",
+        "title": "Personalization improves email engagement",
+        "confidence": 0.9
+      },
+      {
+        "id": "timing",
+        "title": "Optimal timing between emails affects open rates",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailCreation",
+        "title": "Email Content Creation",
+        "steps": [
+          "Write welcome email",
+          "Write Day 2 follow-up",
+          "Write Day 3 follow-up"
+        ]
+      },
+      {
+        "id": "automationSetup",
+        "title": "Email Automation Setup",
+        "steps": [
+          "Choose email marketing tool",
+          "Create email templates",
+          "Set up automation sequence",
+          "Test and refine"
+        ],
+        "requires": [
+          "emailCreation"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email_marketing_tool"
+    ]
+  },
+  "nextQuestions": [
+    {
+      "id": "audience"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "emailTool"
+    }
+  ]
+}

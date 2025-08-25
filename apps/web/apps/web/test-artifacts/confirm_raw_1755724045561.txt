@@ -1,0 +1,54 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "params": {
+          "query": "${inputs.userQuery}",
+          "count": 10
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "textAnalysis",
+        "params": {
+          "text": "${sources.twitter.text}",
+          "type": "sentiment"
+        }
+      }
+    },
+    "decision": {
+      "responseType": {
+        "provider": "rule",
+        "params": {
+          "if": "${analysis.sentiment.score > 0.5}",
+          "then": "positive",
+          "else": "negative"
+        }
+      }
+    },
+    "actions": {
+      "generateResponse": {
+        "provider": "openai",
+        "params": {
+          "prompt": "Generate a ${decision.responseType} response based on the Twitter analysis",
+          "maxTokens": 100
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "discord"
+      }
+    ]
+  }
+}

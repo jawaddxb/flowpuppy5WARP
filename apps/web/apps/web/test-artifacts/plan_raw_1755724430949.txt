@@ -1,0 +1,62 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a Google Sheets integration to access invoice data"
+      },
+      {
+        "text": "Create an email template for polite invoice reminders"
+      },
+      {
+        "text": "Set up an email integration to send reminders"
+      },
+      {
+        "text": "Create a scheduled task to run every weekday at 10am"
+      },
+      {
+        "text": "Implement logic to check for overdue invoices in Google Sheets"
+      },
+      {
+        "text": "Send email reminders to customers with overdue invoices"
+      }
+    ],
+    "questions": [
+      {
+        "id": "sheets_location",
+        "label": "What is the Google Sheets URL or ID containing the invoice data?",
+        "choices": ["Enter Google Sheets URL", "Enter Google Sheets ID"]
+      },
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use for sending reminders?",
+        "choices": ["Gmail", "Outlook", "Custom SMTP"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "invoice_column",
+        "title": "Identify the column in Google Sheets containing invoice due dates",
+        "confidence": 0.8
+      },
+      {
+        "id": "customer_email_column",
+        "title": "Identify the column in Google Sheets containing customer email addresses",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "check_and_remind",
+        "title": "Check Overdue Invoices and Send Reminders",
+        "steps": [
+          "Connect to Google Sheets",
+          "Identify overdue invoices",
+          "Compose reminder emails",
+          "Send emails to customers with overdue invoices"
+        ],
+        "requires": ["google_sheets", "email_service"]
+      }
+    ],
+    "connectionsRequired": ["google_sheets", "gmail"]
+  }
+}

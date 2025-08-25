@@ -1,0 +1,82 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "temperature-sensor",
+        "type": "sensor",
+        "title": "sensor",
+        "laneId": "lane-transform",
+        "data": {
+          "metric": "temperature",
+          "unit": "celsius",
+          "interval": 60
+        }
+      },
+      {
+        "id": "thermostat",
+        "type": "controller",
+        "title": "controller",
+        "laneId": "lane-transform",
+        "data": {
+          "target_temperature": 22,
+          "tolerance": 1
+        }
+      },
+      {
+        "id": "heater",
+        "type": "actuator",
+        "title": "actuator",
+        "laneId": "lane-transform",
+        "data": {
+          "type": "electric_heater",
+          "max_power": 2000
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "temperature-sensor"
+        },
+        "target": {
+          "nodeId": "thermostat"
+        },
+        "label": "temperature_reading"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "thermostat"
+        },
+        "target": {
+          "nodeId": "heater"
+        },
+        "label": "heating_command"
+      }
+    ]
+  }
+}

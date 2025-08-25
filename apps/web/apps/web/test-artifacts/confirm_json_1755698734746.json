@@ -1,0 +1,38 @@
+{
+  "agentSpec": {
+    "name": "BuilderBot",
+    "inputs": {
+      "projectSpecs": "string",
+      "timeline": "date",
+      "budget": "number"
+    },
+    "sources": {
+      "constructionDatabase": {
+        "provider": "constructionDB",
+        "query": "SELECT * FROM materials WHERE price <= ${inputs.budget}"
+      },
+      "weatherForecast": {
+        "provider": "weatherAPI",
+        "location": "${inputs.projectLocation}",
+        "date": "${inputs.timeline}"
+      }
+    },
+    "analysis": {
+      "materialSelection": "Analyze available materials within budget",
+      "weatherImpact": "Assess weather conditions impact on construction schedule"
+    },
+    "decision": {
+      "buildPlan": "Create optimal build plan based on material availability and weather conditions"
+    },
+    "actions": {
+      "orderMaterials": "Place orders for selected materials",
+      "scheduleCrew": "Assign work crews based on project timeline",
+      "updateTimeline": "Adjust project timeline if necessary"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware",
+      "mobileApp"
+    ]
+  }
+}

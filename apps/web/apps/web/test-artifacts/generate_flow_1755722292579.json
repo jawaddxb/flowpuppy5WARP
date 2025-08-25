@@ -1,0 +1,190 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "user-input",
+        "type": "input",
+        "title": "User Query",
+        "laneId": "lane-input",
+        "data": {
+          "inputKey": "userQuery",
+          "label": "User Query"
+        }
+      },
+      {
+        "id": "twitter-search",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "twitter",
+        "data": {
+          "provider": "twitter",
+          "params": {
+            "query": "{{userQuery}}",
+            "limit": 10
+          }
+        }
+      },
+      {
+        "id": "web-search",
+        "type": "source",
+        "title": "source",
+        "laneId": "lane-transform",
+        "provider": "google",
+        "data": {
+          "provider": "google",
+          "params": {
+            "query": "{{userQuery}}",
+            "numResults": 5
+          }
+        }
+      },
+      {
+        "id": "sentiment-analysis",
+        "type": "analysis",
+        "title": "analysis",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "params": {
+            "model": "text-davinci-002",
+            "prompt": "Analyze the sentiment of the following text: {{twitter-search.text}}"
+          }
+        }
+      },
+      {
+        "id": "response-decision",
+        "type": "decision",
+        "title": "decision",
+        "laneId": "lane-decision",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "params": {
+            "model": "text-davinci-002",
+            "prompt": "Based on the sentiment analysis and web search results, decide on an appropriate response to the user query."
+          }
+        }
+      },
+      {
+        "id": "generate-response",
+        "type": "action",
+        "title": "action",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "params": {
+            "model": "text-davinci-002",
+            "prompt": "Generate a response based on the decision: {{response-decision}}"
+          }
+        }
+      },
+      {
+        "id": "output-response",
+        "type": "output",
+        "title": "output",
+        "laneId": "lane-output",
+        "data": {
+          "channel": "console"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "twitter-search"
+        },
+        "label": "User Query"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "user-input"
+        },
+        "target": {
+          "nodeId": "web-search"
+        },
+        "label": "User Query"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "twitter-search"
+        },
+        "target": {
+          "nodeId": "sentiment-analysis"
+        },
+        "label": "Twitter Data"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "sentiment-analysis"
+        },
+        "target": {
+          "nodeId": "response-decision"
+        },
+        "label": "Sentiment Analysis"
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "web-search"
+        },
+        "target": {
+          "nodeId": "response-decision"
+        },
+        "label": "Web Search Results"
+      },
+      {
+        "id": "e5",
+        "source": {
+          "nodeId": "response-decision"
+        },
+        "target": {
+          "nodeId": "generate-response"
+        },
+        "label": "Decision"
+      },
+      {
+        "id": "e6",
+        "source": {
+          "nodeId": "generate-response"
+        },
+        "target": {
+          "nodeId": "output-response"
+        },
+        "label": "Generated Response"
+      }
+    ]
+  }
+}

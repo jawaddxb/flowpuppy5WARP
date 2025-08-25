@@ -1,0 +1,54 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Notion integration to access task data"},
+      {"text": "Create a script to query Notion API for completed tasks"},
+      {"text": "Format the completed tasks into a digest"},
+      {"text": "Set up email sending functionality"},
+      {"text": "Create a scheduler to run the script every Friday at 4pm"},
+      {"text": "Test the entire workflow"}
+    ],
+    "questions": [
+      {
+        "id": "notion_workspace",
+        "label": "What is the name of your Notion workspace?",
+        "choices": ["Personal", "Work", "Team", "Other"]
+      },
+      {
+        "id": "email_service",
+        "label": "Which email service do you prefer to use?",
+        "choices": ["Gmail", "Outlook", "SendGrid", "Other"]
+      },
+      {
+        "id": "team_size",
+        "label": "How many team members will receive the digest?",
+        "choices": ["1-5", "6-10", "11-20", "21+"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "notion_api",
+        "title": "Notion API is required for task data retrieval",
+        "confidence": 0.9
+      },
+      {
+        "id": "scheduling",
+        "title": "A scheduling mechanism is needed for weekly execution",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "weekly_digest",
+        "title": "Generate and Send Weekly Digest",
+        "steps": [
+          "Query Notion for completed tasks",
+          "Format tasks into digest",
+          "Send email to team"
+        ],
+        "requires": ["notion", "email"]
+      }
+    ],
+    "connectionsRequired": ["notion", "gmail"]
+  }
+}

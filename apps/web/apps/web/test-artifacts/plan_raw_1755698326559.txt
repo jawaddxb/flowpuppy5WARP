@@ -1,0 +1,76 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define target audience and goals for the email sequence"},
+      {"text": "Create a compelling welcome email"},
+      {"text": "Design Day 1 follow-up email"},
+      {"text": "Develop Day 2 follow-up email"},
+      {"text": "Craft Day 3 follow-up email"},
+      {"text": "Set up email automation system"},
+      {"text": "Test and optimize the sequence"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Event attendees"]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your email sequence?",
+        "choices": ["Increase engagement", "Drive sales", "Educate users", "Gather feedback"]
+      },
+      {
+        "id": "tone",
+        "label": "What tone should the emails have?",
+        "choices": ["Professional", "Friendly", "Exciting", "Informative"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "timing",
+        "title": "Optimal timing for follow-up emails",
+        "confidence": 0.8
+      },
+      {
+        "id": "content",
+        "title": "Key content elements for each email",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "create_sequence",
+        "title": "Create Email Sequence",
+        "steps": [
+          "Draft welcome email",
+          "Draft Day 1 follow-up",
+          "Draft Day 2 follow-up",
+          "Draft Day 3 follow-up"
+        ]
+      },
+      {
+        "id": "setup_automation",
+        "title": "Set Up Email Automation",
+        "steps": [
+          "Choose email marketing platform",
+          "Import email list",
+          "Set up automation workflow",
+          "Schedule emails"
+        ],
+        "requires": ["create_sequence"]
+      }
+    ],
+    "connectionsRequired": ["mailchimp", "sendgrid"]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Increase engagement",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "tone"}
+  ]
+}

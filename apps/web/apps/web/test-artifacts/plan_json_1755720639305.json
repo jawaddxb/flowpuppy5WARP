@@ -1,0 +1,116 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Create a compelling welcome email"
+      },
+      {
+        "text": "Design a follow-up email for day 2"
+      },
+      {
+        "text": "Craft a final follow-up email for day 3"
+      },
+      {
+        "text": "Set up email automation sequence"
+      },
+      {
+        "text": "Test and refine the email sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "industry",
+        "label": "What industry is your business in?",
+        "choices": [
+          "E-commerce",
+          "SaaS",
+          "Healthcare",
+          "Education",
+          "Other"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What's the primary goal of your email sequence?",
+        "choices": [
+          "Onboarding",
+          "Product education",
+          "Upselling",
+          "Engagement",
+          "Customer retention"
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "What tone would you like for your emails?",
+        "choices": [
+          "Professional",
+          "Friendly",
+          "Humorous",
+          "Informative",
+          "Inspirational"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailFrequency",
+        "title": "Optimal email frequency",
+        "confidence": 0.8
+      },
+      {
+        "id": "subjectLines",
+        "title": "Effective subject line strategies",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailCreation",
+        "title": "Email Content Creation",
+        "steps": [
+          "Draft copy",
+          "Design layout",
+          "Add images",
+          "Proofread"
+        ],
+        "requires": [
+          "openai"
+        ]
+      },
+      {
+        "id": "automationSetup",
+        "title": "Email Automation Setup",
+        "steps": [
+          "Choose platform",
+          "Configure triggers",
+          "Set delays",
+          "Test sequence"
+        ],
+        "requires": [
+          "mailchimp"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "industry": "E-commerce",
+    "goal": "Onboarding",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {
+      "id": "industry"
+    },
+    {
+      "id": "goal"
+    },
+    {
+      "id": "tone"
+    }
+  ]
+}

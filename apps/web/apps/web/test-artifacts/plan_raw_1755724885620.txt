@@ -1,0 +1,78 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up hourly API call to fetch Bitcoin price"},
+      {"text": "Calculate percentage change in Bitcoin price over last 4 hours"},
+      {"text": "If change exceeds 2%, trigger alert system"},
+      {"text": "Generate AI explanation for price movement"},
+      {"text": "Send SMS alert with price change and AI rationale"},
+      {"text": "Send Slack alert with price change and AI rationale"}
+    ],
+    "questions": [
+      {
+        "id": "pricing_api",
+        "label": "Which Bitcoin pricing API would you like to use?",
+        "choices": ["CoinGecko", "CoinMarketCap", "Binance", "Other"]
+      },
+      {
+        "id": "sms_provider",
+        "label": "Which SMS provider do you prefer for sending alerts?",
+        "choices": ["Twilio", "Nexmo", "MessageBird", "Other"]
+      },
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for generating price movement rationale?",
+        "choices": ["GPT-3.5", "GPT-4", "Claude", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "api_call_frequency",
+        "title": "Hourly API calls may incur costs or hit rate limits",
+        "confidence": 0.9
+      },
+      {
+        "id": "historical_data",
+        "title": "4-hour historical data might require additional API calls or data storage",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "fetch_price",
+        "title": "Fetch Bitcoin Price",
+        "steps": [
+          "Connect to chosen pricing API",
+          "Retrieve current Bitcoin price",
+          "Store price with timestamp"
+        ]
+      },
+      {
+        "id": "calculate_change",
+        "title": "Calculate Price Change",
+        "steps": [
+          "Retrieve prices from last 4 hours",
+          "Calculate percentage change",
+          "Compare with 2% threshold"
+        ],
+        "requires": ["fetch_price"]
+      },
+      {
+        "id": "generate_alert",
+        "title": "Generate and Send Alerts",
+        "steps": [
+          "Generate AI explanation for price movement",
+          "Compose alert message",
+          "Send SMS alert",
+          "Send Slack alert"
+        ],
+        "requires": ["calculate_change"]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "openai",
+      "twilio"
+    ]
+  }
+}

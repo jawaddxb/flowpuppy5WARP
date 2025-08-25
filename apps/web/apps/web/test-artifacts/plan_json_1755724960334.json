@@ -1,0 +1,89 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a scheduled task to run every night at 1am UTC"
+      },
+      {
+        "text": "Export CRM leads to Google Sheets"
+      },
+      {
+        "text": "Generate a CSV file from the exported data"
+      },
+      {
+        "text": "Count the number of rows in the CSV"
+      },
+      {
+        "text": "Compose an email with the CSV attachment and row count"
+      },
+      {
+        "text": "Send the email to ops@"
+      }
+    ],
+    "questions": [
+      {
+        "id": "crm_provider",
+        "label": "Which CRM provider are you using?",
+        "choices": [
+          "Salesforce",
+          "HubSpot",
+          "Zoho",
+          "Other"
+        ]
+      },
+      {
+        "id": "email_provider",
+        "label": "Which email service will you use to send the report?",
+        "choices": [
+          "Gmail",
+          "Outlook",
+          "SendGrid",
+          "Other"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "scheduled_task",
+        "title": "Scheduled task capability needed",
+        "confidence": 0.9
+      },
+      {
+        "id": "data_export",
+        "title": "CRM data export functionality required",
+        "confidence": 0.95
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "nightly_export",
+        "title": "Nightly CRM Export to Sheets",
+        "steps": [
+          "Trigger at 1am UTC",
+          "Connect to CRM",
+          "Export leads data",
+          "Connect to Google Sheets",
+          "Upload data to Sheets",
+          "Generate CSV from Sheets data",
+          "Count rows in CSV",
+          "Compose email with attachment and row count",
+          "Send email to ops@"
+        ],
+        "requires": [
+          "crm",
+          "sheets",
+          "email"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "crm",
+      "google_sheets",
+      "email"
+    ]
+  },
+  "nextQuestions": [
+    "crm_provider",
+    "email_provider"
+  ]
+}

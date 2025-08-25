@@ -1,0 +1,100 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "inputKey": "userQuery"
+      }
+    },
+    {
+      "id": "web-search",
+      "type": "web-search",
+      "config": {
+        "provider": "google",
+        "numResults": 5
+      }
+    },
+    {
+      "id": "sentiment-analysis",
+      "type": "sentiment-analysis",
+      "config": {
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    {
+      "id": "decision-maker",
+      "type": "decision",
+      "config": {
+        "type": "rule-based",
+        "rules": [
+          {
+            "if": "sentiment.score > 0.5",
+            "then": "respond_positively"
+          },
+          {
+            "if": "sentiment.score < -0.5",
+            "then": "respond_empathetically"
+          }
+        ]
+      }
+    },
+    {
+      "id": "respond-positively",
+      "type": "text-generation",
+      "config": {
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    {
+      "id": "respond-empathetically",
+      "type": "text-generation",
+      "config": {
+        "provider": "openai",
+        "model": "text-davinci-003"
+      }
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "config": {
+        "channels": ["chat", "email"]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "web-search"
+    },
+    {
+      "source": "web-search",
+      "target": "sentiment-analysis"
+    },
+    {
+      "source": "sentiment-analysis",
+      "target": "decision-maker"
+    },
+    {
+      "source": "decision-maker",
+      "target": "respond-positively",
+      "label": "If positive"
+    },
+    {
+      "source": "decision-maker",
+      "target": "respond-empathetically",
+      "label": "If negative"
+    },
+    {
+      "source": "respond-positively",
+      "target": "output"
+    },
+    {
+      "source": "respond-empathetically",
+      "target": "output"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "prompt": "What task would you like the agent to perform?"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "task-analysis",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Analyze the following task and break it down into steps: {{user-input}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 100
+      }
+    },
+    {
+      "id": "decision-maker",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Based on the task analysis, decide on the next action to take: {{task-analysis}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 200
+      }
+    },
+    {
+      "id": "action-executor",
+      "type": "function",
+      "config": {
+        "function": "executeAction",
+        "args": {
+          "action": "{{decision-maker}}"
+        }
+      },
+      "position": {
+        "x": 0,
+        "y": 300
+      }
+    },
+    {
+      "id": "output-formatter",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Format the following action result into a user-friendly response: {{action-executor}}"
+      },
+      "position": {
+        "x": 0,
+        "y": 400
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "task-analysis"
+    },
+    {
+      "source": "task-analysis",
+      "target": "decision-maker"
+    },
+    {
+      "source": "decision-maker",
+      "target": "action-executor"
+    },
+    {
+      "source": "action-executor",
+      "target": "output-formatter"
+    }
+  ]
+}

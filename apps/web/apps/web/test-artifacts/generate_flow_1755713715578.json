@@ -1,0 +1,102 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "default-agent",
+        "type": "agent",
+        "title": "agent",
+        "laneId": "lane-transform",
+        "data": {
+          "name": "DefaultAgent",
+          "description": "A basic agent with no specific capabilities"
+        }
+      },
+      {
+        "id": "chat-interface",
+        "type": "user-input",
+        "title": "user-input",
+        "laneId": "lane-transform",
+        "data": {
+          "inputType": "text",
+          "prompt": "How can I assist you today?"
+        }
+      },
+      {
+        "id": "response-generation",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.7
+        }
+      },
+      {
+        "id": "output-display",
+        "type": "user-output",
+        "title": "user-output",
+        "laneId": "lane-transform",
+        "data": {
+          "outputType": "text"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "chat-interface"
+        },
+        "target": {
+          "nodeId": "default-agent"
+        },
+        "label": "User input"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "default-agent"
+        },
+        "target": {
+          "nodeId": "response-generation"
+        },
+        "label": "Generate response"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "response-generation"
+        },
+        "target": {
+          "nodeId": "output-display"
+        },
+        "label": "Display response"
+      }
+    ]
+  }
+}

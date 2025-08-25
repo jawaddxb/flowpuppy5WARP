@@ -1,0 +1,15 @@
+{
+  "agentSpec": {
+    "name": "Basic Agent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter"
+      }
+    },
+    "analysis": {},
+    "decision": {},
+    "actions": {},
+    "channels": []
+  }
+}

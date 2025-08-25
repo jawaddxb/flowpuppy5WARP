@@ -1,0 +1,40 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {
+      "input1": {
+        "type": "text",
+        "provider": "inputProvider1"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "exampleApiKey"
+      },
+      "news": {
+        "provider": "newsAPI",
+        "apiKey": "exampleNewsApiKey"
+      }
+    },
+    "analysis": {
+      "method": "sentimentAnalysis",
+      "provider": "sentimentProvider"
+    },
+    "decision": {
+      "threshold": 0.5,
+      "provider": "decisionProvider"
+    },
+    "actions": {
+      "notify": {
+        "provider": "notificationService",
+        "message": "Action required"
+      }
+    },
+    "channels": [
+      "email",
+      "sms",
+      "push"
+    ]
+  }
+}

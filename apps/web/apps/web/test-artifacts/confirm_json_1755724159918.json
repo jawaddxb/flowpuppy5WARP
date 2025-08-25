@@ -1,0 +1,57 @@
+{
+  "agentSpec": {
+    "name": "Basic Agent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "limit": 10
+        }
+      },
+      "web": {
+        "provider": "google",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "params": {
+          "prompt": "Analyze the sentiment of the following text: {{sources.twitter.text}}",
+          "model": "gpt-3.5-turbo"
+        }
+      }
+    },
+    "decision": {
+      "provider": "openai",
+      "params": {
+        "prompt": "Based on the sentiment analysis and web search results, decide on the most appropriate response to the user query.",
+        "model": "gpt-4"
+      }
+    },
+    "actions": {
+      "respondToUser": {
+        "provider": "output",
+        "params": {
+          "message": "{{decision.output}}"
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "discord"
+      }
+    ]
+  }
+}

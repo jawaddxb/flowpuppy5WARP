@@ -1,0 +1,57 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Create a system to track and analyze AI trends"},
+      {"text": "Develop a daily tweet generation process"},
+      {"text": "Schedule automated daily tweets"},
+      {"text": "Monitor engagement and adjust strategy"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_style",
+        "label": "What style of tweets do you prefer?",
+        "choices": ["Formal", "Casual", "Mix of both"]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day?",
+        "choices": ["1", "2-3", "4-5"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_news_sources",
+        "title": "Reliable AI news sources needed",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Generation",
+        "steps": [
+          "Collect AI news from reliable sources",
+          "Analyze trends",
+          "Generate tweet content",
+          "Post tweet to Twitter"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_style": "Mix of both",
+    "tweet_frequency": "1"
+  },
+  "nextQuestions": [
+    {"id": "tweet_style"},
+    {"id": "tweet_frequency"}
+  ]
+}

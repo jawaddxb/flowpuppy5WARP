@@ -1,0 +1,90 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Research current AI trends"
+      },
+      {
+        "text": "Create a content calendar"
+      },
+      {
+        "text": "Write engaging tweets"
+      },
+      {
+        "text": "Schedule daily tweets"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "More than 3"
+        ]
+      },
+      {
+        "id": "ai_focus",
+        "label": "Which area of AI do you want to focus on?",
+        "choices": [
+          "General AI",
+          "Machine Learning",
+          "Natural Language Processing",
+          "Computer Vision",
+          "Robotics"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_news_sources",
+        "title": "Reliable AI news sources needed",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet",
+        "title": "Daily AI Trend Tweet Pipeline",
+        "steps": [
+          "Research trending AI topics",
+          "Draft tweet content",
+          "Review and edit tweet",
+          "Schedule tweet",
+          "Monitor engagement"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_focus": "General AI"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweet_frequency"
+    },
+    {
+      "id": "ai_focus"
+    }
+  ]
+}

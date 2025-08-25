@@ -1,0 +1,65 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "limit": 10
+        }
+      },
+      "web": {
+        "provider": "google",
+        "params": {
+          "query": "{{inputs.userQuery}}",
+          "numResults": 5
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "openai",
+        "params": {
+          "model": "text-davinci-003",
+          "prompt": "Analyze the sentiment of: {{sources.twitter.result}}"
+        }
+      },
+      "summary": {
+        "provider": "openai",
+        "params": {
+          "model": "text-davinci-003",
+          "prompt": "Summarize the following web results: {{sources.web.result}}"
+        }
+      }
+    },
+    "decision": {
+      "provider": "openai",
+      "params": {
+        "model": "text-davinci-003",
+        "prompt": "Based on the sentiment analysis {{analysis.sentiment.result}} and web summary {{analysis.summary.result}}, decide on the next action."
+      }
+    },
+    "actions": {
+      "generateResponse": {
+        "provider": "openai",
+        "params": {
+          "model": "text-davinci-003",
+          "prompt": "Generate a response based on the decision: {{decision.result}}"
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "text",
+        "provider": "console"
+      }
+    ]
+  }
+}

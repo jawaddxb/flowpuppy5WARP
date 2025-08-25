@@ -1,0 +1,110 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "gather-ai-trends",
+        "type": "WebScraper",
+        "title": "WebScraper",
+        "laneId": "lane-transform",
+        "data": {
+          "urls": [
+            "https://www.artificialintelligence-news.com/",
+            "https://www.theverge.com/ai-artificial-intelligence",
+            "https://www.wired.com/tag/artificial-intelligence/"
+          ],
+          "frequency": "daily"
+        }
+      },
+      {
+        "id": "summarize-trends",
+        "type": "TextSummarizer",
+        "title": "TextSummarizer",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "max_tokens": 100
+        }
+      },
+      {
+        "id": "generate-tweet",
+        "type": "TextGenerator",
+        "title": "TextGenerator",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "prompt": "Create a tweet about the following AI trend: {summary}. Include relevant hashtags."
+        }
+      },
+      {
+        "id": "post-tweet",
+        "type": "SocialMediaPoster",
+        "title": "SocialMediaPoster",
+        "laneId": "lane-transform",
+        "provider": "twitter",
+        "data": {
+          "provider": "twitter",
+          "schedule": "daily at 9:00 AM"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "gather-ai-trends"
+        },
+        "target": {
+          "nodeId": "summarize-trends"
+        },
+        "label": "Scraped content"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "summarize-trends"
+        },
+        "target": {
+          "nodeId": "generate-tweet"
+        },
+        "label": "Summarized trend"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "generate-tweet"
+        },
+        "target": {
+          "nodeId": "post-tweet"
+        },
+        "label": "Generated tweet"
+      }
+    ]
+  }
+}

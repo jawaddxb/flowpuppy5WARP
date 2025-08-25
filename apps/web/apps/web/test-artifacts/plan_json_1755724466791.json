@@ -1,0 +1,78 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a webhook to capture website contact form submissions"
+      },
+      {
+        "text": "Use AI to score the intent of the submission"
+      },
+      {
+        "text": "If the intent score is >= 0.7, send a Slack DM to the Account Executive"
+      },
+      {
+        "text": "Include submission details in the Slack message"
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for intent scoring?",
+        "choices": [
+          "OpenAI GPT-3",
+          "OpenAI GPT-4",
+          "Custom trained model"
+        ]
+      },
+      {
+        "id": "ae_identification",
+        "label": "How will you identify which Account Executive to send the Slack DM to?",
+        "choices": [
+          "Based on territory",
+          "Round-robin assignment",
+          "Specific AE for all submissions"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "form_data",
+        "title": "Determine what data is available from the contact form submission",
+        "confidence": 0.8
+      },
+      {
+        "id": "slack_integration",
+        "title": "Verify Slack API integration capabilities",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "intent_scoring",
+        "title": "Score submission intent",
+        "steps": [
+          "Receive form submission data",
+          "Preprocess data for AI model",
+          "Send data to AI model for scoring",
+          "Receive and parse intent score"
+        ]
+      },
+      {
+        "id": "slack_notification",
+        "title": "Send Slack notification",
+        "steps": [
+          "Determine appropriate AE",
+          "Compose Slack message with submission details",
+          "Send DM via Slack API"
+        ],
+        "requires": [
+          "intent_scoring"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "openai"
+    ]
+  }
+}

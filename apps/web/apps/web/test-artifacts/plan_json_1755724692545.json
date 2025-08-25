@@ -1,0 +1,90 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Stripe webhook to trigger on new customer creation"
+      },
+      {
+        "text": "Configure email service integration"
+      },
+      {
+        "text": "Create welcome email template"
+      },
+      {
+        "text": "Set up delay mechanism for 3 days"
+      },
+      {
+        "text": "Create onboarding tips email template"
+      },
+      {
+        "text": "Set up delay mechanism for 10 days"
+      },
+      {
+        "text": "Create customer survey"
+      },
+      {
+        "text": "Implement logic to send survey after delay"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_service",
+        "label": "Which email service do you prefer to use?",
+        "choices": [
+          "SendGrid",
+          "Mailchimp",
+          "Amazon SES",
+          "Custom SMTP"
+        ]
+      },
+      {
+        "id": "delay_mechanism",
+        "label": "How would you like to implement the delay between emails?",
+        "choices": [
+          "Cron job",
+          "Queue system",
+          "Scheduled tasks"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "stripe_integration",
+        "title": "Stripe integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "email_service_needed",
+        "title": "An email service integration is necessary",
+        "confidence": 1
+      },
+      {
+        "id": "timing_mechanism",
+        "title": "A mechanism for timing and scheduling emails is needed",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "welcome_sequence",
+        "title": "New Customer Welcome Sequence",
+        "steps": [
+          "Receive Stripe webhook for new customer",
+          "Send welcome email immediately",
+          "Wait 3 days",
+          "Send onboarding tips email",
+          "Wait 10 days",
+          "Send customer survey"
+        ],
+        "requires": [
+          "stripe",
+          "email_service"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "stripe",
+      "sendgrid"
+    ]
+  }
+}

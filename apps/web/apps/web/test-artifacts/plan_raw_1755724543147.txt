@@ -1,0 +1,56 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up RSS feed reader"},
+      {"text": "Configure RSS feed check interval to 2 hours"},
+      {"text": "Process new posts from RSS feed"},
+      {"text": "For each new post, generate 2 unique tweets"},
+      {"text": "Schedule generated tweets on Twitter"}
+    ],
+    "questions": [
+      {
+        "id": "rss_url",
+        "label": "What is the URL of the RSS feed you want to monitor?",
+        "choices": ["Enter URL"]
+      },
+      {
+        "id": "tweet_style",
+        "label": "What style would you like for the generated tweets?",
+        "choices": ["Informative", "Engaging", "Provocative", "Humorous"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "rss_check_interval",
+        "title": "RSS feed check interval set to 2 hours",
+        "confidence": 1
+      },
+      {
+        "id": "tweets_per_post",
+        "title": "Generate 2 tweets per new post",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "rss_to_tweets",
+        "title": "RSS to Scheduled Tweets",
+        "steps": [
+          "Read RSS feed",
+          "Identify new posts",
+          "Generate tweets",
+          "Schedule tweets"
+        ],
+        "requires": ["rss_url", "tweet_style"]
+      }
+    ],
+    "connectionsRequired": [
+      "rss",
+      "twitter",
+      "openai"
+    ]
+  },
+  "defaults": {
+    "rss_check_interval": 7200
+  }
+}

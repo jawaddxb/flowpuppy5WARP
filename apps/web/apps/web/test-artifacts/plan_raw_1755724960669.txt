@@ -1,0 +1,58 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a nightly scheduled task to run at 1am UTC"},
+      {"text": "Export CRM leads to Google Sheets"},
+      {"text": "Generate a CSV file from the exported data"},
+      {"text": "Calculate row counts from the CSV"},
+      {"text": "Compose an email with the CSV attachment and row count information"},
+      {"text": "Send the email to ops@"}
+    ],
+    "questions": [
+      {
+        "id": "crm_provider",
+        "label": "Which CRM system are you using?",
+        "choices": ["Salesforce", "HubSpot", "Pipedrive", "Other"]
+      },
+      {
+        "id": "email_provider",
+        "label": "Which email service will you use to send the CSV?",
+        "choices": ["Gmail", "Outlook", "SendGrid", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "automation_tool",
+        "title": "An automation tool may be needed to schedule and run the nightly task",
+        "confidence": 0.9
+      },
+      {
+        "id": "data_volume",
+        "title": "The volume of CRM leads may affect processing time and email attachment size",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "nightly_export_pipeline",
+        "title": "Nightly CRM Export to Sheets and Email",
+        "steps": [
+          "Authenticate with CRM",
+          "Export leads from CRM",
+          "Authenticate with Google Sheets",
+          "Upload data to Google Sheets",
+          "Generate CSV from Sheets data",
+          "Calculate row counts",
+          "Compose email with CSV attachment and row counts",
+          "Send email to ops@"
+        ],
+        "requires": ["crm", "sheets", "email"]
+      }
+    ],
+    "connectionsRequired": ["crm", "google_sheets", "gmail"]
+  },
+  "nextQuestions": [
+    "crm_provider",
+    "email_provider"
+  ]
+}

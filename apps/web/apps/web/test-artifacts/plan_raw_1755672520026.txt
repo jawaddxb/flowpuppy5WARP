@@ -1,0 +1,74 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define project requirements and goals"},
+      {"text": "Choose a web development framework"},
+      {"text": "Set up the development environment"},
+      {"text": "Design the user interface"},
+      {"text": "Implement core functionality"},
+      {"text": "Integrate necessary APIs"},
+      {"text": "Test the application"},
+      {"text": "Deploy the application"},
+      {"text": "Gather user feedback"},
+      {"text": "Iterate and improve"}
+    ],
+    "questions": [
+      {
+        "id": "framework",
+        "label": "Which web development framework do you prefer?",
+        "choices": ["React", "Vue", "Angular", "Svelte"]
+      },
+      {
+        "id": "backend",
+        "label": "What backend technology would you like to use?",
+        "choices": ["Node.js", "Python", "Ruby on Rails", "Java Spring"]
+      },
+      {
+        "id": "database",
+        "label": "Which database system do you want to implement?",
+        "choices": ["MongoDB", "PostgreSQL", "MySQL", "Firebase Realtime Database"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "tech_stack",
+        "title": "Technology stack needs to be defined",
+        "confidence": 0.9
+      },
+      {
+        "id": "api_integration",
+        "title": "API integration may be required",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "setup_pipeline",
+        "title": "Development Environment Setup",
+        "steps": [
+          "Install chosen framework",
+          "Set up version control",
+          "Configure development tools",
+          "Set up testing environment"
+        ]
+      },
+      {
+        "id": "deployment_pipeline",
+        "title": "Application Deployment",
+        "steps": [
+          "Choose hosting platform",
+          "Configure deployment settings",
+          "Set up CI/CD pipeline",
+          "Deploy application"
+        ],
+        "requires": ["setup_pipeline"]
+      }
+    ],
+    "connectionsRequired": ["github"]
+  },
+  "nextQuestions": [
+    {"id": "framework"},
+    {"id": "backend"},
+    {"id": "database"}
+  ]
+}

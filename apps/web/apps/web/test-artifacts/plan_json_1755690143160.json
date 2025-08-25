@@ -1,0 +1,87 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Create a system to track and analyze AI trends"
+      },
+      {
+        "text": "Develop a daily AI trend summarization process"
+      },
+      {
+        "text": "Implement a scheduling system for daily tweets"
+      },
+      {
+        "text": "Set up error handling and monitoring"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many AI trend tweets do you want to post per day?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "More than 3"
+        ]
+      },
+      {
+        "id": "trend_sources",
+        "label": "Which sources would you like to use for AI trend tracking?",
+        "choices": [
+          "News websites",
+          "Academic journals",
+          "Social media",
+          "Industry reports",
+          "All of the above"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api_required",
+        "title": "Twitter API access is necessary for posting tweets",
+        "confidence": 1
+      },
+      {
+        "id": "ai_knowledge_needed",
+        "title": "Strong understanding of AI field required for trend analysis",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet_pipeline",
+        "title": "Daily AI Trend Tweet Process",
+        "steps": [
+          "Collect AI news and updates from selected sources",
+          "Analyze and identify top trends",
+          "Summarize trends in tweet-friendly format",
+          "Schedule and post tweet",
+          "Monitor engagement and adjust strategy if needed"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "trend_sources": "All of the above"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweet_frequency"
+    },
+    {
+      "id": "trend_sources"
+    }
+  ]
+}

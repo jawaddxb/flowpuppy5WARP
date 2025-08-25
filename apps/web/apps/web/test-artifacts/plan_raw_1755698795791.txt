@@ -1,0 +1,76 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define target audience and goals for welcome sequence"},
+      {"text": "Create compelling subject lines for each email"},
+      {"text": "Draft welcome email content"},
+      {"text": "Draft day 2 follow-up email content"},
+      {"text": "Draft day 3 follow-up email content"},
+      {"text": "Design email templates"},
+      {"text": "Set up email automation workflow"},
+      {"text": "Test and optimize sequence"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Event attendees"]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your welcome sequence?",
+        "choices": ["Introduce brand/product", "Drive first purchase", "Encourage product usage", "Gather user information"]
+      },
+      {
+        "id": "emailProvider",
+        "label": "Which email marketing platform will you use?",
+        "choices": ["Mailchimp", "Constant Contact", "SendGrid", "HubSpot", "Other"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "personalization",
+        "title": "Personalized content increases engagement",
+        "confidence": 0.9
+      },
+      {
+        "id": "timing",
+        "title": "Optimal timing for follow-ups is within 48-72 hours",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "emailCreation",
+        "title": "Email Content Creation",
+        "steps": [
+          "Research audience preferences",
+          "Brainstorm subject lines",
+          "Write email body content",
+          "Design email layout",
+          "Add personalization tokens",
+          "Proofread and edit"
+        ]
+      },
+      {
+        "id": "automationSetup",
+        "title": "Email Automation Setup",
+        "steps": [
+          "Choose email marketing platform",
+          "Create email templates",
+          "Set up automation workflow",
+          "Define trigger events",
+          "Set sending schedule",
+          "Test automation flow"
+        ],
+        "requires": ["emailProvider"]
+      }
+    ],
+    "connectionsRequired": ["mailchimp", "sendgrid", "hubspot"]
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "emailProvider"}
+  ]
+}

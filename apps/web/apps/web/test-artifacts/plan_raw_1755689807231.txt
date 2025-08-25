@@ -1,0 +1,67 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Design welcome email content"},
+      {"text": "Set up email automation system"},
+      {"text": "Create Day 1 follow-up email"},
+      {"text": "Develop Day 2 follow-up email"},
+      {"text": "Craft Day 3 follow-up email"},
+      {"text": "Test email sequence"},
+      {"text": "Launch email campaign"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Event attendees"]
+      },
+      {
+        "id": "goal",
+        "label": "What's the primary goal of your email sequence?",
+        "choices": ["Onboarding", "Product education", "Upselling", "Engagement"]
+      },
+      {
+        "id": "tone",
+        "label": "What tone should the emails have?",
+        "choices": ["Professional", "Friendly", "Humorous", "Informative"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "personalization",
+        "title": "Personalization increases open rates",
+        "confidence": 0.9
+      },
+      {
+        "id": "timing",
+        "title": "Optimal sending times affect engagement",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_creation",
+        "title": "Email Content Creation",
+        "steps": ["Draft copy", "Design template", "Add personalization", "Proofread"],
+        "requires": ["openai"]
+      },
+      {
+        "id": "automation_setup",
+        "title": "Email Automation Setup",
+        "steps": ["Choose platform", "Configure triggers", "Set sending schedule", "Test automation"],
+        "requires": ["mailchimp"]
+      }
+    ],
+    "connectionsRequired": ["mailchimp", "openai"]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "tone": "Friendly"
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "tone"}
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "input-collector",
+      "type": "input",
+      "config": {
+        "fields": [
+          {
+            "name": "query",
+            "type": "string",
+            "label": "User Query"
+          }
+        ]
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "openai-analysis",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7,
+        "max_tokens": 500,
+        "prompt": "Analyze the following user query and provide insights: {{query}}"
+      },
+      "position": {
+        "x": 200,
+        "y": 100
+      }
+    },
+    {
+      "id": "decision-maker",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.5,
+        "max_tokens": 300,
+        "prompt": "Based on the analysis, decide on the next action: {{analysis}}"
+      },
+      "position": {
+        "x": 400,
+        "y": 200
+      }
+    },
+    {
+      "id": "action-executor",
+      "type": "function",
+      "config": {
+        "function": "executeAction",
+        "args": {
+          "action": "{{decision}}"
+        }
+      },
+      "position": {
+        "x": 600,
+        "y": 300
+      }
+    },
+    {
+      "id": "output-formatter",
+      "type": "template",
+      "config": {
+        "template": "Action taken: {{action_result}}"
+      },
+      "position": {
+        "x": 800,
+        "y": 400
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "input-collector",
+      "target": "openai-analysis",
+      "label": "User Query"
+    },
+    {
+      "source": "openai-analysis",
+      "target": "decision-maker",
+      "label": "Analysis"
+    },
+    {
+      "source": "decision-maker",
+      "target": "action-executor",
+      "label": "Decision"
+    },
+    {
+      "source": "action-executor",
+      "target": "output-formatter",
+      "label": "Action Result"
+    }
+  ]
+}

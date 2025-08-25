@@ -1,0 +1,55 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query"
+      }
+    },
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "query": "${inputs.userQuery}",
+        "maxResults": 10
+      },
+      "webSearch": {
+        "provider": "googleSearch",
+        "query": "${inputs.userQuery}",
+        "numResults": 5
+      }
+    },
+    "analysis": {
+      "sentimentAnalysis": {
+        "provider": "openai",
+        "prompt": "Analyze the sentiment of the following text: ${sources.twitter.results}"
+      },
+      "summarization": {
+        "provider": "openai",
+        "prompt": "Summarize the key points from the following search results: ${sources.webSearch.results}"
+      }
+    },
+    "decision": {
+      "responseGeneration": {
+        "provider": "openai",
+        "prompt": "Based on the sentiment analysis (${analysis.sentimentAnalysis}) and summary (${analysis.summarization}), generate a response to the user query: ${inputs.userQuery}"
+      }
+    },
+    "actions": {
+      "sendResponse": {
+        "provider": "output",
+        "message": "${decision.responseGeneration}"
+      }
+    },
+    "channels": [
+      {
+        "type": "web",
+        "provider": "webInterface"
+      },
+      {
+        "type": "chat",
+        "provider": "slack"
+      }
+    ]
+  }
+}

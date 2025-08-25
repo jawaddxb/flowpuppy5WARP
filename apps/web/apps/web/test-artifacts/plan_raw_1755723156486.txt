@@ -1,0 +1,49 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Hacker News monitoring for 'LLM' keyword"},
+      {"text": "Configure hourly checks"},
+      {"text": "Implement point threshold check (>100)"},
+      {"text": "Set up Slack integration for #research channel"},
+      {"text": "Create posting mechanism for qualifying stories"}
+    ],
+    "questions": [
+      {
+        "id": "slack_webhook",
+        "label": "What is your Slack webhook URL for the #research channel?",
+        "choices": ["Enter URL manually", "I need help finding this"]
+      },
+      {
+        "id": "notification_preference",
+        "label": "How would you like to be notified of errors or issues?",
+        "choices": ["Email", "Slack DM", "SMS", "None"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "hn_api",
+        "title": "Hacker News provides a public API for story retrieval",
+        "confidence": 0.95
+      },
+      {
+        "id": "slack_rate_limit",
+        "title": "Slack has rate limits for incoming webhooks",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "hn_monitor",
+        "title": "Hacker News LLM Monitor",
+        "steps": [
+          "Fetch new stories from Hacker News API",
+          "Filter stories for 'LLM' keyword",
+          "Check if story points > 100",
+          "Post qualifying stories to Slack"
+        ],
+        "requires": ["slack"]
+      }
+    ],
+    "connectionsRequired": ["slack"]
+  }
+}

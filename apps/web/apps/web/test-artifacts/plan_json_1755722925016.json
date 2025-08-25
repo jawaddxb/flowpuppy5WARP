@@ -1,0 +1,79 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a recurring task to ping https://api.example.com/health every 5 minutes"
+      },
+      {
+        "text": "Implement a failure counter to track consecutive failures"
+      },
+      {
+        "text": "If the failure counter reaches 2, trigger notifications"
+      },
+      {
+        "text": "Send a notification to Slack"
+      },
+      {
+        "text": "Send an email to the on-call team"
+      }
+    ],
+    "questions": [
+      {
+        "id": "slack_channel",
+        "label": "Which Slack channel should receive the notifications?",
+        "choices": [
+          "#alerts",
+          "#general",
+          "#on-call"
+        ]
+      },
+      {
+        "id": "oncall_email",
+        "label": "What is the email address for the on-call team?",
+        "choices": [
+          "oncall@example.com",
+          "support@example.com",
+          "team@example.com"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "api_health_endpoint",
+        "title": "API health endpoint identified",
+        "confidence": 0.9
+      },
+      {
+        "id": "notification_channels",
+        "title": "Multiple notification channels required",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "health_check",
+        "title": "API Health Check and Notification",
+        "steps": [
+          "Ping API health endpoint",
+          "Check response",
+          "Update failure counter",
+          "Check if failure threshold reached",
+          "Send Slack notification if needed",
+          "Send email notification if needed"
+        ],
+        "requires": [
+          "slack_channel",
+          "oncall_email"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "smtp"
+    ]
+  },
+  "defaults": {
+    "ping_interval": 300,
+    "failure_threshold": 2
+  }
+}

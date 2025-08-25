@@ -1,0 +1,109 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "text-input",
+        "type": "input",
+        "title": "User Input",
+        "laneId": "lane-input",
+        "data": {
+          "inputType": "text",
+          "label": "User Input"
+        }
+      },
+      {
+        "id": "analyze-input",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.7,
+          "maxTokens": 150,
+          "prompt": "Analyze the following user input: {{input}}"
+        }
+      },
+      {
+        "id": "generate-response",
+        "type": "llm",
+        "title": "llm",
+        "laneId": "lane-transform",
+        "provider": "openai",
+        "data": {
+          "provider": "openai",
+          "model": "gpt-3.5-turbo",
+          "temperature": 0.7,
+          "maxTokens": 200,
+          "prompt": "Based on the analysis, generate a response: {{analysis}}"
+        }
+      },
+      {
+        "id": "text-output",
+        "type": "output",
+        "title": "Agent Response",
+        "laneId": "lane-output",
+        "data": {
+          "outputType": "text",
+          "label": "Agent Response"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "text-input"
+        },
+        "target": {
+          "nodeId": "analyze-input"
+        },
+        "label": "User Input"
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "analyze-input"
+        },
+        "target": {
+          "nodeId": "generate-response"
+        },
+        "label": "Analysis"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "generate-response"
+        },
+        "target": {
+          "nodeId": "text-output"
+        },
+        "label": "Response"
+      }
+    ]
+  }
+}

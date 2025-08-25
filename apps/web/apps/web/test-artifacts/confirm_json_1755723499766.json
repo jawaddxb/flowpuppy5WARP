@@ -1,0 +1,52 @@
+{
+  "agentSpec": {
+    "name": "BasicAgent",
+    "inputs": {
+      "userQuery": {
+        "type": "string",
+        "description": "The user's input query"
+      }
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "query": "${inputs.userQuery}"
+        }
+      }
+    },
+    "analysis": {
+      "summarize": {
+        "input": "${sources.web}",
+        "provider": "openai",
+        "params": {
+          "prompt": "Summarize the following web search results: ${sources.web}"
+        }
+      }
+    },
+    "decision": {
+      "determineAction": {
+        "input": "${analysis.summarize}",
+        "provider": "openai",
+        "params": {
+          "prompt": "Based on the summary, determine the next action to take: ${analysis.summarize}"
+        }
+      }
+    },
+    "actions": {
+      "respondToUser": {
+        "input": "${decision.determineAction}",
+        "provider": "output",
+        "params": {
+          "message": "${decision.determineAction}"
+        }
+      }
+    },
+    "channels": [
+      {
+        "type": "chat",
+        "provider": "discord"
+      }
+    ]
+  }
+}

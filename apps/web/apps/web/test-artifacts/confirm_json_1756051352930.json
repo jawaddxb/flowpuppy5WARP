@@ -1,0 +1,49 @@
+{
+  "agentSpec": {
+    "name": "ExampleAgent",
+    "inputs": {},
+    "sources": {
+      "twitter": {
+        "provider": "twitter",
+        "apiKey": "your_api_key",
+        "apiSecret": "your_api_secret"
+      },
+      "facebook": {
+        "provider": "facebook",
+        "appId": "your_app_id",
+        "appSecret": "your_app_secret"
+      }
+    },
+    "analysis": {
+      "type": "sentiment",
+      "model": "sentiment-analysis-v1"
+    },
+    "decision": {
+      "threshold": 0.5,
+      "actionIfPositive": "engage",
+      "actionIfNegative": "monitor"
+    },
+    "actions": {
+      "engage": {
+        "type": "reply",
+        "message": "Thank you for your feedback!"
+      },
+      "monitor": {
+        "type": "log",
+        "message": "Negative sentiment detected."
+      }
+    },
+    "channels": [
+      {
+        "type": "email",
+        "provider": "gmail",
+        "email": "example@gmail.com"
+      },
+      {
+        "type": "sms",
+        "provider": "twilio",
+        "phoneNumber": "+1234567890"
+      }
+    ]
+  }
+}

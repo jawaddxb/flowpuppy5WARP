@@ -1,0 +1,90 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Twitter API access"
+      },
+      {
+        "text": "Research and identify reliable AI news sources"
+      },
+      {
+        "text": "Create a system to aggregate daily AI trends"
+      },
+      {
+        "text": "Develop a tweet template for consistency"
+      },
+      {
+        "text": "Implement automation to post daily tweets"
+      },
+      {
+        "text": "Monitor engagement and adjust strategy as needed"
+      }
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": [
+          "1",
+          "2",
+          "3",
+          "More than 3"
+        ]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you prefer?",
+        "choices": [
+          "Tech blogs",
+          "Academic journals",
+          "Industry reports",
+          "Social media",
+          "All of the above"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "twitter_api",
+        "title": "Twitter API access is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_knowledge",
+        "title": "Deep understanding of AI trends is necessary",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_tweet",
+        "title": "Daily AI Trend Tweet Pipeline",
+        "steps": [
+          "Aggregate AI news from sources",
+          "Identify top trend of the day",
+          "Generate tweet content",
+          "Post tweet to Twitter",
+          "Analyze engagement metrics"
+        ],
+        "requires": [
+          "twitter"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "twitter"
+    ]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": "All of the above"
+  },
+  "nextQuestions": [
+    {
+      "id": "tweet_frequency"
+    },
+    {
+      "id": "ai_sources"
+    }
+  ]
+}

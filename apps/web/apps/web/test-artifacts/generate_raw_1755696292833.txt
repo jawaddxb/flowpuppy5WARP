@@ -1,0 +1,67 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "prompt": "What would you like assistance with?"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "analyze-input",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Analyze the user's input and determine the most appropriate course of action:"
+      },
+      "position": {
+        "x": 0,
+        "y": 100
+      }
+    },
+    {
+      "id": "generate-response",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Generate a helpful response based on the analysis:"
+      },
+      "position": {
+        "x": 0,
+        "y": 200
+      }
+    },
+    {
+      "id": "output-response",
+      "type": "output",
+      "config": {
+        "channel": "default"
+      },
+      "position": {
+        "x": 0,
+        "y": 300
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "analyze-input"
+    },
+    {
+      "source": "analyze-input",
+      "target": "generate-response"
+    },
+    {
+      "source": "generate-response",
+      "target": "output-response"
+    }
+  ]
+}

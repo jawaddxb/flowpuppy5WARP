@@ -1,0 +1,73 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "weather-check",
+      "type": "httpRequest",
+      "config": {
+        "url": "https://api.openweathermap.org/data/2.5/weather",
+        "method": "GET",
+        "params": {
+          "q": "{{city}}",
+          "appid": "{{OPENWEATHER_API_KEY}}",
+          "units": "metric"
+        }
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "temperature-evaluation",
+      "type": "javascript",
+      "config": {
+        "code": "const temp = input.main.temp;\nif (temp >= 20) return 'warm';\nelse if (temp >= 15) return 'mild';\nelse return 'cool';"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "response-generation",
+      "type": "llmCompletion",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "prompt": "Generate a short, friendly message about the weather being {{temperature}}. The current temperature is {{temp}}°C."
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "weather-check",
+      "target": "temperature-evaluation"
+    },
+    {
+      "source": "temperature-evaluation",
+      "target": "response-generation",
+      "label": "Evaluate temperature",
+      "data": {
+        "temperature": "{{output}}",
+        "temp": "{{input.main.temp}}"
+      }
+    },
+    {
+      "source": "response-generation",
+      "target": "output"
+    }
+  ]
+}

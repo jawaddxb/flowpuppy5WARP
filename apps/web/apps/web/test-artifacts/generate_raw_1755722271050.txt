@@ -1,0 +1,165 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "inputKey": "userQuery",
+        "label": "User Query"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "twitter-search",
+      "type": "source",
+      "config": {
+        "provider": "twitter",
+        "query": "${inputs.userQuery}",
+        "maxResults": 10
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "web-search",
+      "type": "source",
+      "config": {
+        "provider": "googleSearch",
+        "query": "${inputs.userQuery}",
+        "numResults": 5
+      },
+      "position": {
+        "x": 200,
+        "y": 100
+      }
+    },
+    {
+      "id": "sentiment-analysis",
+      "type": "analysis",
+      "config": {
+        "provider": "openai",
+        "prompt": "Analyze the sentiment of the following text: ${sources.twitter.results}"
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    },
+    {
+      "id": "summarization",
+      "type": "analysis",
+      "config": {
+        "provider": "openai",
+        "prompt": "Summarize the key points from the following search results: ${sources.webSearch.results}"
+      },
+      "position": {
+        "x": 400,
+        "y": 100
+      }
+    },
+    {
+      "id": "response-generation",
+      "type": "decision",
+      "config": {
+        "provider": "openai",
+        "prompt": "Based on the sentiment analysis (${analysis.sentimentAnalysis}) and summary (${analysis.summarization}), generate a response to the user query: ${inputs.userQuery}"
+      },
+      "position": {
+        "x": 600,
+        "y": 50
+      }
+    },
+    {
+      "id": "send-response",
+      "type": "action",
+      "config": {
+        "provider": "output",
+        "message": "${decision.responseGeneration}"
+      },
+      "position": {
+        "x": 800,
+        "y": 50
+      }
+    },
+    {
+      "id": "web-interface",
+      "type": "channel",
+      "config": {
+        "provider": "webInterface"
+      },
+      "position": {
+        "x": 1000,
+        "y": 0
+      }
+    },
+    {
+      "id": "slack-channel",
+      "type": "channel",
+      "config": {
+        "provider": "slack"
+      },
+      "position": {
+        "x": 1000,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "twitter-search",
+      "label": "User Query"
+    },
+    {
+      "source": "user-input",
+      "target": "web-search",
+      "label": "User Query"
+    },
+    {
+      "source": "twitter-search",
+      "target": "sentiment-analysis",
+      "label": "Twitter Results"
+    },
+    {
+      "source": "web-search",
+      "target": "summarization",
+      "label": "Web Search Results"
+    },
+    {
+      "source": "sentiment-analysis",
+      "target": "response-generation",
+      "label": "Sentiment Analysis"
+    },
+    {
+      "source": "summarization",
+      "target": "response-generation",
+      "label": "Summary"
+    },
+    {
+      "source": "user-input",
+      "target": "response-generation",
+      "label": "User Query"
+    },
+    {
+      "source": "response-generation",
+      "target": "send-response",
+      "label": "Generated Response"
+    },
+    {
+      "source": "send-response",
+      "target": "web-interface",
+      "label": "Output"
+    },
+    {
+      "source": "send-response",
+      "target": "slack-channel",
+      "label": "Output"
+    }
+  ]
+}

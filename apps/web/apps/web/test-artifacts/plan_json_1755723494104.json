@@ -1,0 +1,66 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a Slack bot to send DMs to engineers"
+      },
+      {
+        "text": "Configure daily schedule to run at 9am on weekdays"
+      },
+      {
+        "text": "Collect updates from engineers via DMs"
+      },
+      {
+        "text": "Use AI to summarize collected updates"
+      },
+      {
+        "text": "Post AI summary to #standup channel"
+      }
+    ],
+    "questions": [
+      {
+        "id": "engineer_list",
+        "label": "Do you have a list of engineers to contact?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "standup_channel",
+        "label": "Is the #standup channel already created in Slack?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "ai_summary",
+        "title": "AI summarization capability",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "daily_standup",
+        "title": "Daily Standup Pipeline",
+        "steps": [
+          "Send DMs to engineers",
+          "Collect responses",
+          "Generate AI summary",
+          "Post to #standup channel"
+        ],
+        "requires": [
+          "slack",
+          "openai"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "openai"
+    ]
+  }
+}

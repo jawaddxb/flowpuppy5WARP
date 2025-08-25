@@ -1,0 +1,69 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define target audience and goals for the email sequence"},
+      {"text": "Create compelling subject lines for welcome and follow-up emails"},
+      {"text": "Write welcome email content"},
+      {"text": "Develop content for day 2 follow-up email"},
+      {"text": "Craft content for day 3 follow-up email"},
+      {"text": "Design email templates for consistent branding"},
+      {"text": "Set up email automation workflow"},
+      {"text": "Test email sequence for deliverability and rendering"},
+      {"text": "Launch email welcome and follow-up sequence"},
+      {"text": "Monitor performance metrics and adjust as needed"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Event attendees"]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your email sequence?",
+        "choices": ["Onboarding", "Product education", "Conversion to paid", "Engagement boost"]
+      },
+      {
+        "id": "brandTone",
+        "label": "What tone of voice best represents your brand?",
+        "choices": ["Professional", "Friendly", "Humorous", "Inspirational"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailPlatform",
+        "title": "Preferred email marketing platform",
+        "confidence": 0.7
+      },
+      {
+        "id": "industryBenchmarks",
+        "title": "Industry benchmarks for email open and click-through rates",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "createSequence",
+        "title": "Create Email Sequence",
+        "steps": [
+          "Draft email content",
+          "Design email templates",
+          "Set up automation workflow",
+          "Test and refine"
+        ],
+        "requires": ["audience", "goal", "brandTone"]
+      }
+    ],
+    "connectionsRequired": ["mailchimp", "sendgrid"]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding",
+    "brandTone": "Friendly"
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "brandTone"}
+  ]
+}

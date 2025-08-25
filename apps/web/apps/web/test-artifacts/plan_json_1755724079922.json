@@ -1,0 +1,99 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define target audience and goals for the email sequence"
+      },
+      {
+        "text": "Create a compelling welcome email"
+      },
+      {
+        "text": "Design the first follow-up email (Day 2)"
+      },
+      {
+        "text": "Develop the second follow-up email (Day 3)"
+      },
+      {
+        "text": "Set up email automation system"
+      },
+      {
+        "text": "Test and optimize the email sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience for this email sequence?",
+        "choices": [
+          "New customers",
+          "Newsletter subscribers",
+          "Free trial users",
+          "Other"
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "What is the primary goal of your email sequence?",
+        "choices": [
+          "Onboarding",
+          "Product education",
+          "Conversion to paid",
+          "Building engagement"
+        ]
+      },
+      {
+        "id": "emailPlatform",
+        "label": "Which email marketing platform do you use?",
+        "choices": [
+          "Mailchimp",
+          "Constant Contact",
+          "SendGrid",
+          "Other",
+          "None yet"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailFrequency",
+        "title": "Email frequency is crucial for engagement",
+        "confidence": 0.9
+      },
+      {
+        "id": "personalization",
+        "title": "Personalized content increases open rates",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "createEmails",
+        "title": "Create Email Content",
+        "steps": [
+          "Draft welcome email",
+          "Draft Day 2 follow-up",
+          "Draft Day 3 follow-up",
+          "Review and edit all emails",
+          "Add visual elements if needed"
+        ]
+      },
+      {
+        "id": "setupAutomation",
+        "title": "Set Up Email Automation",
+        "steps": [
+          "Choose email marketing platform",
+          "Create email templates",
+          "Set up automation workflow",
+          "Test email delivery"
+        ],
+        "requires": [
+          "emailPlatform"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "mailchimp",
+      "sendgrid"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "empty-agent",
+      "type": "agent",
+      "config": {
+        "name": "EmptyAgent",
+        "description": "An agent with no channels or capabilities"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "edges": []
+}

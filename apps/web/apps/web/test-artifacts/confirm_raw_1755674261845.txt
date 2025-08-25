@@ -1,0 +1,43 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "blueprints": "construction_plans",
+      "materials": "inventory_list",
+      "timeline": "project_schedule"
+    },
+    "sources": {
+      "blueprintRepository": {
+        "provider": "github",
+        "repository": "construction-blueprints"
+      },
+      "materialSupplier": {
+        "provider": "erp",
+        "system": "inventory_management"
+      },
+      "projectManagement": {
+        "provider": "jira",
+        "project": "construction_projects"
+      }
+    },
+    "analysis": {
+      "resourceAllocation": "optimize_material_usage",
+      "timelineProjection": "estimate_completion_date",
+      "riskAssessment": "identify_potential_delays"
+    },
+    "decision": {
+      "buildStrategy": "determine_construction_approach",
+      "teamAssignment": "allocate_workers_to_tasks"
+    },
+    "actions": {
+      "initiateBuild": "start_construction_process",
+      "orderMaterials": "request_additional_supplies",
+      "updateTimeline": "adjust_project_schedule"
+    },
+    "channels": [
+      "email",
+      "sms",
+      "project_management_software"
+    ]
+  }
+}

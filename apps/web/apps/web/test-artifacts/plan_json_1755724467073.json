@@ -1,0 +1,88 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Create a webhook to receive contact form submissions"
+      },
+      {
+        "text": "Process the form data and extract relevant information"
+      },
+      {
+        "text": "Use AI to score the intent of the submission"
+      },
+      {
+        "text": "If intent score is >= 0.7, prepare a message for Slack"
+      },
+      {
+        "text": "Send a Direct Message to the Account Executive on Slack with submission details"
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for intent scoring?",
+        "choices": [
+          "OpenAI GPT-3",
+          "Custom trained model",
+          "Hugging Face Transformer"
+        ]
+      },
+      {
+        "id": "ae_identification",
+        "label": "How do you want to identify the Account Executive for the Slack message?",
+        "choices": [
+          "By territory/region",
+          "By product line",
+          "Single AE for all submissions"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "form_data",
+        "title": "Determine what contact form data is available",
+        "confidence": 0.8
+      },
+      {
+        "id": "slack_integration",
+        "title": "Verify Slack API integration capabilities",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "intent_scoring",
+        "title": "Score submission intent",
+        "steps": [
+          "Receive form data",
+          "Preprocess text",
+          "Send to AI model",
+          "Receive and parse score"
+        ],
+        "requires": [
+          "ai_model"
+        ]
+      },
+      {
+        "id": "slack_notification",
+        "title": "Send Slack notification",
+        "steps": [
+          "Identify correct AE",
+          "Compose message",
+          "Send Slack DM"
+        ],
+        "requires": [
+          "ae_identification"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "slack",
+      "openai"
+    ]
+  },
+  "nextQuestions": [
+    "ai_model",
+    "ae_identification"
+  ]
+}

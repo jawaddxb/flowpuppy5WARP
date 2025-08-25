@@ -1,0 +1,78 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up a daily scheduled task to run at 7am local time"
+      },
+      {
+        "text": "Fetch current weather data for Dubai"
+      },
+      {
+        "text": "Check if temperature exceeds 38°C"
+      },
+      {
+        "text": "If temperature threshold is met, send a Slack alert"
+      }
+    ],
+    "questions": [
+      {
+        "id": "slack_channel",
+        "label": "Which Slack channel should receive the weather alerts?",
+        "choices": [
+          "#general",
+          "#weather-alerts",
+          "#dubai-updates"
+        ]
+      },
+      {
+        "id": "alert_message",
+        "label": "What message should be included in the Slack alert?",
+        "choices": [
+          "Temperature alert for Dubai",
+          "High temperature warning",
+          "Custom message"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "weather_api",
+        "title": "Weather API selection required",
+        "confidence": 0.9
+      },
+      {
+        "id": "time_zone",
+        "title": "Confirm local time zone for Dubai",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "fetch_weather",
+        "title": "Fetch Dubai Weather",
+        "steps": [
+          "Connect to weather API",
+          "Request current temperature for Dubai",
+          "Parse API response"
+        ]
+      },
+      {
+        "id": "send_slack_alert",
+        "title": "Send Slack Alert",
+        "steps": [
+          "Format alert message",
+          "Connect to Slack API",
+          "Send message to specified channel"
+        ],
+        "requires": [
+          "slack_channel",
+          "alert_message"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "weatherapi",
+      "slack"
+    ]
+  }
+}

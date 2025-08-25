@@ -1,0 +1,68 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Twitter API access"},
+      {"text": "Create a system to track and analyze AI trends"},
+      {"text": "Develop a daily AI trend summary"},
+      {"text": "Implement automated tweeting"},
+      {"text": "Monitor and adjust the system"}
+    ],
+    "questions": [
+      {
+        "id": "tweet_frequency",
+        "label": "How many tweets per day do you want to post?",
+        "choices": ["1", "2", "3", "4", "5"]
+      },
+      {
+        "id": "ai_sources",
+        "label": "Which AI news sources do you want to track?",
+        "choices": ["ArXiv", "Tech blogs", "AI conferences", "Research papers", "Industry news"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "api_limits",
+        "title": "Twitter API has rate limits",
+        "confidence": 0.9
+      },
+      {
+        "id": "ai_trend_volatility",
+        "title": "AI trends can change rapidly",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "trend_analysis",
+        "title": "Daily AI Trend Analysis",
+        "steps": [
+          "Collect data from selected sources",
+          "Analyze trends using NLP",
+          "Generate summary",
+          "Create tweet content"
+        ],
+        "requires": ["openai"]
+      },
+      {
+        "id": "tweet_scheduling",
+        "title": "Automated Tweet Posting",
+        "steps": [
+          "Authenticate with Twitter API",
+          "Schedule tweets",
+          "Post tweets",
+          "Monitor engagement"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter", "openai"]
+  },
+  "defaults": {
+    "tweet_frequency": "1",
+    "ai_sources": ["ArXiv", "Tech blogs"]
+  },
+  "nextQuestions": [
+    {"id": "tweet_frequency"},
+    {"id": "ai_sources"}
+  ]
+}

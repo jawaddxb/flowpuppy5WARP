@@ -1,0 +1,76 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "text-input",
+      "type": "input",
+      "config": {
+        "inputType": "text",
+        "label": "User Input"
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "analyze-input",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7,
+        "maxTokens": 150,
+        "prompt": "Analyze the following user input: {{input}}"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "generate-response",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7,
+        "maxTokens": 200,
+        "prompt": "Based on the analysis, generate a response: {{analysis}}"
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "text-output",
+      "type": "output",
+      "config": {
+        "outputType": "text",
+        "label": "Agent Response"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "text-input",
+      "target": "analyze-input",
+      "label": "User Input"
+    },
+    {
+      "source": "analyze-input",
+      "target": "generate-response",
+      "label": "Analysis"
+    },
+    {
+      "source": "generate-response",
+      "target": "text-output",
+      "label": "Response"
+    }
+  ]
+}

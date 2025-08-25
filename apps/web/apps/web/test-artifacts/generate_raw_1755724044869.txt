@@ -1,0 +1,88 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "user-input",
+      "type": "input",
+      "config": {
+        "inputKey": "userQuery",
+        "label": "User Query"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "web-search",
+      "type": "websearch",
+      "config": {
+        "provider": "google",
+        "numResults": 5
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "sentiment-analysis",
+      "type": "textanalysis",
+      "config": {
+        "provider": "openai",
+        "model": "text-davinci-003",
+        "task": "sentiment"
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    },
+    {
+      "id": "decision-making",
+      "type": "llm",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo"
+      },
+      "position": {
+        "x": 600,
+        "y": 0
+      }
+    },
+    {
+      "id": "response-output",
+      "type": "output",
+      "config": {
+        "outputKey": "response",
+        "channels": ["chat", "email"]
+      },
+      "position": {
+        "x": 800,
+        "y": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "user-input",
+      "target": "web-search",
+      "label": "Query"
+    },
+    {
+      "source": "web-search",
+      "target": "sentiment-analysis",
+      "label": "Search Results"
+    },
+    {
+      "source": "sentiment-analysis",
+      "target": "decision-making",
+      "label": "Analyzed Data"
+    },
+    {
+      "source": "decision-making",
+      "target": "response-output",
+      "label": "Generated Response"
+    }
+  ]
+}

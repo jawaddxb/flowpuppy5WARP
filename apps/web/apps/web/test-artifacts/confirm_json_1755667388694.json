@@ -1,0 +1,60 @@
+{
+  "agentSpec": {
+    "name": "GeneralPurposeAgent",
+    "inputs": {
+      "userQuery": "string"
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "params": {
+          "numResults": 5
+        }
+      },
+      "news": {
+        "provider": "newsapi",
+        "params": {
+          "category": "general"
+        }
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "textblob"
+      },
+      "summarization": {
+        "provider": "gpt3",
+        "params": {
+          "maxLength": 200
+        }
+      }
+    },
+    "decision": {
+      "method": "rulebased",
+      "rules": [
+        {
+          "if": "sentiment.score < 0",
+          "then": "action.respond.tone = 'empathetic'"
+        },
+        {
+          "if": "sentiment.score > 0",
+          "then": "action.respond.tone = 'enthusiastic'"
+        }
+      ]
+    },
+    "actions": {
+      "respond": {
+        "type": "generateText",
+        "provider": "gpt3",
+        "params": {
+          "maxTokens": 150
+        }
+      }
+    },
+    "channels": [
+      "chat",
+      "email",
+      "voice"
+    ]
+  }
+}

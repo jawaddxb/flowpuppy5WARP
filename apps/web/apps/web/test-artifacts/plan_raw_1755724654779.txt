@@ -1,0 +1,62 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up Sentry webhook to trigger on new issues"},
+      {"text": "Extract stacktrace from Sentry issue payload"},
+      {"text": "Use AI to summarize stacktrace"},
+      {"text": "Determine issue severity based on AI summary"},
+      {"text": "Label Sentry issue with determined severity"},
+      {"text": "If severity is high, create Jira ticket with issue details"}
+    ],
+    "questions": [
+      {
+        "id": "ai_model",
+        "label": "Which AI model would you like to use for summarizing the stacktrace?",
+        "choices": ["GPT-3.5", "GPT-4", "Claude", "Custom model"]
+      },
+      {
+        "id": "severity_criteria",
+        "label": "How would you like to define 'high' severity?",
+        "choices": ["Based on AI recommendation", "Specific keywords in summary", "Error type", "Custom criteria"]
+      },
+      {
+        "id": "jira_project",
+        "label": "Which Jira project should the high severity tickets be created in?",
+        "choices": ["Backend", "Frontend", "DevOps", "QA"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "sentry_webhook",
+        "title": "Sentry supports webhooks for real-time issue notifications",
+        "confidence": 0.95
+      },
+      {
+        "id": "ai_summarization",
+        "title": "AI can effectively summarize technical stacktraces",
+        "confidence": 0.85
+      },
+      {
+        "id": "jira_integration",
+        "title": "Jira has an API for programmatically creating tickets",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "process_sentry_issue",
+        "title": "Process new Sentry issue",
+        "steps": [
+          "Receive Sentry webhook payload",
+          "Extract stacktrace",
+          "Send stacktrace to AI for summarization",
+          "Analyze AI summary to determine severity",
+          "Label Sentry issue with severity",
+          "If high severity, create Jira ticket"
+        ],
+        "requires": ["sentry", "openai", "jira"]
+      }
+    ],
+    "connectionsRequired": ["sentry", "openai", "jira"]
+  }
+}

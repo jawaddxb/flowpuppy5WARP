@@ -1,0 +1,64 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Set up a Twitter account if you don't have one"},
+      {"text": "Research current AI trends and developments"},
+      {"text": "Create a content calendar for daily tweets"},
+      {"text": "Write engaging tweets about AI trends"},
+      {"text": "Schedule tweets using a social media management tool"},
+      {"text": "Monitor engagement and adjust strategy as needed"}
+    ],
+    "questions": [
+      {
+        "id": "twitter_account",
+        "label": "Do you already have a Twitter account?",
+        "choices": ["Yes", "No"]
+      },
+      {
+        "id": "ai_knowledge",
+        "label": "How would you rate your current knowledge of AI trends?",
+        "choices": ["Beginner", "Intermediate", "Advanced"]
+      },
+      {
+        "id": "tweet_frequency",
+        "label": "How many times per day do you want to tweet?",
+        "choices": ["Once", "Twice", "Three times", "More than three times"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "audience_interest",
+        "title": "Determine target audience's specific AI interests",
+        "confidence": 0.8
+      },
+      {
+        "id": "trending_hashtags",
+        "title": "Identify popular AI-related hashtags",
+        "confidence": 0.9
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "content_creation",
+        "title": "AI Trend Content Creation Pipeline",
+        "steps": [
+          "Research latest AI news and developments",
+          "Identify key trends and insights",
+          "Draft concise and engaging tweets",
+          "Add relevant hashtags",
+          "Schedule tweets for optimal posting times"
+        ],
+        "requires": ["twitter"]
+      }
+    ],
+    "connectionsRequired": ["twitter"]
+  },
+  "defaults": {
+    "tweet_frequency": "Once"
+  },
+  "nextQuestions": [
+    {"id": "twitter_account"},
+    {"id": "ai_knowledge"},
+    {"id": "tweet_frequency"}
+  ]
+}

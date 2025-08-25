@@ -1,0 +1,72 @@
+{
+  "agentSpec": {
+    "name": "BuilderBot",
+    "inputs": {
+      "projectSpecs": {
+        "type": "text",
+        "description": "Detailed specifications for the construction project"
+      },
+      "budget": {
+        "type": "number",
+        "description": "Total available budget for the project"
+      },
+      "timeline": {
+        "type": "text",
+        "description": "Expected timeline for project completion"
+      }
+    },
+    "sources": {
+      "constructionDatabase": {
+        "provider": "database",
+        "query": "SELECT * FROM materials WHERE project_type = ${inputs.projectSpecs.type}"
+      },
+      "supplierCatalog": {
+        "provider": "web",
+        "url": "https://supplier.com/catalog"
+      }
+    },
+    "analysis": {
+      "costEstimation": {
+        "inputs": [
+          "projectSpecs",
+          "constructionDatabase"
+        ],
+        "output": "estimatedCost"
+      },
+      "timelineAssessment": {
+        "inputs": [
+          "projectSpecs",
+          "timeline"
+        ],
+        "output": "feasibilityScore"
+      }
+    },
+    "decision": {
+      "approveProject": {
+        "if": "(analysis.estimatedCost <= inputs.budget) && (analysis.feasibilityScore >= 0.7)",
+        "then": "actions.initializeProject",
+        "else": "actions.requestRevision"
+      }
+    },
+    "actions": {
+      "initializeProject": {
+        "type": "function",
+        "description": "Start the construction project"
+      },
+      "requestRevision": {
+        "type": "function",
+        "description": "Request revision of project specifications"
+      }
+    },
+    "channels": [
+      {
+        "type": "email",
+        "address": "project-manager@construction.com"
+      },
+      {
+        "type": "sms",
+        "number": "+1234567890"
+      }
+    ]
+  }
+}

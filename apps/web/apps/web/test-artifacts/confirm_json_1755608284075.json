@@ -1,0 +1,55 @@
+{
+  "agentSpec": {
+    "name": "GeneralPurposeAgent",
+    "inputs": {
+      "userQuery": "string",
+      "context": "object"
+    },
+    "sources": {
+      "web": {
+        "provider": "google",
+        "maxResults": 5
+      },
+      "news": {
+        "provider": "newsapi",
+        "categories": [
+          "technology",
+          "business"
+        ]
+      }
+    },
+    "analysis": {
+      "sentiment": {
+        "provider": "nltk",
+        "method": "vader"
+      },
+      "summarization": {
+        "provider": "gpt3",
+        "maxLength": 200
+      }
+    },
+    "decision": {
+      "method": "rulebased",
+      "rules": [
+        "if sentiment > 0.5 then positive",
+        "if sentiment < -0.5 then negative",
+        "else neutral"
+      ]
+    },
+    "actions": {
+      "generateResponse": {
+        "provider": "gpt3",
+        "model": "text-davinci-002"
+      },
+      "saveToDatabase": {
+        "provider": "mongodb",
+        "collection": "responses"
+      }
+    },
+    "channels": [
+      "slack",
+      "email",
+      "api"
+    ]
+  }
+}

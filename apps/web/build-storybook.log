@@ -1,0 +1,31 @@
+
+> @flowpuppy/web@0.1.0 storybook:build
+> storybook build --output-dir=/var/folders/6d/m9qtfxkd7n39x40zrylsx4cw0000gn/T/chromatic--28101-7sZcyEkzwPCw
+
+@storybook/cli v7.6.20
+
+info => Cleaning outputDir: /var/folders/6d/m9qtfxkd7n39x40zrylsx4cw0000gn/T/chromatic--28101-7sZcyEkzwPCw
+info => Loading presets
+info => Building manager..
+info => Manager built (85 ms)
+info => Building preview..
+info => Copying static files: /Users/jawad/Documents/Flowpuppyv4/node_modules/@storybook/manager/static at /var/folders/6d/m9qtfxkd7n39x40zrylsx4cw0000gn/T/chromatic--28101-7sZcyEkzwPCw/sb-common-assets
+info Using Babel compiler
+info Addon-docs: using MDX2
+info => Using implicit CSS loaders
+info => Using default Webpack5 setup
+WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+WARN This can impact web performance.
+WARN Assets: 
+WARN   392.d4a5c7fa.iframe.bundle.js (581 KiB)
+WARN   959.d2146b63.iframe.bundle.js (1.1 MiB)
+WARN   126.45dea3a2.iframe.bundle.js (722 KiB)
+WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+WARN Entrypoints:
+WARN   main (1.16 MiB)
+WARN       runtime~main.09bb8222.iframe.bundle.js
+WARN       959.d2146b63.iframe.bundle.js
+WARN       main.bfdf433e.iframe.bundle.js
+WARN 
+info => Preview built (5.97 s)
+info => Output directory: /var/folders/6d/m9qtfxkd7n39x40zrylsx4cw0000gn/T/chromatic--28101-7sZcyEkzwPCw

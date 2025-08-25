@@ -1,0 +1,126 @@
+{
+  "flowDoc": {
+    "version": "1.1",
+    "lanes": [
+      {
+        "id": "lane-input",
+        "title": "Input",
+        "order": 1
+      },
+      {
+        "id": "lane-transform",
+        "title": "Transform",
+        "order": 2
+      },
+      {
+        "id": "lane-decision",
+        "title": "Decision",
+        "order": 3
+      },
+      {
+        "id": "lane-output",
+        "title": "Output",
+        "order": 4
+      }
+    ],
+    "nodes": [
+      {
+        "id": "get-weather",
+        "type": "APICall",
+        "title": "APICall",
+        "laneId": "lane-transform",
+        "provider": "openweathermap",
+        "data": {
+          "provider": "openweathermap",
+          "endpoint": "current",
+          "params": {
+            "q": "{{city}}",
+            "units": "metric"
+          }
+        }
+      },
+      {
+        "id": "check-temperature",
+        "type": "Branch",
+        "title": "Branch",
+        "laneId": "lane-transform",
+        "data": {
+          "condition": "{{get-weather.main.temp}} > 20"
+        }
+      },
+      {
+        "id": "warm-response",
+        "type": "TextTemplate",
+        "title": "TextTemplate",
+        "laneId": "lane-transform",
+        "data": {
+          "template": "It's warm in {{city}} with a temperature of {{get-weather.main.temp}}°C."
+        }
+      },
+      {
+        "id": "cold-response",
+        "type": "TextTemplate",
+        "title": "TextTemplate",
+        "laneId": "lane-transform",
+        "data": {
+          "template": "It's not warm in {{city}}. The current temperature is {{get-weather.main.temp}}°C."
+        }
+      },
+      {
+        "id": "output",
+        "type": "Output",
+        "title": "Output",
+        "laneId": "lane-output"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e0",
+        "source": {
+          "nodeId": "get-weather"
+        },
+        "target": {
+          "nodeId": "check-temperature"
+        }
+      },
+      {
+        "id": "e1",
+        "source": {
+          "nodeId": "check-temperature"
+        },
+        "target": {
+          "nodeId": "warm-response"
+        },
+        "label": "True"
+      },
+      {
+        "id": "e2",
+        "source": {
+          "nodeId": "check-temperature"
+        },
+        "target": {
+          "nodeId": "cold-response"
+        },
+        "label": "False"
+      },
+      {
+        "id": "e3",
+        "source": {
+          "nodeId": "warm-response"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      },
+      {
+        "id": "e4",
+        "source": {
+          "nodeId": "cold-response"
+        },
+        "target": {
+          "nodeId": "output"
+        }
+      }
+    ]
+  }
+}

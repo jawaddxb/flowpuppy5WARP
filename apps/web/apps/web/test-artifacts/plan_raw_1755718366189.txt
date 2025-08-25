@@ -1,0 +1,44 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Start with a light jog or brisk walk for 5-10 minutes to increase heart rate gradually"},
+      {"text": "Perform dynamic stretches like arm circles, leg swings, and torso twists"},
+      {"text": "Do some light bodyweight exercises such as squats, lunges, and push-ups"},
+      {"text": "Finish with sport-specific movements if preparing for a particular activity"}
+    ],
+    "questions": [
+      {
+        "id": "workout_type",
+        "label": "What type of workout are you warming up for?",
+        "choices": ["Cardio", "Strength training", "Sports", "General fitness"]
+      },
+      {
+        "id": "fitness_level",
+        "label": "What is your current fitness level?",
+        "choices": ["Beginner", "Intermediate", "Advanced"]
+      },
+      {
+        "id": "time_available",
+        "label": "How much time do you have for your warm-up?",
+        "choices": ["5 minutes", "10 minutes", "15 minutes", "20+ minutes"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "importance_warmup",
+        "title": "Importance of proper warm-up",
+        "confidence": 0.95
+      },
+      {
+        "id": "injury_prevention",
+        "title": "Warm-up's role in injury prevention",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "nextQuestions": [
+    {"id": "workout_type"},
+    {"id": "fitness_level"},
+    {"id": "time_available"}
+  ]
+}

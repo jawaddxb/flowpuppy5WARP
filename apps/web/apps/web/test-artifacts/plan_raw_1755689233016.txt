@@ -1,0 +1,76 @@
+{
+  "options": {
+    "plan": [
+      {"text": "Define target audience and goals"},
+      {"text": "Create welcome email content"},
+      {"text": "Design email template"},
+      {"text": "Set up email automation system"},
+      {"text": "Create day 1 follow-up email"},
+      {"text": "Create day 2 follow-up email"},
+      {"text": "Create day 3 follow-up email"},
+      {"text": "Test and optimize sequence"}
+    ],
+    "questions": [
+      {
+        "id": "audience",
+        "label": "Who is your target audience?",
+        "choices": ["New customers", "Newsletter subscribers", "Free trial users", "Other"]
+      },
+      {
+        "id": "goal",
+        "label": "What's the primary goal of your email sequence?",
+        "choices": ["Onboarding", "Product education", "Conversion", "Engagement"]
+      },
+      {
+        "id": "branding",
+        "label": "Do you have existing brand guidelines for emails?",
+        "choices": ["Yes", "No"]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "emailFrequency",
+        "title": "Optimal email frequency",
+        "confidence": 0.8
+      },
+      {
+        "id": "contentTypes",
+        "title": "Effective content types for sequence",
+        "confidence": 0.7
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "createSequence",
+        "title": "Create Email Sequence",
+        "steps": [
+          "Draft welcome email",
+          "Draft day 1 follow-up",
+          "Draft day 2 follow-up",
+          "Draft day 3 follow-up"
+        ],
+        "requires": ["audience", "goal"]
+      },
+      {
+        "id": "setupAutomation",
+        "title": "Set Up Email Automation",
+        "steps": [
+          "Choose email marketing tool",
+          "Create email templates",
+          "Set up automation rules",
+          "Test sequence"
+        ]
+      }
+    ],
+    "connectionsRequired": ["mailchimp", "sendgrid"]
+  },
+  "defaults": {
+    "audience": "New customers",
+    "goal": "Onboarding"
+  },
+  "nextQuestions": [
+    {"id": "audience"},
+    {"id": "goal"},
+    {"id": "branding"}
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "web-search",
+      "type": "web",
+      "config": {
+        "provider": "google",
+        "maxResults": 5
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "news-fetch",
+      "type": "news",
+      "config": {
+        "provider": "newsapi",
+        "categories": [
+          "technology",
+          "business"
+        ]
+      },
+      "position": {
+        "x": 200,
+        "y": 100
+      }
+    },
+    {
+      "id": "sentiment-analysis",
+      "type": "analysis",
+      "config": {
+        "provider": "nltk",
+        "method": "vader"
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "text-summarization",
+      "type": "analysis",
+      "config": {
+        "provider": "gpt3",
+        "maxLength": 200
+      },
+      "position": {
+        "x": 400,
+        "y": 100
+      }
+    },
+    {
+      "id": "decision-making",
+      "type": "decision",
+      "config": {
+        "method": "rulebased",
+        "rules": [
+          "if sentiment > 0.5 then positive",
+          "if sentiment < -0.5 then negative",
+          "else neutral"
+        ]
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "id": "response-generation",
+      "type": "action",
+      "config": {
+        "provider": "gpt3",
+        "model": "text-davinci-002"
+      },
+      "position": {
+        "x": 600,
+        "y": 100
+      }
+    },
+    {
+      "id": "database-save",
+      "type": "action",
+      "config": {
+        "provider": "mongodb",
+        "collection": "responses"
+      },
+      "position": {
+        "x": 700,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "web-search",
+      "target": "sentiment-analysis"
+    },
+    {
+      "source": "news-fetch",
+      "target": "sentiment-analysis"
+    },
+    {
+      "source": "sentiment-analysis",
+      "target": "decision-making"
+    },
+    {
+      "source": "decision-making",
+      "target": "response-generation"
+    },
+    {
+      "source": "response-generation",
+      "target": "database-save"
+    }
+  ]
+}

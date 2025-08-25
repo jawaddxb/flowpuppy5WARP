@@ -1,0 +1,81 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "input-receiver",
+      "type": "InputReceiver",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "openai-analysis",
+      "type": "LLMTask",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.7,
+        "max_tokens": 500,
+        "prompt": "Analyze the following input and provide a brief summary:"
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      }
+    },
+    {
+      "id": "decision-maker",
+      "type": "LLMTask",
+      "config": {
+        "provider": "openai",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.5,
+        "max_tokens": 300,
+        "prompt": "Based on the analysis, determine the next action to take:"
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      }
+    },
+    {
+      "id": "action-executor",
+      "type": "ActionExecutor",
+      "position": {
+        "x": 600,
+        "y": 0
+      }
+    },
+    {
+      "id": "output-sender",
+      "type": "OutputSender",
+      "position": {
+        "x": 800,
+        "y": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "input-receiver",
+      "target": "openai-analysis",
+      "label": "Input"
+    },
+    {
+      "source": "openai-analysis",
+      "target": "decision-maker",
+      "label": "Analysis"
+    },
+    {
+      "source": "decision-maker",
+      "target": "action-executor",
+      "label": "Decision"
+    },
+    {
+      "source": "action-executor",
+      "target": "output-sender",
+      "label": "Action Result"
+    }
+  ]
+}

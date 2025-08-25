@@ -1,0 +1,82 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Connect to Notion API"
+      },
+      {
+        "text": "Monitor for new blog draft creation"
+      },
+      {
+        "text": "Extract blog content from Notion"
+      },
+      {
+        "text": "Use AI to generate meta description"
+      },
+      {
+        "text": "Use AI to generate 5 keywords"
+      },
+      {
+        "text": "Update Notion page with generated content"
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai_provider",
+        "label": "Which AI provider would you like to use for content generation?",
+        "choices": [
+          "OpenAI",
+          "Anthropic",
+          "Cohere"
+        ]
+      },
+      {
+        "id": "notion_database",
+        "label": "What is the name of your Notion database for blog posts?",
+        "choices": [
+          "Blog Posts",
+          "Content Calendar",
+          "Articles",
+          "Other (specify)"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "notion_integration",
+        "title": "Notion API integration is required",
+        "confidence": 1
+      },
+      {
+        "id": "ai_content_generation",
+        "title": "AI-powered content generation capability is needed",
+        "confidence": 1
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "blog_meta_generation",
+        "title": "Generate and Update Blog Metadata",
+        "steps": [
+          "Monitor Notion for new blog draft",
+          "Extract blog content",
+          "Generate meta description with AI",
+          "Generate keywords with AI",
+          "Update Notion page with new metadata"
+        ],
+        "requires": [
+          "notion",
+          "ai_provider"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "notion",
+      "openai"
+    ]
+  },
+  "nextQuestions": [
+    "ai_provider",
+    "notion_database"
+  ]
+}

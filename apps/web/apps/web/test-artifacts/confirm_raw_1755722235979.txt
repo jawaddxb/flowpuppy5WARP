@@ -1,0 +1,65 @@
+{
+  "agentSpec": {
+    "name": "BuildAgent",
+    "inputs": {
+      "buildParameters": {
+        "type": "object",
+        "description": "Parameters for the build process"
+      },
+      "sourceCode": {
+        "type": "string",
+        "description": "URL or path to the source code repository"
+      }
+    },
+    "sources": {
+      "github": {
+        "provider": "github",
+        "repo": "{{inputs.sourceCode}}"
+      },
+      "buildTools": {
+        "provider": "system",
+        "command": "build --version"
+      }
+    },
+    "analysis": {
+      "validateSourceCode": {
+        "input": "{{sources.github}}",
+        "output": {
+          "isValid": "boolean",
+          "errors": "array"
+        }
+      },
+      "checkBuildTools": {
+        "input": "{{sources.buildTools}}",
+        "output": {
+          "isInstalled": "boolean",
+          "version": "string"
+        }
+      }
+    },
+    "decision": {
+      "shouldProceedWithBuild": {
+        "if": "{{analysis.validateSourceCode.isValid}} && {{analysis.checkBuildTools.isInstalled}}",
+        "then": true,
+        "else": false
+      }
+    },
+    "actions": {
+      "executeBuild": {
+        "condition": "{{decision.shouldProceedWithBuild}}",
+        "command": "build {{inputs.buildParameters}}"
+      },
+      "notifyBuildStatus": {
+        "condition": "true",
+        "provider": "slack",
+        "message": "Build status: {{actions.executeBuild.status}}"
+      }
+    },
+    "channels": [
+      {
+        "type": "slack",
+        "id": "build-notifications"
+      }
+    ]
+  }
+}

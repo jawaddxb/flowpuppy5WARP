@@ -1,0 +1,54 @@
+{
+  "version": 2.1,
+  "nodes": [
+    {
+      "id": "temperature-sensor",
+      "type": "sensor",
+      "config": {
+        "metric": "temperature",
+        "unit": "celsius",
+        "interval": 60
+      },
+      "position": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "id": "thermostat",
+      "type": "controller",
+      "config": {
+        "target_temperature": 22,
+        "tolerance": 1
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "heater",
+      "type": "actuator",
+      "config": {
+        "type": "electric_heater",
+        "max_power": 2000
+      },
+      "position": {
+        "x": 500,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "temperature-sensor",
+      "target": "thermostat",
+      "label": "temperature_reading"
+    },
+    {
+      "source": "thermostat",
+      "target": "heater",
+      "label": "heating_command"
+    }
+  ]
+}

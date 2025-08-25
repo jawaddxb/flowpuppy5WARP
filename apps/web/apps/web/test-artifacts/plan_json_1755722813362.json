@@ -1,0 +1,93 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Set up Notion API integration to access task data"
+      },
+      {
+        "text": "Create a script to query Notion API for completed tasks"
+      },
+      {
+        "text": "Set up email sending functionality"
+      },
+      {
+        "text": "Develop a template for the weekly digest email"
+      },
+      {
+        "text": "Create a script to compile completed tasks into digest format"
+      },
+      {
+        "text": "Set up a scheduled job to run every Friday at 4pm"
+      },
+      {
+        "text": "Implement error handling and logging"
+      },
+      {
+        "text": "Test the entire workflow"
+      }
+    ],
+    "questions": [
+      {
+        "id": "notion_workspace",
+        "label": "What is the name of your Notion workspace?",
+        "choices": [
+          "Personal",
+          "Work",
+          "Team",
+          "Other"
+        ]
+      },
+      {
+        "id": "email_service",
+        "label": "Which email service would you like to use for sending the digest?",
+        "choices": [
+          "Gmail",
+          "Outlook",
+          "SendGrid",
+          "Custom SMTP"
+        ]
+      },
+      {
+        "id": "team_size",
+        "label": "How many team members will receive the digest?",
+        "choices": [
+          "1-5",
+          "6-10",
+          "11-20",
+          "20+"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "notion_api",
+        "title": "Notion API is required for accessing task data",
+        "confidence": 0.9
+      },
+      {
+        "id": "scheduling",
+        "title": "A scheduling system is needed for running the job every Friday at 4pm",
+        "confidence": 0.8
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "weekly_digest",
+        "title": "Generate and Send Weekly Digest",
+        "steps": [
+          "Query Notion API for completed tasks",
+          "Compile tasks into digest format",
+          "Send email to team"
+        ],
+        "requires": [
+          "notion",
+          "email"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "notion",
+      "email"
+    ]
+  }
+}

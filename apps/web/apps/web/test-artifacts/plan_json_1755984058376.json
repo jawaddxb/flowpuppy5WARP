@@ -1,0 +1,107 @@
+{
+  "options": {
+    "plan": [
+      {
+        "text": "Define the goal and target audience for the welcome sequence"
+      },
+      {
+        "text": "Create a compelling subject line for the welcome email"
+      },
+      {
+        "text": "Write the content for the welcome email"
+      },
+      {
+        "text": "Design the layout and formatting of the welcome email"
+      },
+      {
+        "text": "Create a subject line for the day 2 follow-up email"
+      },
+      {
+        "text": "Write the content for the day 2 follow-up email"
+      },
+      {
+        "text": "Design the layout and formatting of the day 2 follow-up email"
+      },
+      {
+        "text": "Create a subject line for the day 3 follow-up email"
+      },
+      {
+        "text": "Write the content for the day 3 follow-up email"
+      },
+      {
+        "text": "Design the layout and formatting of the day 3 follow-up email"
+      },
+      {
+        "text": "Set up the email sequence in the chosen email marketing platform"
+      },
+      {
+        "text": "Test the email sequence"
+      },
+      {
+        "text": "Launch the email sequence"
+      }
+    ],
+    "questions": [
+      {
+        "id": "email_platform",
+        "label": "Which email marketing platform will you use?",
+        "choices": [
+          "Mailchimp",
+          "ConvertKit",
+          "ActiveCampaign",
+          "Other"
+        ]
+      },
+      {
+        "id": "audience_size",
+        "label": "What is the approximate size of your email list?",
+        "choices": [
+          "Less than 1,000",
+          "1,000 - 10,000",
+          "10,000 - 50,000",
+          "More than 50,000"
+        ]
+      },
+      {
+        "id": "welcome_offer",
+        "label": "Will you include a special offer in the welcome email?",
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      }
+    ],
+    "discoveries": [
+      {
+        "id": "email_sequence_importance",
+        "title": "Welcome email sequences can significantly improve customer engagement",
+        "confidence": 0.9
+      },
+      {
+        "id": "personalization_impact",
+        "title": "Personalized email content can increase open rates by up to 26%",
+        "confidence": 0.85
+      }
+    ],
+    "pipelines": [
+      {
+        "id": "email_sequence_creation",
+        "title": "Create and Launch Email Sequence",
+        "steps": [
+          "Define audience and goals",
+          "Write email content",
+          "Design email layouts",
+          "Set up in email platform",
+          "Test sequence",
+          "Launch sequence"
+        ],
+        "requires": [
+          "email_platform"
+        ]
+      }
+    ],
+    "connectionsRequired": [
+      "email_marketing_platform"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "agentSpec": {
+    "name": "Builder",
+    "inputs": {
+      "blueprints": "string",
+      "components": "array",
+      "materials": "object"
+    },
+    "sources": {
+      "cad": {
+        "provider": "autocad",
+        "blueprintFiles": "array"
+      },
+      "inventory": {
+        "provider": "erp",
+        "materialStock": "object"
+      }
+    },
+    "analysis": {
+      "structuralIntegrity": "function",
+      "costEstimation": "function"
+    },
+    "decision": {
+      "buildFeasibility": "boolean",
+      "resourceAllocation": "object"
+    },
+    "actions": {
+      "orderMaterials": "function",
+      "scheduleTasks": "function",
+      "assignWorkers": "function"
+    },
+    "channels": [
+      "email",
+      "projectManagementSoftware",
+      "supplierPortal"
+    ]
+  }
+}
