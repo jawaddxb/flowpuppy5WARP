@@ -1,6 +1,6 @@
 # Production Readiness - Definition of Done (DoD)
 
-Last Updated: 2025-08-24
+Last Updated: 2025-08-26
 Status: ACTIVE
 
 ## Legend
@@ -62,7 +62,7 @@ Status: ACTIVE
 - Status: Pending investigation
 
 ### P0.3 Security & Dependencies
-**P0.3.1** ⏳ Run npm audit fix
+**P0.3.1** ❌ Run npm audit fix
 - Acceptance: No critical vulnerabilities
 - Status: 23 vulnerabilities found (22 moderate, 1 critical)
 
@@ -70,7 +70,7 @@ Status: ACTIVE
 - Acceptance: Dependabot security alerts enabled
 - Status: Pending configuration
 
-**P0.3.3** ⏳ Document secrets rotation procedure
+**P0.3.3** ❌ Document secrets rotation procedure
 - Acceptance: docs/runbooks/secrets-rotation.md exists
 - Status: Pending creation
 
@@ -79,22 +79,22 @@ Status: ACTIVE
 ## Phase 1: Release Candidate Blockers (2-4 days)
 
 ### P1.1 Core Functionality (AB-401)
-**P1.1.1** ⏳ Complete runtime join validator rules
+**P1.1.1** ✅ Complete runtime join validator rules
 - Acceptance: All join node validation rules implemented
 - Location: apps/web/src/lib/orchestrator/validate.ts
 - Status: Scaffolded, needs completion
 
-**P1.1.2** ⏳ Complete runtime race validator rules  
+**P1.1.2** ✅ Complete runtime race validator rules  
 - Acceptance: All race node validation rules implemented
 - Location: apps/web/src/lib/orchestrator/validate.ts
 - Status: Scaffolded, needs completion
 
-**P1.1.3** ⏳ Complete runtime mapLoop validator rules
+**P1.1.3** ✅ Complete runtime mapLoop validator rules
 - Acceptance: All mapLoop validation rules implemented
 - Location: apps/web/src/lib/orchestrator/validate.ts
 - Status: Scaffolded, needs completion
 
-**P1.1.4** ⏳ Add unit tests for runtime validators
+**P1.1.4** ❌ Add unit tests for runtime validators
 - Acceptance: 100% coverage of validator rules
 - Status: Pending test creation
 
@@ -134,7 +134,7 @@ Status: ACTIVE
   - Uncaught errors captured
 - Status: Pending setup
 
-**P1.3.2** ⏳ Add health endpoint
+**P1.3.2** ❌ Add health endpoint
 - Acceptance: /api/health returns version, commit, status
 - Status: Pending implementation
 
@@ -164,7 +164,7 @@ Status: ACTIVE
 - Status: Pending documentation
 
 ### P1.5 Data & Migrations
-**P1.5.1** ⏳ Ensure migrations are idempotent
+**P1.5.1** ❌ Ensure migrations are idempotent
 - Acceptance: supabase db reset && push round-trip clean
 - Status: Pending verification
 
@@ -440,6 +440,38 @@ Completion by Phase:
 ---
 
 ## Change Log
+
+### 2025-08-26
+- P1.5.1 marked as Blocked
+
+
+### 2025-08-26
+- P1.3.2 marked as Blocked
+
+
+### 2025-08-26
+- P1.1.4 marked as Blocked
+
+
+### 2025-08-26
+- P1.1.3 marked as Complete
+
+
+### 2025-08-26
+- P1.1.2 marked as Complete
+
+
+### 2025-08-26
+- P1.1.1 marked as Complete
+
+
+### 2025-08-26
+- P0.3.3 marked as Blocked
+
+
+### 2025-08-26
+- P0.3.1 marked as Blocked
+
 
 ### 2025-08-24
 - P0.2.5 marked as Complete
